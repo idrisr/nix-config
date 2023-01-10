@@ -1,0 +1,4 @@
+--langdef=zettel
+--langmap=zettel:.md
+--regex-zettel=/^(\S.*)$/\1/s,Section/
+--regex-zettel=/\[\[(.*?)\]\]/\1/l,Link/

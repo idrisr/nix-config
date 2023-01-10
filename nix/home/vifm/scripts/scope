@@ -1,0 +1,64 @@
+#!/bin/sh
+
+# file preview handler for vifm
+
+set -C -f
+IFS="$(printf '%b_' '\n')"; IFS="${IFS%_}"
+
+image() {
+    # args
+    # 1 file to display
+    # 2 x top left corner preview window
+    # 3 y top left corner preview window
+    # 4 width
+    # 5 height
+    # 6 original filename
+
+	if [ -f "$1" ] && [ -n "$DISPLAY" ] && [ -z "$WAYLAND_DISPLAY" ] && command -V ueberzug >/dev/null 2>&1; then
+        printf '{"action": "add", "identifier": "PREVIEW", "x": "%s", "y": "%s", "width": "%s", "height": "%s", "scaler": "contain", "path": "%s"}\n' "$2" "$3" "$(($4-1))" "$(($5-1))" "$1" > "$FIFO_UEBERZUG"
+	else
+		mediainfo "$6"
+	fi
+}
+
+ifub() {
+	[ -n "$DISPLAY" ] && [ -z "$WAYLAND_DISPLAY" ] && command -V ueberzug >/dev/null 2>&1
+}
+
+# Note that the cache file name is a function of file information, meaning if
+# an image appears in multiple places across the machine, it will not have to
+# be regenerated once seen.
+
+file=$(file --dereference --brief --mime-type -- "$1")
+case "${file}" in
+	image/*) image "$PWD/$1" "$2" "$3" "$4" "$5" "$1" ;;
+	text/troff) man ./ "$1" | col -b ;;
+	text/* | */xml | application/json) bat --terminal-width "$(($4-2))" -f "$1" ;;
+	audio/* | application/octet-stream) mediainfo "$1" || exit 1 ;;
+	video/* )
+		CACHE="${XDG_CACHE_HOME:-$HOME/.cache}/lf/thumb.$(stat --printf '%n\0%i\0%F\0%s\0%W\0%Y' -- "$(readlink -f "$1")" | sha256sum | cut -d' ' -f1)"
+		[ ! -f "$CACHE" ] && ffmpegthumbnailer -i "$1" -o "$CACHE" -s 0
+		image "$CACHE" "$2" "$3" "$4" "$5" "$1"
+		;;
+	*/pdf)
+		CACHE="${XDG_CACHE_HOME:-$HOME/.cache}/lf/thumb.$(stat --printf '%n\0%i\0%F\0%s\0%W\0%Y' -- "$(readlink -f "$1")" | sha256sum | cut -d' ' -f1)"
+		[ ! -f "$CACHE.jpg" ] && pdftoppm -jpeg -f 1 -singlefile "$1" "$CACHE"
+		image "$CACHE.jpg" "$2" "$3" "$4" "$5" "$1"
+		;;
+	*/epub+zip|*/mobi*)
+		CACHE="${XDG_CACHE_HOME:-$HOME/.cache}/lf/thumb.$(stat --printf '%n\0%i\0%F\0%s\0%W\0%Y' -- "$(readlink -f "$1")" | sha256sum | cut -d' ' -f1)"
+		[ ! -f "$CACHE.jpg" ] && epubthumb "$1" "$CACHE.jpg" 1600 2>&1
+		image "$CACHE.jpg" "$2" "$3" "$4" "$5" "$1"
+		;;
+	application/*zip) atool --list -- "$1" ;;
+    application/x-tar) tar --list -f "$1" ;;
+    application/msword|application/*excel|*vnd.openxmlformats-officedocument*|application/vnd.ms-powerpoint)
+		CACHE="${XDG_CACHE_HOME:-$HOME/.cache}/lf/thumb.$(stat --printf '%n\0%i\0%F\0%s\0%W\0%Y' -- "$(readlink -f "$1")" | sha256sum | cut -d' ' -f1)"
+		[ ! -f "$CACHE.jpg" ] && unoconv --format=pdf --output="$CACHE.pdf" "$1" && pdftoppm -jpeg -f 1 -singlefile "$CACHE.pdf" "$CACHE"
+		image "$CACHE.jpg" "$2" "$3" "$4" "$5" "$1";;
+
+	*opendocument*) odt2txt "$1" ;;
+	application/pgp-encrypted) gpg -d -- "$1" ;;
+
+esac
+exit 1
