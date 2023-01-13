@@ -36,7 +36,6 @@ with pkgs; [
   imagemagick
   inkscape
   jq
-  kdenlive
   killall
   krop
   lastpass-cli
@@ -46,10 +45,8 @@ with pkgs; [
   lsof
   mediainfo
   mpv
-  mupdf
   ncdu # better du
   neofetch
-  newsboat
   nitrogen
   nixfmt
   nixos-generators
@@ -58,17 +55,17 @@ with pkgs; [
   okular
   parted
   pass
-  pdfarranger
   pdftk
   pinentry
   pipe-rename
   pirate-get
-  pistol
   poppler_utils
   powerline
   powerline-fonts
-  python39Packages.adblock
-  python39Packages.pynvim
+
+  # (python310.withPackages (pythonPackages: with pythonPackages; [ debugpy ]))
+  # python39Packages.adblock
+  # python39Packages.pynvim
   qrcp
   rename
   ripgrep
@@ -96,7 +93,6 @@ with pkgs; [
   unoconv
   unzip
   vifm-full
-  weechat
   wget
   writedisk
   xclip

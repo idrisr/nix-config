@@ -22,6 +22,7 @@
       vim-scriptease
       vim-startify
       vim-surround
+      vimspector
       vimtex
 
     ];

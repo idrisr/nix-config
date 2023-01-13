@@ -65,5 +65,8 @@
     home-manager.enable = true;
     direnv.enable = true;
     direnv.nix-direnv.enable = true;
+    readline.enable = true;
+    readline.extraConfig = "set editing-mode vi";
+
   };
 }
