@@ -29,6 +29,7 @@
       gco = "git checkout";
       gpl = "git pull";
       gsp = "git status --porcelain";
+      ne = "nix-instantiate --eval";
       lg = "lazygit";
       ll = "ls --color -la";
       l = "ls --color -la";

@@ -156,6 +156,8 @@
             ms-python.python
             ms-azuretools.vscode-docker
             ms-vscode-remote.remote-ssh
+            vscode-extensions.vadimcn.vscode-lldb
+
           ];
         })
       ];
