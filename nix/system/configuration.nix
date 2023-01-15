@@ -7,29 +7,11 @@
 {
   imports = [ # Include the results of the hardware scan.
     ./hardware-configuration.nix
-    <nixos-hardware/microsoft/surface>
     <home-manager/nixos>
-    ./xmonad.nix
-    # ./plasma.nix
   ];
 
   config = {
-    boot = {
-      loader.systemd-boot.enable = true;
-      loader.efi.canTouchEfiVariables = true;
-      loader.efi.efiSysMountPoint = "/boot/efi";
-      kernelParams = [
-        "i915.enable_rc6=1"
-        "i915.enable_psr=0"
-
-      ];
-    };
-
     nix = {
-      package = pkgs.nixFlakes;
-      extraOptions = ''
-        experimental-features = nix-command flakes
-      '';
       settings.trusted-users = [ "root" "hippoid" ];
 
       gc = {
@@ -39,10 +21,11 @@
     };
 
     networking = {
-      hostName = "surface2";
+      hostName = "rpi4";
       networkmanager.enable = true;
-      interfaces.wlp0s20f3.useDHCP = true;
-      firewall.allowedTCPPorts = [ 6969 ];
+      firewall.allowedTCPPorts = [ 3000 ];
+      firewall.allowedUDPPorts = [ 53 ];
+
     };
 
     security = {
@@ -51,59 +34,17 @@
     };
 
     services = {
-      nfs = { server.enable = true; };
-      pipewire = {
-        enable = true;
-        alsa.enable = true;
-        alsa.support32Bit = true;
-        pulse.enable = true;
-      };
-
-      udev.enable = true;
-      # udev.extraRules = ''
-      # ACTION=="add", ATTRS{idProduct}=="1500", ATTRS{idVendor}=="05ac", DRIVERS=="usb", RUN+="sg_raw /dev/$kernel EA 00 00 00 00 00 01"
-      # '';
-
       openssh = {
         enable = true;
         passwordAuthentication = false;
         kbdInteractiveAuthentication = false;
       };
-
-      tarsnap = {
+      adguardhome = {
         enable = true;
-        keyfile = "/home/hippoid/dotfiles/tarsnap/keyfile";
-        archives = {
-          roam = {
-            directories = [ "/home/hippoid/roam-export" ];
-            period = "daily";
-          };
-
-          fun = {
-            directories = [ "/home/hippoid/fun" ];
-            period = "daily";
-          };
-
-          books = {
-            directories = [ "/home/hippoid/books" ];
-            period = "daily";
-          };
-
-          documents = {
-            directories = [ "/home/hippoid/documents" ];
-            period = "daily";
-          };
-
-          pictures = {
-            directories = [ "/home/hippoid/pictures" ];
-            period = "daily";
-          };
-
-        };
+        openFirewall = true;
+        settings.bind_port = 3000;
       };
     };
-
-    systemd.services.iptsd = lib.mkForce { };
 
     # Configure keymap in X11
     console.useXkbConfig = true;
@@ -125,40 +66,8 @@
       ];
     };
 
-    nixpkgs.config.allowUnfreePredicate = pkg:
-      builtins.elem (pkgs.lib.getName pkg) [
-        "tarsnap"
-        "vscode"
-        "vscode-with-extensions"
-        "vscode-extension-ms-vscode-remote-remote-ssh"
-        "vscode-extension-ms-vscode-cpptools"
-
-      ];
-
     environment = {
-      systemPackages = let
-        comma = (import (pkgs.fetchFromGitHub {
-          owner = "nix-community";
-          repo = "comma";
-          rev = "v1.4.0";
-          sha256 = "EPrXIDi0yO+AVriQgi3t91CLtmYtgmyEfWtFD+wH8As=";
-        })).default;
-      in with pkgs; [
-        comma
-        home-manager
-        vim
-        sg3_utils
-        (vscode-with-extensions.override {
-          vscodeExtensions = with vscode-extensions; [
-            vscodevim.vim
-            ms-vscode.cpptools
-            bbenoist.nix
-            ms-python.python
-            ms-azuretools.vscode-docker
-            ms-vscode-remote.remote-ssh
-          ];
-        })
-      ];
+      systemPackages = let in with pkgs; [ home-manager vim sg3_utils ];
 
       variables = {
         EDITOR = "nvim";

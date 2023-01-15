@@ -1,70 +1,18 @@
 { config, lib, pkgs, ... }:
 
 {
-  imports = [
-    ./alacritty
-    ./bat
-    ./direnv
-    ./fzf
-    ./git
-    ./github
-    ./lazygit
-    ./lsd
-    ./neovim
-    ./pandoc
-    ./picom
-    ./qutebrowser
-    ./rofi
-    ./tmux
-    ./vscode
-    ./polybar
-    ./xmonad
-    ./zathura
-    ./zoxide
-    ./zsh
-  ];
-
-  xdg.mimeApps = let browser = "org.qutebrowser.qutebrowser.desktop";
-  in {
-    enable = true;
-    defaultApplications = {
-      "x-scheme-handler/http" = browser;
-      "x-scheme-handler/https" = browser;
-      "text/html" = browser;
-      "application/pdf" = "org.pwmt.zathura.desktop";
-    };
-  };
-
-  nixpkgs = {
-    config = {
-      allowUnfreePredicate = pkg:
-        builtins.elem (pkgs.lib.getName pkg) [
-          "vscode"
-          "discord"
-          "lastpass-cli"
-          "vscode-extension-ms-vscode-cpptools"
-
-        ];
-    };
-    overlays = [
-      (import ./overlays/epubthumbnailer.nix)
-      (import ./overlays/awscost.nix)
-      (import ./overlays/transcribe.nix)
-    ];
-  };
+  imports = [ ./bat ./fzf ./git ./github ./lazygit ./neovim ./tmux ./zsh ];
 
   home = {
     username = "hippoid";
     homeDirectory = "/home/hippoid";
     stateVersion = "22.05";
-    packages = (import ./packages.nix) pkgs;
+    packages = (import ./base-packages.nix) pkgs;
   };
 
   # Let Home Manager install and manage itself.
   programs = {
     home-manager.enable = true;
-    direnv.enable = true;
-    direnv.nix-direnv.enable = true;
     readline.enable = true;
     readline.extraConfig = "set editing-mode vi";
 
