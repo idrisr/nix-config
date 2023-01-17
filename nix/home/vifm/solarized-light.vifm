@@ -42,7 +42,7 @@ highlight StatusLine      cterm=none ctermfg=12       ctermbg=white
 highlight Border          cterm=none ctermfg=blue       ctermbg=white
 
 highlight Selected        cterm=reverse ctermfg=14    ctermbg=15
-highlight CurrLine        cterm=none ctermbg=white
+highlight CurrLine        cterm=white ctermbg=green
 
 highlight WildMenu        cterm=underline,reverse ctermfg=11 ctermbg=white
 highlight CmdLine         cterm=none ctermfg=11 ctermbg=15
@@ -55,4 +55,3 @@ highlight Socket          cterm=none ctermfg=violet ctermbg=default
 highlight Device          cterm=none ctermfg=green ctermbg=default
 highlight Fifo            cterm=none ctermfg=cyan ctermbg=default
 highlight Executable      cterm=none ctermfg=red ctermbg=default
-
