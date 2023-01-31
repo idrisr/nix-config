@@ -1,8 +1,8 @@
-self: super: {
-  awscost = self.writeShellApplication {
+final: prev: {
+  awscost = final.writeShellApplication {
     name = "awscost";
 
-    runtimeInputs = with self; [ awscli jq ];
+    runtimeInputs = with final; [ awscli jq ];
     text = ''
       set -e
       set -u

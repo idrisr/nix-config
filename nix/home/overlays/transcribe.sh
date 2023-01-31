@@ -1,6 +1,5 @@
 set -e
 set -u
-set -x
 
 usage() {
   echo "usage: $0 <transcribe-me.pdf>"

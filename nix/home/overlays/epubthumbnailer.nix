@@ -1,9 +1,9 @@
-self: super: {
-  epubthumb = self.writeShellApplication {
+final: prev: {
+  epubthumb = final.writeShellApplication {
     name = "epubthumb";
 
     runtimeInputs = [
-      (super.pkgs.python39.withPackages
+      (prev.pkgs.python39.withPackages
         (pythonPackages: with pythonPackages; [ pillow ]))
     ];
 
