@@ -32,6 +32,8 @@
       "x-scheme-handler/https" = browser;
       "text/html" = browser;
       "application/pdf" = "org.pwmt.zathura.desktop";
+      "application/vnd.oasis.opendocument.spreadsheet" =
+        "libreoffice-calc.desktop";
     };
   };
 
@@ -47,8 +49,9 @@
         ];
     };
     overlays = [
-      (import ./overlays/epubthumbnailer.nix)
       (import ./overlays/awscost.nix)
+      (import ./overlays/epubthumbnailer.nix)
+      (import ./overlays/pdftc.nix)
       (import ./overlays/transcribe.nix)
     ];
   };
@@ -67,6 +70,5 @@
     direnv.nix-direnv.enable = true;
     readline.enable = true;
     readline.extraConfig = "set editing-mode vi";
-
   };
 }

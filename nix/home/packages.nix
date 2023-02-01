@@ -11,6 +11,7 @@ with pkgs; [
   cryptsetup
   dconf
   ddgr
+  desktop-file-utils
   dfc # better df
   discord
   dmenu
@@ -55,6 +56,8 @@ with pkgs; [
   okular
   parted
   pass
+  pdfarranger
+  pdftc
   pdftk
   pinentry
   pipe-rename
@@ -62,10 +65,7 @@ with pkgs; [
   poppler_utils
   powerline
   powerline-fonts
-
-  # (python310.withPackages (pythonPackages: with pythonPackages; [ debugpy ]))
-  # python39Packages.adblock
-  # python39Packages.pynvim
+  programmer-calculator
   qrcp
   rename
   ripgrep
