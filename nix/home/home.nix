@@ -53,6 +53,7 @@
       (import ./overlays/epubthumbnailer.nix)
       (import ./overlays/pdftc.nix)
       (import ./overlays/transcribe.nix)
+      (import ./overlays/mdtopdf.nix)
     ];
   };
 

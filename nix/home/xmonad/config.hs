@@ -18,6 +18,7 @@ import XMonad.Actions.Minimize
 import XMonad.Actions.NoBorders
 import XMonad.Actions.Volume
 import XMonad.Hooks.ManageDocks
+import XMonad.Layout.Tabbed
 
 import XMonad.Layout.Minimize
 import XMonad.Layout.MultiColumns ()
@@ -69,7 +70,7 @@ myClickJustFocuses   = False
 myBorderWidth :: Dimension
 myBorderWidth        = 8
 myWorkspaces :: [String]
-myWorkspaces         = ["1","2","3", "polybar"]
+myWorkspaces         = ["1","2","3"]
 myNormalBorderColor :: String
 myNormalBorderColor  = "#000000"
 myFocusedBorderColor :: String

@@ -1,4 +1,5 @@
 final: prev: {
+  # buildPythonApplication?
   epubthumb = final.writeShellApplication {
     name = "epubthumb";
 

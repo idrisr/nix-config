@@ -48,5 +48,7 @@ filextype *.bmp,*.jpg,*.jpeg,*.png,*.gif,*.xpm,*.JPG
 
 " Toggle visibility of preview window
 nnoremap w :view<cr>
+nnoremap sv :source $MYVIFMRC<cr>
 vnoremap w :view<cr>gv
-source $VIFM/solarized-dark.vifm
+nnoremap ;q :q <CR>
+source $VIFM/solarized-light.vifm

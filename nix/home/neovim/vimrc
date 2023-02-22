@@ -97,14 +97,14 @@ nmap ga <Plug>(EasyAlign)
 "}}}
 " {{{ options
 set autoindent
-set background=dark
+set background=light
 set backup
 set backupdir=$HOME/vimtmp
 set directory=$HOME/vimtmp
 set expandtab
 set exrc
 set foldcolumn=1
-set foldlevelstart=99
+set foldlevelstart=3
 set foldmethod=indent
 set ignorecase " needed for smartcase to work
 set incsearch

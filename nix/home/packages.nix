@@ -14,6 +14,7 @@ with pkgs; [
   desktop-file-utils
   dfc # better df
   discord
+  djvu2pdf
   dmenu
   dzen2
   efibootmgr
@@ -44,6 +45,7 @@ with pkgs; [
   libreoffice
   light
   lsof
+  mdtopdf
   mediainfo
   mpv
   ncdu # better du
@@ -56,7 +58,6 @@ with pkgs; [
   okular
   parted
   pass
-  pdfarranger
   pdftc
   pdftk
   pinentry

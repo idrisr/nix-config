@@ -1,13 +1,14 @@
 { pkgs, lib, specialArgs, ... }: {
   xresources.properties = {
-    "Xft.dpi" = 180;
     "Xft.autohint" = 0;
     "Xft.hintstyle" = "hintfull";
     "Xft.hinting" = 1;
     "Xft.antialias" = 1;
     "Xft.rgba" = "rgb";
-    "Xcursor*theme" = "Vanilla-DMZ-AA";
-    "Xcursor*size" = 44;
+    "Xcursor.theme" = "Vanilla-DMZ-AA";
+    "Xft.dpi" = 180;
+    "Xcursor.size" = 80;
+
   };
 
   home.packages = with pkgs; [

@@ -13,6 +13,7 @@
       bindkey -s '^p' 'tmuxp load ~/tmuxp/session.yaml ^M'
       bindkey -s '^h' '$HOME/dotfiles/nix/apply-user.sh ^M'
       bindkey -s '^f' 'vifm ^M'
+      bindkey -s '^v' 'nvim ^M'
     '';
 
     enable = true;
