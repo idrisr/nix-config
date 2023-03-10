@@ -104,7 +104,7 @@ set directory=$HOME/vimtmp
 set expandtab
 set exrc
 set foldcolumn=1
-set foldlevelstart=3
+set foldlevelstart=2
 set foldmethod=indent
 set ignorecase " needed for smartcase to work
 set incsearch
@@ -141,3 +141,12 @@ colorscheme solarized
 highlight Search ctermfg=0 cterm=undercurl ctermbg=7
 highlight SpellBad ctermfg=0 cterm=undercurl ctermbg=5
 highlight Normal ctermbg=NONE
+
+nnoremap <silent> K :call ShowDocumentation()<CR>
+function! ShowDocumentation()
+  if CocAction('hasProvider', 'hover')
+    call CocActionAsync('doHover')
+  else
+    call feedkeys('K', 'in')
+  endif
+endfunction
