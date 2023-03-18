@@ -1,14 +1,12 @@
 # Edit this configuration file to define what should be installed on
-# your system.  Help is available in the configuration.nix(5) man page
-# and in the NixOS manual (accessible by running ‘nixos-help’).
+# your system.  Help is available in the configuration.nix(5) man page and in the NixOS manual (accessible by running ‘nixos-help’).
 
 { config, pkgs, lib, ... }:
 
 {
   imports = [ # Include the results of the hardware scan.
     ./hardware-configuration.nix
-    <nixos-hardware/microsoft/surface>
-    <home-manager/nixos>
+    <nixos-hardware/microsoft/surface/surface-pro-intel>
     ./xmonad.nix
     # ./plasma.nix
   ];
@@ -77,32 +75,34 @@
           roam = {
             directories = [ "/home/hippoid/roam-export" ];
             period = "daily";
+            cachedir = "/home/hippoid/cache";
           };
 
-          fun = {
-            directories = [ "/home/hippoid/fun" ];
-            period = "daily";
-          };
+          # fun = {
+          # directories = [ "/home/hippoid/fun" ];
+          # period = "daily";
+          # };
 
           books = {
             directories = [ "/home/hippoid/books" ];
             period = "daily";
           };
 
-          documents = {
-            directories = [ "/home/hippoid/documents" ];
-            period = "daily";
-          };
+          # documents = {
+          # directories = [ "/home/hippoid/documents" ];
+          # period = "daily";
+          # };
 
-          pictures = {
-            directories = [ "/home/hippoid/pictures" ];
-            period = "daily";
-          };
+          # pictures = {
+          # directories = [ "/home/hippoid/pictures" ];
+          # period = "daily";
+          # };
 
         };
       };
     };
 
+    virtualisation.docker.enable = true;
     systemd.services.iptsd = lib.mkForce { };
 
     # Configure keymap in X11
@@ -117,7 +117,7 @@
     users.users.hippoid = {
       isNormalUser = true;
       description = "hippoid";
-      extraGroups = [ "networkmanager" "wheel" ];
+      extraGroups = [ "docker" "networkmanager" "wheel" "lpadmin" ];
       shell = pkgs.zsh;
       openssh.authorizedKeys.keys = [
         "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABgQCqH1kHRyqND5ztdw+AwJpwL9a/ykIOkAVFqLQIyof2qDDdl7zgcKwnKmLi/vLn02xwdnt4JYXSCp0yvq3Qev5XmIyFsqneCqCTiN73XEI0OvwpIk2fl2LjoOg/Gg8zDC9bpn84Nr5+qSqLwFjk/+v99TNrEz1an/Z37/JDt786CssttXZ0PafPpyhZ8WTwPT1ORlMcBREauzXGWeetEKE04j/f2/xO8hqThe/aa8oW02+RjWpgD9VgG4MYg050A+0BwoVWpIjPf7IHGVCuY8js0CVvav1ERcb9wFCi1KGiEP2C0Vl/iki7iQU/lsPC8ZjmWcPZoRRgz+2neon4JDiGOS5eZAgzBCkNyJ4sMa8qSWN/cjQJn8oK+8sHclauX3oK0MT5byyWq/K1Q8wx5ItLQWoWr/O4xoMVN1gWdjCvc+9FaFjgtfxVsKIJBXUslOz1qq3oTWC0c03LUeHvd6VquXmVDUYsn8knGlkZNqeCpPNmw96v4VlT25Er9MsQ200= idris@bluebird"
@@ -145,7 +145,7 @@
         })).default;
       in with pkgs; [
         comma
-        home-manager
+        #home-manager
         vim
         sg3_utils
         (vscode-with-extensions.override {
