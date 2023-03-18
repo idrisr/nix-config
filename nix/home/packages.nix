@@ -1,6 +1,7 @@
 pkgs:
 with pkgs; [
 
+  arandr
   aria
   asciidoc
   atool
@@ -13,6 +14,7 @@ with pkgs; [
   ddgr
   desktop-file-utils
   dfc # better df
+  dimensions
   discord
   djvu2pdf
   dmenu
@@ -37,6 +39,7 @@ with pkgs; [
   htop
   imagemagick
   inkscape
+  jetbrains.idea-community
   jq
   killall
   krop
@@ -84,6 +87,7 @@ with pkgs; [
   texlive.combined.scheme-full
   thunderbird
   tmux
+  tor-browser-bundle-bin
   traceroute
   transcribe
   transmission
