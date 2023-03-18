@@ -6,7 +6,7 @@
     "Xft.antialias" = 1;
     "Xft.rgba" = "rgb";
     "Xcursor.theme" = "Vanilla-DMZ-AA";
-    "Xft.dpi" = 180;
+    "Xft.dpi" = 267;
     "Xcursor.size" = 80;
 
   };

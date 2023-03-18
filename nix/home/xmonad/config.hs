@@ -18,6 +18,7 @@ import XMonad.Actions.Minimize
 import XMonad.Actions.NoBorders
 import XMonad.Actions.Volume
 import XMonad.Hooks.ManageDocks
+import XMonad.Hooks.SetWMName
 import XMonad.Layout.Tabbed
 
 import XMonad.Layout.Minimize
@@ -144,7 +145,7 @@ myManageHook = composeAll
 
 myEventHook = mempty
 myLogHook = mempty
-myStartupHook = mempty
+myStartupHook = setWMName "LG3D"
 
 defaults = def {
       -- simple stuff
