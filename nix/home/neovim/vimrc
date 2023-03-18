@@ -72,7 +72,7 @@ nnoremap <leader>sv :source $MYVIMRC<CR>
 nnoremap <leader>ma :execute "make " . expand('%:r')
 
 nnoremap <leader>vt :<c-u>call VisualToNumbers()<cr>
-vnoremap <leader>na :EasyAlign -1 /\v[0-9]+/<cr>
+vnoremap <leader>na :EasyAlign -1 /\v\s+[0-9]+$/<cr>
 
 " todo: these should be an operator. how?
 nnoremap <leader>" viw<esc>a"<esc>bi"<esc>lel
@@ -145,7 +145,7 @@ highlight Normal ctermbg=NONE
 nnoremap <silent> K :call ShowDocumentation()<CR>
 function! ShowDocumentation()
   if CocAction('hasProvider', 'hover')
-    call CocActionAsync('doHover')
+    call CocActionAsync('doHover', 'float')
   else
     call feedkeys('K', 'in')
   endif

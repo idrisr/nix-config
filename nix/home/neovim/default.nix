@@ -16,13 +16,15 @@
       vim-airline
       vim-airline-themes
       vim-colors-solarized
+      vim-css-color
       vim-easy-align
       vim-nix
       vim-obsession
+      vim-racket
       vim-scriptease
+      vimspector
       vim-startify
       vim-surround
-      vimspector
       vimtex
 
     ];
