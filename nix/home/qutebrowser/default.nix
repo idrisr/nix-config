@@ -32,12 +32,14 @@
 
     searchEngines = {
       DEFAULT = "https://duckduckgo.com/?q={}";
+      aa = "https://annas-archive.org/search?q={}";
       amz = "https://www.amazon.com/s?k={}&i=stripbooks";
       c = "https://cplusplus.com/search.do?q={}";
       cpl = "https://chipublib.bibliocommons.com/v2/search?query={}";
       git = "https://github.com/search?q={}";
       ho = "https://hoogle.haskell.org/?hoogle={}";
       hm = "https://mipmip.github.io/home-manager-option-search/?{}";
+      mdn = "https://developer.mozilla.org/en-US/search?q={}";
       nx = "https://search.nixos.org/packages?query={}&channel=unstable";
       nixpkgs-issues = "https://github.com/NixOS/nixpkgs/issues?q=is%3Aopen+{}";
       nixpkgs-prs = "https://github.com/NixOS/nixpkgs/pulls?q=is%3Aopen+{}";
