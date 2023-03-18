@@ -8,7 +8,7 @@ final: prev: {
       set -u
 
       pdftk "$1" dump_data_utf8 |\
-          rg bookmark'(title|level)'                              |\
+          rg --text bookmark'(title|level)'                       |\
           sed '$!N;s/^\([^\n]*\)\n\([^\n]*\)$/\2 \1/'             |\
           sed -r -e 's/BookmarkLevel: //'                          \
           -e 's/BookmarkTitle: //'                                 \
