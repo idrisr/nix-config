@@ -25,6 +25,10 @@ augroup Dockerfile
     autocmd WinLeave * setlocal nocursorline
 augroup end
 
+augroup haskell
+    autocmd!
+    autocmd! Filetype haskell setlocal foldlevel=99
+augroup end
 
 augroup help
     autocmd!
@@ -60,6 +64,7 @@ augroup zettel
     autocmd Filetype zettel setlocal foldmethod=expr
     autocmd Filetype zettel setlocal foldexpr=GetZettelFold(v:lnum)
     autocmd Filetype zettel setlocal syntax=0 dictionary+=/usr/share/dict/words complete+=k
+    autocmd Filetype zettel setlocal foldlevelstart=2
 augroup end
 
 augroup perl

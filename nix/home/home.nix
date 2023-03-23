@@ -54,6 +54,7 @@
       (import ./overlays/pdftc.nix)
       (import ./overlays/transcribe.nix)
       (import ./overlays/mdtopdf.nix)
+      (import ./overlays/dimensions.nix)
     ];
   };
 

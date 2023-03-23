@@ -1,6 +1,7 @@
 pkgs:
 with pkgs; [
 
+  appimage-run
   arandr
   aria
   asciidoc
@@ -20,8 +21,8 @@ with pkgs; [
   dmenu
   dzen2
   efibootmgr
+  electrum
   epr
-  epubcheck
   epubthumb
   fd
   ffmpeg
@@ -35,6 +36,7 @@ with pkgs; [
   gallery-dl
   gimp
   gnome.gnome-disk-utility
+  gnupg
   haruna
   htop
   imagemagick
@@ -83,7 +85,6 @@ with pkgs; [
   tabbed
   tartube
   tcpdump
-  tesseract5
   texlive.combined.scheme-full
   thunderbird
   tmux
@@ -105,6 +106,7 @@ with pkgs; [
   xorg.xev
   xorg.xwininfo
   yt-dlp
+  zbar
   zip
 
 ]

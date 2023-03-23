@@ -8,7 +8,7 @@
     ./hardware-configuration.nix
     <nixos-hardware/microsoft/surface/surface-pro-intel>
     ./xmonad.nix
-    # ./plasma.nix
+    # ./gnome.nix
   ];
 
   config = {
@@ -148,18 +148,18 @@
         #home-manager
         vim
         sg3_utils
-        (vscode-with-extensions.override {
-          vscodeExtensions = with vscode-extensions; [
-            vscodevim.vim
-            ms-vscode.cpptools
-            bbenoist.nix
-            ms-python.python
-            ms-azuretools.vscode-docker
-            ms-vscode-remote.remote-ssh
-            vscode-extensions.vadimcn.vscode-lldb
+        # (vscode-with-extensions.override {
+        # vscodeExtensions = with vscode-extensions; [
+        # vscodevim.vim
+        # ms-vscode.cpptools
+        # bbenoist.nix
+        # ms-python.python
+        # ms-azuretools.vscode-docker
+        # ms-vscode-remote.remote-ssh
+        # vscode-extensions.vadimcn.vscode-lldb
 
-          ];
-        })
+        # ];
+        # })
       ];
 
       variables = {

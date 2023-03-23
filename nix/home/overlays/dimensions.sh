@@ -10,4 +10,4 @@ if [[ "$#" != 1 ]]; then
   usage
 fi
 
-pdftk "$1" dump_data_utf8 | rg dimension | sort -u
+pdftk "$1" dump_data_utf8 | rg --text dimension | sort -u
