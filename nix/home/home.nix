@@ -45,6 +45,8 @@
           "discord"
           "lastpass-cli"
           "vscode-extension-ms-vscode-cpptools"
+          "steam-run"
+          "steam-original"
 
         ];
     };

@@ -4,6 +4,7 @@
     vimAlias = true;
 
     plugins = with pkgs.vimPlugins; [
+
       ale
       coc-emmet
       coc-nvim
@@ -11,6 +12,7 @@
       fugitive
       fzf-vim
       nerdcommenter
+      nvim-hs-vim
       tagbar
       ultisnips
       vim-airline

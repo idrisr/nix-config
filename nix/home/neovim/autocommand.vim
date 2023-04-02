@@ -65,6 +65,8 @@ augroup zettel
     autocmd Filetype zettel setlocal foldexpr=GetZettelFold(v:lnum)
     autocmd Filetype zettel setlocal syntax=0 dictionary+=/usr/share/dict/words complete+=k
     autocmd Filetype zettel setlocal foldlevelstart=2
+    autocmd Filetype zettel setlocal spelllang=en_us
+    autocmd Filetype zettel setlocal spellfile=~/roam-export/spellfile.add
 augroup end
 
 augroup perl

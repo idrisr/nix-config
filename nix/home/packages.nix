@@ -3,6 +3,10 @@ with pkgs; [
 
   appimage-run
   arandr
+  haskellPackages.hasktags
+  wineWowPackages.full
+  playonlinux
+
   aria
   asciidoc
   atool
@@ -106,6 +110,7 @@ with pkgs; [
   xorg.xev
   xorg.xwininfo
   yt-dlp
+  brave
   zbar
   zip
 
