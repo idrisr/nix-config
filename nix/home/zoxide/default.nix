@@ -1,7 +1,8 @@
-{ config, pkgs, ... }: {
-  programs.zoxide = {
-    enable = true;
-    enableZshIntegration = true;
+{
+  config = {
+    programs.zoxide = {
+      enable = true;
+      enableZshIntegration = true;
+    };
   };
-
 }

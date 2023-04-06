@@ -1,6 +1,8 @@
-{ config, lib, pkgs, ... }: {
-  programs.bat = {
-    enable = true;
-    config = { theme = "ansi"; };
+{
+  config = {
+    programs.bat = {
+      enable = true;
+      config = { theme = "ansi"; };
+    };
   };
 }

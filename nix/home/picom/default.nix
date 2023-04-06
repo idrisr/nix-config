@@ -1,6 +1,8 @@
-{ pkgs, config, ... }: {
-  services.picom = {
-    enable = true;
-    package = pkgs.picom;
+{ pkgs, ... }: {
+  config = {
+    services.picom = {
+      enable = true;
+      package = pkgs.picom;
+    };
   };
 }

@@ -1,6 +1,8 @@
-{ pkgs, config, ... }: {
-  programs = {
-    pandoc.enable = true;
+{
+  config = {
+    programs = {
+      pandoc.enable = true;
 
+    };
   };
 }

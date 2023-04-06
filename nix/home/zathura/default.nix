@@ -1,4 +1,3 @@
-{ config, lib, pkgs, ... }:
 let
   extraConfig = ''
     set font 'monospace normal 14'
@@ -6,12 +5,14 @@ let
     set sandbox none
   '';
 in {
-  programs.zathura = {
-    enable = true;
+  config = {
+    programs.zathura = {
+      enable = true;
 
-    extraConfig = builtins.concatStringsSep "\n" [
-      # (builtins.readFile ./zathurarc)
-      extraConfig
-    ];
+      extraConfig = builtins.concatStringsSep "\n" [
+        # (builtins.readFile ./zathurarc)
+        extraConfig
+      ];
+    };
   };
 }

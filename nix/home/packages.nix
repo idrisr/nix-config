@@ -1,18 +1,14 @@
 pkgs:
 with pkgs; [
 
-  appimage-run
   arandr
-  haskellPackages.hasktags
-  wineWowPackages.full
-  playonlinux
-
   aria
   asciidoc
   atool
   awscost
   bcc
   bpftrace
+  brave
   copyq
   cryptsetup
   dconf
@@ -35,21 +31,20 @@ with pkgs; [
   firefox
   fontpreview
   foremost
-  freecad
-  freetube
   gallery-dl
   gimp
   gnome.gnome-disk-utility
   gnupg
   haruna
+  haskellPackages.hasktags
   htop
   imagemagick
   inkscape
   jetbrains.idea-community
   jq
+  keepassxc
   killall
   krop
-  lastpass-cli
   libinput
   libreoffice
   light
@@ -67,6 +62,7 @@ with pkgs; [
   okular
   parted
   pass
+  pcmanfm
   pdftc
   pdftk
   pinentry
@@ -75,7 +71,6 @@ with pkgs; [
   poppler_utils
   powerline
   powerline-fonts
-  programmer-calculator
   qrcp
   rename
   ripgrep
@@ -86,16 +81,13 @@ with pkgs; [
   sqliteman
   sxiv
   sysz
-  tabbed
-  tartube
+  tailscale
   tcpdump
   texlive.combined.scheme-full
   thunderbird
   tmux
-  tor-browser-bundle-bin
   traceroute
   transcribe
-  transmission
   trash-cli
   tree
   ueberzug
@@ -110,7 +102,6 @@ with pkgs; [
   xorg.xev
   xorg.xwininfo
   yt-dlp
-  brave
   zbar
   zip
 

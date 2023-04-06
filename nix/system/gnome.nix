@@ -1,16 +1,16 @@
-{ config, lib, pkgs, ... }:
-
 {
-  services = {
-    xserver = {
+  config = {
+    services = {
+      xserver = {
 
-      displayManager.gdm.enable = true;
-      desktopManager.gnome.enable = true;
+        displayManager.gdm.enable = true;
+        desktopManager.gnome.enable = true;
 
-      enable = true;
-      layout = "us";
-      xkbOptions = "caps:escape";
-      xkbVariant = "";
+        enable = true;
+        layout = "us";
+        xkbOptions = "caps:escape";
+        xkbVariant = "";
+      };
     };
   };
 }

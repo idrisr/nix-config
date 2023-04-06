@@ -1,10 +1,7 @@
-# Edit this configuration file to define what should be installed on
-# your system.  Help is available in the configuration.nix(5) man page and in the NixOS manual (accessible by running ‘nixos-help’).
-
-{ config, pkgs, lib, ... }:
+{ pkgs, lib, ... }:
 
 {
-  imports = [ # Include the results of the hardware scan.
+  imports = [
     ./hardware-configuration.nix
     <nixos-hardware/microsoft/surface/surface-pro-intel>
     ./xmonad.nix
@@ -78,32 +75,16 @@
             cachedir = "/home/hippoid/cache";
           };
 
-          # fun = {
-          # directories = [ "/home/hippoid/fun" ];
-          # period = "daily";
-          # };
-
           books = {
             directories = [ "/home/hippoid/books" ];
             period = "daily";
           };
 
-          # documents = {
-          # directories = [ "/home/hippoid/documents" ];
-          # period = "daily";
-          # };
-
-          # pictures = {
-          # directories = [ "/home/hippoid/pictures" ];
-          # period = "daily";
-          # };
-
         };
       };
     };
 
-    virtualisation.docker.enable = true;
-    systemd.services.iptsd = lib.mkForce { };
+    # systemd.services.iptsd = lib.mkForce { };
 
     # Configure keymap in X11
     console.useXkbConfig = true;

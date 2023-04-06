@@ -1,9 +1,6 @@
-{ pkgs, config, ... }:
-
 {
-  programs.lsd = {
-    enable = true;
+  config = {
+    programs.lsd = { enable = true; };
 
   };
-
 }
