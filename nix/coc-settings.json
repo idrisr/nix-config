@@ -18,6 +18,8 @@
         "lhaskell"
       ]
     },
+
+        // yo
     "ccls": {
       "command": "ccls",
       "filetypes": [
@@ -39,6 +41,7 @@
         }
       }
     },
+
     "lua": {
       "command": "lua-lsp",
       "filetypes": [
@@ -50,6 +53,7 @@
         }
       }
     },
+
     "terraform": {
       "command": "terraform-lsp",
       "filetypes": [
@@ -61,6 +65,7 @@
         }
       }
     },
+
     "prolog-lsp": {
       "command": "swipl",
       "args": [

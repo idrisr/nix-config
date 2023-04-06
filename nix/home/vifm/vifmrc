@@ -7,7 +7,6 @@ set sortnumbers
 set undolevels=100
 set vimhelp
 set norunexec
-colorscheme Default-256 Default solarized-light
 set timefmt=%m/%d\ %H:%M
 set wildmenu
 set wildstyle=popup
@@ -51,7 +50,6 @@ nnoremap w :view<cr>
 nnoremap sv :source $MYVIFMRC<cr>
 vnoremap w :view<cr>gv
 nnoremap ;q :q <CR>
-source $VIFM/solarized-light.vifm
 
 command! FZFfind : set quickview
                 \| let $FZF_PICK = term('find | fzf 2>/dev/tty')

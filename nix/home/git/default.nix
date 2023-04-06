@@ -1,4 +1,8 @@
-{
+{ config, ... }:
+let
+  str2Bool = (x: if x == "dark" then false else true);
+  isLight = str2Bool config.theme.color;
+in {
   config = {
     programs.git = {
       enable = true;
@@ -39,7 +43,7 @@
         enable = true;
         options = {
           navigate = true;
-          light = false;
+          light = isLight;
         };
       };
     };

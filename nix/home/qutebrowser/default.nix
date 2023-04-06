@@ -1,5 +1,5 @@
 # https://github.com/IvarWithoutBones/dotfiles/blob/b6074cf26ed70bf3d10d36b3e0122ef6cfbc5f81/home-manager/modules/qutebrowser.nix
-{
+{ config, ... }: {
   config = {
     programs.qutebrowser = {
       enable = true;
@@ -11,7 +11,7 @@
       };
 
       settings = {
-        colors.webpage.preferred_color_scheme = "dark";
+        colors.webpage.preferred_color_scheme = config.theme.color;
         downloads.location.directory = "$HOME/downloads";
         zoom.default = "200%";
         statusbar.position = "top";

@@ -49,6 +49,7 @@ augroup end
 augroup nix
     autocmd!
     autocmd Filetype nix setlocal makeprg=nix\ eval\ -f\ %
+    autocmd! Filetype nix setlocal foldlevel=4
 augroup end
 
 augroup jq

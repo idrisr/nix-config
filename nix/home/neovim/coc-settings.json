@@ -38,6 +38,44 @@
           "directory": "/tmp/ccls"
         }
       }
+    },
+    "lua": {
+      "command": "lua-lsp",
+      "filetypes": [
+        "lua"
+      ],
+      "initializationOptions": {
+        "cache": {
+          "directory": "/tmp/lua"
+        }
+      }
+    },
+    "terraform": {
+      "command": "terraform-lsp",
+      "filetypes": [
+        "terraform"
+      ],
+      "initializationOptions": {
+        "cache": {
+          "directory": "/tmp"
+        }
+      }
+    },
+    "prolog-lsp": {
+      "command": "swipl",
+      "args": [
+        "-g",
+        "use_module(library(lsp_server)).",
+        "-g",
+        "lsp_server:main",
+        "-t",
+        "halt",
+        "--",
+        "stdio"
+      ],
+      "filetypes": [
+        "prolog"
+      ]
     }
   }
 }

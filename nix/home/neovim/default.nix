@@ -1,11 +1,15 @@
-{ pkgs, ... }: {
+{ pkgs, config, ... }:
+let
+  vimBackground = "set background=${config.theme.color}";
+  airlineBackground = "let g:airline_solarized_bg='${config.theme.color}'";
+
+in {
   config = {
     programs.neovim = {
       enable = true;
       vimAlias = true;
 
       plugins = with pkgs.vimPlugins; [
-
         ale
         coc-emmet
         coc-nvim
@@ -29,16 +33,18 @@
         vim-startify
         vim-surround
         vimtex
-
       ];
 
       extraConfig = builtins.concatStringsSep "\n" [
         # leave this first
         (builtins.readFile ./vimrc)
+        vimBackground
 
         (builtins.readFile ./autocommand.vim)
         (builtins.readFile ./functions.vim)
         (builtins.readFile ./plugin/airline.vim)
+        airlineBackground
+
         (builtins.readFile ./plugin/ale.vim)
         (builtins.readFile ./plugin/coc.vim)
         (builtins.readFile ./plugin/emmet.vim)

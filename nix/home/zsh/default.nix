@@ -1,4 +1,10 @@
-{
+{ pkgs, ... }:
+let
+  theme = pkgs.writeTextFile {
+    name = "doesthismatter";
+    text = (builtins.readFile ./idris.zsh-theme);
+  };
+in {
   config = {
 
     programs.zsh = {
@@ -63,8 +69,6 @@
         export FZF_CTRL_T_OPTS="--preview 'bat --style=numbers --color=always --line-range :500 {}'"
         export FZF_DEFAULT_OPTS="--height 90 --border bottom"
         export FZF_COMPLETION_TRIGGER="**"
-        export MYVIFMRC="/home/hippoid/dotfiles/nix/home/vifm/vifmrc"
-        export VIFM="/home/hippoid/dotfiles/nix/home/vifm"
       '';
     };
   };
