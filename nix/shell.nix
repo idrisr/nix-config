@@ -7,9 +7,4 @@ mkShell {
     haskell-language-server
 
   ];
-
-  shellHook = ''
-    set -o vi
-    alias v=vim
-  '';
 }

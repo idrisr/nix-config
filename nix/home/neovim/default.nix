@@ -2,9 +2,11 @@
 let
   vimBackground = "set background=${config.theme.color}";
   airlineBackground = "let g:airline_solarized_bg='${config.theme.color}'";
+  cocSettings = builtins.readFile ./coc-settings.json;
 
 in {
   config = {
+    xdg.configFile."nvim/coc-settings.json".text = cocSettings;
     programs.neovim = {
       enable = true;
       vimAlias = true;
@@ -38,7 +40,6 @@ in {
       extraConfig = builtins.concatStringsSep "\n" [
         # leave this first
         (builtins.readFile ./vimrc)
-        vimBackground
 
         (builtins.readFile ./autocommand.vim)
         (builtins.readFile ./functions.vim)
@@ -59,6 +60,7 @@ in {
         (builtins.readFile ./plugin/ultisnips.vim)
         (builtins.readFile ./plugin/viewdoc.vim)
         (builtins.readFile ./plugin/vimtex.vim)
+        vimBackground
       ];
     };
   };

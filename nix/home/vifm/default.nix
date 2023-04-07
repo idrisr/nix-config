@@ -11,4 +11,9 @@ in {
 
   ];
 
+  xdg.configFile."vifm/scripts/scope".text = builtins.readFile ./scripts/scope;
+  xdg.configFile."vifm/scripts/cleaner".text =
+    builtins.readFile ./scripts/cleaner;
+  xdg.configFile."vifm/scripts/scope".executable = true;
+  xdg.configFile."vifm/scripts/cleaner".executable = true;
 }
