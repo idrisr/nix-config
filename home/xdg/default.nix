@@ -1,3 +1,4 @@
+{ config, ... }:
 let
   browser = "org.qutebrowser.qutebrowser.desktop";
   spreadsheet = "libreoffice-calc.desktop";
@@ -6,8 +7,6 @@ in {
   config = {
     xdg = {
       enable = true;
-      cacheHome = ~/.cache;
-      configHome = ~/.config;
 
       mimeApps = {
         enable = true;

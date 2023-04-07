@@ -69,7 +69,6 @@ in {
         export FZF_DEFAULT_OPTS="--height 90 --border bottom"
         export FZF_COMPLETION_TRIGGER="**"
         export RIPGREP_CONFIG_PATH="${config.ripgreprc}"
-        export XDG_CONFIG_HOME="$HOME/.config"
       '';
     };
   };
