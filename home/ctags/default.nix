@@ -1,12 +1,8 @@
-{ pkgs, ... }:
-# let mkLink = x: xdg.configFile."ctags/${x}.ctags".text = builtins.readFile ./${x}.ctags; in
-{
+{ pkgs, lib, ... }:
+let mkLink = x: { "ctags/${x}.ctags".text = builtins.readFile ./${x}.ctags; };
+in {
   config = {
-    # trying to abstract these two statements with mkLink
-    xdg.configFile."ctags/zettel.ctags".text = builtins.readFile ./zettel.ctags;
-    xdg.configFile."ctags/terraform.ctags".text =
-      builtins.readFile ./terraform.ctags;
-
+    xdg.configFile = lib.mkMerge (map mkLink [ "zettel" "terraform" ]);
     home.packages = [ pkgs.universal-ctags ];
   };
 }
