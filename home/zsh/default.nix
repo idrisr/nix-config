@@ -18,8 +18,8 @@ in {
         bindkey -s '^a' 'tmux attach || tmux ^M'
         bindkey -s '^z' 'exec zsh ^M'
         bindkey -s '^p' 'tmuxp load ~/tmuxp/session.yaml ^M'
-        bindkey -s '^h' '$HOME/dotfiles/nix/apply-user.sh light ^M'
-        bindkey -s '^j' '$HOME/dotfiles/nix/apply-user.sh dark ^M'
+        bindkey -s '^h' '$HOME/dotfiles/apply-user.sh light ^M'
+        bindkey -s '^j' '$HOME/dotfiles/apply-user.sh dark ^M'
         bindkey -s '^f' 'vifm ^M'
         bindkey -s '^v' 'nvim ^M'
       '';
