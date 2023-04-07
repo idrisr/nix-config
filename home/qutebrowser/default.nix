@@ -3,12 +3,7 @@
   config = {
     programs.qutebrowser = {
       enable = true;
-      keyBindings = {
-        normal = {
-          "cm" = "clear-messages";
-
-        };
-      };
+      keyBindings = { normal = { "cm" = "clear-messages"; }; };
 
       settings = {
         colors.webpage.preferred_color_scheme = config.theme.color;
@@ -20,7 +15,6 @@
         content = {
           javascript.can_access_clipboard = true;
           autoplay = false;
-
         };
 
         url = {

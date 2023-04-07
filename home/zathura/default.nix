@@ -10,7 +10,7 @@ in {
       enable = true;
 
       extraConfig = builtins.concatStringsSep "\n" [
-        (builtins.readFile ./zathurarc)
+        # (builtins.readFile ./zathurarc)
         extraConfig
       ];
     };

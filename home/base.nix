@@ -19,11 +19,13 @@
     ./polybar
     ./qutebrowser
     ./ripgrep
+    ./readline
     ./rofi
     ./syncthing
     ./tmux
     ./vifm
     ./vscode
+    ./xdg
     ./xmonad
     ./zathura
     ./zoxide
@@ -41,19 +43,6 @@
   };
 
   config = {
-
-    xdg.mimeApps = let browser = "org.qutebrowser.qutebrowser.desktop";
-    in {
-      enable = true;
-      defaultApplications = {
-        "x-scheme-handler/http" = browser;
-        "x-scheme-handler/https" = browser;
-        "text/html" = browser;
-        "application/pdf" = "org.pwmt.zathura.desktop";
-        "application/vnd.oasis.opendocument.spreadsheet" =
-          "libreoffice-calc.desktop";
-      };
-    };
 
     nixpkgs = {
       config = {
@@ -86,12 +75,6 @@
     };
 
     # Let Home Manager install and manage itself.
-    programs = {
-      home-manager.enable = true;
-      direnv.enable = true;
-      direnv.nix-direnv.enable = true;
-      readline.enable = true;
-      readline.extraConfig = "set editing-mode vi";
-    };
+    programs = { home-manager.enable = true; };
   };
 }

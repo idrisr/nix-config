@@ -46,7 +46,6 @@ with pkgs; [
   killall
   krop
   libinput
-  libreoffice
   light
   lsof
   mdtopdf
@@ -90,7 +89,7 @@ with pkgs; [
   trash-cli
   tree
   ueberzug
-  unoconv
+  # unoconv
   unzip
   vifm-full
   wget

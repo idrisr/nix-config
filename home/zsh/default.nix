@@ -6,7 +6,6 @@ let
   };
 in {
   config = {
-
     programs.zsh = {
       initExtraFirst = ''
         set incappendhistorytime
@@ -43,7 +42,7 @@ in {
         ll = "ls --color -la";
         l = "ls --color -la";
         v = "nvim";
-        vifm = "/home/hippoid/dotfiles/nix/home/vifm/vifmub";
+        vifm = "/home/hippoid/dotfiles/home/vifm/vifmub";
         githome = ''cd "$(git rev-parse --show-toplevel)"'';
       };
 
