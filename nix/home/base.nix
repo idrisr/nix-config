@@ -4,6 +4,7 @@
   imports = [
     ./alacritty
     ./bat
+    ./ctags
     ./direnv
     ./fzf
     ./git
@@ -17,6 +18,7 @@
     ./picom
     ./polybar
     ./qutebrowser
+    ./ripgrep
     ./rofi
     ./syncthing
     ./tmux
@@ -36,7 +38,6 @@
         default = "dark";
       };
     };
-
   };
 
   config = {

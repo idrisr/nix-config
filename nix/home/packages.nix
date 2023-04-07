@@ -73,7 +73,6 @@ with pkgs; [
   powerline-fonts
   qrcp
   rename
-  ripgrep
   rlwrap
   sg3_utils
   spectacle # screenshots
@@ -91,7 +90,6 @@ with pkgs; [
   trash-cli
   tree
   ueberzug
-  universal-ctags
   unoconv
   unzip
   vifm-full

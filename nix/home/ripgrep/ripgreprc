@@ -1,5 +1,3 @@
 --max-columns=150
 --max-columns-preview
 --smart-case
-
-# need to export this path to RIPGREP_CONFIG_PATH

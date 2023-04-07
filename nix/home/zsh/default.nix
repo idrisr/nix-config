@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ pkgs, config, ... }:
 let
   theme = pkgs.writeTextFile {
     name = "doesthismatter";
@@ -18,7 +18,8 @@ in {
         bindkey -s '^a' 'tmux attach || tmux ^M'
         bindkey -s '^z' 'exec zsh ^M'
         bindkey -s '^p' 'tmuxp load ~/tmuxp/session.yaml ^M'
-        bindkey -s '^h' '$HOME/dotfiles/nix/apply-user.sh ^M'
+        bindkey -s '^h' '$HOME/dotfiles/nix/apply-user.sh light ^M'
+        bindkey -s '^j' '$HOME/dotfiles/nix/apply-user.sh dark ^M'
         bindkey -s '^f' 'vifm ^M'
         bindkey -s '^v' 'nvim ^M'
       '';
@@ -62,13 +63,14 @@ in {
         export LANG=en_US.UTF-8
         export HYPHEN_INSENSITIVE="true"
         export PAGER=""
-        export RIPGREP_CONFIG_PATH=$HOME/dotfiles/rg/ripgreprc
         export FZF_ALT_C_OPTS="--preview 'tree -c {}| head -200'"
         export FZF_ALT_C_COMMAND="fd --type d"
         export FZF_CTRL_T_COMMAND="fd --type f"
         export FZF_CTRL_T_OPTS="--preview 'bat --style=numbers --color=always --line-range :500 {}'"
         export FZF_DEFAULT_OPTS="--height 90 --border bottom"
         export FZF_COMPLETION_TRIGGER="**"
+        export RIPGREP_CONFIG_PATH="${config.ripgreprc}"
+        export XDG_CONFIG_HOME="$HOME/.config"
       '';
     };
   };

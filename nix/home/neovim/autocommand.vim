@@ -84,6 +84,11 @@ augroup sed
     autocmd BufNewFile,BufRead *.sed setlocal efm=sed:\ file\ %f\ line\ %l:%m
 augroup end
 
+augroup terraform
+    autocmd!
+    autocmd BufNewFile,BufRead *.tf setlocal filetype=tf
+augroup end
+
 augroup tex
     autocmd!
     autocmd filetype tex setlocal makeprg=lualatex\ -shell-escape\ %\ $*
