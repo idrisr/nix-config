@@ -37,31 +37,21 @@ in {
         vimtex
       ];
 
-      extraConfig = builtins.concatStringsSep "\n" [
-        # leave this first
-        (builtins.readFile ./vimrc)
+      extraConfig = with pkgs.lib.attrsets;
+        let
+          f = builtins.readFile;
+          g = _: v: v == "regular";
+          h = x: ./plugin + "/${x}";
 
-        (builtins.readFile ./autocommand.vim)
-        (builtins.readFile ./functions.vim)
-        (builtins.readFile ./plugin/airline.vim)
-        airlineBackground
+          names = builtins.readDir ./plugin;
+          paths = map h (builtins.attrNames (filterAttrs g names));
 
-        (builtins.readFile ./plugin/ale.vim)
-        (builtins.readFile ./plugin/coc.vim)
-        (builtins.readFile ./plugin/emmet.vim)
-        (builtins.readFile ./plugin/fugitive.vim)
-        (builtins.readFile ./plugin/fzf.vim)
-        (builtins.readFile ./plugin/latex.vim)
-        (builtins.readFile ./plugin/nerdcommenter.vim)
-        (builtins.readFile ./plugin/roam.vim)
-        (builtins.readFile ./plugin/solarized.vim)
-        (builtins.readFile ./plugin/surround.vim)
-        (builtins.readFile ./plugin/tagbar.vim)
-        (builtins.readFile ./plugin/ultisnips.vim)
-        (builtins.readFile ./plugin/viewdoc.vim)
-        (builtins.readFile ./plugin/vimtex.vim)
-        vimBackground
-      ];
+          # separate lists used to enforce ordering
+          first = [ (f ./vimrc) ];
+          middle = map f ([ ./autocommand.vim ./functions.vim ] ++ paths);
+          last = [ airlineBackground vimBackground ];
+          xs = builtins.concatLists [ first middle last ];
+        in builtins.concatStringsSep "\n" xs;
     };
   };
 }
