@@ -1,38 +1,7 @@
 { config, lib, pkgs, ... }:
 
 {
-  imports = [
-    ./alacritty
-    ./bat
-    ./ctags
-    ./direnv
-    ./fzf
-    ./git
-    ./github
-    ./haruna
-    ./haskeline
-    ./lazygit
-    ./lsd
-    ./neovim
-    ./newsboat
-    ./pandoc
-    ./picom
-    ./polybar
-    ./qutebrowser
-    ./readline
-    ./ripgrep
-    ./rofi
-    ./syncthing
-    ./tmux
-    ./vifm
-    ./vscode
-    ./xdg
-    ./xmonad
-    ./zathura
-    ./zoxide
-    ./zsh
-  ];
-
+  imports = import ./imports.nix;
   options = {
     theme = {
       enable = lib.mkEnableOption "theme";
@@ -44,35 +13,38 @@
   };
 
   config = {
-
     nixpkgs = {
       config = {
-        allowUnfreePredicate = pkg:
-          builtins.elem (pkgs.lib.getName pkg) [
-            "vscode"
+        allowUnfreePredicate = let
+          xs = [
             "discord"
             "lastpass-cli"
-            "vscode-extension-ms-vscode-cpptools"
-            "steam-run"
             "steam-original"
-
+            "steam-run"
+            "vscode"
+            "vscode-extension-ms-vscode-cpptools"
           ];
+          f = pkgs.lib.getName;
+        in pkg: builtins.elem (f pkg) xs;
       };
-      overlays = [
-        (import ./overlays/awscost.nix)
-        (import ./overlays/epubthumbnailer.nix)
-        (import ./overlays/pdftc.nix)
-        (import ./overlays/transcribe.nix)
-        (import ./overlays/mdtopdf.nix)
-        (import ./overlays/dimensions.nix)
-      ];
+      overlays = let
+        h = x: ./overlays + "/${x}.nix";
+        xs = map h [
+          "awscost"
+          "dimensions"
+          "epubthumbnailer"
+          "mdtopdf"
+          "pdftc"
+          "transcribe"
+        ];
+      in map import xs;
     };
 
     home = {
       username = "hippoid";
       homeDirectory = "/home/hippoid";
       stateVersion = "22.05";
-      packages = (import ./packages.nix) pkgs;
+      packages = import ./packages.nix pkgs;
     };
 
     # Let Home Manager install and manage itself.

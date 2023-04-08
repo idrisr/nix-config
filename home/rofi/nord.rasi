@@ -42,7 +42,7 @@ window {
     border-color:       @accent-color;
 
     location:   center;
-    width:      480px;
+    width:      640px;
     y-offset:   -160px;
     border:     1px;
 }

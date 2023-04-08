@@ -1,19 +1,23 @@
-{ config, pkgs, lib, ... }:
+{ lib, pkgs, config, ... }:
 let
   vifm-color = if config.theme.color == "dark" then
     ./solarized-dark.vifm
   else
     ./solarized-light.vifm;
+  f = builtins.readFile;
+  mkLink = x: {
+    "vifm/scripts/${x}" = {
+      text = f ./scripts/${x};
+      executable = true;
+    };
+  };
 in {
-  xdg.configFile."vifm/vifmrc".text = builtins.concatStringsSep "\n" [
-    (builtins.readFile ./vifmrc)
-    (builtins.readFile vifm-color)
-
-  ];
-
-  xdg.configFile."vifm/scripts/scope".text = builtins.readFile ./scripts/scope;
-  xdg.configFile."vifm/scripts/cleaner".text =
-    builtins.readFile ./scripts/cleaner;
-  xdg.configFile."vifm/scripts/scope".executable = true;
-  xdg.configFile."vifm/scripts/cleaner".executable = true;
+  config = {
+    xdg.configFile = let
+      y = builtins.concatStringsSep "\n" (map f [ ./vifmrc vifm-color ]);
+      x1 = (map mkLink [ "scope" "cleaner" ]);
+      x2 = [{ "vifm/vifmrc".text = y; }];
+    in lib.mkMerge (x1 ++ x2);
+    home.packages = [ pkgs.vifm-full ];
+  };
 }

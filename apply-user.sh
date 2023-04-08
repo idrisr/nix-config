@@ -25,5 +25,5 @@ else
 fi
 
 pushd ~/dotfiles/home
-home-manager switch -b backup -f ./home.nix -A "${theme}"
+home-manager switch -b backup --file ./home.nix -A "${theme}"
 popd

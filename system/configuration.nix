@@ -74,12 +74,6 @@
             period = "daily";
             cachedir = "/home/hippoid/cache";
           };
-
-          books = {
-            directories = [ "/home/hippoid/books" ];
-            period = "daily";
-          };
-
         };
       };
     };

@@ -91,7 +91,6 @@ with pkgs; [
   ueberzug
   # unoconv
   unzip
-  vifm-full
   wget
   writedisk
   xclip

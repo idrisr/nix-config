@@ -13,7 +13,7 @@ in {
             showCommandLog = false;
           };
           git = { };
-          disableStarturPopups = true;
+          disableStartupPopups = true;
           keybinding = { universal = { select = "a"; }; };
         };
       };

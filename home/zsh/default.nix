@@ -1,10 +1,4 @@
-{ pkgs, config, ... }:
-let
-  theme = pkgs.writeTextFile {
-    name = "doesthismatter";
-    text = (builtins.readFile ./idris.zsh-theme);
-  };
-in {
+{ pkgs, config, ... }: {
   config = {
     programs.zsh = {
       initExtraFirst = ''
