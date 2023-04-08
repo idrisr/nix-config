@@ -10,6 +10,7 @@
     ./git
     ./github
     ./haruna
+    ./haskeline
     ./lazygit
     ./lsd
     ./neovim
@@ -18,8 +19,8 @@
     ./picom
     ./polybar
     ./qutebrowser
-    ./ripgrep
     ./readline
+    ./ripgrep
     ./rofi
     ./syncthing
     ./tmux
