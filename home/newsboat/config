@@ -3,6 +3,8 @@
 show-read-feeds no
 auto-reload yes
 # confirm-mark-feed-read no
+reload-threads 11
+
 
 # Make the text width readable
 text-width 60

@@ -50,7 +50,7 @@
     };
 
     services = {
-      nfs = { server.enable = true; };
+      tailscale = { enable = true; };
       pipewire = {
         enable = true;
         alsa.enable = true;

@@ -3,11 +3,13 @@
   ./bat
   ./ctags
   ./direnv
+  ./firefox
   ./fzf
   ./git
   ./github
   ./haruna
   ./haskeline
+  ./himalaya
   ./lazygit
   ./lsd
   ./neovim
@@ -15,11 +17,13 @@
   ./pandoc
   ./picom
   ./polybar
+  # ./qrcp
   ./qutebrowser
   ./readline
   ./ripgrep
   ./rofi
   ./syncthing
+  ./starship
   ./tmux
   ./vifm
   ./vscode

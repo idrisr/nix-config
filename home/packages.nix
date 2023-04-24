@@ -2,6 +2,7 @@ pkgs:
 with pkgs; [
 
   arandr
+  font-manager
   aria
   asciidoc
   atool
@@ -9,12 +10,14 @@ with pkgs; [
   bcc
   bpftrace
   brave
+  chatblade
   copyq
   cryptsetup
   dconf
   ddgr
   desktop-file-utils
   dfc # better df
+  dig
   dimensions
   discord
   djvu2pdf
@@ -28,13 +31,13 @@ with pkgs; [
   ffmpeg
   ffmpegthumbnailer
   file
-  firefox
   fontpreview
   foremost
   gallery-dl
   gimp
   gnome.gnome-disk-utility
   gnupg
+  gparted
   haruna
   haskellPackages.hasktags
   htop
@@ -45,6 +48,7 @@ with pkgs; [
   keepassxc
   killall
   krop
+  lastpass-cli
   libinput
   light
   lsof
@@ -53,6 +57,7 @@ with pkgs; [
   mpv
   ncdu # better du
   neofetch
+  nerdfonts
   nitrogen
   nixfmt
   nixos-generators
@@ -74,13 +79,17 @@ with pkgs; [
   rename
   rlwrap
   sg3_utils
+  shellcheck
+  shellharden
   spectacle # screenshots
   sqlite
   sqliteman
   sxiv
   sysz
+  tabbed
   tailscale
   tcpdump
+  terraform
   texlive.combined.scheme-full
   thunderbird
   tmux
@@ -92,6 +101,7 @@ with pkgs; [
   # unoconv
   unzip
   wget
+  wireshark
   writedisk
   xclip
   xdotool

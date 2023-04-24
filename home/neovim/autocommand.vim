@@ -46,10 +46,16 @@ augroup jinja
     autocmd BufNewFile,BufRead *.tpl setlocal filetype=jinja
 augroup end
 
+augroup mail
+    autocmd!
+    autocmd Filetype mail setlocal norelativenumber
+    autocmd BufRead mail setlocal modifiable
+augroup end
+
 augroup nix
     autocmd!
     autocmd Filetype nix setlocal makeprg=nix\ eval\ -f\ %
-    autocmd! Filetype nix setlocal foldlevel=4
+    autocmd Filetype nix setlocal foldlevel=4
 augroup end
 
 augroup jq
@@ -61,7 +67,7 @@ augroup zettel
     autocmd!
     autocmd BufNewFile,BufRead ~/roam-export/*.md setlocal filetype=zettel
     autocmd Filetype zettel setlocal colorcolumn=81
-    autocmd Filetype zettel :CocDisable
+    " autocmd Filetype zettel :CocDisable
     autocmd Filetype zettel setlocal foldmethod=expr
     autocmd Filetype zettel setlocal foldexpr=GetZettelFold(v:lnum)
     autocmd Filetype zettel setlocal syntax=0 dictionary+=/usr/share/dict/words complete+=k

@@ -12,9 +12,22 @@
         statusbar.position = "top";
         fonts.default_size = "12pt";
 
+        # History
+        completion.web_history.max_items = 0;
+        completion.cmd_history_max_items = 0;
+        # Privacy
+
         content = {
-          javascript.can_access_clipboard = true;
+          javascript = {
+            can_access_clipboard = true;
+            enabled = false;
+          };
           autoplay = false;
+          private_browsing = true;
+          canvas_reading = false;
+          geolocation = false;
+          webrtc_ip_handling_policy = "default-public-interface-only";
+          webgl = false;
         };
 
         url = {
@@ -26,6 +39,7 @@
       searchEngines = {
         DEFAULT = "https://duckduckgo.com/?q={}";
         aa = "https://annas-archive.org/search?q={}";
+        am = "https://www.amazon.com/s?k={}";
         amz = "https://www.amazon.com/s?k={}&i=stripbooks";
         c = "https://cplusplus.com/search.do?q={}";
         cpl = "https://chipublib.bibliocommons.com/v2/search?query={}";

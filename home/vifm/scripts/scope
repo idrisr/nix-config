@@ -22,6 +22,7 @@ image() {
 }
 
 ifub() {
+    # shellcheck disable=SC2317
 	[ -n "$DISPLAY" ] && [ -z "$WAYLAND_DISPLAY" ] && command -V ueberzug >/dev/null 2>&1
 }
 
@@ -59,6 +60,7 @@ case "${file}" in
 
 	*opendocument*) odt2txt "$1" ;;
 	application/pgp-encrypted) gpg -d -- "$1" ;;
+    # font/sfnt) display "$1";;
 
 esac
 exit 1

@@ -23,6 +23,7 @@
       enableCompletion = true;
 
       shellAliases = {
+        cb = "chatblade";
         ff = "fd --type f";
         fd = "fd --type d";
         gb = "git branch";

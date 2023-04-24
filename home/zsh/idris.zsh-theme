@@ -42,7 +42,7 @@ local -r prompt_char='$(prompt_char)'
 # shellcheck disable=SC2154,SC2168
 local ret_status="%(?:%{%}:%{%})%?%{%}"
 PROMPT="╭─%n@$(box_name) %B%~%b${git_info}
-╰─${prompt_char}${ret_status} "
+╰─${prompt_char} ${ret_status} "
 export PROMPT
 
 set +u
