@@ -31,30 +31,27 @@ ifub() {
 # be regenerated once seen.
 
 file=$(file --dereference --brief --mime-type -- "$1")
+CACHE="${XDG_CACHE_HOME:-$HOME/.cache}/vifm/thumb.$(stat --printf '%n\0%i\0%F\0%s\0%W\0%Y' -- "$(readlink -f "$1")" | sha256sum | cut -d' ' -f1)"
 case "${file}" in
 	image/*) image "$PWD/$1" "$2" "$3" "$4" "$5" "$1" ;;
 	text/troff) man ./ "$1" | col -b ;;
 	text/* | */xml | application/json) bat --terminal-width "$(($4-2))" -f "$1" ;;
 	audio/* | application/octet-stream) mediainfo "$1" || exit 1 ;;
 	video/* )
-		CACHE="${XDG_CACHE_HOME:-$HOME/.cache}/lf/thumb.$(stat --printf '%n\0%i\0%F\0%s\0%W\0%Y' -- "$(readlink -f "$1")" | sha256sum | cut -d' ' -f1)"
 		[ ! -f "$CACHE" ] && ffmpegthumbnailer -i "$1" -o "$CACHE" -s 0
 		image "$CACHE" "$2" "$3" "$4" "$5" "$1"
 		;;
 	*/pdf)
-		CACHE="${XDG_CACHE_HOME:-$HOME/.cache}/lf/thumb.$(stat --printf '%n\0%i\0%F\0%s\0%W\0%Y' -- "$(readlink -f "$1")" | sha256sum | cut -d' ' -f1)"
 		[ ! -f "$CACHE.jpg" ] && pdftoppm -jpeg -f 1 -singlefile "$1" "$CACHE"
 		image "$CACHE.jpg" "$2" "$3" "$4" "$5" "$1"
 		;;
 	*/epub+zip|*/mobi*)
-		CACHE="${XDG_CACHE_HOME:-$HOME/.cache}/lf/thumb.$(stat --printf '%n\0%i\0%F\0%s\0%W\0%Y' -- "$(readlink -f "$1")" | sha256sum | cut -d' ' -f1)"
 		[ ! -f "$CACHE.jpg" ] && epubthumb "$1" "$CACHE.jpg" 1600 2>&1
 		image "$CACHE.jpg" "$2" "$3" "$4" "$5" "$1"
 		;;
 	application/*zip) atool --list -- "$1" ;;
     application/x-tar) tar --list -f "$1" ;;
     application/msword|application/*excel|*vnd.openxmlformats-officedocument*|application/vnd.ms-powerpoint)
-		CACHE="${XDG_CACHE_HOME:-$HOME/.cache}/lf/thumb.$(stat --printf '%n\0%i\0%F\0%s\0%W\0%Y' -- "$(readlink -f "$1")" | sha256sum | cut -d' ' -f1)"
 		[ ! -f "$CACHE.jpg" ] && unoconv --format=pdf --output="$CACHE.pdf" "$1" && pdftoppm -jpeg -f 1 -singlefile "$CACHE.pdf" "$CACHE"
 		image "$CACHE.jpg" "$2" "$3" "$4" "$5" "$1";;
 
