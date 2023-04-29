@@ -2,28 +2,13 @@
 
 {
   imports = [
-    ./hardware-configuration.nix
-    "${
-      builtins.fetchGit {
-        url = "https://github.com/NixOS/nixos-hardware.git";
-        rev = "3023004e9903bc2f726da7c4a6724cf55f45bfff";
-      }
-    }/microsoft/surface/surface-pro-intel"
+    ./hardware-surface.nix
     ./users.nix
     ./xmonad.nix
-    # ./gnome.nix
+    # ./xfce.nix
   ];
 
   config = {
-    microsoft-surface.ipts.enable = true;
-
-    boot = {
-      loader.systemd-boot.enable = true;
-      loader.efi.canTouchEfiVariables = true;
-      loader.efi.efiSysMountPoint = "/boot/efi";
-      kernelParams = [ "i915.enable_rc6=1" "i915.enable_psr=0" ];
-    };
-
     nix = {
       package = pkgs.nixFlakes;
       extraOptions = ''
@@ -35,13 +20,6 @@
         automatic = true;
         options = "--delete-older-than 30d";
       };
-    };
-
-    networking = {
-      hostName = "surface2";
-      networkmanager.enable = true;
-      interfaces.wlp0s20f3.useDHCP = true;
-      firewall.allowedTCPPorts = [ 6969 ];
     };
 
     security = {
@@ -63,31 +41,12 @@
         settings.PasswordAuthentication = false;
         settings.KbdInteractiveAuthentication = false;
       };
-
-      tarsnap = {
-        enable = true;
-        keyfile = "/home/hippoid/dotfiles/tarsnap/keyfile";
-        archives = {
-          roam = {
-            directories = [ "/home/hippoid/roam-export" ];
-            period = "daily";
-            cachedir = "/home/hippoid/cache";
-          };
-        };
-      };
     };
-
-    # systemd.services.iptsd = lib.mkForce { };
 
     # Configure keymap in X11
     console.useXkbConfig = true;
-
     time.timeZone = "America/Chicago";
     i18n.defaultLocale = "en_US.utf8";
-    services.printing.enable = true;
-    sound.enable = true;
-    hardware.pulseaudio.enable = false;
-
     programs.zsh.enable = true;
 
     nixpkgs.config.allowUnfreePredicate = pkg:
