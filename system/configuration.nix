@@ -2,20 +2,14 @@
 
 {
   imports = [
-    ./hardware-configuration.nix
-    "${
-      builtins.fetchGit {
-        url = "https://github.com/NixOS/nixos-hardware.git";
-        rev = "3023004e9903bc2f726da7c4a6724cf55f45bfff";
-      }
-    }/microsoft/surface/surface-pro-intel"
+    ./hardware-tower.nix
     ./users.nix
     ./xmonad.nix
     # ./gnome.nix
   ];
 
   config = {
-    microsoft-surface.ipts.enable = true;
+    # microsoft-surface.ipts.enable = true;
 
     boot = {
       loader.systemd-boot.enable = true;
@@ -37,13 +31,6 @@
       };
     };
 
-    networking = {
-      hostName = "surface2";
-      networkmanager.enable = true;
-      interfaces.wlp0s20f3.useDHCP = true;
-      firewall.allowedTCPPorts = [ 6969 ];
-    };
-
     security = {
       sudo.wheelNeedsPassword = false;
       rtkit.enable = true;
@@ -51,12 +38,6 @@
 
     services = {
       tailscale = { enable = true; };
-      pipewire = {
-        enable = true;
-        alsa.enable = true;
-        alsa.support32Bit = true;
-        pulse.enable = true;
-      };
 
       openssh = {
         enable = true;
@@ -64,20 +45,7 @@
         settings.KbdInteractiveAuthentication = false;
       };
 
-      tarsnap = {
-        enable = true;
-        keyfile = "/home/hippoid/dotfiles/tarsnap/keyfile";
-        archives = {
-          roam = {
-            directories = [ "/home/hippoid/roam-export" ];
-            period = "daily";
-            cachedir = "/home/hippoid/cache";
-          };
-        };
-      };
     };
-
-    # systemd.services.iptsd = lib.mkForce { };
 
     # Configure keymap in X11
     console.useXkbConfig = true;
