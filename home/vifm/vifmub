@@ -1,0 +1,25 @@
+#!/bin/sh
+#
+# wrapper script for vifm
+# allows it to create image previews with ueberzug
+
+set -e
+
+# use nix stdenv.wrapProgram instead?
+cleanup() {
+    exec 3>&-
+	rm "$FIFO_UEBERZUG"
+}
+
+if [ -n "$SSH_CLIENT" ] || [ -n "$SSH_TTY" ]; then
+    vifm "$@"
+else
+    # use XDG cache dir instead
+	[ ! -d "$HOME/.cache/lf" ] && mkdir -p "$HOME/.cache/lf"
+	export FIFO_UEBERZUG="$HOME/.cache/lf/ueberzug-$$"
+	mkfifo "$FIFO_UEBERZUG"
+	ueberzug layer -s <"$FIFO_UEBERZUG" -p json &
+	exec 3>"$FIFO_UEBERZUG"
+	trap cleanup HUP INT QUIT TERM PWR EXIT
+    vifm "$@" 3>&-
+fi

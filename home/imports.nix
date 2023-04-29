@@ -1,0 +1,31 @@
+[
+  ./alacritty
+  ./bat
+  ./ctags
+  ./direnv
+  ./fzf
+  ./git
+  ./github
+  ./haruna
+  ./haskeline
+  ./lazygit
+  ./lsd
+  ./neovim
+  ./newsboat
+  ./pandoc
+  ./picom
+  ./polybar
+  ./qutebrowser
+  ./readline
+  ./ripgrep
+  ./rofi
+  ./syncthing
+  ./tmux
+  ./vifm
+  ./vscode
+  ./xdg
+  ./xmonad
+  ./zathura
+  ./zoxide
+  ./zsh
+]

@@ -1,0 +1,104 @@
+pkgs:
+with pkgs; [
+
+  arandr
+  aria
+  asciidoc
+  atool
+  awscost
+  bcc
+  bpftrace
+  brave
+  copyq
+  cryptsetup
+  dconf
+  ddgr
+  desktop-file-utils
+  dfc # better df
+  dimensions
+  discord
+  djvu2pdf
+  dmenu
+  dzen2
+  efibootmgr
+  electrum
+  epr
+  epubthumb
+  fd
+  ffmpeg
+  ffmpegthumbnailer
+  file
+  firefox
+  fontpreview
+  foremost
+  gallery-dl
+  gimp
+  gnome.gnome-disk-utility
+  gnupg
+  haruna
+  haskellPackages.hasktags
+  htop
+  imagemagick
+  inkscape
+  jetbrains.idea-community
+  jq
+  keepassxc
+  killall
+  krop
+  libinput
+  light
+  lsof
+  mdtopdf
+  mediainfo
+  mpv
+  ncdu # better du
+  neofetch
+  nitrogen
+  nixfmt
+  nixos-generators
+  nodejs
+  nwipe
+  okular
+  parted
+  pass
+  pcmanfm
+  pdftc
+  pdftk
+  pinentry
+  pipe-rename
+  pirate-get
+  poppler_utils
+  powerline
+  powerline-fonts
+  qrcp
+  rename
+  rlwrap
+  sg3_utils
+  spectacle # screenshots
+  sqlite
+  sqliteman
+  sxiv
+  sysz
+  tailscale
+  tcpdump
+  texlive.combined.scheme-full
+  thunderbird
+  tmux
+  traceroute
+  transcribe
+  trash-cli
+  tree
+  ueberzug
+  # unoconv
+  unzip
+  wget
+  writedisk
+  xclip
+  xdotool
+  xorg.xev
+  xorg.xwininfo
+  yt-dlp
+  zbar
+  zip
+
+]
