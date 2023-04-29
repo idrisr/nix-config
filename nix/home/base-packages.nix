@@ -1,6 +1,7 @@
 pkgs:
 with pkgs; [
 
+  cmus
   dfc # better df
   fd
   file
@@ -15,6 +16,7 @@ with pkgs; [
   trash-cli
   tree
   vifm-full
+  weechat
   wget
 
 ]

@@ -6,7 +6,7 @@
 
 {
   imports = [ # Include the results of the hardware scan.
-    ./hardware-configuration.nix
+    ./hardware-rpi.nix
     <home-manager/nixos>
   ];
 
@@ -25,7 +25,6 @@
       networkmanager.enable = true;
       firewall.allowedTCPPorts = [ 3000 ];
       firewall.allowedUDPPorts = [ 53 ];
-
     };
 
     security = {
@@ -34,6 +33,7 @@
     };
 
     services = {
+      tailscale = { enable = true; };
       openssh = {
         enable = true;
         passwordAuthentication = false;
@@ -53,12 +53,13 @@
     i18n.defaultLocale = "en_US.utf8";
     services.printing.enable = true;
     sound.enable = true;
-    hardware.pulseaudio.enable = false;
+    hardware.pulseaudio.enable = true;
+    services.jack.alsa.enable = true;
 
     users.users.hippoid = {
       isNormalUser = true;
       description = "hippoid";
-      extraGroups = [ "networkmanager" "wheel" ];
+      extraGroups = [ "lpadmin" "networkmanager" "wheel" ];
       shell = pkgs.zsh;
       openssh.authorizedKeys.keys = [
         "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABgQCqH1kHRyqND5ztdw+AwJpwL9a/ykIOkAVFqLQIyof2qDDdl7zgcKwnKmLi/vLn02xwdnt4JYXSCp0yvq3Qev5XmIyFsqneCqCTiN73XEI0OvwpIk2fl2LjoOg/Gg8zDC9bpn84Nr5+qSqLwFjk/+v99TNrEz1an/Z37/JDt786CssttXZ0PafPpyhZ8WTwPT1ORlMcBREauzXGWeetEKE04j/f2/xO8hqThe/aa8oW02+RjWpgD9VgG4MYg050A+0BwoVWpIjPf7IHGVCuY8js0CVvav1ERcb9wFCi1KGiEP2C0Vl/iki7iQU/lsPC8ZjmWcPZoRRgz+2neon4JDiGOS5eZAgzBCkNyJ4sMa8qSWN/cjQJn8oK+8sHclauX3oK0MT5byyWq/K1Q8wx5ItLQWoWr/O4xoMVN1gWdjCvc+9FaFjgtfxVsKIJBXUslOz1qq3oTWC0c03LUeHvd6VquXmVDUYsn8knGlkZNqeCpPNmw96v4VlT25Er9MsQ200= idris@bluebird"
