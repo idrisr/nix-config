@@ -5,6 +5,7 @@
     ./hardware-tower.nix
     ./users.nix
     ./xmonad.nix
+    ./adguard.nix
     # ./xfce.nix
   ];
 
@@ -29,6 +30,7 @@
 
     services = {
       tailscale = { enable = true; };
+
       openssh = {
         enable = true;
         settings.PasswordAuthentication = false;
