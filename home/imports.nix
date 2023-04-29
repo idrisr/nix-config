@@ -9,7 +9,6 @@
   ./github
   ./haruna
   ./haskeline
-  ./himalaya
   ./lazygit
   ./lsd
   ./neovim
@@ -17,7 +16,6 @@
   ./pandoc
   ./picom
   ./polybar
-  # ./qrcp
   ./qutebrowser
   ./readline
   ./ripgrep
