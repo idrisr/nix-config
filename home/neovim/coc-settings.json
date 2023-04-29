@@ -53,7 +53,8 @@
     "terraform": {
       "command": "terraform-lsp",
       "filetypes": [
-        "terraform"
+        "terraform",
+        "tf"
       ],
       "initializationOptions": {
         "cache": {

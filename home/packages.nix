@@ -2,6 +2,7 @@ pkgs:
 with pkgs; [
 
   arandr
+  jrnl
   font-manager
   aria
   asciidoc
@@ -89,7 +90,6 @@ with pkgs; [
   tabbed
   tailscale
   tcpdump
-  terraform
   texlive.combined.scheme-full
   thunderbird
   tmux
