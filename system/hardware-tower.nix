@@ -5,11 +5,13 @@
 
   boot = {
     initrd.availableKernelModules =
-      [ "nvme" "xhci_pci" "ahci" "usb_storage" "usbhid" "sd_mod" ];
+      [ "nvme" "xhci_pci" "ahci" "usb_storage" "usbhid" ];
     initrd.kernelModules = [ ];
     kernelModules = [ "kvm-amd" ];
     extraModulePackages = [ ];
     loader.systemd-boot.enable = true;
+    loader.efi.canTouchEfiVariables = true;
+    loader.efi.efiSysMountPoint = "/boot/efi";
   };
 
   fileSystems."/" = {
