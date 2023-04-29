@@ -28,6 +28,7 @@ let g:ale_fixers = {
 \   'sh': ['shfmt'] + s:default,
 \   'sql': ['sqlformat'],
 \   'terraform': ['terraform'],
+\   'tf': ['terraform'],
 \   'tex': ['latexindent',  'textlint' ],
 \   'text': [],
 \   'yaml': ['yamlfix'],
