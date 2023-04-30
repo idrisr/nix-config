@@ -2,11 +2,14 @@
   config = {
     services = {
       xserver = {
+        enable = true;
+        displayManager.defaultSession = "xfce+xmonad";
+        # displayManager.defaultSession = "xfce";
         desktopManager = {
-          enable = true;
+          xterm.enable = false;
           xfce = {
             enable = true;
-            noDesktop = true;
+            noDesktop = false;
             enableXfwm = false;
           };
         };
@@ -15,7 +18,6 @@
         xkbOptions = "caps:escape";
         xkbVariant = "";
       };
-      displayManager.defaultSession = "xfce+xmonad";
 
     };
   };

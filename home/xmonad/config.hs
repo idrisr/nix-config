@@ -71,7 +71,7 @@ myClickJustFocuses   = False
 myBorderWidth :: Dimension
 myBorderWidth        = 8
 myWorkspaces :: [String]
-myWorkspaces         = ["1","2","3"]
+myWorkspaces         = ["1","2","3", "4", "5"]
 myNormalBorderColor :: String
 myNormalBorderColor  = "#000000"
 myFocusedBorderColor :: String

@@ -6,7 +6,7 @@
     ./users.nix
 
     ./xmonad.nix
-    # ./xfce.nix
+    ./xfce.nix
   ];
 
   config = {
