@@ -2,14 +2,15 @@
 
 {
   imports = [
-    ./hardware-tower.nix
+    ./hardware-surface.nix
     ./users.nix
+
     ./xmonad.nix
-    ./adguard.nix
     # ./xfce.nix
   ];
 
   config = {
+
     nix = {
       package = pkgs.nixFlakes;
       extraOptions = ''
@@ -30,6 +31,25 @@
 
     services = {
       tailscale = { enable = true; };
+      upower.enable = true;
+
+      xserver = {
+        enable = true;
+        layout = "us";
+
+        libinput = {
+          enable = true;
+          touchpad.disableWhileTyping = true;
+          touchpad.naturalScrolling = true;
+        };
+
+        xkbOptions = "caps:escape";
+      };
+
+      dbus = {
+        enable = true;
+        packages = [ pkgs.dconf ];
+      };
 
       openssh = {
         enable = true;
