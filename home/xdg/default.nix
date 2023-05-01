@@ -16,6 +16,8 @@ in {
         music = "${config.home.homeDirectory}/music";
         pictures = "${config.home.homeDirectory}/pictures";
         videos = "${config.home.homeDirectory}/videos";
+        desktop = "${config.home.homeDirectory}/desktop";
+        templates = "${config.home.homeDirectory}/templates";
       };
 
       mimeApps = {
