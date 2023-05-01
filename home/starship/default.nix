@@ -48,8 +48,8 @@
         status = {
           disabled = false;
           symbol = "🔴 ";
-          success_symbol = "🟢 SUCCESS";
-          format = "[[$symbol$common_meaning$signal_name$maybe_int]]($style) ";
+          success_symbol = "🟢 ";
+          format = "[$symbol$status]($style) ";
           map_symbol = true;
         };
       };
