@@ -1,5 +1,6 @@
 { pkgs, ... }: {
   config = {
+
     xresources.properties = {
       "Xft.autohint" = 0;
       "Xft.hintstyle" = "hintfull";
@@ -8,7 +9,7 @@
       "Xft.rgba" = "rgb";
       "Xcursor.theme" = "Vanilla-DMZ-AA";
       "Xft.dpi" = 267;
-      "Xcursor.size" = 80;
+      "Xcursor.size" = 120;
 
     };
 
@@ -29,12 +30,7 @@
       windowManager.xmonad = {
         enable = true;
         enableContribAndExtras = true;
-        extraPackages = hp: [
-          hp.dbus
-          hp.monad-logger
-          hp.xmonad-contrib
-
-        ];
+        extraPackages = hp: with hp; [ dbus monad-logger xmonad-contrib ];
         config = ./config.hs;
       };
     };
