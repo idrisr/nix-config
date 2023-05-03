@@ -20,7 +20,7 @@
         content = {
           javascript = {
             can_access_clipboard = true;
-            enabled = false;
+            enabled = true;
           };
           autoplay = false;
           private_browsing = true;
