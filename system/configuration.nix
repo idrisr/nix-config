@@ -4,9 +4,10 @@
   imports = [
     ./hardware-surface.nix
     ./users.nix
-
     ./xmonad.nix
     ./xfce.nix
+    ./virtualization
+
   ];
 
   config = {
