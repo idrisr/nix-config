@@ -25,7 +25,8 @@
       loader.systemd-boot.enable = true;
       loader.efi.canTouchEfiVariables = true;
       loader.efi.efiSysMountPoint = "/boot/efi";
-      kernelParams = [ "i915.enable_rc6=1" "i915.enable_psr=0" ];
+      kernelParams =
+        [ "intel_iommu=on" "i915.enable_rc6=1" "i915.enable_psr=0" ];
     };
 
     networking = {
