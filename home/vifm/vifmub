@@ -14,7 +14,6 @@ cleanup() {
 if [ -n "$SSH_CLIENT" ] || [ -n "$SSH_TTY" ]; then
     vifm "$@"
 else
-    # use XDG cache dir instead
     cachehome="${XDG_CACHE_HOME:-$HOME/.cache/}/vifm"
 	[ ! -d "$cachehome" ] && mkdir -p "$cachehome"
 	export FIFO_UEBERZUG="$cachehome/ueberzug-$$"

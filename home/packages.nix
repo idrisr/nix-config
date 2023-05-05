@@ -2,113 +2,118 @@ pkgs:
 with pkgs; [
 
   arandr
-  jrnl
-  font-manager
   aria
   asciidoc
   atool
   awscost
   bcc
   bpftrace
-  brave
   chatblade
   copyq
   cryptsetup
   dconf
   ddgr
-  desktop-file-utils
   dfc # better df
   dig
   dimensions
   discord
   djvu2pdf
   dmenu
+  dracut
   dzen2
   efibootmgr
-  electrum
   epr
   epubthumb
   fd
-  ffmpeg
-  ffmpegthumbnailer
   file
-  fontpreview
   foremost
-  gallery-dl
-  gimp
-  gnome.gnome-disk-utility
   gnupg
   gparted
-  haruna
   haskellPackages.hasktags
   htop
-  imagemagick
-  inkscape
-  jetbrains.idea-community
+  inxi
   jq
-  keepassxc
+  jrnl
   killall
-  krop
   lastpass-cli
   libinput
   light
   lsof
-  mdtopdf
   mediainfo
-  mpv
   ncdu # better du
   neofetch
   nerdfonts
-  nitrogen
   nixfmt
   nixos-generators
+  nixos-option
   nodejs
   nwipe
-  okular
   parted
   pass
   pcmanfm
   pdftc
   pdftk
-  pinentry
   pipe-rename
   pirate-get
   poppler_utils
   powerline
   powerline-fonts
-  qrcp
   rename
   rlwrap
-  sg3_utils
   shellcheck
   shellharden
-  spectacle # screenshots
   sqlite
-  sqliteman
-  sxiv
   sysz
-  tabbed
   tailscale
   tcpdump
   texlive.combined.scheme-full
-  thunderbird
   tmux
   traceroute
   transcribe
   trash-cli
   tree
-  ueberzug
   # unoconv
   unzip
   wget
-  wireshark
   writedisk
+  zbar
+  zip
+
+  brave
+  desktop-file-utils
+  electrum
+  ffmpeg
+  ffmpegthumbnailer
+  font-manager
+  fontpreview
+  gallery-dl
+  gimp
+  gnome.gnome-disk-utility
+  haruna
+  imagemagick
+  inkscape
+  jetbrains.idea-community
+  keepassxc
+  krop
+  mdtopdf
+  mpv
+  nitrogen
+  okular
+  pinentry
+  qemu
+  qrcp
+  sg3_utils
+  spectacle # screenshots
+  sqliteman
+  sxiv
+  tabbed
+  thunderbird
+  ueberzug
+  wireshark
   xclip
   xdotool
   xorg.xev
   xorg.xwininfo
   yt-dlp
-  zbar
-  zip
 
 ]
