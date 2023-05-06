@@ -25,12 +25,14 @@ with pkgs; [
   epr
   epubthumb
   fd
+  ffmpeg
   file
   foremost
   gnupg
   gparted
   haskellPackages.hasktags
   htop
+  imagemagick
   inxi
   jq
   jrnl
@@ -58,8 +60,10 @@ with pkgs; [
   poppler_utils
   powerline
   powerline-fonts
+  qrcp
   rename
   rlwrap
+  sg3_utils
   shellcheck
   shellharden
   sqlite
@@ -76,33 +80,33 @@ with pkgs; [
   unzip
   wget
   writedisk
+  yt-dlp
   zbar
   zip
 
   brave
   desktop-file-utils
   electrum
-  ffmpeg
   ffmpegthumbnailer
   font-manager
   fontpreview
+  freecad
   gallery-dl
   gimp
   gnome.gnome-disk-utility
   haruna
-  imagemagick
   inkscape
   jetbrains.idea-community
   keepassxc
   krop
+  lmms
   mdtopdf
   mpv
   nitrogen
+  obs-studio
   okular
   pinentry
   qemu
-  qrcp
-  sg3_utils
   spectacle # screenshots
   sqliteman
   sxiv
@@ -114,6 +118,5 @@ with pkgs; [
   xdotool
   xorg.xev
   xorg.xwininfo
-  yt-dlp
 
 ]

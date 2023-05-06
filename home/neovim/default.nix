@@ -6,6 +6,7 @@ let
 in {
   config = {
     xdg.configFile."nvim/coc-settings.json".text = cocSettings;
+
     programs.neovim = {
       enable = true;
       vimAlias = true;

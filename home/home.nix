@@ -1,6 +1,7 @@
-{
+let imports = [ ./base.nix ];
+in {
   dark = {
-    imports = [ ./base.nix ];
+    inherit imports;
     config = {
       theme = {
         enable = true;
@@ -8,8 +9,9 @@
       };
     };
   };
+
   light = {
-    imports = [ ./base.nix ];
+    inherit imports;
     config = {
       theme = {
         enable = true;
