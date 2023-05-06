@@ -9,7 +9,7 @@
       extraOptions = ''
         experimental-features = nix-command flakes
       '';
-      settings.trusted-users = [ "root" "hippoid" ];
+      settings = { trusted-users = [ "root" "hippoid" ]; };
 
       gc = {
         automatic = true;
@@ -69,7 +69,7 @@
       ];
 
     environment = {
-      systemPackages = with pkgs; [ vifm vim sg3_utils ];
+      systemPackages = with pkgs; [ vifm vim ];
       variables = {
         EDITOR = "nvim";
         VISUAL = "nvim";
