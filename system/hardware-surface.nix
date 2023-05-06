@@ -1,4 +1,4 @@
-{ config, lib, modulesPath, ... }:
+{ config, pkgs, lib, modulesPath, ... }:
 
 {
   imports = [
@@ -59,7 +59,11 @@
 
     };
 
+    environment.systemPackages = with pkgs; [ libimobiledevice ifuse ];
+
     services = {
+      usbmuxd = { enable = true; };
+
       tarsnap = {
         enable = true;
         keyfile = "/home/hippoid/dotfiles/tarsnap/keyfile";

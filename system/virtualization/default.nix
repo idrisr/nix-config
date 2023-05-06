@@ -1,6 +1,11 @@
 { pkgs, lib, ... }: {
   config = {
-    environment.systemPackages = with pkgs; [ virtmanager ];
+    environment.systemPackages = with pkgs; [
+      virt-viewer
+      libosinfo
+      virtmanager
+    ];
+
     virtualisation.libvirtd = {
       enable = true;
       qemu = {
