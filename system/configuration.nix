@@ -1,17 +1,9 @@
-{ pkgs, lib, ... }:
+{ pkgs, lib, config, ... }:
 
 {
-  imports = [
-    ./hardware-surface.nix
-    ./users.nix
-    ./xmonad.nix
-    ./xfce.nix
-    ./virtualization
-
-  ];
+  imports = [ ./users.nix ./xmonad.nix ./xfce.nix ./virtualization ./mymodule ];
 
   config = {
-
     nix = {
       package = pkgs.nixFlakes;
       extraOptions = ''
@@ -32,18 +24,17 @@
 
     services = {
       tailscale = { enable = true; };
-      upower.enable = true;
-
+      upower = { enable = true; };
       xserver = {
         enable = true;
         layout = "us";
+        upscaleDefaultCursor = true;
 
         libinput = {
           enable = true;
           touchpad.disableWhileTyping = true;
           touchpad.naturalScrolling = true;
         };
-
         xkbOptions = "caps:escape";
       };
 
@@ -54,8 +45,11 @@
 
       openssh = {
         enable = true;
-        settings.PasswordAuthentication = false;
-        settings.KbdInteractiveAuthentication = false;
+        settings = {
+          PasswordAuthentication = false;
+          KbdInteractiveAuthentication = false;
+          X11Forwarding = true;
+        };
       };
     };
 
@@ -75,13 +69,14 @@
       ];
 
     environment = {
-      systemPackages = with pkgs; [ vim sg3_utils ];
+      systemPackages = with pkgs; [ vifm vim sg3_utils ];
       variables = {
         EDITOR = "nvim";
         VISUAL = "nvim";
         PAGER = "";
       };
     };
+
     system.stateVersion = "22.05";
   };
 }
