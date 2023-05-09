@@ -24,21 +24,22 @@
 
       shellAliases = {
         cb = "chatblade";
-        ff = "fd --type f";
         fd = "fd --type d";
+        ff = "fd --type f";
         gb = "git branch";
-        gs = "git status";
         gc = "git commit";
         gco = "git checkout";
+        gd = "git diff";
+        githome = ''cd "$(git rev-parse --show-toplevel)"'';
         gpl = "git pull";
+        gs = "git status";
         gsp = "git status --porcelain";
-        ne = "nix-instantiate --eval";
         lg = "lazygit";
         ll = "ls --color -la";
         l = "ls --color -la";
-        v = "nvim";
+        ne = "nix-instantiate --eval";
         vifm = "/home/hippoid/dotfiles/home/vifm/vifmub";
-        githome = ''cd "$(git rev-parse --show-toplevel)"'';
+        v = "nvim";
       };
 
       oh-my-zsh.enable = true;
