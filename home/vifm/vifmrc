@@ -52,7 +52,7 @@ vnoremap w :view<cr>gv
 nnoremap ;q :q <CR>
 
 command! FZFfind : set quickview
-                \| let $FZF_PICK = term('find | fzf 2>/dev/tty')
+                \| let $FZF_PICK = term('find | fzf 2>/dev/tty --preview ' . "'" . '/home/hippoid/.config/vifm/scripts/scope {} 96 2 89 54' . "'")
                 \| if $FZF_PICK != ''
                 \|     execute 'goto' fnameescape($FZF_PICK)
                 \| endif
