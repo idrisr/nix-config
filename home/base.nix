@@ -27,12 +27,14 @@
           f = pkgs.lib.getName;
         in pkg: builtins.elem (f pkg) xs;
       };
+
       overlays = let
         h = x: ./overlays + "/${x}.nix";
         xs = map h [
           "awscost"
           "dimensions"
           "epubthumbnailer"
+          "roamamer"
           "mdtopdf"
           "pdftc"
           "transcribe"

@@ -1,6 +1,7 @@
 pkgs:
 with pkgs; [
 
+  roamamer
   arandr
   aria
   asciidoc
