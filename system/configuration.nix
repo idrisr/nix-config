@@ -69,7 +69,7 @@
       ];
 
     environment = {
-      systemPackages = with pkgs; [ vifm vim ];
+      systemPackages = with pkgs; [ vifm vim man-pages man-pages-posix ];
       variables = {
         EDITOR = "nvim";
         VISUAL = "nvim";
