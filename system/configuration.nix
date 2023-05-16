@@ -1,7 +1,7 @@
 { pkgs, lib, config, ... }:
 
 {
-  imports = [ ./users.nix ./xmonad.nix ./xfce.nix ./virtualization ./mymodule ];
+  imports = [ ./hardware-surface.nix ./users.nix ./xmonad.nix ./xfce.nix ./virtualization ];
 
   config = {
     nix = {
