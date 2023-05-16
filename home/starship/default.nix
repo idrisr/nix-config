@@ -17,6 +17,7 @@
         directory = {
           truncation_length = 4;
           truncation_symbol = "…/";
+          truncate_to_repo = false;
         };
 
         git_metrics = { disabled = false; };
