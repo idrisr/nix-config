@@ -1,7 +1,13 @@
 { pkgs, lib, config, ... }:
 
 {
-  imports = [ ./hardware-surface.nix ./users.nix ./xmonad.nix ./xfce.nix ./virtualization ];
+  imports = [
+    ./hardware-surface.nix
+    ./users.nix
+    ./xmonad.nix
+    ./xfce.nix
+    ./virtualization
+  ];
 
   config = {
     nix = {
@@ -45,10 +51,11 @@
 
       openssh = {
         enable = true;
+        allowSFTP = false;
         settings = {
           PasswordAuthentication = false;
           KbdInteractiveAuthentication = false;
-          X11Forwarding = true;
+          X11Forwarding = false;
         };
       };
     };
