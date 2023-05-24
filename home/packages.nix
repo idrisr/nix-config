@@ -1,6 +1,8 @@
 pkgs:
 with pkgs; [
 
+  jrnl
+  qpdf
   roamamer
   arandr
   aria
@@ -36,7 +38,6 @@ with pkgs; [
   imagemagick
   inxi
   jq
-  jrnl
   killall
   lastpass-cli
   libinput
@@ -119,5 +120,8 @@ with pkgs; [
   xdotool
   xorg.xev
   xorg.xwininfo
+  libreoffice
+  arduino
+  fritzing
 
 ]
