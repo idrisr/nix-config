@@ -1,4 +1,4 @@
-let g:fzf_preview_window = ['right:70%', 'ctrl-/']
+let g:fzf_preview_window = ['right:60%', 'ctrl-/']
 nnoremap <leader>z :GFiles<CR>
 nnoremap <leader>x :Files<CR>
 nnoremap <leader>b :Buffers<CR>
