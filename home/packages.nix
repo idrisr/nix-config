@@ -2,6 +2,7 @@ pkgs:
 with pkgs; [
 
   jrnl
+  bat
   qpdf
   roamamer
   arandr

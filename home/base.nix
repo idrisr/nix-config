@@ -7,7 +7,7 @@
       enable = lib.mkEnableOption "theme";
       color = lib.mkOption {
         type = lib.types.str;
-        default = "dark";
+        default = "light";
       };
     };
   };
