@@ -1,15 +1,8 @@
 { config, pkgs, lib, modulesPath, ... }:
 
 {
-  imports = [
-    (modulesPath + "/installer/scan/not-detected.nix")
-    "${
-      builtins.fetchGit {
-        url = "https://github.com/NixOS/nixos-hardware.git";
-        rev = "3023004e9903bc2f726da7c4a6724cf55f45bfff";
-      }
-    }/microsoft/surface/surface-pro-intel"
-  ];
+  imports = [ ];
+  options = { };
 
   config = {
     microsoft-surface.ipts.enable = true;
