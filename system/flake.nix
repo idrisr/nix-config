@@ -4,8 +4,9 @@
   inputs = {
     nixpkgs = { url = "github:nixos/nixpkgs/nixos-unstable"; };
     nixos-hardware = {
-      type = "git";
-      url = "github:NixOS/nixos-hardware/master";
+      type = "github";
+      owner = "nixos";
+      repo = "nixos-hardware";
       rev = "3023004e9903bc2f726da7c4a6724cf55f45bfff";
     };
   };

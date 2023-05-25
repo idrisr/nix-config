@@ -30,7 +30,6 @@
 
     services = {
       tailscale = { enable = true; };
-      upower = { enable = true; };
       xserver = {
         enable = true;
         layout = "us";
