@@ -1,6 +1,7 @@
 pkgs:
 with pkgs; [
 
+  vscode-fhs
   jrnl
   bat
   qpdf

@@ -22,6 +22,7 @@
             "steam-original"
             "steam-run"
             "vscode"
+            "code"
             "vscode-extension-ms-vscode-cpptools"
           ];
           f = pkgs.lib.getName;
