@@ -6,9 +6,6 @@ nnoremap <leader>d :Windows<CR>
 nnoremap <leader>r :Rg<CR>
 nnoremap <leader>k :Ki<CR>
 nnoremap <leader>K :YO<CR>
-nnoremap <leader>nx :e gtd\ projects.md<CR> :NX next action<CR>
-nnoremap <leader>G :edit gtd\ projects.md<CR>
-nnoremap <leader>D :edit dailys.md<CR>
 
 let g:fzf_layout = { 'window': 'enew' }
 let g:fzf_buffers_jump = 0
@@ -116,6 +113,12 @@ command! -bang -nargs=* YO call
 
 command! -bang -nargs=* Rg call
     \ fzf#vim#grep("rg --column --line-number --no-heading --color=always --smart-case ".shellescape(<q-args>),
+    \ 1,
+    \ fzf#vim#with_preview( {'options': '--delimiter : --nth 4..'} ),
+    \ <bang>0)
+
+command! -bang -nargs=* rg call
+    \ fzf#vim#grep("rg --word-regexp --column --line-number --no-heading --color=always --smart-case ".shellescape(<q-args>),
     \ 1,
     \ fzf#vim#with_preview( {'options': '--delimiter : --nth 4..'} ),
     \ <bang>0)
