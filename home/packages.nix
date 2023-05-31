@@ -1,6 +1,7 @@
 pkgs:
 with pkgs; [
 
+  seder
   vscode-fhs
   jrnl
   bat

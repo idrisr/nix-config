@@ -37,6 +37,7 @@
           "epubthumbnailer"
           "roamamer"
           "mdtopdf"
+          "seder"
           "pdftc"
           "transcribe"
         ];
