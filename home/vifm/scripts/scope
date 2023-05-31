@@ -46,7 +46,7 @@ case "${file}" in
 		image "$CACHE" "$2" "$3" "$4" "$5" "$1"
 		;;
 	*/pdf)
-		[ ! -f "$CACHE.jpg" ] && pdftoppm -jpeg -f 1 -singlefile "$1" "$CACHE"
+		[ ! -f "$CACHE.jpg" ] && pdftoppm -cropbox -jpeg -f 1 -singlefile "$1" "$CACHE"
 		image "$CACHE.jpg" "$2" "$3" "$4" "$5" "$1"
 		;;
 	*/epub+zip|*/mobi*)
