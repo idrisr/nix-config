@@ -46,6 +46,24 @@
           format = " [$symbol($version )]($style)";
         };
 
+        battery = {
+          disabled = false;
+          display = [
+            {
+              threshold = 10;
+              style = "bold red";
+              charging_symbol = "⚡️";
+            }
+            {
+              threshold = 90;
+              style = "bold yellow";
+              discharging_symbol = "💦";
+              charging_symbol = "⚡️";
+            }
+          ];
+
+        };
+
         status = {
           disabled = false;
           symbol = "🔴 ";
