@@ -1,32 +1,64 @@
 set -e
 set -u
+set -x
 
 usage() {
-  echo "usage: $0 <transcribe-me.pdf>"
+  echo "usage: $0 <transcribe-me.pdf> <start page> <end page>"
   exit 1
 }
 
-if [[ "$#" != 1 ]]; then
-  usage
-fi
+check_integer() {
+    if ! [[ "$1" =~ ^[0-9]+$ ]]; then
+        echo "$1 is not an integer"
+        usage
+    fi
+}
 
+check_is_pdf() {
+    if ! [[ $(file --dereference --brief --mime-type -- "$1") =~ ^.*pdf$ ]]; then
+        echo "$1 is not a pdf file"
+        usage
+    fi
+}
+
+check_valid_ints() {
+    if ! [ "$1" -le "$2" ]; then
+        echo "invalid page range: $1 $2"
+        usage
+    fi
+}
+
+check_is_file() {
+    if [[ ! -f "$1" ]]; then
+        echo "$1 is not a file"
+        exit 1
+    fi
+}
+
+check_argc () {
+    if [[ "$#" != 3 ]]; then
+        echo "invalid arg count"
+        usage
+    fi
+}
+
+check_argc "$@"
+check_is_file "$1"
+check_integer "$2"
+check_integer "$3"
+check_valid_ints "$2" "$3"
+check_is_pdf "$1"
+
+input=$(realpath "$1")
 filepath=${1%.*}
 filename=${filepath##*/}
-declare -i length
-length=$(pdfinfo "$1" | sed -n '/Pages:/ s/[^0-9]*\([0-9]\+\)/\1/p')
 
-pushd "$(mktemp -d)"
+cd "$(mktemp -d)"
+pdftoppm -forcenum -progress -cropbox -jpeg -f "$2" -l "$3" "$input" "$filename"
 
-touch "$OLDPWD/${filename}.txt"
-for ((i=1; i<="$length"; i++))
+for ((i="$2"; i<="$3"; i++))
 do
-    # dont need to call this each time in the loop
-    # instead call pdftoppm just once
-    pdftoppm -jpeg -f "$i" -singlefile "$OLDPWD/$1" "$i"
-    tesseract "$i".jpg "$i"
+    index=$(printf "%03d" $i)
+    tesseract "$filename-$index".jpg "$i"
     cat "$i.txt" >> "$OLDPWD/${filename}.txt"
 done
-popd
-
-# TODO: add trap to remove tmp files
-trash "$OLDPWD"
