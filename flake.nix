@@ -22,14 +22,22 @@
         surface2 = nixpkgs.lib.nixosSystem {
           inherit system;
           modules = [
+            ./system/hardware-surface.nix
             ./system/configuration.nix
             nixos-hardware.nixosModules.microsoft-surface-pro-intel
             home-manager.nixosModules.home-manager
-            {
-              # home-manager.useGlobalPkgs = true;
-              # home-manager.useUserPackages = true;
-              home-manager.users.hippoid = import home/base.nix;
-            }
+            { home-manager.users.hippoid = import home/base.nix; }
+          ];
+        };
+
+        fft = nixpkgs.lib.nixosSystem {
+          inherit system;
+          modules = [
+            ./system/hardware-tower.nix
+            ./system/configuration.nix
+            nixos-hardware.nixosModules.microsoft-surface-pro-intel
+            home-manager.nixosModules.home-manager
+            { home-manager.users.hippoid = import home/base.nix; }
           ];
         };
       };

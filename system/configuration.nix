@@ -1,13 +1,7 @@
 { pkgs, lib, config, ... }:
 
 {
-  imports = [
-    ./hardware-surface.nix
-    ./users.nix
-    ./xmonad.nix
-    ./xfce.nix
-    ./virtualization
-  ];
+  imports = [ ./users.nix ./xmonad.nix ./xfce.nix ./virtualization ];
 
   config = {
     nix = {

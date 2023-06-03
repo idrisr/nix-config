@@ -5,10 +5,10 @@
   options = { };
 
   config = {
-    microsoft-surface.ipts.enable = true;
+    # microsoft-surface.ipts.enable = true;
+    systemd.services.iptsd = lib.mkForce { };
 
     boot = {
-      # systemd.services.iptsd = lib.mkForce { };
 
       initrd.availableKernelModules =
         [ "xhci_pci" "thunderbolt" "nvme" "usb_storage" "usbhid" "sd_mod" ];
