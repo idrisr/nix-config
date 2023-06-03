@@ -1,7 +1,8 @@
 { config, lib, pkgs, modulesPath, ... }:
 
 {
-  imports = [ (modulesPath + "/installer/scan/not-detected.nix") ];
+  imports =
+    [ (modulesPath + "/installer/scan/not-detected.nix") ./adguard.nix ];
 
   config = {
     boot = {
@@ -41,17 +42,14 @@
     networking = {
       useDHCP = lib.mkDefault true;
       interfaces.enp5s0.useDHCP = lib.mkDefault true;
+      hostName = "fft";
+      networkmanager.enable = false;
     };
 
     nixpkgs.hostPlatform = lib.mkDefault "x86_64-linux";
     hardware = {
       cpu.amd.updateMicrocode =
         lib.mkDefault config.hardware.enableRedistributableFirmware;
-    };
-
-    networking = {
-      hostName = "fft";
-      networkmanager.enable = true;
     };
   };
 }

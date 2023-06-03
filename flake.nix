@@ -35,7 +35,6 @@
           modules = [
             ./system/hardware-tower.nix
             ./system/configuration.nix
-            nixos-hardware.nixosModules.microsoft-surface-pro-intel
             home-manager.nixosModules.home-manager
             { home-manager.users.hippoid = import home/base.nix; }
           ];
