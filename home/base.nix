@@ -7,7 +7,7 @@
       enable = lib.mkEnableOption "theme";
       color = lib.mkOption {
         type = lib.types.str;
-        default = "light";
+        default = "dark";
       };
     };
   };
@@ -21,9 +21,9 @@
             "lastpass-cli"
             "steam-original"
             "steam-run"
-            "vscode"
+            "gitkraken"
             "code"
-            "vscode-extension-ms-vscode-cpptools"
+            "vscode"
           ];
           f = pkgs.lib.getName;
         in pkg: builtins.elem (f pkg) xs;
@@ -37,8 +37,7 @@
           "epubthumbnailer"
           "roamamer"
           "mdtopdf"
-          "seder"
-          "pdftc"
+          "newcover"
           "transcribe"
         ];
       in map import xs;

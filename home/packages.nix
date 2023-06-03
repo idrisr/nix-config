@@ -1,7 +1,14 @@
 pkgs:
 with pkgs; [
 
-  seder
+  nix-du
+  nix-tree
+  nix-melt
+  graphviz
+  nix-query-tree-viewer
+  newcover
+  tesseract5
+  gitkraken
   vscode-fhs
   jrnl
   bat
@@ -58,7 +65,6 @@ with pkgs; [
   parted
   pass
   pcmanfm
-  pdftc
   pdftk
   pipe-rename
   pirate-get
@@ -93,38 +99,29 @@ with pkgs; [
   desktop-file-utils
   electrum
   ffmpegthumbnailer
-  font-manager
   fontpreview
-  freecad
   gallery-dl
   gimp
-  gnome.gnome-disk-utility
   haruna
   inkscape
-  jetbrains.idea-community
   keepassxc
   krop
   lmms
   mdtopdf
   mpv
   nitrogen
-  obs-studio
-  okular
   pinentry
   qemu
   spectacle # screenshots
   sqliteman
   sxiv
   tabbed
-  thunderbird
   ueberzug
-  wireshark
   xclip
   xdotool
   xorg.xev
   xorg.xwininfo
   libreoffice
-  arduino
   fritzing
 
 ]
