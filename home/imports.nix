@@ -15,7 +15,6 @@
   ./newsboat
   ./pandoc
   ./picom
-  # ./polybar
   ./qutebrowser
   ./readline
   ./ripgrep

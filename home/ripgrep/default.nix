@@ -1,6 +1,7 @@
 { lib, pkgs, config, ... }:
 let ripgrepconf = builtins.readFile ./ripgreprc;
 in {
+  imports = [ ];
   options = { ripgreprc = lib.mkOption { type = lib.types.path; }; };
 
   config = {

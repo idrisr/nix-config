@@ -2,6 +2,7 @@
 
 {
   imports = import ./imports.nix;
+
   options = {
     theme = {
       enable = lib.mkEnableOption "theme";

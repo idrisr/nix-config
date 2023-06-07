@@ -4,9 +4,9 @@ let
   extraConf = if config.theme.color == "dark" then
     ''
       set status-style 'bg=colour0 fg=colour12'; set status-right "#[fg=12]%d-%b %I:%M%p"''
-  else ''
-    set status-style 'bg=colour6 fg=colour7'; set status-right "#[fg=7]%d-%b
-    %I:%M%p"'';
+  else
+    ''
+      set status-style 'bg=colour6 fg=colour7'; set status-right "#[fg=7]%d-%b %I:%M%p"'';
 in {
   config = {
     programs.tmux = {
