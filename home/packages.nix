@@ -87,7 +87,7 @@ with pkgs; [
   transcribe
   trash-cli
   tree
-  # unoconv
+  weechat
   unzip
   wget
   writedisk
