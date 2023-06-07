@@ -1,6 +1,5 @@
 set -e
 set -u
-set -x
 
 usage() {
   echo "usage: $0 <transcribe-me.pdf> <start page> <end page>"
@@ -51,14 +50,14 @@ check_is_pdf "$1"
 
 input=$(realpath "$1")
 filepath=${1%.*}
-filename=${filepath##*/}
+dest=${filepath##*/}
 
 cd "$(mktemp -d)"
-pdftoppm -forcenum -progress -cropbox -jpeg -f "$2" -l "$3" "$input" "$filename"
+pdftoppm -forcenum -progress -cropbox -jpeg -f "$2" -l "$3" "$input" "$dest"
 
-for ((i="$2"; i<="$3"; i++))
-do
-    index=$(printf "%03d" $i)
-    tesseract "$filename-$index".jpg "$i"
-    cat "$i.txt" >> "$OLDPWD/${filename}.txt"
+for f in *jpg; do
+    filepath=${f%.*}
+    filename=${filepath##*/}
+    tesseract "$f" "$filename"
+    cat "$filename.txt" >> "$OLDPWD/${dest}.txt"
 done
