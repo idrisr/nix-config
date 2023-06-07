@@ -16,28 +16,27 @@
   };
 
   outputs = { nixpkgs, nixos-hardware, home-manager, ... }:
-    let system = "x86_64-linux";
+    let
+      system = "x86_64-linux";
+      common = [
+        ./system/configuration.nix
+        home-manager.nixosModules.home-manager
+        { home-manager.users.hippoid = import home/base.nix; }
+
+      ];
     in {
       nixosConfigurations = {
         surface2 = nixpkgs.lib.nixosSystem {
           inherit system;
           modules = [
             ./system/hardware-surface.nix
-            ./system/configuration.nix
             nixos-hardware.nixosModules.microsoft-surface-pro-intel
-            home-manager.nixosModules.home-manager
-            { home-manager.users.hippoid = import home/base.nix; }
-          ];
+          ] ++ common;
         };
 
         fft = nixpkgs.lib.nixosSystem {
           inherit system;
-          modules = [
-            ./system/hardware-tower.nix
-            ./system/configuration.nix
-            home-manager.nixosModules.home-manager
-            { home-manager.users.hippoid = import home/base.nix; }
-          ];
+          modules = [ ./system/hardware-tower.nix ] ++ common;
         };
       };
     };
