@@ -2,6 +2,8 @@ pkgs:
 with pkgs; [
 
   nix-du
+  sqlitebrowser
+
   nix-tree
   nix-melt
   graphviz
@@ -77,7 +79,7 @@ with pkgs; [
   sg3_utils
   shellcheck
   shellharden
-  sqlite
+  (sqlite.override { interactive = true; })
   sysz
   tailscale
   tcpdump
