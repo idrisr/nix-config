@@ -26,7 +26,7 @@
       ];
     in {
       nixosConfigurations = {
-        surface2 = nixpkgs.lib.nixosSystem {
+        surface = nixpkgs.lib.nixosSystem {
           inherit system;
           modules = [
             ./system/hardware-surface.nix
@@ -37,6 +37,11 @@
         fft = nixpkgs.lib.nixosSystem {
           inherit system;
           modules = [ ./system/hardware-tower.nix ] ++ common;
+        };
+
+        framework = nixpkgs.lib.nixosSystem {
+          inherit system;
+          modules = [ ./system/hardware-framework.nix ] ++ common;
         };
       };
     };
