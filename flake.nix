@@ -43,6 +43,11 @@
           inherit system;
           modules = [ ./system/hardware-framework.nix ] ++ common;
         };
+
+        red = nixpkgs.lib.nixosSystem {
+          system = "i686-linux";
+          modules = [ ./system/hardware-red.nix ] ++ common;
+        };
       };
     };
 }
