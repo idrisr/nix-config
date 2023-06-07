@@ -23,10 +23,13 @@ in {
       mimeApps = {
         enable = true;
         defaultApplications = {
+          "application/pdf" = pdf;
+          "text/html" = browser;
+          "x-scheme-handler/about" = browser;
           "x-scheme-handler/http" = browser;
           "x-scheme-handler/https" = browser;
-          "text/html" = browser;
-          "application/pdf" = pdf;
+          "x-scheme-handler/unknown" = browser;
+
           # "application/vnd.oasis.opendocument.spreadsheet" = spreadsheet;
         };
       };
