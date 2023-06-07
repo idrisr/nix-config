@@ -53,17 +53,6 @@
       ];
 
       envExtra = ''
-        export MANPAGER='nvim +Man!'
-        export LC_ALL=en_US.UTF-8
-        export LANG=en_US.UTF-8
-        export HYPHEN_INSENSITIVE="true"
-        export PAGER=""
-        export FZF_ALT_C_OPTS="--preview 'tree -c {}| head -200'"
-        export FZF_ALT_C_COMMAND="fd --type d"
-        export FZF_CTRL_T_COMMAND="fd --type f"
-        export FZF_CTRL_T_OPTS="--preview 'bat --style=numbers --color=always --line-range :500 {}'"
-        export FZF_DEFAULT_OPTS="--height 90 --border bottom"
-        export FZF_COMPLETION_TRIGGER="**"
         export RIPGREP_CONFIG_PATH="${config.ripgreprc}"
       '';
     };
