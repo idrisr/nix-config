@@ -12,10 +12,8 @@
         statusbar.position = "top";
         fonts.default_size = "12pt";
 
-        # History
-        completion.web_history.max_items = 0;
-        completion.cmd_history_max_items = 0;
-        # Privacy
+        completion.web_history.max_items = 10000;
+        completion.cmd_history_max_items = 10000;
 
         content = {
           javascript = {
@@ -23,7 +21,6 @@
             enabled = true;
           };
           autoplay = false;
-          private_browsing = true;
           canvas_reading = false;
           geolocation = false;
           webrtc_ip_handling_policy = "default-public-interface-only";
