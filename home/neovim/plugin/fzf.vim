@@ -1,46 +1,3 @@
-let g:fzf_preview_window = ['right:40%', 'ctrl-/']
-nnoremap <leader>z :GFiles<CR>
-nnoremap <leader>x :Files<CR>
-nnoremap <leader>b :Buffers<CR>
-nnoremap <leader>d :Windows<CR>
-nnoremap <leader>r :Rg<CR>
-nnoremap <leader>k :Ki<CR>
-nnoremap <leader>K :YO<CR>
-
-let g:fzf_layout = { 'window': 'enew' }
-let g:fzf_buffers_jump = 0
-let g:fzf_tags_command = 'ctags -R'
-
- let g:fzf_colors =
-    \ { 'fg':      ['fg', 'Normal'],
-      \ 'bg':      ['bg', 'Normal'],
-      \ 'hl':      ['fg', 'Comment'],
-      \ 'fg+':     ['fg', 'CursorLine', 'CursorColumn', 'Normal'],
-      \ 'bg+':     ['bg', 'CursorLine', 'CursorColumn'],
-      \ 'hl+':     ['fg', 'Statement'],
-      \ 'info':    ['fg', 'PreProc'],
-      \ 'border':  ['fg', 'Ignore'],
-      \ 'prompt':  ['fg', 'Conditional'],
-      \ 'pointer': ['fg', 'Exception'],
-      \ 'marker':  ['fg', 'Keyword'],
-      \ 'spinner': ['fg', 'Label'],
-      \ 'header':  ['fg', 'Comment'] }
-
-function! s:build_quickfix_list(lines)
-  call setqflist(map(copy(a:lines), '{ "filename": v:val }'))
-  copen
-  cc
-endfunction
-
-let g:fzf_action = {
-  \ 'ctrl-q': function('s:build_quickfix_list'),
-  \ 'ctrl-t': 'tab split',
-  \ 'ctrl-s': 'split',
-  \ 'ctrl-v': 'vsplit',
-  \ 'ctrl-b': ':bd' }
-
-let $FZF_DEFAULT_OPTS = '--bind ctrl-a:select-all'
-
 nnoremap <leader>g  :set operatorfunc=<SID>GrepOperator<cr>g@
 nnoremap <leader>gt :set operatorfunc=<SID>GrepOperator<cr>g@i[
 vnoremap <leader>g :<c-u>call <SID>GrepOperator(visualmode())<cr>
@@ -68,10 +25,6 @@ command! -bang -nargs=* LL call
     \, 'right':  '50%'
     \, 'sink':  'e' })
 
-
-let g:rg_string='rg -r ' . "'$1' " . '--only-matching --no-line-number --no-filename "\[\[(.+?)\]\]" '
-
-" TODO: make a func to DRY
 command! -bang -nargs=* NN call
     \ fzf#vim#grep('rg -r ' . "'$1' " . '--only-matching --no-filename "\[\[(.+?)\]\]" '
     \ . shellescape(expand('%:p'))

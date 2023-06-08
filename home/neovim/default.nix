@@ -12,6 +12,8 @@ in {
       vimAlias = true;
       plugins = import ./vim-packages.nix pkgs;
 
+      extraLuaConfig = builtins.readFile ./lua-plugin/fzf.lua;
+
       extraConfig = with pkgs.lib.attrsets;
         let
           f = builtins.readFile;
