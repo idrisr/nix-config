@@ -27,7 +27,7 @@
     };
 
     networking = {
-      hostName = "surface2";
+      hostName = "surface";
       networkmanager.enable = true;
       interfaces.wlp0s20f3.useDHCP = true;
       firewall.allowedTCPPorts = [ 6969 ];
