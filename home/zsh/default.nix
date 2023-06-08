@@ -1,6 +1,9 @@
 { pkgs, config, ... }: {
   config = {
     programs.zsh = {
+      enable = true;
+      plugins = [ ];
+
       initExtraFirst = ''
         set incappendhistorytime
         set -o no_print_exit_value
@@ -13,23 +16,23 @@
         bindkey -s '^p' 'tmuxp load ~/tmuxp/session.yaml ^M'
         bindkey -s '^f' 'vifm ^M'
         bindkey -s '^v' 'nvim ^M'
+        autoload -U edit-command-line
+        zle -N edit-command-line
+        bindkey -M vicmd v edit-command-line
       '';
-      # bindkey -s '^h' '$HOME/dotfiles/apply-user.sh light ^M'
-      # bindkey -s '^j' '$HOME/dotfiles/apply-user.sh dark ^M'
 
-      enable = true;
       history.extended = true;
-      enableSyntaxHighlighting = true;
-      enableCompletion = true;
 
       shellAliases = {
         cb = "chatblade";
         fd = "fd --type d";
         ff = "fd --type f";
+        ga = "git add";
         gb = "git branch";
         gc = "git commit";
         gco = "git checkout";
         gd = "git diff";
+        gds = "git diff --staged";
         githome = ''cd "$(git rev-parse --show-toplevel)"'';
         gpl = "git pull";
         gs = "git status";
@@ -42,15 +45,8 @@
         v = "nvim";
       };
 
-      oh-my-zsh.enable = true;
-      oh-my-zsh.plugins = [ "git" ];
-
-      initExtra = builtins.concatStringsSep "\n" [
-        (builtins.readFile ./idris.zsh-theme)
-        "bindkey -M vicmd v edit-command-line"
-        ''eval "$(direnv hook zsh)"''
-
-      ];
+      initExtra =
+        builtins.concatStringsSep "\n" [ ''eval "$(direnv hook zsh)"'' ];
 
       envExtra = ''
         export RIPGREP_CONFIG_PATH="${config.ripgreprc}"
