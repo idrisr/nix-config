@@ -3,6 +3,20 @@ let
   vimBackground = "set background=${config.theme.color}";
   airlineBackground = "let g:airline_solarized_bg='${config.theme.color}'";
   cocSettings = builtins.readFile ./coc-settings.json;
+
+  regFiles = pkgs: dir:
+    let
+      f = x: dir + "/${x}";
+      g = _: v: v == "regular";
+      h = with pkgs.lib.attrsets;
+        builtins.attrNames (filterAttrs g (builtins.readDir dir));
+      i = map f h;
+    in i;
+  concatFiles = files:
+    let
+      j = map builtins.readFile files;
+      k = builtins.concatStringsSep "\n" ([ " " ] ++ j);
+    in k;
 in {
   config = {
     xdg.configFile."nvim/coc-settings.json".text = cocSettings;
@@ -12,23 +26,15 @@ in {
       vimAlias = true;
       plugins = import ./vim-packages.nix pkgs;
 
-      extraLuaConfig = builtins.readFile ./lua-plugin/fzf.lua;
+      extraLuaConfig = concatFiles (regFiles pkgs ./lua-plugin);
 
       extraConfig = with pkgs.lib.attrsets;
         let
-          f = builtins.readFile;
-          g = _: v: v == "regular";
-          h = x: ./plugin + "/${x}";
-
-          names = builtins.readDir ./plugin;
-          paths = map h (builtins.attrNames (filterAttrs g names));
-
-          # separate lists used to enforce ordering
-          first = [ (f ./vimrc) ];
-          middle = map f ([ ./autocommand.vim ./functions.vim ] ++ paths);
-          last = [ airlineBackground vimBackground ];
-          xs = builtins.concatLists [ first middle last ];
-        in builtins.concatStringsSep "\n" xs;
+          plugins = concatFiles (regFiles pkgs ./plugin);
+          files = concatFiles [ ./vimrc ./autocommand.vim ./functions.vim ];
+          last =
+            builtins.concatStringsSep "\n" [ airlineBackground vimBackground ];
+        in files + plugins + last;
     };
   };
 }
