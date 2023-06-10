@@ -24,6 +24,7 @@
         { home-manager.users.hippoid = import home/base.nix; }
 
       ];
+      pkgs = import nixpkgs { system = system; };
     in {
       nixosConfigurations = {
         surface = nixpkgs.lib.nixosSystem {
@@ -49,5 +50,15 @@
           modules = [ ./system/hardware-red.nix ] ++ common;
         };
       };
+
+      devShells.x86_64-linux.default = with pkgs;
+        mkShell {
+          buildInputs = [
+            ghcid
+            (ghc.withPackages (p: with p; [ xmonad xmonad-extras dbus ]))
+            haskell-language-server
+            luajitPackages.lua-lsp
+          ];
+        };
     };
 }
