@@ -16,6 +16,7 @@
       kernelModules = [ "kvm-intel" ];
       extraModulePackages = [ ];
       loader.systemd-boot.enable = true;
+      loader.systemd-boot.configurationLimit = 20;
       loader.efi.canTouchEfiVariables = true;
       loader.efi.efiSysMountPoint = "/boot/efi";
       kernelParams = [

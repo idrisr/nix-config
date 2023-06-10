@@ -42,7 +42,7 @@
         cpl = "https://chipublib.bibliocommons.com/v2/search?query={}";
         git = "https://github.com/search?q={}";
         ho = "https://hoogle.haskell.org/?hoogle={}";
-        hm = "https://mipmip.github.io/home-manager-option-search/?{}";
+        hm = "https://mipmip.github.io/home-manager-option-search/?query={}";
         mdn = "https://developer.mozilla.org/en-US/search?q={}";
         nx = "https://search.nixos.org/packages?query={}&channel=unstable";
         nixpkgs-issues =
