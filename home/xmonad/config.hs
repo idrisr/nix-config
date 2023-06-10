@@ -51,6 +51,7 @@ import           XMonad.Hooks.EwmhDesktops             ( ewmh
                                                        )
 import qualified XMonad.Layout.LayoutModifier
 
+alert :: Double -> X ()
 alert = dzenConfig centered . show . round
 centered =
         onCurr (center 150 66)
@@ -93,9 +94,7 @@ mySpacing = spacingRaw False            -- False=Apply even when single window
 --
 myKeys conf@(XConfig {XMonad.modMask = modm}) = M.fromList $
     [ ((modm .|. shiftMask, xK_Return), spawn $ XMonad.terminal conf)
-    , ((modm .|. shiftMask,  xK_h), spawn "haruna")
-    , ((modm,               xK_b     ), spawn "qutebrowser")
-    , ((modm,               xK_z     ), spawn "zathura")
+    , ((modm .|. shiftMask, xK_b     ), spawn "qutebrowser")
     , ((modm, xK_g), goToSelected def)
     , ((modm, xK_6), lowerVolume 4 >>= alert)
     , ((modm, xK_7), raiseVolume 4 >>= alert)
@@ -115,7 +114,7 @@ myKeys conf@(XConfig {XMonad.modMask = modm}) = M.fromList $
     , ((modm,               xK_m     ), withFocused minimizeWindow)
     , ((modm .|. shiftMask, xK_m     ), withLastMinimized maximizeWindowAndFocus)
     , ((modm .|. shiftMask, xK_n     ), withFocused toggleBorder)
-    , ((modm, xK_f), sendMessage $ Toggle FULL)
+    , ((modm .|. shiftMask, xK_f), sendMessage $ Toggle FULL)
 
     ]
 

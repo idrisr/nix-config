@@ -16,7 +16,6 @@
           };
         };
         layout = "us";
-        xkbOptions = "caps:escape";
         xkbVariant = "";
       };
     };

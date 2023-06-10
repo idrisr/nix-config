@@ -5,6 +5,7 @@
   ./direnv
   ./firefox
   ./fzf
+  ./emacs
   ./git
   ./github
   ./haruna
