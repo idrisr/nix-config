@@ -102,10 +102,8 @@ myKeys conf@(XConfig {XMonad.modMask = modm}) = M.fromList $
     , ((modm,               xK_space ), sendMessage NextLayout)
     , ((modm .|. shiftMask, xK_space ), setLayout $ XMonad.layoutHook conf)
     , ((modm , xK_p), spawn "rofi -show run")
-    , ((modm,               xK_j     ), windows W.focusDown)
-    , ((modm,               xK_k     ), windows W.focusUp  )
-    , ((modm .|. shiftMask, xK_j     ), windows W.swapDown  )
-    , ((modm .|. shiftMask, xK_k     ), windows W.swapUp    )
+    , ((modm .|. shiftMask, xK_j     ), windows W.focusDown)
+    , ((modm .|. shiftMask, xK_k     ), windows W.focusUp  )
     , ((modm,               xK_h     ), sendMessage Shrink)
     , ((modm,               xK_l     ), sendMessage Expand)
     , ((modm .|. shiftMask   , xK_t     ), sendMessage ToggleStruts)
@@ -123,7 +121,6 @@ myKeys conf@(XConfig {XMonad.modMask = modm}) = M.fromList $
     [((m .|. modm, k), windows $ f i)
         | (i, k) <- zip (XMonad.workspaces conf) [xK_1 .. xK_9]
         , (f, m) <- [(W.greedyView, 0), (W.shift, shiftMask)]]
-
 
 myLayout
   = avoidStruts
