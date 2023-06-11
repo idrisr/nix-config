@@ -6,10 +6,8 @@
       description = "hippoid";
       extraGroups = [ "dialout" "docker" "networkmanager" "wheel" "lpadmin" ];
       shell = pkgs.zsh;
-      openssh.authorizedKeys.keys = [
-        (builtins.readFile ./public-keys/id_rsa.pub)
-        (builtins.readFile ./public-keys/id_rsa-ipad.pub)
-      ];
+      openssh.authorizedKeys.keys =
+        [ (builtins.readFile ./public-keys/id_rsa.pub) ];
     };
   };
 }
