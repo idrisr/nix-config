@@ -1,6 +1,6 @@
 vim.g.tagbar_autoclose=0
-vim.api.nvim_set_keymap('n', '<leader>tb', ':TagBarToggle<CR>', { silent = true })
-vim.api.nvim_set_keymap('n', '<leader>tp', ':TagBarTogglePause<CR>', { silent = true })
+vim.api.nvim_set_keymap('n', '<leader>tb', ':TagbarToggle<CR>', { silent = true })
+vim.api.nvim_set_keymap('n', '<leader>tp', ':TagbarTogglePause<CR>', { silent = true })
 
 vim.g.tagbar_type_tf = {
   ctagstype = 'terraform',
