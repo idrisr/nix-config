@@ -13,9 +13,13 @@
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    nixos-generators = {
+      url = "github:nix-community/nixos-generators";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
-  outputs = { nixpkgs, nixos-hardware, home-manager, ... }:
+  outputs = { nixpkgs, nixos-hardware, home-manager, nixos-generators, ... }:
     let
       system = "x86_64-linux";
       common = [
@@ -26,6 +30,14 @@
       ];
       pkgs = import nixpkgs { system = system; };
     in {
+      packages.x86_64-linux = {
+        install = nixos-generators.nixosGenerate {
+          system = "x86_64-linux";
+          modules = [ ./system/hardware-framework.nix ] ++ common;
+          format = "install-iso";
+        };
+      };
+
       nixosConfigurations = {
         surface = nixpkgs.lib.nixosSystem {
           inherit system;

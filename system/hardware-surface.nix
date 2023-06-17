@@ -9,6 +9,8 @@
     systemd.services.iptsd = lib.mkForce { };
 
     boot = {
+      # https://rbf.dev/blog/2020/05/custom-nixos-build-for-raspberry-pis/
+      binfmt.emulatedSystems = [ "aarch64-linux" ];
 
       initrd.availableKernelModules =
         [ "xhci_pci" "thunderbolt" "nvme" "usb_storage" "usbhid" "sd_mod" ];
