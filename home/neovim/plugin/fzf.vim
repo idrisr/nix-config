@@ -57,7 +57,7 @@ command! -bang -nargs=* Ki call
     \ <bang>0)
 
 command! -bang -nargs=* YO call
-    \ fzf#vim#grep("rg --ignore-case --column --line-number --no-heading --color=always --smart-case '\\[\\["
+    \ fzf#vim#grep("rg --ignore-case --column --line-number --no-heading --color=always '\\[\\["
     \ . expand('%:t:r')
     \ . "\\]\\]'",
     \ 1,
@@ -65,13 +65,13 @@ command! -bang -nargs=* YO call
     \ <bang>0)
 
 command! -bang -nargs=* Rg call
-    \ fzf#vim#grep("rg --ignore-case --column --line-number --no-heading --color=always --smart-case ".shellescape(<q-args>),
+    \ fzf#vim#grep("rg --ignore-case --column --line-number --no-heading --color=always ".shellescape(<q-args>),
     \ 1,
     \ fzf#vim#with_preview( {'options': '--delimiter : --nth 4..'} ),
     \ <bang>0)
 
 command! -bang -nargs=* Tg call
-    \ fzf#vim#grep("rg --ignore-case --word-regexp --column --line-number --no-heading --color=always --smart-case ".shellescape(<q-args>),
+    \ fzf#vim#grep("rg --ignore-case --word-regexp --column --line-number --no-heading --color=always ".shellescape(<q-args>),
     \ 1,
     \ fzf#vim#with_preview( {'options': '--delimiter : --nth 4..'} ),
     \ <bang>0)
