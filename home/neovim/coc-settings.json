@@ -16,7 +16,20 @@
       "filetypes": [
         "haskell",
         "lhaskell"
-      ]
+      ],
+      "settings": {
+        "haskell": {
+          "checkParents": "CheckOnSave",
+          "checkProject": true,
+          "maxCompletions": 40,
+          "formattingProvider": "fourmolu",
+          "plugin": {
+            "stan": {
+              "globalOn": true
+            }
+          }
+        }
+      }
     },
     "ccls": {
       "command": "ccls",
