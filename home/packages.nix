@@ -1,8 +1,10 @@
 pkgs:
 with pkgs; [
-
+  cabal2nix
   nix-du
   sqlitebrowser
+  timer
+  freecad
 
   nix-tree
   nix-melt

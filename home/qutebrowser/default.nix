@@ -15,6 +15,8 @@
         completion.web_history.max_items = 10000;
         completion.cmd_history_max_items = 10000;
 
+        auto_save.session = true;
+
         content = {
           javascript = {
             can_access_clipboard = true;
