@@ -23,7 +23,7 @@ let g:ale_fixers = {
 \   'css': ['prettier'],
 \   'html': ['tidy'],
 \   'nix': ['nixfmt'] + s:default,
-\   'lua': ['stylua'],
+\   'lua': ['stylua'] + s:default,
 \   'json': ['jq'],
 \   'sh': ['shfmt'] + s:default,
 \   'sql': ['sqlformat'],
