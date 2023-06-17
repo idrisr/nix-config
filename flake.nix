@@ -70,6 +70,8 @@
             (ghc.withPackages (p: with p; [ xmonad xmonad-extras dbus ]))
             haskell-language-server
             luajitPackages.lua-lsp
+            nodePackages.vim-language-server
+
           ];
         };
     };
