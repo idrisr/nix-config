@@ -15,7 +15,7 @@
       initrd.availableKernelModules =
         [ "xhci_pci" "thunderbolt" "nvme" "usb_storage" "usbhid" "sd_mod" ];
       initrd.kernelModules = [ ];
-      kernelModules = [ "kvm-intel" ];
+      kernelModules = [ "nbd" "kvm-intel" ];
       extraModulePackages = [ ];
       loader.systemd-boot.enable = true;
       loader.systemd-boot.configurationLimit = 20;

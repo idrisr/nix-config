@@ -6,6 +6,8 @@
       virtmanager
     ];
 
+    boot = { kernelModules = [ "nbd" ]; };
+
     virtualisation.libvirtd = {
       enable = true;
       qemu = {
