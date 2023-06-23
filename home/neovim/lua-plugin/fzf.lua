@@ -9,6 +9,7 @@ vim.api.nvim_set_keymap('n', '<leader>x', ':Files<CR>', { silent = true })
 vim.api.nvim_set_keymap('n', '<leader>b', ':Buffers<CR>', { silent = true })
 vim.api.nvim_set_keymap('n', '<leader>d', ':Windows<CR>', { silent = true })
 vim.api.nvim_set_keymap('n', '<leader>r', ':Rg<CR>', { silent = true })
+vim.api.nvim_set_keymap('n', '<leader>t', ':Tg<CR>', { silent = true })
 vim.api.nvim_set_keymap('n', '<leader>k', ':Ki<CR>', { silent = true })
 vim.api.nvim_set_keymap('n', '<leader>K', ':YO<CR>', { silent = true })
 

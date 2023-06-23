@@ -4,7 +4,6 @@ vnoremap <leader>g :<c-u>call <SID>GrepOperator(visualmode())<cr>
 
 function! s:GrepOperator(type)
     let saved_unnamed_register = @@
-
     if a:type ==# 'v'
         normal! `<v`>y
     elseif a:type ==# 'char'

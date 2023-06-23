@@ -1,5 +1,6 @@
 pkgs:
 with pkgs.vimPlugins; [
+
   ale
   coc-emmet
   coc-nvim
@@ -10,6 +11,7 @@ with pkgs.vimPlugins; [
   nvim-hs-vim
   tagbar
   ultisnips
+  unicode-vim
   vim-airline
   vim-airline-themes
   vim-colors-solarized
@@ -23,4 +25,5 @@ with pkgs.vimPlugins; [
   vim-startify
   vim-surround
   vimtex
+
 ]

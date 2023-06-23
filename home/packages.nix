@@ -1,5 +1,6 @@
 pkgs:
 with pkgs; [
+  ytfzf
   cabal2nix
   nix-du
   sqlitebrowser
