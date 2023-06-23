@@ -34,8 +34,9 @@
       enable = true;
       # https://community.intel.com/t5/Intel-NUCs/NUC10i5-headphones-jack-audio-not-working-with-Ubuntu-20-04/td-p/643946
       extraConfig = ''
-        set-card-profile alsa_card.pci-0000_00_1f.3
-              output:analog-stereo+input:analog-stereo'';
+        defaults.pcm.card 1
+        defaults.ctl.card 1
+      '';
     };
 
     services = {

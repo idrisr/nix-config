@@ -4,7 +4,8 @@
     users.users.hippoid = {
       isNormalUser = true;
       description = "hippoid";
-      extraGroups = [ "dialout" "docker" "networkmanager" "wheel" "lpadmin" ];
+      extraGroups =
+        [ "audio" "dialout" "docker" "networkmanager" "wheel" "lpadmin" ];
       shell = pkgs.zsh;
       openssh.authorizedKeys.keys =
         [ (builtins.readFile ./public-keys/id_rsa.pub) ];
