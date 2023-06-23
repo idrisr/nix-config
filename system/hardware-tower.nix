@@ -1,8 +1,11 @@
 { config, lib, pkgs, modulesPath, ... }:
 
 {
-  imports =
-    [ (modulesPath + "/installer/scan/not-detected.nix") ./adguard.nix ];
+  imports = [
+    (modulesPath + "/installer/scan/not-detected.nix")
+    ./adguard.nix
+    ./superdrive.nix
+  ];
 
   config = {
     boot = {
