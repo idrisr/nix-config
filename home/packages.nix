@@ -14,6 +14,9 @@ with pkgs; [
   timer
   freecad
 
+  mplayer
+  alsa-utils
+
   graphviz
   newcover
   tesseract5
