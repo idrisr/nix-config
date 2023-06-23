@@ -3,14 +3,18 @@ with pkgs; [
   ytfzf
   cabal2nix
   nix-du
+  nix-tree
+  nix-melt
+  nix-query-tree-viewer
+  nixfmt
+  nixos-generators
+  nixos-option
+
   sqlitebrowser
   timer
   freecad
 
-  nix-tree
-  nix-melt
   graphviz
-  nix-query-tree-viewer
   newcover
   tesseract5
   gitkraken
@@ -61,10 +65,7 @@ with pkgs; [
   mediainfo
   ncdu # better du
   neofetch
-  nerdfonts
-  nixfmt
-  nixos-generators
-  nixos-option
+  # nerdfonts
   nodejs
   nwipe
   parted
@@ -98,6 +99,8 @@ with pkgs; [
   yt-dlp
   zbar
   zip
+  nodePackages.bash-language-server
+  ansifilter
 
   brave
   desktop-file-utils

@@ -1,5 +1,36 @@
 {
   "languageserver": {
+    "bash": {
+      "command": "bash-language-server",
+      "args": [
+        "start"
+      ],
+      "filetypes": [
+        "sh"
+      ],
+      "ignoredRootPaths": []
+    },
+    "ccls": {
+      "command": "ccls",
+      "filetypes": [
+        "c",
+        "cpp",
+        "objc",
+        "objcpp"
+      ],
+      "rootPatterns": [
+        ".ccls",
+        "compile_commands.json",
+        ".vim/",
+        ".git/",
+        ".hg/"
+      ],
+      "initializationOptions": {
+        "cache": {
+          "directory": "/tmp/ccls"
+        }
+      }
+    },
     "haskell": {
       "command": "haskell-language-server-wrapper",
       "args": [
@@ -31,27 +62,6 @@
         }
       }
     },
-    "ccls": {
-      "command": "ccls",
-      "filetypes": [
-        "c",
-        "cpp",
-        "objc",
-        "objcpp"
-      ],
-      "rootPatterns": [
-        ".ccls",
-        "compile_commands.json",
-        ".vim/",
-        ".git/",
-        ".hg/"
-      ],
-      "initializationOptions": {
-        "cache": {
-          "directory": "/tmp/ccls"
-        }
-      }
-    },
     "lua": {
       "command": "lua-lsp",
       "filetypes": [
@@ -60,18 +70,6 @@
       "initializationOptions": {
         "cache": {
           "directory": "/tmp/lua"
-        }
-      }
-    },
-    "terraform": {
-      "command": "terraform-lsp",
-      "filetypes": [
-        "terraform",
-        "tf"
-      ],
-      "initializationOptions": {
-        "cache": {
-          "directory": "/tmp"
         }
       }
     },
@@ -90,6 +88,18 @@
       "filetypes": [
         "prolog"
       ]
+    },
+    "terraform": {
+      "command": "terraform-lsp",
+      "filetypes": [
+        "terraform",
+        "tf"
+      ],
+      "initializationOptions": {
+        "cache": {
+          "directory": "/tmp"
+        }
+      }
     },
     "vimls": {
       "command": "vim-language-server",
