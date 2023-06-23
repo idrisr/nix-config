@@ -79,7 +79,6 @@ with pkgs; [
   qrcp
   rename
   rlwrap
-  sg3_utils
   shellcheck
   shellharden
   (sqlite.override { interactive = true; })
