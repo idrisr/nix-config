@@ -49,7 +49,7 @@
 
         fft = nixpkgs.lib.nixosSystem {
           inherit system;
-          modules = [ ./system/hardware-tower.nix ] ++ common;
+          modules = [ ./system/hardware-fft.nix ] ++ common;
         };
 
         framework = nixpkgs.lib.nixosSystem {
