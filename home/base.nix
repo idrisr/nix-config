@@ -1,8 +1,5 @@
-{ config, lib, pkgs, ... }:
-
-{
+{ config, lib, pkgs, ... }: {
   imports = import ./imports.nix;
-
   options = {
     theme = {
       enable = lib.mkEnableOption "theme";
