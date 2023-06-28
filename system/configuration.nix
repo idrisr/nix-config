@@ -1,7 +1,13 @@
 { pkgs, lib, config, ... }:
 
 {
-  imports = [ ./users.nix ./xmonad.nix ./xfce.nix ./virtualization ];
+  imports = [
+    ./users.nix
+    ./xmonad.nix
+    ./xfce.nix
+
+    # ./virtualization
+  ];
 
   config = {
     nix = {
