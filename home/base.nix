@@ -28,15 +28,14 @@
       };
 
       overlays = let
-        h = x: ./overlays + "/${x}.nix";
-        xs = map h [
-          "awscost"
-          "dimensions"
-          "epubthumbnailer"
-          "roamamer"
-          "mdtopdf"
-          "newcover"
-          "transcribe"
+        xs = [
+          ./overlays/awscost.nix
+          ./overlays/dimensions.nix
+          ./overlays/epubthumbnailer.nix
+          ./overlays/roamamer.nix
+          ./overlays/mdtopdf.nix
+          ./overlays/newcover.nix
+          ./overlays/transcribe.nix
         ];
       in map import xs;
     };
