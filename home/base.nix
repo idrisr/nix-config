@@ -1,5 +1,7 @@
 { config, lib, pkgs, ... }: {
+
   imports = import ./imports.nix;
+
   options = {
     theme = {
       enable = lib.mkEnableOption "theme";
@@ -32,10 +34,11 @@
           ./overlays/awscost.nix
           ./overlays/dimensions.nix
           ./overlays/epubthumbnailer.nix
-          ./overlays/roamamer.nix
           ./overlays/mdtopdf.nix
           ./overlays/newcover.nix
+          ./overlays/roamamer.nix
           ./overlays/transcribe.nix
+          ./overlays/zettel-plugin.nix
         ];
       in map import xs;
     };

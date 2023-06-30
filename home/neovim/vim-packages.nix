@@ -7,6 +7,7 @@ with pkgs.vimPlugins; [
   emmet-vim
   fugitive
   fzf-vim
+  hoon-vim
   nerdcommenter
   nvim-hs-vim
   tagbar
@@ -25,5 +26,6 @@ with pkgs.vimPlugins; [
   vim-startify
   vim-surround
   vimtex
+  pkgs.zettel-plugin
 
 ]
