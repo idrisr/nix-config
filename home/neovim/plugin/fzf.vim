@@ -16,15 +16,7 @@ function! s:GrepOperator(type)
     let @@ = saved_unnamed_register
 endfunction
 
-command! -bang -nargs=* LL call
-    \ fzf#run({'source': 'rg --ignore-case --only-matching --no-line-number --no-filename "\[\[(.+)\]\]" '
-    \ . shellescape(expand('%:p'))
-    \ . '| tr -d "[]" | awk ' . "'" . '{print $0".md"}' . "'"
-    \, 'options': '--preview "bat {}"'
-    \, 'right':  '50%'
-    \, 'sink':  'e' })
-
-command! -bang -nargs=* NN call
+command! -bang -nargs=* ContentsOfLinks call
     \ fzf#vim#grep('rg --replace ' . "'$1' " . '--ignore-case --only-matching --no-filename "\[\[(.+?)\]\]" '
     \ . shellescape(expand('%:p'))
     \ . '| sort -ur'
@@ -35,18 +27,7 @@ command! -bang -nargs=* NN call
     \ fzf#vim#with_preview( {'options': '--exact'} ),
     \ <bang>0)
 
-command! -bang -nargs=* NX call
-    \ fzf#vim#grep('rg -r ' . "'$1' " . '--ignore-case --only-matching --no-filename "\[\[(.+?)\]\]" '
-    \ . shellescape(expand('%:p'))
-    \ . '| sort -ur'
-    \ . '| awk ' . "'" . '{print $0".md"}' . "'"
-    \ . '| tr "\n" "\0" '
-    \ . '| xargs -0 rg --ignore-case --column --line-number --no-heading ' . '^' . shellescape(<q-args>) . ' {}',
-    \ 1,
-    \ fzf#vim#with_preview( {'options': '--exact'} ),
-    \ <bang>0)
-
-command! -bang -nargs=* Ki call
+command! -bang -nargs=* LinksOut call
     \ fzf#vim#grep('rg -r ' . "'$1' " . '--ignore-case --only-matching --no-line-number --no-filename "\[\[(.+?)\]\]" '
     \ . shellescape(expand('%:p'))
     \ . '| sort -ur '
@@ -55,7 +36,7 @@ command! -bang -nargs=* Ki call
     \ fzf#vim#with_preview( {'options': '--tac --exact --delimiter : --with-nth 1'} ),
     \ <bang>0)
 
-command! -bang -nargs=* YO call
+command! -bang -nargs=* LinksIn call
     \ fzf#vim#grep("rg --ignore-case --column --line-number --no-heading --color=always '\\[\\["
     \ . expand('%:t:r')
     \ . "\\]\\]'",
