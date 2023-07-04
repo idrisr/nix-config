@@ -30,7 +30,22 @@
       common = [
         ./system/configuration.nix
         home-manager.nixosModules.home-manager
-        { config = { nixpkgs.overlays = [ knotools.overlays ]; }; }
+        {
+          config = {
+            nixpkgs.overlays = with knotools.overlays; [
+              awscost
+              booknote
+              dimensions
+              epubthumb
+              mdtopdf
+              newcover
+              pdftc
+              roamamer
+              seder
+              transcribe
+            ];
+          };
+        }
         {
           home-manager = {
             users.hippoid = import home/base.nix;

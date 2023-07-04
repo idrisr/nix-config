@@ -27,11 +27,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1688487030,
-        "narHash": "sha256-yN5tK5FRGwyugcASidCLYmvMfA5QMbeqESvt7ZN5gfI=",
+        "lastModified": 1688500842,
+        "narHash": "sha256-iJM8FTfh0Pyjm+TKWp5X6vEXXKlYSBwTmAZamKdVuDc=",
         "owner": "idrisr",
         "repo": "knotools",
-        "rev": "6f73eda80cfeffa34f02d761dd5e98670b08253c",
+        "rev": "294dd93e5e1cb283c33f6cf238030a2db525d743",
         "type": "github"
       },
       "original": {

@@ -1,5 +1,10 @@
 pkgs:
 with pkgs; [
+  lm_sensors
+  nix-output-monitor
+  mtr
+  ldns
+  exa
   ytfzf
   cabal2nix
   nix-du
@@ -18,19 +23,16 @@ with pkgs; [
   alsa-utils
 
   graphviz
-  newcover
   tesseract5
   gitkraken
   vscode-fhs
   jrnl
   bat
   qpdf
-  roamamer
   arandr
   aria
   asciidoc
   atool
-  awscost
   bcc
   bpftrace
   chatblade
@@ -40,7 +42,6 @@ with pkgs; [
   ddgr
   dfc # better df
   dig
-  dimensions
   discord
   djvu2pdf
   dmenu
@@ -48,7 +49,6 @@ with pkgs; [
   dzen2
   efibootmgr
   epr
-  epubthumb
   fd
   ffmpeg
   file
@@ -92,7 +92,6 @@ with pkgs; [
   texlive.combined.scheme-full
   tmux
   traceroute
-  transcribe
   trash-cli
   tree
   weechat
@@ -117,7 +116,7 @@ with pkgs; [
   keepassxc
   krop
   lmms
-  mdtopdf
+  # mdtopdf
   mpv
   nitrogen
   pinentry

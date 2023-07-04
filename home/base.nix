@@ -29,18 +29,7 @@
         in pkg: builtins.elem (f pkg) xs;
       };
 
-      overlays = let
-        xs = [
-          ./overlays/awscost.nix
-          ./overlays/dimensions.nix
-          ./overlays/epubthumbnailer.nix
-          ./overlays/mdtopdf.nix
-          ./overlays/newcover.nix
-          ./overlays/roamamer.nix
-          ./overlays/transcribe.nix
-          ./overlays/zettel-plugin.nix
-        ];
-      in map import xs;
+      overlays = let xs = [ ./overlays/zettel-plugin.nix ]; in map import xs;
     };
 
     home = {
