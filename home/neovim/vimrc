@@ -4,6 +4,8 @@ syntax on
 let maplocalleader=";"
 let mapleader=";"
 
+imap <F12> <Plug>fzfu#FzfUnicode
+
 " {{{ plugins
 
 " Search for selected text, forwards or backwards.
@@ -20,16 +22,6 @@ vnoremap <silent> # :<C-U>
 \gV:call setreg('"', old_reg, old_regtype)<CR>
 " }}}
 " {{{ functions
-
-function! ToggleVerbose()
-    if !&verbose
-        set verbosefile=~/.log/vim/verbose.log
-        set verbose=15
-    else
-        set verbose=0
-        set verbosefile=
-    endif
-endfunction
 
 func! VisualToNumbers()
     let l:i = 0
