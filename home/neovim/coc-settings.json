@@ -31,6 +31,22 @@
         }
       }
     },
+    "flow": {
+      "command": "flow",
+      "args": [
+        "lsp"
+      ],
+      "filetypes": [
+        "javascript",
+        "javascriptreact"
+      ],
+      "initializationOptions": {},
+      "requireRootPattern": 1,
+      "settings": {},
+      "rootPatterns": [
+        ".flowconfig"
+      ]
+    },
     "haskell": {
       "command": "haskell-language-server-wrapper",
       "args": [
@@ -61,6 +77,16 @@
           }
         }
       }
+    },
+    "hoon-language-server": {
+      "command": "hoon-language-server",
+      "args": [
+        "-p",
+        "8080"
+      ],
+      "filetypes": [
+        "hoon"
+      ]
     },
     "lua": {
       "command": "lua-lsp",
