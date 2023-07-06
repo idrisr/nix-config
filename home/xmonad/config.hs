@@ -59,6 +59,7 @@ import XMonad (
     xK_q,
     xK_space,
     xK_t,
+    xK_v,
     xK_z,
     xmonad,
     (-->),
@@ -163,6 +164,7 @@ myKeys conf@(XConfig{XMonad.modMask = modm}) =
         , ((modm .|. shiftMask, xK_h), spawn "haruna")
         , ((modm, xK_b), spawn "qutebrowser")
         , ((modm, xK_z), spawn "zathura")
+        , ((modm, xK_v), spawn "brave")
         , ((modm, xK_g), goToSelected def)
         , ((modm, xK_6), lowerVolume 4 >>= alert)
         , ((modm, xK_7), raiseVolume 4 >>= alert)

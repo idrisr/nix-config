@@ -1,6 +1,6 @@
 { config, ... }:
 let
-  browser = "org.qutebrowser.qutebrowser.desktop";
+  browser = "org.qutebrowser.desktop";
   spreadsheet = "libreoffice-calc.desktop";
   pdf = "org.pwmt.zathura.desktop";
 in {
