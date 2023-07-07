@@ -8,6 +8,16 @@
   ];
 
   config = {
+    services.hydra = {
+      enable = true;
+      hydraURL = "http://localhost:3000"; # externally visible URL
+      notificationSender = "hydra@localhost"; # e-mail of hydra service
+      # a standalone hydra will require you to unset the buildMachinesFiles list to avoid using a nonexistant /etc/nix/machines
+      buildMachinesFiles = [ ];
+      # you will probably also want, otherwise *everything* will be built from scratch
+      useSubstitutes = true;
+    };
+
     boot = {
       initrd.availableKernelModules =
         [ "nvme" "xhci_pci" "ahci" "usb_storage" "usbhid" ];
@@ -20,19 +30,19 @@
       kernelParams = [ "amd_iommu=on" ];
     };
 
-    fileSystems."/" = {
-      device = "/dev/disk/by-uuid/6f185d6f-29f9-42ec-8eff-84a2f1688cfe";
-      fsType = "ext4";
-    };
-
-    fileSystems."/boot/efi" = {
-      device = "/dev/disk/by-uuid/7CA7-49BD";
-      fsType = "vfat";
+    fileSystems = {
+      "/" = {
+        device = "/dev/disk/by-uuid/6f185d6f-29f9-42ec-8eff-84a2f1688cfe";
+        fsType = "ext4";
+      };
+      "/boot/efi" = {
+        device = "/dev/disk/by-uuid/7CA7-49BD";
+        fsType = "vfat";
+      };
     };
 
     sound = {
       enable = true;
-      # https://community.intel.com/t5/Intel-NUCs/NUC10i5-headphones-jack-audio-not-working-with-Ubuntu-20-04/td-p/643946
       extraConfig = ''
         defaults.pcm.card 1
         defaults.ctl.card 1

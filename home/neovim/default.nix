@@ -3,6 +3,7 @@ let
   vimBackground = "set background=${config.theme.color}";
   airlineBackground = "let g:airline_solarized_bg='${config.theme.color}'";
   cocSettings = builtins.readFile ./coc-settings.json;
+  # maybe use concatTextFile
 
   regFiles = pkgs: dir:
     let

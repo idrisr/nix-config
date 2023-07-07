@@ -71,6 +71,7 @@
         epubthumb
         mdtopdf
         newcover
+        pdftc
         roamamer
         seder
         transcribe

@@ -6,7 +6,6 @@ with pkgs; [
   ldns
   exa
   ytfzf
-  cabal2nix
   nix-du
   nix-tree
   nix-melt
