@@ -46,7 +46,8 @@
         ho = "https://hoogle.haskell.org/?hoogle={}";
         hm = "https://mipmip.github.io/home-manager-option-search/?query={}";
         mdn = "https://developer.mozilla.org/en-US/search?q={}";
-        nx = "https://search.nixos.org/packages?query={}&channel=unstable";
+        np = "https://search.nixos.org/packages?query={}&channel=unstable";
+        no = "https://search.nixos.org/options?query={}&channel=unstable";
         nixpkgs-issues =
           "https://github.com/NixOS/nixpkgs/issues?q=is%3Aopen+{}";
         nixpkgs-prs = "https://github.com/NixOS/nixpkgs/pulls?q=is%3Aopen+{}";
