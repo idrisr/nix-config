@@ -47,6 +47,22 @@
         ".flowconfig"
       ]
     },
+    "go": {
+      "command": "gopls",
+      "rootPatterns": [
+        "go.work",
+        "go.mod",
+        ".vim/",
+        ".git/",
+        ".hg/"
+      ],
+      "filetypes": [
+        "go"
+      ],
+      "initializationOptions": {
+        "usePlaceholders": true
+      }
+    },
     "haskell": {
       "command": "haskell-language-server-wrapper",
       "args": [
@@ -115,6 +131,21 @@
         "prolog"
       ]
     },
+    "pyright": {
+      "command": "pyright-langserver",
+      "filetypes": [
+        "python"
+      ],
+      "rootPatterns": [
+        "pyproject.toml",
+        "setup.cfg",
+        ".git"
+      ],
+      "initializationOptions": {},
+      "settings": {
+        "python.formatting.provider": "black"
+      }
+    },
     "terraform": {
       "command": "terraform-lsp",
       "filetypes": [
@@ -124,6 +155,42 @@
       "initializationOptions": {
         "cache": {
           "directory": "/tmp"
+        }
+      }
+    },
+    "latex": {
+      "command": "texlab",
+      "filetypes": [
+        "tex",
+        "bib",
+        "plaintex",
+        "context"
+      ]
+    },
+    "texlab": {
+      "command": "texlab",
+      "args": [
+        "--log-level",
+        "info"
+      ],
+      "filetypes": [
+        "tex"
+      ],
+      "rootPatterns": [
+        "latex.toml",
+        ".texlab.toml"
+      ],
+      "trace.server": "verbose",
+      "initializationOptions": {
+        "auxDirectory": "aux",
+        "build": {
+          "onSave": true
+        },
+        "chktex": {
+          "onOpenandSave": true
+        },
+        "latexindent": {
+          "modifyLineBreaks": true
         }
       }
     },

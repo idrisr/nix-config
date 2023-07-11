@@ -4,12 +4,15 @@ with pkgs.vimPlugins; [
   ale
   coc-emmet
   coc-nvim
+  coc-pyright
+  coc-texlab
   emmet-vim
   fugitive
   fzf-vim
   hoon-vim
   nerdcommenter
   nvim-hs-vim
+  pkgs.zettel-plugin
   tagbar
   ultisnips
   unicode-vim
@@ -25,7 +28,5 @@ with pkgs.vimPlugins; [
   vimspector
   vim-startify
   vim-surround
-  vimtex
-  pkgs.zettel-plugin
 
 ]

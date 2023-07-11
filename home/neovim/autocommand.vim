@@ -82,14 +82,6 @@ augroup terraform
     autocmd BufNewFile,BufRead *.tf setlocal filetype=tf
 augroup end
 
-augroup tex
-    autocmd!
-    autocmd filetype tex setlocal makeprg=lualatex\ -shell-escape\ %\ $*
-    autocmd filetype tex setlocal foldmethod=marker
-    autocmd FileType tex nnoremap <buffer> <leader>m :w<cr>:make<cr><cr>:copen<cr><c-w><c-w>
-    autocmd FileType tex nnoremap <buffer> <leader>p :LLPStartPreview<cr>
-augroup end
-
 augroup tmux
     autocmd!
     autocmd FileType tmux setlocal foldmethod=marker
