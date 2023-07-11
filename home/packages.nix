@@ -13,6 +13,7 @@ with pkgs; [
   nixfmt
   nixos-generators
   nixos-option
+  binutils
 
   sqlitebrowser
   timer

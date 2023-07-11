@@ -7,11 +7,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1688467264,
-        "narHash": "sha256-AUQP1WtmBb36bRc41p5ieTwq6Y8pgiKurbdrsPeP3fg=",
+        "lastModified": 1688892808,
+        "narHash": "sha256-AeWzyG37EqyHH2C1GmrV9y0ZQ4e7rAs9AUOnw8I4YUI=",
         "owner": "nix-community",
         "repo": "home-manager",
-        "rev": "b406b8d1bc90f6cd3e120d189b3e929f17ca4aea",
+        "rev": "b70db52ff06f30e3de7f21b6ea47e75baa0c46f6",
         "type": "github"
       },
       "original": {
@@ -27,11 +27,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1688500842,
-        "narHash": "sha256-iJM8FTfh0Pyjm+TKWp5X6vEXXKlYSBwTmAZamKdVuDc=",
+        "lastModified": 1688501397,
+        "narHash": "sha256-X2hol+8EjowYPVUUvWQmz9CTqpD23kRp7brVfjU4h5M=",
         "owner": "idrisr",
         "repo": "knotools",
-        "rev": "294dd93e5e1cb283c33f6cf238030a2db525d743",
+        "rev": "5f737c15183e8e7ea0f88db5a05b06cdb26d2351",
         "type": "github"
       },
       "original": {
@@ -63,11 +63,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1688349424,
-        "narHash": "sha256-/wRCJP2d9ZmfZKrREWthpDHIx/F02Z1J2bytbC+gUiU=",
+        "lastModified": 1688738567,
+        "narHash": "sha256-yax5BYOfpE0+95kyJmEcfKEdZBaFvCENDogBB4VQB3Q=",
         "owner": "nix-community",
         "repo": "nixos-generators",
-        "rev": "cf341a2c94338eed91c35df291931ea775b31e99",
+        "rev": "9191c85aab6b1a7ad395c13d340f2aa0e3ddf552",
         "type": "github"
       },
       "original": {
@@ -94,11 +94,11 @@
     },
     "nixpkgs": {
       "locked": {
-        "lastModified": 1688465017,
-        "narHash": "sha256-xzFcCnzPOgQaX7Acprfqo+tqHJ2UKWC38pXrcqvdXHU=",
+        "lastModified": 1688894907,
+        "narHash": "sha256-U7hEDDhzAhLp6T+DEUbfwAsL+BtqFFGn+S1pa/0XrZY=",
         "owner": "NixOS",
         "repo": "nixpkgs",
-        "rev": "0d5682acc109add20f70440269587a1b169cc2fe",
+        "rev": "4ddf98349c793377c76806ebfbdfb2b96dd4ef5d",
         "type": "github"
       },
       "original": {
@@ -112,7 +112,28 @@
         "knotools": "knotools",
         "nixos-generators": "nixos-generators",
         "nixos-hardware": "nixos-hardware",
-        "nixpkgs": "nixpkgs"
+        "nixpkgs": "nixpkgs",
+        "tasks": "tasks"
+      }
+    },
+    "tasks": {
+      "inputs": {
+        "nixpkgs": [
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1689033586,
+        "narHash": "sha256-to/Yp16Ip5tjUTcbVOWvVl/Xr1KYu9feyuFMsyBdo5M=",
+        "ref": "refs/heads/main",
+        "rev": "7883e449bb305e6c4d6db609ec4e056f1294ce68",
+        "revCount": 1,
+        "type": "git",
+        "url": "file:///home/hippoid/fun/mods"
+      },
+      "original": {
+        "type": "git",
+        "url": "file:///home/hippoid/fun/mods"
       }
     }
   },

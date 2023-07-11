@@ -21,10 +21,14 @@
       url = "github:idrisr/knotools";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    tasks = {
+      inputs.nixpkgs.follows = "nixpkgs";
+      url = "/home/hippoid/fun/mods";
+    };
   };
 
-  outputs =
-    { nixpkgs, nixos-hardware, home-manager, nixos-generators, knotools, ... }:
+  outputs = { nixpkgs, nixos-hardware, home-manager, nixos-generators, knotools
+    , tasks, ... }:
     let
       system = "x86_64-linux";
       common = [
@@ -43,6 +47,8 @@
               roamamer
               seder
               transcribe
+              (import ./home/xrandr/overlay.nix)
+              tasks.overlays.tasks
             ];
           };
         }
@@ -56,7 +62,7 @@
       pkgs = import nixpkgs { inherit system; };
 
     in {
-      packages.x86_64-linux = {
+      packages.${system} = {
         install = nixos-generators.nixosGenerate {
           inherit system;
           modules = [ ./system/hardware-framework.nix ] ++ common;
@@ -84,14 +90,14 @@
           ] ++ common;
         };
       };
-      devShells.x86_64-linux.default = with pkgs;
+      devShells.${system}.default = with pkgs;
         mkShell {
           buildInputs = [
-            # ghcid
-            # (ghc.withPackages (p: with p; [ xmonad xmonad-extras dbus ]))
-            # haskell-language-server
-            # luajitPackages.lua-lsp
-            # nodePackages.vim-language-server
+            ghcid
+            (ghc.withPackages (p: with p; [ xmonad xmonad-extras dbus ]))
+            haskell-language-server
+            luajitPackages.lua-lsp
+            nodePackages.vim-language-server
           ];
         };
     };

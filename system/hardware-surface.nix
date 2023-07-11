@@ -1,4 +1,4 @@
-{ config, pkgs, lib, modulesPath, ... }:
+{ config, pkgs, lib, ... }:
 
 {
   imports = [ ];
@@ -35,26 +35,35 @@
       firewall.allowedTCPPorts = [ 6969 ];
     };
 
-    fileSystems."/" = {
-      device = "/dev/disk/by-uuid/ffba5bd6-bff9-4af1-9f30-172a1fe2d303";
-      fsType = "ext4";
-    };
+    fileSystems = {
+      "/" = {
+        device = "/dev/disk/by-uuid/ffba5bd6-bff9-4af1-9f30-172a1fe2d303";
+        fsType = "ext4";
+      };
 
-    fileSystems."/boot/efi" = {
-      device = "/dev/disk/by-uuid/1AFB-3F6E";
-      fsType = "vfat";
+      "/boot/efi" = {
+        device = "/dev/disk/by-uuid/1AFB-3F6E";
+        fsType = "vfat";
+      };
     };
 
     sound.enable = true;
+
     hardware = {
       pulseaudio.enable = false;
       bluetooth.enable = true;
       cpu.intel.updateMicrocode =
         lib.mkDefault config.hardware.enableRedistributableFirmware;
-
     };
 
-    environment.systemPackages = with pkgs; [ libimobiledevice ifuse ];
+    environment = {
+      systemPackages = with pkgs; [
+        tasks
+        screen-config
+        libimobiledevice
+        ifuse
+      ];
+    };
 
     services = {
       usbmuxd = { enable = true; };
