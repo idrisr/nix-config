@@ -4,8 +4,6 @@ syntax on
 let maplocalleader=";"
 let mapleader=";"
 
-imap <F12> <Plug>fzfu#FzfUnicode
-
 " {{{ plugins
 
 " Search for selected text, forwards or backwards.

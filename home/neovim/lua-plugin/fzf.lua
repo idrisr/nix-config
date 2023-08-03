@@ -2,7 +2,7 @@
 
 -- Set the fzf.vim configuration options
 vim.g.fzf_layout = { window = { width = 0.95, height = 0.95 } }
-vim.g.fzf_preview_window = { 'right:70%', 'ctrl-/' }
+-- vim.g.fzf_preview_window = { 'top,70%', 'ctrl-/' }
 
 vim.api.nvim_set_keymap('n', '<leader>z', ':GFiles<CR>', { silent = true })
 vim.api.nvim_set_keymap('n', '<leader>x', ':Files<CR>', { silent = true })

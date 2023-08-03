@@ -16,15 +16,17 @@ function! Fzfu_Select()
     return lines
 endfunction
 
+nnoremap <leader>G :call Fzfu_Select()<cr>
+
 function! PInsert(lines)
     let unicode = matchstr(a:lines, 'U+\x\{4}')
-    execute "normal! i<c-v>" . unicode
+    let slicedString = strpart(unicode, 2)
+    call feedkeys("i\<C-V>u" . slicedString . "\<CR>", 'n')
 endfunction
 
-" nnoremap <leader> G :call TryUnicodeEntry()
-function! TryUnicodeEntry()
+function! TryUnicodeEntry(char)
     " let unicode = "U0AA4"
-    execute "normal! i<c-v>u0aa4"
+    call feedkeys("i\<C-V>u" . a:char . "\<CR>", 'n')
 endfunction
 
 command! Fg call Fzfu_FzfUnicodeName()

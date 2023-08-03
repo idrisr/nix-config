@@ -3,9 +3,11 @@ with pkgs.vimPlugins; [
 
   ale
   coc-emmet
+  coc-html
   coc-nvim
   coc-pyright
   coc-texlab
+  coc-tsserver
   emmet-vim
   fugitive
   fzf-vim

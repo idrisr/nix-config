@@ -8,6 +8,11 @@ augroup bash
     autocmd BufNewFile,BufRead *.sh setlocal makeprg=bash\ -f\ %\ $*
 augroup end
 
+augroup coctree
+    autocmd!
+    autocmd! Filetype coctree setlocal foldlevel=99
+augroup end
+
 augroup css
     autocmd!
     autocmd FileType css set omnifunc=csscomplete#CompleteCSS

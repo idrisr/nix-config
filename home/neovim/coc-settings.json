@@ -147,16 +147,16 @@
       }
     },
     "terraform": {
-      "command": "terraform-lsp",
+      "command": "terraform-ls",
+      "args": [
+        "serve"
+      ],
       "filetypes": [
         "terraform",
         "tf"
       ],
-      "initializationOptions": {
-        "cache": {
-          "directory": "/tmp"
-        }
-      }
+      "initializationOptions": {},
+      "settings": {}
     },
     "latex": {
       "command": "texlab",

@@ -27,8 +27,8 @@ let g:ale_fixers = {
 \   'json': ['jq'],
 \   'sh': ['shfmt'] + s:default,
 \   'sql': ['sqlformat'],
-\   'terraform': ['terraform'],
-\   'tf': ['terraform'],
+\   'terraform': ['terraform'] + s:default,
+\   'tf': ['terraform'] + s:default,
 \   'text': [],
 \   'yaml': ['yamlfix'],
 \}
