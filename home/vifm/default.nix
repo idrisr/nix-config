@@ -18,6 +18,6 @@ in {
       x1 = (map mkLink [ "scope" "cleaner" ]);
       x2 = [{ "vifm/vifmrc".text = y; }];
     in lib.mkMerge (x1 ++ x2);
-    home.packages = [ pkgs.vifm-full ];
+    home.packages = with pkgs; [ vifm-full libheif ];
   };
 }

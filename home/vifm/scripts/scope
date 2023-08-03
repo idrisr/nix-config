@@ -31,12 +31,18 @@ ifub() {
 # be regenerated once seen.
 
 file=$(file --dereference --brief --mime-type -- "$1")
+
+# use the hash of the file contents as its name
 CACHE="${XDG_CACHE_HOME:-$HOME/.cache}/vifm/thumb.$(stat --printf '%n\0%i\0%F\0%s\0%W\0%Y' -- "$(readlink -f "$1")" | sha256sum | cut -d' ' -f1)"
 case "${file}" in
     image/svg+xml)
 		[ ! -f "$CACHE" ] && inkscape "$1" --export-filename="$CACHE".png
 		image "$CACHE".png "$2" "$3" "$4" "$5" "$1"
 		;;
+	image/heic)
+		[ ! -f "$CACHE" ] && heif-convert "$1" "$CACHE".jpeg
+		image "$CACHE".jpeg "$2" "$3" "$4" "$5" "$1"
+        ;;
 	image/*) image "$PWD/$1" "$2" "$3" "$4" "$5" "$1" ;;
 	text/troff) man ./ "$1" | col -b ;;
 	text/* | */xml | application/json) bat --terminal-width "$(($4-2))" -f "$1" ;;
