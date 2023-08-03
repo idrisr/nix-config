@@ -3,6 +3,8 @@ import XMonad (
     ChangeLayout (NextLayout),
     Default (def),
     Dimension,
+    WindowSet,
+    Query,
     KeyMask,
     Layout,
     Mirror (Mirror),
