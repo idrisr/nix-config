@@ -92,6 +92,7 @@
           modules = [
             ./system/hardware-surface.nix
             ./system/printing.nix
+            ./system/borg.nix
             nixos-hardware.nixosModules.microsoft-surface-pro-intel
           ] ++ common;
         };

@@ -67,19 +67,6 @@
 
     services = {
       usbmuxd = { enable = true; };
-
-      tarsnap = {
-        enable = true;
-        keyfile = "/home/hippoid/dotfiles/tarsnap/keyfile";
-        archives = {
-          roam = {
-            directories = [ "/home/hippoid/roam-export" ];
-            period = "daily";
-            cachedir = "/home/hippoid/cache";
-          };
-        };
-      };
-
       printing.enable = true;
     };
 
