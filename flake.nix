@@ -21,14 +21,18 @@
       url = "github:idrisr/knotools";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    hoon-language-server = {
+      url = "github:idrisr/hoon-language-server";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
     tasks = {
       inputs.nixpkgs.follows = "nixpkgs";
       url = "/home/hippoid/fun/mods";
     };
   };
 
-  outputs = { nixpkgs, nixos-hardware, home-manager, nixos-generators, knotools
-    , tasks, ... }:
+  outputs = { self, nixpkgs, nixos-hardware, home-manager, nixos-generators
+    , knotools, tasks, hoon-language-server }:
     let
       system = "x86_64-linux";
       common = [
@@ -49,6 +53,7 @@
               transcribe
               (import ./home/xrandr/overlay.nix)
               tasks.overlays.tasks
+              hoon-language-server.overlays.hoon-language-server
             ];
           };
         }
@@ -86,6 +91,7 @@
           inherit system;
           modules = [
             ./system/hardware-surface.nix
+            ./system/printing.nix
             nixos-hardware.nixosModules.microsoft-surface-pro-intel
           ] ++ common;
         };

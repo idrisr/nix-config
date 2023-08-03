@@ -20,6 +20,26 @@
         "type": "github"
       }
     },
+    "hoon-language-server": {
+      "inputs": {
+        "nixpkgs": [
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1689794237,
+        "narHash": "sha256-e3UDlYO4qzurIrJaaOrxLf0ksc/YjuBthYXR2A2TY+U=",
+        "owner": "idrisr",
+        "repo": "hoon-language-server",
+        "rev": "4785962aba4ee26ff1f89bff9525816fbb6cac91",
+        "type": "github"
+      },
+      "original": {
+        "owner": "idrisr",
+        "repo": "hoon-language-server",
+        "type": "github"
+      }
+    },
     "knotools": {
       "inputs": {
         "nixpkgs": [
@@ -109,6 +129,7 @@
     "root": {
       "inputs": {
         "home-manager": "home-manager",
+        "hoon-language-server": "hoon-language-server",
         "knotools": "knotools",
         "nixos-generators": "nixos-generators",
         "nixos-hardware": "nixos-hardware",
@@ -123,11 +144,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1689033586,
-        "narHash": "sha256-to/Yp16Ip5tjUTcbVOWvVl/Xr1KYu9feyuFMsyBdo5M=",
+        "lastModified": 1690992049,
+        "narHash": "sha256-LQEctdzQm2UreMyzI5OBXANj9fZqkYwY0iIxTaRU2Vo=",
         "ref": "refs/heads/main",
-        "rev": "7883e449bb305e6c4d6db609ec4e056f1294ce68",
-        "revCount": 1,
+        "rev": "63651fe00b4dfd2f4566d7e114d36e73022c13ec",
+        "revCount": 20,
         "type": "git",
         "url": "file:///home/hippoid/fun/mods"
       },
