@@ -1,8 +1,10 @@
-{ pkgs, lib, ... }: {
+{ pkgs, lib, ... }:
+let adguardPort = 3000;
+in {
   config = {
     networking = {
       firewall = {
-        allowedTCPPorts = [ 3000 ];
+        allowedTCPPorts = [ adguardPort ];
         allowedUDPPorts = [ 53 ];
       };
     };
@@ -11,7 +13,7 @@
       adguardhome = {
         enable = true;
         openFirewall = true;
-        settings.bind_port = 3000;
+        settings.bind_port = adguardPort;
       };
     };
   };
