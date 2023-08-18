@@ -73,6 +73,7 @@
         newcover
         pdftc
         roamamer
+        hoon-language-server
         seder
         transcribe
 

@@ -22,13 +22,14 @@ if !has('win')
 endif
 
 set statusline="  Hint: %z%= %A %10u:%-7g %15s %20d  "
-mark h ~/
-mark x ~/dotfiles/nix
-mark v ~/videos
 mark b ~/books
-mark w ~/downloads
 mark c ~/documents
+mark h ~/
+mark p ~/documents/papers
 mark r ~/roam-export
+mark v ~/videos
+mark w ~/downloads
+mark x ~/dotfiles/nix
 
 fileviewer */ lsd --tree --depth 2 --almost-all --ignore-glob .git %c
 filextype *.pdf,*.epub zathura %c %i &, apvlv %c, xpdf %c

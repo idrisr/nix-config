@@ -144,11 +144,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1690992049,
-        "narHash": "sha256-LQEctdzQm2UreMyzI5OBXANj9fZqkYwY0iIxTaRU2Vo=",
+        "lastModified": 1692141405,
+        "narHash": "sha256-OMUDfwjR6tZ4c1J201+/jGBmVhgx8fLbeWCqpEaWdRw=",
         "ref": "refs/heads/main",
-        "rev": "63651fe00b4dfd2f4566d7e114d36e73022c13ec",
-        "revCount": 20,
+        "rev": "b7963aae92b4246591ecb7c35cda24a47cc2e885",
+        "revCount": 24,
         "type": "git",
         "url": "file:///home/hippoid/fun/mods"
       },
