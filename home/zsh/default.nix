@@ -10,7 +10,7 @@
         set -o posixcd
         set -o promptsubst
         set -o vi
-        bindkey -s '^l' 'dirs -v ^M'
+        bindkey -s '^l' 'lg ^M'
         bindkey -s '^a' 'tmux attach || tmux ^M'
         bindkey -s '^z' 'exec zsh ^M'
         bindkey -s '^p' 'tmuxp load ~/tmuxp/session.yaml ^M'

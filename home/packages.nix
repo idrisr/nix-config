@@ -1,5 +1,8 @@
 pkgs:
 with pkgs; [
+  system-config-printer
+
+  openscad
   lm_sensors
   nix-output-monitor
   mtr
@@ -14,6 +17,7 @@ with pkgs; [
   nixos-generators
   nixos-option
   binutils
+  ueberzug
 
   sqlitebrowser
   timer
@@ -68,7 +72,6 @@ with pkgs; [
   mediainfo
   ncdu # better du
   neofetch
-  # nerdfonts
   nodejs
   nwipe
   parted
@@ -83,7 +86,6 @@ with pkgs; [
   qrcp
   rename
   rlwrap
-  shellcheck
   shellharden
   (sqlite.override { interactive = true; })
   sysz
@@ -125,7 +127,6 @@ with pkgs; [
   sqliteman
   sxiv
   tabbed
-  ueberzug
   xclip
   xdotool
   xorg.xev

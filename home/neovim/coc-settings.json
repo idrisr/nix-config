@@ -94,16 +94,6 @@
         }
       }
     },
-    "hoon-language-server": {
-      "command": "hoon-language-server",
-      "args": [
-        "-p",
-        "8080"
-      ],
-      "filetypes": [
-        "hoon"
-      ]
-    },
     "lua": {
       "command": "lua-lsp",
       "filetypes": [
