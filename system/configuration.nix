@@ -73,10 +73,8 @@
         newcover
         pdftc
         roamamer
-        hoon-language-server
         seder
         transcribe
-
         vifm
         vim
         man-pages

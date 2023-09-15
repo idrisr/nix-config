@@ -148,15 +148,6 @@
       "initializationOptions": {},
       "settings": {}
     },
-    "latex": {
-      "command": "texlab",
-      "filetypes": [
-        "tex",
-        "bib",
-        "plaintex",
-        "context"
-      ]
-    },
     "texlab": {
       "command": "texlab",
       "args": [

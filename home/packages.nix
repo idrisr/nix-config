@@ -2,12 +2,12 @@ pkgs:
 with pkgs; [
   system-config-printer
 
+  okular
   openscad
   lm_sensors
   nix-output-monitor
   mtr
   ldns
-  exa
   ytfzf
   nix-du
   nix-tree
@@ -39,7 +39,6 @@ with pkgs; [
   atool
   bcc
   bpftrace
-  chatblade
   copyq
   cryptsetup
   dconf
@@ -91,7 +90,6 @@ with pkgs; [
   sysz
   tailscale
   tcpdump
-  texlive.combined.scheme-full
   tmux
   traceroute
   trash-cli
@@ -111,27 +109,25 @@ with pkgs; [
   electrum
   ffmpegthumbnailer
   fontpreview
+  fritzing
   gallery-dl
   gimp
   haruna
   inkscape
   keepassxc
   krop
+  libreoffice
   lmms
-  # mdtopdf
   mpv
   nitrogen
   pinentry
   qemu
   spectacle # screenshots
-  sqliteman
   sxiv
   tabbed
   xclip
   xdotool
   xorg.xev
   xorg.xwininfo
-  libreoffice
-  fritzing
 
 ]

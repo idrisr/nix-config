@@ -21,18 +21,15 @@
       url = "github:idrisr/knotools";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    hoon-language-server = {
-      url = "github:idrisr/hoon-language-server";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
     tasks = {
       inputs.nixpkgs.follows = "nixpkgs";
-      url = "/home/hippoid/fun/mods";
+      # url = "/home/hippoid/fun/mods";
+      url = "git+ssh://git@github.com/idrisr/mods.git";
     };
   };
 
   outputs = { self, nixpkgs, nixos-hardware, home-manager, nixos-generators
-    , knotools, tasks, hoon-language-server }:
+    , knotools, tasks }:
     let
       system = "x86_64-linux";
       common = [
@@ -53,7 +50,7 @@
               transcribe
               (import ./home/xrandr/overlay.nix)
               tasks.overlays.tasks
-              hoon-language-server.overlays.hoon-language-server
+              # hoon-language-server.overlays.hoon-language-server
             ];
           };
         }
