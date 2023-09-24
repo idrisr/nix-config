@@ -87,13 +87,6 @@
         PAGER = "";
         LC_ALL = "en_US.UTF-8";
         HYPHEN_INSENSITIVE = "true";
-        FZF_ALT_C_OPTS = "--preview 'tree -c {}| head -200'";
-        FZF_ALT_C_COMMAND = "fd --type d";
-        FZF_CTRL_T_COMMAND = "fd --type f";
-        FZF_CTRL_T_OPTS =
-          "--preview 'bat --style=numbers --color=always --line-range :500 {}'";
-        FZF_DEFAULT_OPTS = "--height 90 --border bottom";
-        FZF_COMPLETION_TRIGGER = "**";
       };
     };
     system.stateVersion = "22.05";
