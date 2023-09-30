@@ -1,7 +1,7 @@
 set nocompatible              " be improved, required
 syntax on
 
-let maplocalleader=";"
+let maplocalleader=","
 let mapleader=";"
 
 " {{{ plugins

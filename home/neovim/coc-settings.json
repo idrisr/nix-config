@@ -148,33 +148,6 @@
       "initializationOptions": {},
       "settings": {}
     },
-    "texlab": {
-      "command": "texlab",
-      "args": [
-        "--log-level",
-        "info"
-      ],
-      "filetypes": [
-        "tex"
-      ],
-      "rootPatterns": [
-        "latex.toml",
-        ".texlab.toml"
-      ],
-      "trace.server": "verbose",
-      "initializationOptions": {
-        "auxDirectory": "aux",
-        "build": {
-          "onSave": true
-        },
-        "chktex": {
-          "onOpenandSave": true
-        },
-        "latexindent": {
-          "modifyLineBreaks": true
-        }
-      }
-    },
     "vimls": {
       "command": "vim-language-server",
       "args": [

@@ -6,7 +6,7 @@ with pkgs.vimPlugins; [
   coc-html
   coc-nvim
   coc-pyright
-  coc-texlab
+  # coc-texlab
   coc-tsserver
   emmet-vim
   fugitive
@@ -30,5 +30,6 @@ with pkgs.vimPlugins; [
   vimspector
   vim-startify
   vim-surround
+  vimtex
 
 ]
