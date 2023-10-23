@@ -14,7 +14,7 @@
 
         font = {
           normal = { style = "Medium"; };
-          size = 12;
+          size = 9;
         };
 
         colors = import ./${config.theme.color}.nix;

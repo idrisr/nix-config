@@ -23,7 +23,6 @@
     };
     tasks = {
       inputs.nixpkgs.follows = "nixpkgs";
-      # url = "/home/hippoid/fun/mods";
       url = "git+ssh://git@github.com/idrisr/mods.git";
     };
   };
@@ -50,7 +49,6 @@
               transcribe
               (import ./home/xrandr/overlay.nix)
               tasks.overlays.tasks
-              # hoon-language-server.overlays.hoon-language-server
             ];
           };
         }

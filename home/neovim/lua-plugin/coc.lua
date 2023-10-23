@@ -28,6 +28,24 @@ keyset("n", "gy", "<Plug>(coc-type-definition)", {silent = true})
 keyset("n", "gi", "<Plug>(coc-implementation)", {silent = true})
 keyset("n", "gr", "<Plug>(coc-references)", {silent = true})
 
+vim.api.nvim_set_keymap('n', '<Leader>to', ':lua ToggleCocOutline()<CR>', { noremap = true, silent = true })
+
+vim.cmd[[command! CocOutlineHide call coc#rpc#notify('hideOutline', [])]]
+
+-- Toggle CocOutline display with <Leader>to
+vim.api.nvim_set_keymap('n', '<Leader>to', ':lua ToggleCocOutline()<CR>', { noremap = true, silent = true })
+
+-- Define ToggleCocOutline function to toggle CocOutline
+function ToggleCocOutline()
+    if vim.fn['exists']('b:coc_outline') and vim.b.coc_outline == 1 then
+        vim.cmd('CocOutlineHide')
+        vim.b.coc_outline = 0
+    else
+        vim.b.original_buffer = vim.fn.bufnr('%')
+        vim.cmd('CocOutline')
+        vim.b.coc_outline = 1
+    end
+end
 
 -- Use K to show documentation in preview window
 function _G.show_docs()

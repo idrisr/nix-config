@@ -53,6 +53,7 @@ function! s:ShowHelp(tag) abort
 endfunction
 command! -nargs=1 H call s:ShowHelp(<f-args>)
 
+let g:fzf_vim = {}
 
 command! -bang -nargs=* ContentsOfLinks call
     \ fzf#vim#grep('rg --replace ' . "'$1' " . '--ignore-case --only-matching --no-filename "\[\[(.+?)\]\]" '
@@ -85,7 +86,7 @@ command! -bang -nargs=* LinksIn call
 command! -bang -nargs=* Rg call
     \ fzf#vim#grep("rg --ignore-case --column --line-number --no-heading --color=always ".shellescape(<q-args>),
     \ 1,
-    \ fzf#vim#with_preview( {'options': '--delimiter : --nth 4..'} ),
+    \ fzf#vim#with_preview( {'options': '--exact --delimiter : --nth 4..'} ),
     \ <bang>0)
 
 command! -bang -nargs=* Tg call

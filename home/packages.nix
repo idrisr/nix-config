@@ -2,6 +2,8 @@ pkgs:
 with pkgs; [
   system-config-printer
 
+  tig
+  nvme-cli
   okular
   openscad
   lm_sensors
@@ -17,7 +19,7 @@ with pkgs; [
   nixos-generators
   nixos-option
   binutils
-  ueberzug
+  ueberzugpp
 
   sqlitebrowser
   timer

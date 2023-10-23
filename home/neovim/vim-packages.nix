@@ -16,6 +16,7 @@ with pkgs.vimPlugins; [
   nvim-hs-vim
   pkgs.zettel-plugin
   tagbar
+  targets-vim
   ultisnips
   unicode-vim
   vim-airline

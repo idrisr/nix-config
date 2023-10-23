@@ -21,7 +21,12 @@
         bindkey -M vicmd v edit-command-line
       '';
 
-      history.extended = true;
+      history = {
+        extended = true;
+        expireDuplicatesFirst = true;
+        size = 1000000;
+        save = 1000000;
+      };
 
       shellAliases = {
         cb = "chatblade";
@@ -50,6 +55,7 @@
 
       envExtra = ''
         export RIPGREP_CONFIG_PATH="${config.ripgreprc}"
+        export VIFM="/home/hippoid/.config/vifm";
       '';
     };
   };

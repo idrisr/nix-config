@@ -22,11 +22,14 @@ if !has('win')
 endif
 
 set statusline="  Hint: %z%= %A %10u:%-7g %15s %20d  "
+
 mark b ~/books
 mark c ~/documents
 mark h ~/
+mark m ~/fun/memorandum
 mark p ~/documents/papers
 mark r ~/roam-export
+mark s ~/screenshots
 mark v ~/videos
 mark w ~/downloads
 mark x ~/dotfiles/nix
