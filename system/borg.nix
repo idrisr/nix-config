@@ -3,7 +3,7 @@
     services.borgbackup.jobs = {
       borgbase = {
         paths = [ "/home/hippoid" ];
-        exclude = [ "/home/hippoid/.cache" ];
+        exclude = [ "/home/hippoid/.*" ];
         repo = "r467e01j@r467e01j.repo.borgbase.com:repo";
         encryption = {
           mode = "repokey-blake2";
@@ -12,7 +12,6 @@
         environment = { BORG_RSH = "ssh -i /root/borgbackup/ssh_key"; };
         compression = "auto,lzma";
         startAt = "daily";
-        # extraArgs = "--lock-wait 600";
       };
     };
   };
