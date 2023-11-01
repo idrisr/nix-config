@@ -1,6 +1,5 @@
 {
   description = "my machines' nixos configuration";
-
   inputs = {
     nixpkgs.url = "nixpkgs";
     nixos-hardware = {
@@ -13,10 +12,6 @@
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    nixos-generators = {
-      url = "github:nix-community/nixos-generators";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
     knotools = {
       url = "github:idrisr/knotools";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -27,8 +22,7 @@
     };
   };
 
-  outputs = { self, nixpkgs, nixos-hardware, home-manager, nixos-generators
-    , knotools, tasks }:
+  outputs = { self, nixpkgs, nixos-hardware, home-manager, knotools, tasks }:
     let
       system = "x86_64-linux";
       common = [
@@ -62,13 +56,6 @@
       pkgs = import nixpkgs { inherit system; };
 
     in {
-      packages.${system} = {
-        install = nixos-generators.nixosGenerate {
-          inherit system;
-          modules = [ ./system/hardware-framework.nix ] ++ common;
-          format = "install-iso";
-        };
-      };
       nixosConfigurations = {
         fft = nixpkgs.lib.nixosSystem {
           inherit system;

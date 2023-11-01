@@ -2,6 +2,7 @@ pkgs:
 with pkgs; [
   system-config-printer
 
+  nix-derivation
   tig
   nvme-cli
   okular
