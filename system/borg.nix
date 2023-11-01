@@ -21,7 +21,7 @@
           mode = "repokey-blake2";
           passCommand = "cat /root/borgbackup/passphrase";
         };
-        environment = { BORG_RSH = "ssh -i /root/borgbackup/ed25519"; };
+        environment = { BORG_RSH = "ssh -i /home/hippoid/.ssh/id_rsa"; };
         compression = "auto,lzma";
         startAt = "daily";
       };
