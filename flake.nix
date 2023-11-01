@@ -1,6 +1,5 @@
 {
   description = "my machines' nixos configuration";
-
   inputs = {
     nixpkgs.url = "nixpkgs";
     nixos-hardware = {
@@ -13,26 +12,17 @@
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    nixos-generators = {
-      url = "github:nix-community/nixos-generators";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
     knotools = {
       url = "github:idrisr/knotools";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    hoon-language-server = {
-      url = "github:idrisr/hoon-language-server";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
     tasks = {
       inputs.nixpkgs.follows = "nixpkgs";
-      url = "/home/hippoid/fun/mods";
+      url = "git+ssh://git@github.com/idrisr/mods.git";
     };
   };
 
-  outputs = { self, nixpkgs, nixos-hardware, home-manager, nixos-generators
-    , knotools, tasks, hoon-language-server }:
+  outputs = { self, nixpkgs, nixos-hardware, home-manager, knotools, tasks }:
     let
       system = "x86_64-linux";
       common = [
@@ -51,9 +41,7 @@
               roamamer
               seder
               transcribe
-              (import ./home/xrandr/overlay.nix)
               tasks.overlays.tasks
-              hoon-language-server.overlays.hoon-language-server
             ];
           };
         }
@@ -67,13 +55,6 @@
       pkgs = import nixpkgs { inherit system; };
 
     in {
-      packages.${system} = {
-        install = nixos-generators.nixosGenerate {
-          inherit system;
-          modules = [ ./system/hardware-framework.nix ] ++ common;
-          format = "install-iso";
-        };
-      };
       nixosConfigurations = {
         fft = nixpkgs.lib.nixosSystem {
           inherit system;

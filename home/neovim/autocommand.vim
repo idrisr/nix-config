@@ -76,6 +76,11 @@ augroup perl
     autocmd FileType perl vnoremap <buffer> <leader>m :w<cr>:make<cr><cr>:copen<cr><c-w><c-w>
 augroup end
 
+augroup prolog
+    autocmd!
+    autocmd BufNewFile,BufRead *.pl setlocal filetype=prolog
+augroup end
+
 augroup sed
     autocmd!
     autocmd BufNewFile,BufRead *.sed setlocal makeprg=sed\ -f\ %\ $*

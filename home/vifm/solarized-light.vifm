@@ -42,7 +42,6 @@ highlight StatusLine      cterm=none ctermfg=12       ctermbg=white
 highlight Border          cterm=none ctermfg=blue       ctermbg=white
 
 highlight Selected        cterm=reverse ctermfg=14    ctermbg=15
-highlight CurrLine        cterm=white ctermbg=green
 
 highlight WildMenu        cterm=underline,reverse ctermfg=11 ctermbg=white
 highlight CmdLine         cterm=none ctermfg=11 ctermbg=15

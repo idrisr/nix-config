@@ -8,7 +8,7 @@
       settings = {
         colors.webpage.preferred_color_scheme = config.theme.color;
         downloads.location.directory = "$HOME/downloads";
-        zoom.default = "200%";
+        zoom.default = "75%";
         statusbar.position = "top";
         fonts.default_size = "12pt";
 
@@ -18,10 +18,8 @@
         auto_save.session = true;
 
         content = {
-          javascript = {
-            can_access_clipboard = true;
-            enabled = true;
-          };
+          javascript = { enabled = true; };
+
           autoplay = false;
           canvas_reading = false;
           geolocation = false;
@@ -36,7 +34,9 @@
       };
 
       searchEngines = {
+        # DEFAULT = "https://kagi.com/search?q={}";
         DEFAULT = "https://duckduckgo.com/?q={}";
+        dd = "https://duckduckgo.com/?q={}";
         aa = "https://annas-archive.org/search?q={}";
         am = "https://www.amazon.com/s?k={}";
         amz = "https://www.amazon.com/s?k={}&i=stripbooks";

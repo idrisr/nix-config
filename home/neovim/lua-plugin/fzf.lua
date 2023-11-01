@@ -48,4 +48,11 @@ vim.g.fzf_action = {
   ['ctrl-b'] = ':bd',
 }
 
-vim.env.FZF_DEFAULT_OPTS = '--bind ctrl-a:select-all'
+commands = {'--bind ctrl-a:select-all';
+'--bind ctrl-u:page-up';
+'--bind ctrl-d:page-down';
+'--bind ctrl-alt-u:preview-page-up';
+'--bind ctrl-alt-d:preview-page-down';
+'--exact'}
+
+vim.env.FZF_DEFAULT_OPTS = table.concat(commands, " ")

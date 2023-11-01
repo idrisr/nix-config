@@ -19,7 +19,6 @@
       extraModulePackages = [ ];
       loader.systemd-boot.enable = true;
       loader.efi.canTouchEfiVariables = true;
-      loader.efi.efiSysMountPoint = "/boot/efi";
       kernelParams = [
         "intel_iommu=on"
         "i915.enable_rc6=1"
@@ -35,17 +34,18 @@
       firewall.allowedTCPPorts = [ 6969 ];
     };
 
-    fileSystems = {
-      "/" = {
-        device = "/dev/disk/by-uuid/ffba5bd6-bff9-4af1-9f30-172a1fe2d303";
-        fsType = "ext4";
-      };
-
-      "/boot/efi" = {
-        device = "/dev/disk/by-uuid/1AFB-3F6E";
-        fsType = "vfat";
-      };
+    fileSystems."/" = {
+      device = "/dev/disk/by-uuid/b5b5d2cd-824f-4004-ac7c-74457c4e8c38";
+      fsType = "ext4";
     };
+
+    fileSystems."/boot" = {
+      device = "/dev/disk/by-uuid/8E55-2EA9";
+      fsType = "vfat";
+    };
+
+    swapDevices =
+      [{ device = "/dev/disk/by-uuid/6555459a-5de8-459d-8f67-76630ff0c91c"; }];
 
     sound.enable = true;
 
@@ -69,9 +69,6 @@
       usbmuxd = { enable = true; };
       printing.enable = true;
     };
-
-    swapDevices =
-      [{ device = "/dev/disk/by-uuid/0622a2b4-f555-484f-bbcf-b2c026f111e1"; }];
 
     nixpkgs.hostPlatform = lib.mkDefault "x86_64-linux";
     powerManagement.enable = false;
