@@ -41,7 +41,6 @@
               roamamer
               seder
               transcribe
-              (import ./home/xrandr/overlay.nix)
               tasks.overlays.tasks
             ];
           };
