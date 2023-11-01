@@ -16,7 +16,7 @@
       fft = {
         paths = [ "/home/hippoid" ];
         exclude = [ "/home/hippoid/.*" ];
-        repo = "fft:my_borg_repo";
+        repo = "fft:/var/lib/borgbackup";
         encryption = {
           mode = "repokey-blake2";
           passCommand = "cat /root/borgbackup/passphrase";
