@@ -13,6 +13,18 @@
         compression = "auto,lzma";
         startAt = "daily";
       };
+      fft = {
+        paths = [ "/home/hippoid" ];
+        exclude = [ "/home/hippoid/.*" ];
+        repo = "fft:my_borg_repo";
+        encryption = {
+          mode = "repokey-blake2";
+          passCommand = "cat /root/borgbackup/passphrase";
+        };
+        environment = { BORG_RSH = "ssh -i /root/borgbackup/ed25519"; };
+        compression = "auto,lzma";
+        startAt = "daily";
+      };
     };
   };
 }
