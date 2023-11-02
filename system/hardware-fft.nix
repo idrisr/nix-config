@@ -40,7 +40,10 @@
     };
 
     services = {
-      openssh = { allowSFTP = true; };
+      openssh = {
+        allowSFTP = true;
+        settings.LogLevel = "DEBUG";
+      };
       pipewire = {
         enable = true;
         alsa.enable = true;
