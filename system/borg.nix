@@ -1,6 +1,7 @@
 { config, pkgs, ... }: {
   config = {
     services.borgbackup.jobs = {
+
       borgbase = {
         paths = [ "/home/hippoid" ];
         exclude = [ "/home/hippoid/.*" ];
@@ -13,18 +14,22 @@
         compression = "auto,lzma";
         startAt = "daily";
       };
+
       fft = {
         paths = [ "/home/hippoid" ];
         exclude = [ "/home/hippoid/.*" ];
-        repo = "fft:/var/lib/borgbackup";
+        repo = "fft:.";
         encryption = {
           mode = "repokey-blake2";
           passCommand = "cat /root/borgbackup/passphrase";
         };
-        environment = { BORG_RSH = "ssh -i /home/hippoid/.ssh/id_rsa"; };
+        environment = {
+          BORG_RSH = "ssh borg@fft -i /root/borgbackup/ed25519";
+        };
         compression = "auto,lzma";
         startAt = "daily";
       };
+
     };
   };
 }
