@@ -65,6 +65,10 @@
           inherit system;
           modules = [ ./system/hardware-framework.nix ] ++ common;
         };
+        air = nixpkgs.lib.nixosSystem {
+          inherit system;
+          modules = [ ./system/hardware-air.nix ] ++ common;
+        };
         red = nixpkgs.lib.nixosSystem {
           system = "i686-linux";
           modules = [ ./system/hardware-red.nix ] ++ common;
@@ -79,6 +83,7 @@
           ] ++ common;
         };
       };
+
       devShells.${system}.default = with pkgs;
         mkShell {
           buildInputs = [

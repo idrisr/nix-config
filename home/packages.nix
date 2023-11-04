@@ -1,8 +1,8 @@
 pkgs:
 with pkgs; [
   system-config-printer
-
-  nix-derivation
+  nixops_unstable
+  # nix-derivation
   tig
   nvme-cli
   okular
@@ -24,7 +24,7 @@ with pkgs; [
 
   sqlitebrowser
   timer
-  freecad
+  # freecad
 
   mplayer
   alsa-utils
