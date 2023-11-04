@@ -71,5 +71,6 @@
 
     nixpkgs.hostPlatform = lib.mkDefault "x86_64-linux";
     powerManagement.enable = false;
+    system.stateVersion = "22.05";
   };
 }

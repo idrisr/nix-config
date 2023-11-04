@@ -88,6 +88,5 @@
         HYPHEN_INSENSITIVE = "true";
       };
     };
-    system.stateVersion = "22.05";
   };
 }

@@ -22,4 +22,5 @@
   nixpkgs.hostPlatform = lib.mkDefault "i686-linux";
   hardware.cpu.intel.updateMicrocode =
     lib.mkDefault config.hardware.enableRedistributableFirmware;
+  system.stateVersion = "22.05";
 }

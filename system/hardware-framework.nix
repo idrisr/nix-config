@@ -41,4 +41,5 @@
     # high-resolution display
     hardware.video.hidpi.enable = lib.mkDefault true;
   };
+  system.stateVersion = "22.05";
 }
