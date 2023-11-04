@@ -58,8 +58,7 @@
 
     environment = {
       systemPackages = with pkgs; [
-        tasks
-        screen-config
+        # screen-config
         libimobiledevice
         ifuse
       ];

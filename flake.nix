@@ -16,13 +16,13 @@
       url = "github:idrisr/knotools";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    tasks = {
-      inputs.nixpkgs.follows = "nixpkgs";
-      url = "git+ssh://git@github.com/idrisr/mods.git";
-    };
+    # tasks = {
+    # inputs.nixpkgs.follows = "nixpkgs";
+    # url = "git+ssh://git@github.com/idrisr/mods.git";
+    # };
   };
 
-  outputs = { self, nixpkgs, nixos-hardware, home-manager, knotools, tasks }:
+  outputs = { self, nixpkgs, nixos-hardware, home-manager, knotools }:
     let
       system = "x86_64-linux";
       common = [
@@ -41,7 +41,6 @@
               roamamer
               seder
               transcribe
-              tasks.overlays.tasks
             ];
           };
         }

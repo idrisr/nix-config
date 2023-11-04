@@ -75,28 +75,7 @@
         "home-manager": "home-manager",
         "knotools": "knotools",
         "nixos-hardware": "nixos-hardware",
-        "nixpkgs": "nixpkgs",
-        "tasks": "tasks"
-      }
-    },
-    "tasks": {
-      "inputs": {
-        "nixpkgs": [
-          "nixpkgs"
-        ]
-      },
-      "locked": {
-        "lastModified": 1695047965,
-        "narHash": "sha256-I6FZuIMU9bANyvlDSg4jvFxAav+jlz6lTNZuhSFNB3M=",
-        "ref": "refs/heads/main",
-        "rev": "5bf2f7e79e41f694c891f06955ec6b056badc38d",
-        "revCount": 27,
-        "type": "git",
-        "url": "ssh://git@github.com/idrisr/mods.git"
-      },
-      "original": {
-        "type": "git",
-        "url": "ssh://git@github.com/idrisr/mods.git"
+        "nixpkgs": "nixpkgs"
       }
     }
   },
