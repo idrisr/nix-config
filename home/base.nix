@@ -24,6 +24,7 @@
             "gitkraken"
             "code"
             "vscode"
+            "broadcom-sta"
           ];
           f = pkgs.lib.getName;
         in pkg: builtins.elem (f pkg) xs;
