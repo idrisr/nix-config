@@ -53,13 +53,14 @@
     programs.zsh.enable = true;
     nixpkgs.config.allowUnfreePredicate = pkg:
       builtins.elem (pkgs.lib.getName pkg) [
+        "broadcom-sta"
         "tarsnap"
-        "transcribe"
         "tesseract5"
+        "transcribe"
         "vscode"
-        "vscode-with-extensions"
-        "vscode-extension-ms-vscode-remote-remote-ssh"
         "vscode-extension-ms-vscode-cpptools"
+        "vscode-extension-ms-vscode-remote-remote-ssh"
+        "vscode-with-extensions"
       ];
     environment = {
       sessionVariables.DEFAULT_BROWSER = "${pkgs.qutebrowser}/bin/qutebrowser";
