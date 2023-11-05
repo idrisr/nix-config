@@ -15,21 +15,33 @@
         startAt = "daily";
       };
 
-      fft = {
+      air = {
         paths = [ "/home/hippoid" ];
+        doInit = true;
+        repo = "borg@air:.";
         exclude = [ "/home/hippoid/.*" ];
-        repo = "fft:.";
         encryption = {
           mode = "repokey-blake2";
           passCommand = "cat /root/borgbackup/passphrase";
         };
-        environment = {
-          BORG_RSH = "ssh borg@fft -i /root/borgbackup/ed25519";
-        };
+        environment = { BORG_RSH = "ssh -i /root/borgbackup/ed25519 "; };
         compression = "auto,lzma";
         startAt = "daily";
       };
 
+      fft = {
+        paths = [ "/home/hippoid" ];
+        doInit = true;
+        repo = "borg@fft:.";
+        exclude = [ "/home/hippoid/.*" ];
+        encryption = {
+          mode = "repokey-blake2";
+          passCommand = "cat /root/borgbackup/passphrase";
+        };
+        environment = { BORG_RSH = "ssh -i /root/borgbackup/ed25519 "; };
+        compression = "auto,lzma";
+        startAt = "daily";
+      };
     };
   };
 }
