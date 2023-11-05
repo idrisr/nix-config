@@ -1,7 +1,8 @@
 { config, lib, pkgs, modulesPath, ... }:
 
 {
-  imports = [ (modulesPath + "/installer/scan/not-detected.nix") ];
+  imports =
+    [ (modulesPath + "/installer/scan/not-detected.nix") ./borgrepo.nix ];
 
   boot.initrd.availableKernelModules =
     [ "xhci_pci" "ahci" "usbhid" "usb_storage" "sd_mod" ];
@@ -27,11 +28,12 @@
   networking = {
     networkmanager.enable = true;
     hostName = "air";
-
     useDHCP = lib.mkDefault true;
   };
 
   nixpkgs.hostPlatform = lib.mkDefault "x86_64-linux";
+  nixpkgs.config.allowUnfreePredicate = p:
+    builtins.elem (pkgs.lib.getName p) [ "broadcom-sta" ];
   hardware.cpu.intel.updateMicrocode =
     lib.mkDefault config.hardware.enableRedistributableFirmware;
   system.stateVersion = "23.05";

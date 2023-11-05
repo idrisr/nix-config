@@ -5,6 +5,7 @@
     (modulesPath + "/installer/scan/not-detected.nix")
     ./adguard.nix
     ./superdrive.nix
+    ./borgrepo.nix
   ];
 
   config = {

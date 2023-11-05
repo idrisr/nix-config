@@ -57,8 +57,7 @@
       nixosConfigurations = {
         fft = nixpkgs.lib.nixosSystem {
           inherit system;
-          modules = [ ./system/hardware-fft.nix ./system/borgrepo.nix ]
-            ++ common;
+          modules = [ ./system/hardware-fft.nix ] ++ common;
         };
         framework = nixpkgs.lib.nixosSystem {
           inherit system;

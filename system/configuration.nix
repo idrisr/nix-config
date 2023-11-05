@@ -53,8 +53,6 @@
     programs.zsh.enable = true;
     nixpkgs.config.allowUnfreePredicate = pkg:
       builtins.elem (pkgs.lib.getName pkg) [
-        "broadcom-sta"
-        "tarsnap"
         "tesseract5"
         "transcribe"
         "vscode"
