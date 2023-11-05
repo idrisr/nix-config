@@ -1,45 +1,36 @@
-{ config, lib, pkgs, modulesPath, ... }: {
+{ config, lib, pkgs, modulesPath, ... }:
+
+{
   imports = [ (modulesPath + "/installer/scan/not-detected.nix") ];
-  options = { };
 
-  config = {
-    boot = {
-      initrd = {
-        availableKernelModules =
-          [ "xhci_pci" "thunderbolt" "nvme" "usb_storage" "sd_mod" ];
-        kernelModules = [ ];
-        luks.devices."luks-460133ac-96c0-464a-a541-68d77cb28d93".device =
-          "/dev/disk/by-uuid/460133ac-96c0-464a-a541-68d77cb28d93";
-      };
+  boot.initrd.availableKernelModules =
+    [ "xhci_pci" "thunderbolt" "nvme" "usb_storage" "sd_mod" ];
+  boot.initrd.kernelModules = [ ];
+  boot.kernelModules = [ "kvm-intel" ];
+  boot.extraModulePackages = [ ];
+  boot.loader.systemd-boot.enable = true;
+  boot.loader.efi.canTouchEfiVariables = true;
 
-      kernelModules = [ "kvm-intel" ];
-      extraModulePackages = [ ];
-    };
-
-    fileSystems."/" = {
-      device = "/dev/disk/by-uuid/8a8db973-3a22-4ace-ac07-b44f247b9c06";
-      fsType = "ext4";
-    };
-
-    fileSystems."/boot/efi" = {
-      device = "/dev/disk/by-uuid/BE4C-FC21";
-      fsType = "vfat";
-    };
-
-    swapDevices = [ ];
-
-    # Enables DHCP on each ethernet and wireless interface. In case of scripted networking
-    # (the default) this is the recommended approach. When using systemd-networkd it's
-    # still possible to use this option, but it's recommended to use it in conjunction
-    # with explicit per-interface declarations with `networking.interfaces.<interface>.useDHCP`.
-    networking.useDHCP = lib.mkDefault true;
-    # networking.interfaces.wlp170s0.useDHCP = lib.mkDefault true;
-
-    powerManagement.cpuFreqGovernor = lib.mkDefault "powersave";
-    hardware.cpu.intel.updateMicrocode =
-      lib.mkDefault config.hardware.enableRedistributableFirmware;
-    # high-resolution display
-    hardware.video.hidpi.enable = lib.mkDefault true;
+  fileSystems."/" = {
+    device = "/dev/disk/by-uuid/0d550858-53bc-4366-b7f0-02dc38568964";
+    fsType = "ext4";
   };
-  system.stateVersion = "22.05";
+
+  fileSystems."/boot" = {
+    device = "/dev/disk/by-uuid/8883-C013";
+    fsType = "vfat";
+  };
+
+  swapDevices =
+    [{ device = "/dev/disk/by-uuid/debb6cb7-89fc-47d3-b12e-649d2005861f"; }];
+
+  networking.useDHCP = lib.mkDefault true;
+  networking.hostName = "framework";
+  networking.networkmanager.enable = true;
+
+  system.stateVersion = "23.05"; # Did you read the comment? no.
+  nixpkgs.hostPlatform = lib.mkDefault "x86_64-linux";
+  powerManagement.cpuFreqGovernor = lib.mkDefault "powersave";
+  hardware.cpu.intel.updateMicrocode =
+    lib.mkDefault config.hardware.enableRedistributableFirmware;
 }

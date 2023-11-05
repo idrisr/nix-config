@@ -4,13 +4,21 @@
   imports =
     [ (modulesPath + "/installer/scan/not-detected.nix") ./borgrepo.nix ];
 
-  boot.initrd.availableKernelModules =
-    [ "xhci_pci" "ahci" "usbhid" "usb_storage" "sd_mod" ];
-  boot.initrd.kernelModules = [ ];
-  boot.kernelModules = [ "kvm-intel" "wl" ];
-  boot.extraModulePackages = [ config.boot.kernelPackages.broadcom_sta ];
-  boot.loader.systemd-boot.enable = true;
-  boot.loader.efi.canTouchEfiVariables = true;
+  boot = {
+    initrd = {
+      availableKernelModules =
+        [ "xhci_pci" "ahci" "usbhid" "usb_storage" "sd_mod" ];
+      kernelModules = [ ];
+    };
+    loader = {
+      systemd-boot.enable = true;
+      efi.canTouchEfiVariables = true;
+    };
+    kernelModules = [ "kvm-intel" "wl" ];
+    extraModulePackages = [ config.boot.kernelPackages.broadcom_sta ];
+  };
+
+  services.logind.lidSwitch = "ignore";
 
   fileSystems."/" = {
     device = "/dev/disk/by-uuid/e7d0549d-a683-42b7-ae71-86f4b1f50037";
@@ -31,9 +39,12 @@
     useDHCP = lib.mkDefault true;
   };
 
-  nixpkgs.hostPlatform = lib.mkDefault "x86_64-linux";
-  nixpkgs.config.allowUnfreePredicate = p:
-    builtins.elem (pkgs.lib.getName p) [ "broadcom-sta" ];
+  nixpkgs = {
+    hostPlatform = lib.mkDefault "x86_64-linux";
+    config.allowUnfreePredicate = p:
+      builtins.elem (pkgs.lib.getName p) [ "broadcom-sta" ];
+  };
+
   hardware.cpu.intel.updateMicrocode =
     lib.mkDefault config.hardware.enableRedistributableFirmware;
   system.stateVersion = "23.05";
