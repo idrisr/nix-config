@@ -1,13 +1,11 @@
 { config, pkgs, lib, ... }:
 
 {
-  imports = [ ];
+  imports = [ ./hoogle.nix ];
   options = { };
 
   config = {
-    # microsoft-surface.ipts.enable = true;
-    systemd.services.iptsd = lib.mkForce { };
-
+    microsoft-surface.ipts.enable = true;
     boot = {
       # https://rbf.dev/blog/2020/05/custom-nixos-build-for-raspberry-pis/
       binfmt.emulatedSystems = [ "aarch64-linux" ];

@@ -6,7 +6,7 @@
       type = "github";
       owner = "nixos";
       repo = "nixos-hardware";
-      rev = "3023004e9903bc2f726da7c4a6724cf55f45bfff";
+      # rev = "3023004e9903bc2f726da7c4a6724cf55f45bfff";
     };
     home-manager = {
       url = "github:nix-community/home-manager";
