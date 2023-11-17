@@ -3,9 +3,9 @@
   ./bat
   ./ctags
   ./direnv
+  ./emacs
   ./firefox
   ./fzf
-  ./emacs
   ./git
   ./github
   ./haruna
@@ -16,12 +16,14 @@
   ./newsboat
   ./pandoc
   ./picom
+  ./qt
   ./qutebrowser
   ./readline
   ./ripgrep
   ./rofi
-  ./syncthing
   ./starship
+  ./syncthing
+  ./theme.nix
   ./tmux
   ./vifm
   ./vscode

@@ -10,6 +10,9 @@
 
   config = {
     boot = {
+      # https://rbf.dev/blog/2020/05/custom-nixos-build-for-raspberry-pis/
+      binfmt.emulatedSystems = [ "aarch64-linux" ];
+
       initrd.availableKernelModules =
         [ "nvme" "xhci_pci" "ahci" "usb_storage" "usbhid" ];
       initrd.kernelModules = [ ];

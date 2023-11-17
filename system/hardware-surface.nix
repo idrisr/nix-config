@@ -1,14 +1,12 @@
 { config, pkgs, lib, ... }:
 
 {
-  imports = [ ./hoogle.nix ];
+  imports = [ ./hoogle.nix ./dns.nix ];
   options = { };
 
   config = {
     microsoft-surface.ipts.enable = true;
     boot = {
-      # https://rbf.dev/blog/2020/05/custom-nixos-build-for-raspberry-pis/
-      binfmt.emulatedSystems = [ "aarch64-linux" ];
 
       initrd.availableKernelModules =
         [ "xhci_pci" "thunderbolt" "nvme" "usb_storage" "usbhid" "sd_mod" ];
@@ -49,7 +47,7 @@
 
     hardware = {
       pulseaudio.enable = false;
-      bluetooth.enable = true;
+      bluetooth.enable = false;
       cpu.intel.updateMicrocode =
         lib.mkDefault config.hardware.enableRedistributableFirmware;
     };

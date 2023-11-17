@@ -1,5 +1,21 @@
 pkgs:
 with pkgs; [
+  gnuradio
+  awscost
+  booknote
+  dimensions
+  epubthumb
+  mdtopdf
+  newcover
+  pdftc
+  roamamer
+  seder
+  transcribe
+
+  nyxt
+  tlp
+  adobe-reader
+  sshfs
   system-config-printer
   nixops_unstable
   # nix-derivation
@@ -34,7 +50,6 @@ with pkgs; [
   gitkraken
   vscode-fhs
   jrnl
-  bat
   qpdf
   arandr
   aria

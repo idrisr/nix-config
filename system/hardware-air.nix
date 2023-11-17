@@ -1,8 +1,11 @@
 { config, lib, pkgs, modulesPath, ... }:
 
 {
-  imports =
-    [ (modulesPath + "/installer/scan/not-detected.nix") ./borgrepo.nix ];
+  imports = [
+    (modulesPath + "/installer/scan/not-detected.nix")
+    ./borgrepo.nix
+    ./adguard.nix
+  ];
 
   boot = {
     initrd = {

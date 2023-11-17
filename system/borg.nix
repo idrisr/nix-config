@@ -1,47 +1,26 @@
-{ config, pkgs, ... }: {
+{ config, pkgs, ... }:
+
+let
+  backup = key: repo: {
+    paths = [ "/home/hippoid" ];
+    exclude = [ "/home/hippoid/.*" ];
+    repo = "${repo}";
+    encryption = {
+      mode = "repokey-blake2";
+      passCommand = "cat /root/borgbackup/passphrase";
+    };
+    environment = { BORG_RSH = "ssh -i ${key}"; };
+    compression = "auto,lzma";
+    # startAt = "daily";
+    startAt = "09:00";
+  };
+in {
   config = {
     services.borgbackup.jobs = {
-
-      borgbase = {
-        paths = [ "/home/hippoid" ];
-        exclude = [ "/home/hippoid/.*" ];
-        repo = "r467e01j@r467e01j.repo.borgbase.com:repo";
-        encryption = {
-          mode = "repokey-blake2";
-          passCommand = "cat /root/borgbackup/passphrase";
-        };
-        environment = { BORG_RSH = "ssh -i /root/borgbackup/ssh_key"; };
-        compression = "auto,lzma";
-        startAt = "daily";
-      };
-
-      air = {
-        paths = [ "/home/hippoid" ];
-        doInit = true;
-        repo = "borg@air:.";
-        exclude = [ "/home/hippoid/.*" ];
-        encryption = {
-          mode = "repokey-blake2";
-          passCommand = "cat /root/borgbackup/passphrase";
-        };
-        environment = { BORG_RSH = "ssh -i /root/borgbackup/ed25519 "; };
-        compression = "auto,lzma";
-        startAt = "daily";
-      };
-
-      fft = {
-        paths = [ "/home/hippoid" ];
-        doInit = true;
-        repo = "borg@fft:.";
-        exclude = [ "/home/hippoid/.*" ];
-        encryption = {
-          mode = "repokey-blake2";
-          passCommand = "cat /root/borgbackup/passphrase";
-        };
-        environment = { BORG_RSH = "ssh -i /root/borgbackup/ed25519 "; };
-        compression = "auto,lzma";
-        startAt = "daily";
-      };
+      borgbase = backup "/root/borgbackup/ssh_key"
+        "r467e01j@r467e01j.repo.borgbase.com:repo";
+      air = backup "/root/borgbackup/ed25519" "borg@air:.";
+      fft = backup "/root/borgbackup/ed25519" "borg@fft:.";
     };
   };
 }

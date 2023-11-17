@@ -6,7 +6,6 @@
         dpi = 267;
         displayManager.defaultSession = "xfce+xmonad";
         exportConfiguration = true;
-        # displayManager.defaultSession = "xfce";
         desktopManager = {
           xterm.enable = false;
           xfce = {

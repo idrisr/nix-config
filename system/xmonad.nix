@@ -5,13 +5,13 @@
         windowManager.xmonad = {
           enable = true;
           enableContribAndExtras = true;
-          extraPackages = hp: [
-            hp.dbus
-            hp.monad-logger
-            hp.xmonad-contrib
-            hp.xmonad
-
-          ];
+          extraPackages = hp:
+            with hp; [
+              dbus
+              monad-logger
+              xmonad-contrib
+              xmonad
+            ];
         };
       };
     };

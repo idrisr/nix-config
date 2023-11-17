@@ -1,7 +1,7 @@
 {
   config = {
     programs.bat = {
-      enable = false;
+      enable = true;
       config = { theme = "ansi"; };
     };
   };
