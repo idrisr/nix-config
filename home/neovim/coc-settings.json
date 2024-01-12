@@ -47,6 +47,7 @@
         ".flowconfig"
       ]
     },
+
     "go": {
       "command": "gopls",
       "rootPatterns": [
@@ -104,6 +105,17 @@
           "directory": "/tmp/lua"
         }
       }
+    },
+    "nix": {
+      "command": "nil",
+      "filetypes": ["nix"],
+      "rootPatterns":  ["flake.nix"],
+      // Uncomment these to tweak settings.
+      // "settings": {
+      //   "nil": {
+      //     "formatting": { "command": ["nixpkgs-fmt"] }
+      //   }
+      // }
     },
     "prolog-lsp": {
       "command": "swipl",

@@ -29,7 +29,6 @@
       };
 
       shellAliases = {
-        cb = "chatblade";
         fd = "fd --type d";
         ff = "fd --type f";
         ga = "git add";

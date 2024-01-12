@@ -1,1 +1,1 @@
-{ config = { programs.firefox = { enable = false; }; }; }
+{ config = { programs.firefox = { enable = true; }; }; }

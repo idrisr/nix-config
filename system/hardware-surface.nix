@@ -1,7 +1,7 @@
 { config, pkgs, lib, ... }:
 
 {
-  imports = [ ./hoogle.nix ./dns.nix ];
+  imports = [ ./hoogle.nix ];
   options = { };
 
   config = {
@@ -46,7 +46,7 @@
     sound.enable = true;
 
     hardware = {
-      pulseaudio.enable = false;
+      pulseaudio.enable = true;
       bluetooth.enable = false;
       cpu.intel.updateMicrocode =
         lib.mkDefault config.hardware.enableRedistributableFirmware;
@@ -62,7 +62,7 @@
 
     services = {
       usbmuxd = { enable = true; };
-      printing.enable = true;
+      xserver.desktopManager.kodi.enable = true;
     };
 
     nixpkgs.hostPlatform = lib.mkDefault "x86_64-linux";

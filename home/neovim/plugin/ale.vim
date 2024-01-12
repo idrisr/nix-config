@@ -19,18 +19,19 @@ let g:ale_linters = {
 " use a map to add default?
 let s:default = ['trim_whitespace', 'remove_trailing_lines']
 let g:ale_fixers = {
-\   '*': s:default,
 \   'css': ['prettier'],
 \   'html': ['tidy'],
 \   'nix': ['nixfmt'] + s:default,
 \   'lua': ['stylua'] + s:default,
 \   'json': ['jq'],
+\   'pdf': [],
 \   'sh': ['shfmt'] + s:default,
 \   'sql': ['sqlformat'],
 \   'terraform': ['terraform'] + s:default,
 \   'tf': ['terraform'] + s:default,
 \   'text': [],
 \   'yaml': ['yamlfix'],
+\   '*': s:default,
 \}
 
 let g:ale_sql_sqlformat_options='--wrap_after 80 -k upper -r -s'

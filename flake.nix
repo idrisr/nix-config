@@ -23,12 +23,22 @@
     let
       system = flake-utils.lib.system.x86_64-linux;
       pkgs = import nixpkgs { inherit system; };
-      common = [
-        ./system/configuration.nix
+      base = ./system/base.nix;
+      homebase = [
         home-manager.nixosModules.home-manager
         {
           home-manager = {
-            users.hippoid = import home/base.nix knotools;
+            users.hippoid = import ./home/base.nix;
+            useUserPackages = true;
+          };
+        }
+      ];
+
+      homedesk = [
+        home-manager.nixosModules.home-manager
+        {
+          home-manager = {
+            users.hippoid = import ./home/desktop.nix knotools;
             useUserPackages = true;
           };
         }
@@ -37,24 +47,38 @@
     in {
       nixosConfigurations = {
         fft = nixpkgs.lib.nixosSystem {
-          modules = [ ./system/hardware-fft.nix ] ++ common;
+          modules = [
+            ./system/hardware-fft.nix
+            base
+            ./system/sdr.nix
+            ./system/avahi.nix
+          ] ++ homebase;
         };
         framework = nixpkgs.lib.nixosSystem {
-          modules = [ ./system/hardware-framework.nix ] ++ common;
+          modules = [ ./system/hardware-framework.nix base ];
         };
         air = nixpkgs.lib.nixosSystem {
-          modules = [ ./system/hardware-air.nix ] ++ common;
+          modules = [ ./system/hardware-air.nix base ] ++ homebase;
         };
         red = nixpkgs.lib.nixosSystem {
-          modules = [ ./system/hardware-red.nix ] ++ common;
+          modules = [
+            ./system/hardware-red.nix
+            base
+            ./system/printing.nix
+            ./system/printer-client.nix
+          ] ++ homebase;
         };
         surface = nixpkgs.lib.nixosSystem {
           modules = [
             ./system/hardware-surface.nix
-            ./system/printing.nix
+            # ./system/printing.nix
             ./system/borg.nix
+            ./system/desktop.nix
+            ./system/avahi.nix
+            ./system/reflex.nix
             nixos-hardware.nixosModules.microsoft-surface-pro-intel
-          ] ++ common;
+            base
+          ] ++ homebase ++ homedesk;
         };
       };
 
