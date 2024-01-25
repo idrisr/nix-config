@@ -1,4 +1,4 @@
-{ config, pkgs, lib, ... }: {
+{ pkgs, ... }: {
   config = {
     services = {
       ipp-usb.enable = true;
