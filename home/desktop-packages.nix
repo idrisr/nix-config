@@ -1,6 +1,7 @@
 pkgs:
 
 with pkgs; [
+  mathpix-snipping-tool
   nil
   xournalpp
   brave

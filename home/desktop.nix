@@ -47,7 +47,13 @@ in { config, lib, pkgs, ... }: {
     nixpkgs = {
       config = {
         allowUnfreePredicate = let
-          xs = [ "broadcom-sta" "discord" "gitkraken" "lastpass-cli" ];
+          xs = [
+            "broadcom-sta"
+            "discord"
+            "gitkraken"
+            "lastpass-cli"
+            "mathpix-snipping-tool-03.00.0072"
+          ];
           f = pkgs.lib.getName;
         in pkg: builtins.elem (f pkg) xs;
       };

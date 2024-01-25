@@ -7,7 +7,7 @@ with pkgs; [
   htop
   jq
   nodejs # for vim things
-  rename
+  pipe-rename
   sysz
   tig
   tmux
@@ -15,6 +15,7 @@ with pkgs; [
   tree
   trippy
   wavemon
+  pstree
   weechat
 
 ]
