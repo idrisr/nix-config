@@ -46,6 +46,8 @@ import XMonad (
     withFocused,
     xK_1, xK_6, xK_7, xK_9, xK_Return, xK_b, xK_c, xK_f, xK_g, xK_h, xK_j, xK_k,
     xK_l, xK_m, xK_n, xK_p, xK_q, xK_space, xK_t, xK_v, xK_z,
+    xK_w,
+    xK_e,
     xmonad,
     (-->),
     (.|.),
@@ -53,6 +55,7 @@ import XMonad (
     (|||),
  )
 
+import XMonad.Actions.CycleWS
 import XMonad.Actions.GridSelect
 import XMonad.Actions.Minimize
 import XMonad.Actions.NoBorders
@@ -182,6 +185,8 @@ myKeys conf@(XConfig{XMonad.modMask = modm}) =
           , ((modm .|. shiftMask, xK_m), withLastMinimized maximizeWindowAndFocus)
           , ((modm .|. shiftMask, xK_n), withFocused toggleBorder)
           , ((modm, xK_f), sendMessage $ Toggle FULL)
+          , ((modm, xK_w), nextScreen)
+          , ((modm, xK_e), prevScreen)
           ]
         ++ [ ((m .|. modm, k), windows $ f i)
            | (i, k) <- zip (XMonad.workspaces conf) [xK_1 .. xK_9]
