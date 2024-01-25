@@ -54,6 +54,7 @@
         nixpkgs-prs = "https://github.com/NixOS/nixpkgs/pulls?q=is%3Aopen+{}";
         npl =
           "https://encore.naperville-lib.org/iii/encore/search/C__S{}__Orightresult__U?lang=eng";
+        py = "https://docs.python.org/3/search.html?q={}";
         repology = "https://repology.org/projects/?search={}";
         yt = "https://www.youtube.com/results?search_query={}";
       };
