@@ -1,7 +1,7 @@
 { config, pkgs, lib, ... }:
 
 {
-  imports = [ ./hoogle.nix ];
+  imports = [ ];
   options = { };
 
   config = {

@@ -1,6 +1,5 @@
 let
   extraConfig = ''
-    set font 'monospace normal 14'
     set selection-clipboard clipboard
     set sandbox none
     set guioptions none

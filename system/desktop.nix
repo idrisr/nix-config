@@ -1,5 +1,4 @@
-{ pkgs, config, ... }: {
-
+{ pkgs, ... }: {
   config = {
     services = {
       xserver = {
@@ -25,7 +24,6 @@
         displayManager = { defaultSession = "xfce+xmonad"; };
         dpi = 267;
         enable = true;
-        layout = "us";
         upscaleDefaultCursor = true;
         libinput = {
           enable = true;
@@ -34,9 +32,10 @@
             naturalScrolling = true;
           };
         };
-        xkbOptions = "caps:escape";
+        xkb.options = "caps:escape";
+        xkb.layout = "us";
+        xkb.variant = "";
         exportConfiguration = true;
-        xkbVariant = "";
       };
     };
 

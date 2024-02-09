@@ -1,9 +1,14 @@
-{ config, pkgs, ... }:
-
 let
   backup = key: repo: {
     paths = [ "/home/hippoid" ];
-    exclude = [ "/home/hippoid/.*" ];
+    exclude = [
+      "/home/hippoid/.*"
+      "/home/hippoid/videos"
+      "*.img"
+      "*.iso"
+      "*.qcow2"
+      "*.qcow2c"
+    ];
     repo = "${repo}";
     encryption = {
       mode = "repokey-blake2";

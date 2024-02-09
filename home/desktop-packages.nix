@@ -1,6 +1,7 @@
 pkgs:
 
 with pkgs; [
+  unoconv
   mathpix-snipping-tool
   nil
   xournalpp
@@ -74,7 +75,6 @@ with pkgs; [
   nix-du
   nixfmt
   nix-melt
-  nixops_unstable
   nixos-generators
   nixos-option
   nix-output-monitor

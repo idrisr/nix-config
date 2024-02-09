@@ -2,6 +2,7 @@ pkgs:
 
 with pkgs; [
   dfc
+  lynis
   fd
   file
   htop

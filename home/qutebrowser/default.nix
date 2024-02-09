@@ -36,6 +36,7 @@
       searchEngines = {
         # DEFAULT = "https://kagi.com/search?q={}";
         DEFAULT = "https://duckduckgo.com/?q={}";
+        d3 = "https://duckduckgo.com/?q=site%3Ad3js.org+{}";
         dd = "https://duckduckgo.com/?q={}";
         aa = "https://annas-archive.org/search?q={}";
         am = "https://www.amazon.com/s?k={}";
