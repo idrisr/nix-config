@@ -3,9 +3,9 @@ import XMonad (
     ChangeLayout (NextLayout),
     Default (def),
     Dimension,
-    KeySym,
     Event,
     KeyMask,
+    KeySym,
     Layout,
     Mirror (Mirror),
     Query,
@@ -35,6 +35,8 @@ import XMonad (
     button1,
     composeAll,
     doIgnore,
+    float,
+    gets,
     kill,
     mod1Mask,
     resource,
@@ -43,11 +45,31 @@ import XMonad (
     shiftMask,
     spawn,
     windows,
+    windowset,
     withFocused,
-    xK_1, xK_6, xK_7, xK_9, xK_Return, xK_b, xK_c, xK_f, xK_g, xK_h, xK_j, xK_k,
-    xK_l, xK_m, xK_n, xK_p, xK_q, xK_space, xK_t, xK_v, xK_z,
-    xK_w,
+    xK_1,
+    xK_6,
+    xK_7,
+    xK_9,
+    xK_Return,
+    xK_b,
+    xK_c,
     xK_e,
+    xK_f,
+    xK_g,
+    xK_h,
+    xK_j,
+    xK_k,
+    xK_l,
+    xK_m,
+    xK_n,
+    xK_p,
+    xK_q,
+    xK_space,
+    xK_t,
+    xK_v,
+    xK_w,
+    xK_z,
     xmonad,
     (-->),
     (.|.),
@@ -159,43 +181,55 @@ mySpacing =
 --
 myKeys :: XConfig Layout -> M.Map (KeyMask, KeySym) (X ())
 myKeys conf@(XConfig{XMonad.modMask = modm}) =
-    M.fromList
-        $ [ ((modm .|. shiftMask, xK_Return), spawn $ XMonad.terminal conf)
-          , ((modm .|. shiftMask, xK_b), spawn "qutebrowser")
-          , ((modm .|.  shiftMask, xK_v), spawn "brave")
-          , ((modm, xK_g), goToSelected def)
-          , ((modm, xK_6), lowerVolume 4 >>= alert)
-          , ((modm, xK_7), raiseVolume 4 >>= alert)
-          , ((modm .|. shiftMask, xK_c), kill)
-          , ((modm, xK_space), sendMessage NextLayout)
-          , ((modm .|. shiftMask, xK_space), setLayout $ XMonad.layoutHook conf)
-          , ((modm, xK_p), spawn "rofi -show run")
-          , ((modm, xK_j), windows W.focusDown)
-          , ((modm, xK_k), windows W.focusUp)
-          , ((modm .|. shiftMask, xK_j), windows W.swapDown)
-          , ((modm .|. shiftMask, xK_k), windows W.swapUp)
-          , ((modm, xK_h), sendMessage Shrink)
-          , ((modm, xK_l), sendMessage Expand)
-          , ((modm .|. shiftMask, xK_t), sendMessage ToggleStruts)
-          , ((modm, xK_t), withFocused $ windows . W.sink)
-          , ((modm, xK_q), spawn "xmonad --recompile; xmonad --restart")
-          , ((modm .|. shiftMask, xK_n), withFocused toggleBorder)
-          , ((modm.|. shiftMask, xK_f), sendMessage $ Toggle FULL)
-          , ((modm, xK_w), nextScreen)
-          , ((modm, xK_e), prevScreen)
-          ]
-        ++ [ ((m .|. modm, k), windows $ f i)
-           | (i, k) <- zip (XMonad.workspaces conf) [xK_1 .. xK_9]
-           , (f, m) <- [(W.greedyView, 0), (W.shift, shiftMask)]
-           ]
+    M.fromList $
+        [ ((modm .|. shiftMask, xK_Return), spawn $ XMonad.terminal conf)
+        , ((modm .|. shiftMask, xK_b), spawn "qutebrowser")
+        , ((modm .|. shiftMask, xK_v), spawn "brave")
+        , ((modm .|. shiftMask, xK_e), spawn "emacs")
+        , ((modm, xK_g), goToSelected def)
+        , ((modm .|. shiftMask, xK_g), gridselectWorkspace def (\ws -> W.greedyView ws . W.shift ws))
+        , ((modm, xK_6), lowerVolume 4 >>= alert)
+        , ((modm, xK_7), raiseVolume 4 >>= alert)
+        , ((modm .|. shiftMask, xK_c), kill)
+        , ((modm, xK_space), sendMessage NextLayout)
+        , ((modm .|. shiftMask, xK_space), setLayout $ XMonad.layoutHook conf)
+        , ((modm, xK_p), spawn "rofi -show run")
+        , ((modm, xK_j), windows W.focusDown)
+        , ((modm, xK_k), windows W.focusUp)
+        , ((modm .|. shiftMask, xK_j), windows W.swapDown)
+        , ((modm .|. shiftMask, xK_k), windows W.swapUp)
+        , ((modm, xK_h), sendMessage Shrink)
+        , ((modm, xK_l), sendMessage Expand)
+        , ((modm .|. shiftMask, xK_t), sendMessage ToggleStruts)
+        , ((modm, xK_t), withFocused $ windows . W.sink)
+        , ((modm, xK_q), spawn "xmonad --recompile; xmonad --restart")
+        , ((modm .|. shiftMask, xK_n), withFocused toggleBorder)
+        , ((modm .|. shiftMask, xK_f), sendMessage $ Toggle FULL)
+        , ((modm, xK_w), nextScreen)
+        ,
+            ( (modm, xK_t)
+            , withFocused
+                ( \windowId -> do
+                    floats <- gets (W.floating . windowset)
+                    if windowId `M.member` floats
+                        then withFocused $ windows . W.sink
+                        else float windowId
+                )
+            )
+        , ((modm, xK_e), prevScreen)
+        ]
+            ++ [ ((m .|. modm, k), windows $ f i)
+               | (i, k) <- zip (XMonad.workspaces conf) [xK_1 .. xK_9]
+               , (f, m) <- [(W.greedyView, 0), (W.shift, shiftMask)]
+               ]
 
 myLayout =
-    avoidStruts
-        $ smartBorders
-        $ mySpacing
-        $ mkToggle (NOBORDERS ?? FULL ?? EOT)
-        $ tiled
-        ||| Mirror tiled
+    avoidStruts $
+        smartBorders $
+            mySpacing $
+                mkToggle (NOBORDERS ?? FULL ?? EOT) $
+                    tiled
+                        ||| Mirror tiled
   where
     tiled = Tall nmaster delta ratio
     nmaster = 1

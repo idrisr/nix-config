@@ -10,7 +10,6 @@
       "Xcursor.theme" = "Vanilla-DMZ-AA";
       "Xft.dpi" = 267;
       "Xcursor.size" = 120;
-
     };
 
     home.packages = with pkgs; [
@@ -26,7 +25,6 @@
 
     xsession = {
       enable = false;
-
       windowManager.xmonad = {
         enable = true;
         enableContribAndExtras = true;
