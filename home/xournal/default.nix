@@ -1,5 +1,5 @@
 self: super: {
-  xournalpp = super.stdenv.mkDerivation {
+  xournalpp-wrapped = super.stdenv.mkDerivation {
     name = "xournal";
     dontUnpack = true;
     nativeBuildInputs = [ super.makeWrapper super.texliveFull ];
@@ -9,5 +9,10 @@ self: super: {
       cp ${super.xournalpp}/bin/xournalpp $out/bin/
       wrapProgram $out/bin/xournalpp --prefix PATH : ${super.texliveFull}/bin/;
     '';
+  };
+
+  xournalpp = super.symlinkJoin {
+    name = "xournalpp-custom";
+    paths = [ self.xournalpp-wrapped super.xournalpp ];
   };
 }
