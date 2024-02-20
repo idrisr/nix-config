@@ -1,7 +1,12 @@
 pkgs:
-
 with pkgs; [
+  (callPackage ./reading/desktop-item.nix { })
+  books
+  # papers
+  rofi-power-menu
+
   unoconv
+  xfce.thunar
   mathpix-snipping-tool
   nil
   xournalpp
@@ -38,7 +43,6 @@ with pkgs; [
   ffmpegthumbnailer
   fontpreview
   foremost
-  fritzing
   gallery-dl
   gimp
   gitkraken
@@ -47,7 +51,6 @@ with pkgs; [
   gparted
   gqrx
   graphviz
-  haruna
   haskellPackages.hasktags
   inkscape
   inxi

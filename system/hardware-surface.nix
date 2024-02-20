@@ -1,13 +1,13 @@
 { config, pkgs, lib, ... }:
 
 {
-  imports = [ ];
+  imports = [ ./power ];
   options = { };
 
   config = {
     microsoft-surface.ipts.enable = true;
     boot = {
-
+      loader.grub.theme = pkgs.nixos-grub2-theme;
       initrd.availableKernelModules =
         [ "xhci_pci" "thunderbolt" "nvme" "usb_storage" "usbhid" "sd_mod" ];
       initrd.kernelModules = [ ];
@@ -58,15 +58,23 @@
         libimobiledevice
         ifuse
       ];
+      variables = {
+        QT_SCALE_FACTOR = "1";
+        GDK_SCALE = "1.0";
+      };
     };
 
     services = {
+      iptsd.config.Touch.DisableOnPalm = true;
       usbmuxd = { enable = true; };
-      xserver.desktopManager.kodi.enable = true;
+      emacs = {
+        install = true;
+        enable = true;
+      };
     };
 
     nixpkgs.hostPlatform = lib.mkDefault "x86_64-linux";
-    powerManagement.enable = false;
+    powerManagement.enable = true;
     system.stateVersion = "22.05";
   };
 }

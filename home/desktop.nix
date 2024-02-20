@@ -20,6 +20,7 @@ in { config, lib, pkgs, ... }: {
     ./emacs
     ./firefox
     ./github
+    ./gtk
     ./haruna
     ./haskeline
     ./lsd
@@ -76,7 +77,8 @@ in { config, lib, pkgs, ... }: {
           f = pkgs.lib.getName;
         in pkg: builtins.elem (f pkg) xs;
       };
-      overlays = ol ++ [ (import ./qrcp "6969") (import ./xournal) ];
+      overlays = ol
+        ++ [ (import ./qrcp "6969") (import ./xournal) (import ./reading) ];
     };
   };
 }
