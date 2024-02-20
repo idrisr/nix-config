@@ -1,4 +1,4 @@
-{ config, ... }: {
+{ config, pkgs, ... }: {
   config = {
     programs.alacritty = {
       enable = true;
@@ -10,6 +10,13 @@
             x = 5;
             y = 5;
           };
+        };
+        shell = {
+          program = "${pkgs.zsh}/bin/zsh";
+          args = [
+            "-c"
+            "${pkgs.tmuxp}/bin/tmuxp load /home/hippoid/tmuxp/session.yaml"
+          ];
         };
 
         font = {
