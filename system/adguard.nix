@@ -1,4 +1,3 @@
-{ pkgs, lib, ... }:
 let adguardPort = 3000;
 in {
   config = {
