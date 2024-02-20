@@ -1,29 +1,25 @@
 { pkgs, ... }: {
   config = {
+    programs.i3lock.enable = true;
     services = {
       xserver = {
-        windowManager.xmonad = {
-          enable = true;
-          enableContribAndExtras = true;
-          extraPackages = hp:
-            with hp; [
-              dbus
-              monad-logger
-              xmonad-contrib
-              xmonad
-            ];
-        };
-        desktopManager = {
-          xterm.enable = false;
-          xfce = {
+        enable = true;
+        windowManager = {
+          xmonad = {
             enable = true;
-            noDesktop = false;
-            enableXfwm = false;
+            enableContribAndExtras = true;
+            extraPackages = hp:
+              with hp; [
+                dbus
+                monad-logger
+                xmonad-contrib
+                xmonad
+              ];
+            config = ./config.hs;
           };
         };
-        displayManager = { defaultSession = "xfce+xmonad"; };
+        displayManager = { defaultSession = "none+xmonad"; };
         dpi = 267;
-        enable = true;
         upscaleDefaultCursor = true;
         libinput = {
           enable = true;
@@ -32,9 +28,11 @@
             naturalScrolling = true;
           };
         };
-        xkb.options = "caps:escape";
-        xkb.layout = "us";
-        xkb.variant = "";
+        xkb = {
+          options = "caps:escape";
+          layout = "us";
+          variant = "";
+        };
         exportConfiguration = true;
       };
     };
@@ -43,13 +41,8 @@
       builtins.elem (pkgs.lib.getName pkg) [ "tesseract5" "transcribe" ];
 
     environment = {
-      sessionVariables.DEFAULT_BROWSER = "${pkgs.qutebrowser}/bin/qutebrowser";
-      variables = {
-        # QT_AUTO_SCREEN_SET_FACTOR = "0";
-        # QT_SCALE_FACTOR = "2";
-        # QT_FONT_DPI = "96";
-        # GDK_SCALE = "2";
-        # GDK_DPI_SCALE = "0.5";
+      sessionVariables = {
+        DEFAULT_BROWSER = "${pkgs.qutebrowser}/bin/qutebrowser";
       };
     };
   };

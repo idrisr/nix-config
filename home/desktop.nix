@@ -28,11 +28,11 @@ in { config, lib, pkgs, ... }: {
     ./picom
     ./qt
     ./qutebrowser
+    ./polybar
     ./rofi
     ./syncthing
     ./vscode
     ./xdg
-    ./xmonad
     ./zathura
     ./zoxide
   ];
@@ -43,6 +43,25 @@ in { config, lib, pkgs, ... }: {
       homeDirectory = "/home/hippoid";
       stateVersion = "22.05";
       packages = import ./desktop-packages.nix pkgs;
+    };
+    xresources.properties = {
+      "Xft.autohint" = 0;
+      "Xft.hintstyle" = "hintfull";
+      "Xft.hinting" = 1;
+      "Xft.antialias" = 1;
+      "Xft.rgba" = "rgb";
+      "Xcursor.theme" = "Vanilla-DMZ-AA";
+      "Xft.dpi" = 267;
+      "Xcursor.size" = 120;
+    };
+    services = {
+      screen-locker = {
+        enable = true;
+        lockCmd =
+          "${pkgs.i3lock}/bin/i3lock --nofork --color=000000 --ignore-empty-password --show-failed-attempts";
+        inactiveInterval = 5;
+      };
+      poweralertd.enable = true;
     };
     nixpkgs = {
       config = {
@@ -57,8 +76,7 @@ in { config, lib, pkgs, ... }: {
           f = pkgs.lib.getName;
         in pkg: builtins.elem (f pkg) xs;
       };
-      overlays = ol;
+      overlays = ol ++ [ (import ./qrcp "6969") (import ./xournal) ];
     };
-
   };
 }

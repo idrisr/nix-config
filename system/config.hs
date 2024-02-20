@@ -1,80 +1,15 @@
 import XMonad (
-    Button,
-    ChangeLayout (NextLayout),
-    Default (def),
-    Dimension,
-    Event,
-    KeyMask,
-    KeySym,
-    Layout,
-    Mirror (Mirror),
-    Query,
-    Resize (Expand, Shrink),
-    Tall (Tall),
-    Window,
-    WindowSet,
-    X,
-    XConfig (
-        XConfig,
-        borderWidth,
-        clickJustFocuses,
-        focusFollowsMouse,
-        focusedBorderColor,
-        handleEventHook,
-        keys,
-        layoutHook,
-        logHook,
-        manageHook,
-        modMask,
-        mouseBindings,
-        normalBorderColor,
-        startupHook,
-        terminal,
-        workspaces
-    ),
-    button1,
-    composeAll,
-    doIgnore,
-    float,
-    gets,
-    kill,
-    mod1Mask,
-    resource,
-    sendMessage,
-    setLayout,
-    shiftMask,
-    spawn,
-    windows,
-    windowset,
-    withFocused,
-    xK_1,
-    xK_6,
-    xK_7,
-    xK_9,
-    xK_Return,
-    xK_b,
-    xK_c,
-    xK_e,
-    xK_f,
-    xK_g,
-    xK_h,
-    xK_j,
-    xK_k,
-    xK_l,
-    xK_m,
-    xK_n,
-    xK_p,
-    xK_q,
-    xK_space,
-    xK_t,
-    xK_v,
-    xK_w,
-    xK_z,
-    xmonad,
-    (-->),
-    (.|.),
-    (=?),
-    (|||),
+    Button, ChangeLayout (NextLayout), Default (def), Dimension, Event, KeyMask,
+    KeySym, Layout, Mirror (Mirror), Query, Resize (Expand, Shrink), Tall
+    (Tall), Window, WindowSet, X, XConfig ( XConfig, borderWidth,
+    clickJustFocuses, focusFollowsMouse, focusedBorderColor, handleEventHook,
+    keys, layoutHook, logHook, manageHook, modMask, mouseBindings,
+    normalBorderColor, startupHook, terminal, workspaces), button1, composeAll,
+    doIgnore, float, gets, kill, mod1Mask, resource, sendMessage, setLayout,
+    shiftMask, spawn, windows, windowset, withFocused, xK_1, xK_6, xK_7, xK_9,
+    xK_Return, xK_b, xK_c, xK_e, xK_r, xK_f, xK_g, xK_h, xK_j, xK_k, xK_l, xK_m, xK_n,
+    xK_o, xK_p, xK_q, xK_s, xK_space, xK_t, xK_v, xK_w, xK_z, xmonad, (-->),
+    (.|.), (=?), (|||),
  )
 
 import XMonad.Actions.CycleWS
@@ -82,6 +17,7 @@ import XMonad.Actions.GridSelect
 import XMonad.Actions.Minimize
 import XMonad.Actions.NoBorders
 import XMonad.Actions.Volume
+import XMonad.Actions.SpawnOn
 import XMonad.Hooks.ManageDocks
 import XMonad.Hooks.SetWMName
 import XMonad.Layout.Tabbed
@@ -141,10 +77,7 @@ myMouseBindings (XConfig{XMonad.modMask = modMask}) =
         [((modMask, button1), \_ -> return ())]
 
 myTerminal :: String
-myTerminal = "alacritty"
-
-myFocusFollowsMouse :: Bool
-myFocusFollowsMouse = False
+myTerminal = "alacritty --title sh"
 
 myClickJustFocuses :: Bool
 myClickJustFocuses = False
@@ -152,8 +85,8 @@ myClickJustFocuses = False
 myBorderWidth :: Dimension
 myBorderWidth = 8
 
-myWorkspaces :: [String]
-myWorkspaces = ["1", "2", "3", "4", "5"]
+myWorkspaces :: Int -> [String]
+myWorkspaces x = fmap show [1..x]
 
 myNormalBorderColor :: String
 myNormalBorderColor = "#000000"
@@ -164,8 +97,8 @@ myFocusedBorderColor = "#009B77"
 myModMask :: KeyMask
 myModMask = mod1Mask
 
-appLauncher :: String
-appLauncher = "rofi -modi drun,ssh,window -show drun -show-icons"
+-- appLauncher :: String
+-- appLauncher = "rofi -modi drun,ssh,window -show drun -show-icons"
 
 mySpacing :: l a -> XMonad.Layout.LayoutModifier.ModifiedLayout Spacing l a
 mySpacing =
@@ -186,14 +119,15 @@ myKeys conf@(XConfig{XMonad.modMask = modm}) =
         , ((modm .|. shiftMask, xK_b), spawn "qutebrowser")
         , ((modm .|. shiftMask, xK_v), spawn "brave")
         , ((modm .|. shiftMask, xK_e), spawn "emacs")
-        , ((modm, xK_g), goToSelected def)
-        , ((modm .|. shiftMask, xK_g), gridselectWorkspace def (\ws -> W.greedyView ws . W.shift ws))
+        , ((modm .|. shiftMask, xK_s), spawn "spectacle -r")
         , ((modm, xK_6), lowerVolume 4 >>= alert)
         , ((modm, xK_7), raiseVolume 4 >>= alert)
-        , ((modm .|. shiftMask, xK_c), kill)
+        , ((modm .|. shiftMask, xK_o), kill)
         , ((modm, xK_space), sendMessage NextLayout)
         , ((modm .|. shiftMask, xK_space), setLayout $ XMonad.layoutHook conf)
-        , ((modm, xK_p), spawn "rofi -show run")
+        , ((modm, xK_g), spawn "rofi -show window")
+        , ((modm, xK_p), spawn "rofi -show drun -show-icons")
+        , ((modm, xK_r), spawn "rofi -modi drun,window,emoji -show emoji")
         , ((modm, xK_j), windows W.focusDown)
         , ((modm, xK_k), windows W.focusUp)
         , ((modm .|. shiftMask, xK_j), windows W.swapDown)
@@ -236,44 +170,34 @@ myLayout =
     ratio = 1 / 2
     delta = 3 / 100
 
-myManageHook =
-    composeAll
-        [ resource =? "desktop_window" --> doIgnore
-        , resource =? "kdesktop" --> doIgnore
-        ]
-
--- myEventHook :: Event -> X All
-myEventHook = mempty
-
-myLogHook :: X ()
-myLogHook = mempty
-
 myStartupHook :: X ()
-myStartupHook = setWMName "LG3D"
+myStartupHook = do
+    -- setWMName "LG3D"
+    spawnOn "1" myTerminal
+    spawnOn "2" "qutebrowser"
+    spawnOn "3" "brave"
+    spawnOn "5" "xournalpp"
 
 defaults =
     def
-        { -- simple stuff
-          terminal = myTerminal
-        , focusFollowsMouse = myFocusFollowsMouse
+        { terminal = myTerminal
+        , focusFollowsMouse = True
         , clickJustFocuses = myClickJustFocuses
         , borderWidth = myBorderWidth
         , modMask = myModMask
-        , workspaces = myWorkspaces
+        , workspaces = myWorkspaces 5
         , normalBorderColor = myNormalBorderColor
         , focusedBorderColor = myFocusedBorderColor
-        , -- key bindings
-          keys = myKeys
+        , keys = myKeys
         , mouseBindings = myMouseBindings
-        , -- hooks, layouts
-          layoutHook = myLayout
-        , manageHook = myManageHook
-        , handleEventHook = myEventHook
-        , logHook = myLogHook
+        , layoutHook = myLayout
+        , manageHook = composeAll []
+        , handleEventHook = mempty
+        , logHook = return ()
         , startupHook = myStartupHook
         }
 
 main :: IO ()
 main = do
-    xmprov <- spawnPipe "polybar"
+    _ <- spawnPipe "polybar"
     xmonad $ (docks . ewmh) defaults
