@@ -1,4 +1,4 @@
-{ pkgs, config, ... }: {
+{ config, ... }: {
   config = {
     programs.zsh = {
       enable = true;
@@ -15,7 +15,10 @@
         bindkey -s '^z' 'exec zsh ^M'
         bindkey -s '^p' 'tmuxp load ~/tmuxp/session.yaml ^M'
         bindkey -s '^f' 'vifm ^M'
-        bindkey -s '^v' 'nvim ^M'
+        bindkey -r '^v'
+        bindkey -r '^V'
+        bindkey -r '^[v'
+        bindkey -r '^[V'
         autoload -U edit-command-line
         zle -N edit-command-line
         bindkey -M vicmd v edit-command-line
