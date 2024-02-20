@@ -3,7 +3,7 @@
     programs.emacs = {
       enable = true;
       extraConfig = builtins.readFile ./init.el;
-      extraPackages = e: with e; [ haskell-mode evil ];
+      extraPackages = e: with e; [ direnv evil haskell-mode racket-mode ];
     };
   };
 }

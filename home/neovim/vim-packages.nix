@@ -16,7 +16,7 @@ with pkgs.vimPlugins; [
   nerdtree
   nvim-hs-vim
   pkgs.zettel-plugin
-  tagbar
+  # tagbar
   targets-vim
   ultisnips
   unicode-vim
@@ -26,8 +26,8 @@ with pkgs.vimPlugins; [
   vim-css-color
   vim-easy-align
   vim-nix
+  lean-nvim
   vim-obsession
-  vim-racket
   vim-scriptease
   vimspector
   vim-startify

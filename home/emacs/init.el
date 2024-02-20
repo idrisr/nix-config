@@ -1,10 +1,3 @@
-(defun insert-hello-world ()
-  "Inserts 'Hello, World!' at the current cursor position."
-  (interactive)  ; Makes the function callable via M-x and key bindings
-  (insert "Hello, World!"))
-
-(global-set-key (kbd "C-c h") 'insert-hello-world)
-
 (defun open-link-in-new-window ()
   "Open the file link under the cursor in a new window, ensuring the filename ends with '.md'."
   (interactive)
@@ -28,3 +21,11 @@
 
 (require 'evil)
 (evil-mode 1)
+(direnv-mode)
+
+(global-set-key (kbd "C-c l") #'org-store-link)
+(global-set-key (kbd "C-c a") #'org-agena)
+(global-set-key (kbd "C-c c") #'org-capture)
+
+(setq-default tab-width 4)
+(setq-default indent-tabs-mode nil)
