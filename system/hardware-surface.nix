@@ -7,14 +7,23 @@
   config = {
     microsoft-surface.ipts.enable = true;
     boot = {
-      loader.grub.theme = pkgs.nixos-grub2-theme;
-      initrd.availableKernelModules =
-        [ "xhci_pci" "thunderbolt" "nvme" "usb_storage" "usbhid" "sd_mod" ];
-      initrd.kernelModules = [ ];
+      loader = {
+        grub = {
+          enable = true;
+          efiSupport = true;
+          theme = pkgs.sleek-grub-theme;
+          devices = [ "nodev" ];
+        };
+        systemd-boot.enable = false;
+        efi.canTouchEfiVariables = true;
+      };
+      initrd = {
+        availableKernelModules =
+          [ "xhci_pci" "thunderbolt" "nvme" "usb_storage" "usbhid" "sd_mod" ];
+        kernelModules = [ ];
+      };
       kernelModules = [ "nbd" "kvm-intel" ];
       extraModulePackages = [ ];
-      loader.systemd-boot.enable = true;
-      loader.efi.canTouchEfiVariables = true;
       kernelParams = [
         "intel_iommu=on"
         "i915.enable_rc6=1"

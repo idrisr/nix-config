@@ -1,6 +1,7 @@
 { pkgs, ... }: {
   config = {
     programs.i3lock.enable = true;
+
     services = {
       xserver = {
         enable = true;
@@ -18,7 +19,13 @@
             config = ./config.hs;
           };
         };
-        displayManager = { defaultSession = "none+xmonad"; };
+        displayManager = {
+          defaultSession = "none+xmonad";
+          sddm = {
+            enable = true;
+            theme = "chili";
+          };
+        };
         dpi = 267;
         upscaleDefaultCursor = true;
         libinput = {
@@ -44,6 +51,11 @@
       sessionVariables = {
         DEFAULT_BROWSER = "${pkgs.qutebrowser}/bin/qutebrowser";
       };
+      systemPackages = with pkgs; [
+        libsForQt5.qt5.qtquickcontrols2
+        libsForQt5.qt5.qtgraphicaleffects
+        sddm-chili-theme
+      ];
     };
   };
 }
