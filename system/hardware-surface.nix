@@ -11,8 +11,12 @@
         grub = {
           enable = true;
           efiSupport = true;
-          theme = pkgs.sleek-grub-theme;
           devices = [ "nodev" ];
+        };
+        grub2-theme = {
+          enable = true;
+          theme = "vimix";
+          screen = "4k";
         };
         systemd-boot.enable = false;
         efi.canTouchEfiVariables = true;
