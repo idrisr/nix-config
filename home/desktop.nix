@@ -51,16 +51,14 @@ in { config, lib, pkgs, ... }: {
       "Xft.hinting" = 1;
       "Xft.antialias" = 1;
       "Xft.rgba" = "rgb";
-      "Xcursor.theme" = "Vanilla-DMZ-AA";
       "Xft.dpi" = 267;
-      "Xcursor.size" = 120;
     };
     services = {
       screen-locker = {
         enable = true;
         lockCmd =
           "${pkgs.i3lock}/bin/i3lock --nofork --color=000000 --ignore-empty-password --show-failed-attempts";
-        inactiveInterval = 5;
+        inactiveInterval = 15;
       };
       poweralertd.enable = true;
     };

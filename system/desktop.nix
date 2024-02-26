@@ -27,7 +27,6 @@
           };
         };
         dpi = 267;
-        upscaleDefaultCursor = true;
         libinput = {
           enable = true;
           touchpad = {

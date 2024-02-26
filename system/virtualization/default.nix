@@ -1,21 +1,32 @@
-{ pkgs, lib, ... }: {
+{ pkgs, ... }: {
   config = {
     environment.systemPackages = with pkgs; [
+      gnome.adwaita-icon-theme
+      spice
+      spice-gtk
+      spice-protocol
+      virt-manager
       virt-viewer
-      libosinfo
-      virtmanager
+      win-spice
+      win-virtio
     ];
 
-    boot = { kernelModules = [ "nbd" ]; };
+    programs.dconf.enable = true;
 
-    virtualisation.libvirtd = {
-      enable = true;
-      qemu = {
-        ovmf.enable = true;
-        runAsRoot = false;
+    users.users.hippoid.extraGroups = [ "libvirtd" ];
+
+    # Manage the virtualisation services
+    virtualisation = {
+      libvirtd = {
+        enable = true;
+        qemu = {
+          swtpm.enable = true;
+          ovmf.enable = true;
+          ovmf.packages = [ pkgs.OVMFFull.fd ];
+        };
       };
-      onBoot = "ignore";
-      onShutdown = "shutdown";
+      spiceUSBRedirection.enable = true;
     };
+    services.spice-vdagentd.enable = true;
   };
 }

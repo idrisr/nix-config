@@ -1,4 +1,4 @@
-{ config, pkgs, ... }: {
+{ pkgs, ... }: {
   config = {
     qt = {
       enable = true;
@@ -7,14 +7,6 @@
         name = "adwaita-dark";
         package = pkgs.adwaita-qt;
       };
-    };
-
-    gtk = {
-      enable = true;
-      # cursorTheme = { };
-      # theme = { };
-      # iconTheme = {
-      # };
     };
   };
 }
