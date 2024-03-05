@@ -11,18 +11,23 @@
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
 
-  fileSystems."/" = {
-    device = "/dev/disk/by-uuid/0d550858-53bc-4366-b7f0-02dc38568964";
-    fsType = "ext4";
-  };
+  fileSystems."/" =
+    { device = "/dev/disk/by-uuid/a22fb986-c9cf-46da-b4c2-0edb623a85a1";
+      fsType = "ext4";
+    };
 
-  fileSystems."/boot" = {
-    device = "/dev/disk/by-uuid/8883-C013";
-    fsType = "vfat";
-  };
+  boot.initrd.luks.devices."luks-21f25e43-7bd2-4241-b902-4df8c47f80ab".device = "/dev/disk/by-uuid/21f25e43-7bd2-4241-b902-4df8c47f80ab";
+
+  boot.initrd.luks.devices."luks-66c43e64-9f03-4c84-bfa7-85a266c04a41".device = "/dev/disk/by-uuid/66c43e64-9f03-4c84-bfa7-85a266c04a41";
+
+  fileSystems."/boot" =
+    { device = "/dev/disk/by-uuid/DF69-F1D4";
+      fsType = "vfat";
+    };
 
   swapDevices =
-    [{ device = "/dev/disk/by-uuid/debb6cb7-89fc-47d3-b12e-649d2005861f"; }];
+    [ { device = "/dev/disk/by-uuid/056dde5e-4603-44c5-a47c-7a750f6cb2dd"; }
+    ];
 
   networking.useDHCP = lib.mkDefault true;
   networking.hostName = "framework";

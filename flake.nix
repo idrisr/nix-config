@@ -60,7 +60,12 @@
           ] ++ homebase;
         };
         framework = nixpkgs.lib.nixosSystem {
-          modules = [ ./system/hardware-framework.nix base ];
+          modules = [
+            ./system/hardware-framework.nix
+            ./system/desktop.nix
+            base
+            nixos-hardware.nixosModules.framework-11th-gen-intel
+          ] ++ homebase ++ homedesk;
         };
         air = nixpkgs.lib.nixosSystem {
           modules = [ ./system/hardware-air.nix base ] ++ homebase;
@@ -76,7 +81,6 @@
         surface = nixpkgs.lib.nixosSystem {
           modules = [
             ./system/hardware-surface.nix
-            # ./system/printing.nix
             ./system/borg.nix
             ./system/desktop.nix
             ./system/avahi.nix
