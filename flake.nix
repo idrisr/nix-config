@@ -2,6 +2,12 @@
   description = "my machines' nixos configuration";
   inputs = {
     nixpkgs.url = "nixpkgs";
+
+    disko = {
+      url = "github:nix-community/disko";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
     grub2-themes = {
       type = "github";
       owner = "vinceliuice";
@@ -24,7 +30,7 @@
   };
 
   outputs = { self, nixpkgs, nixos-hardware, home-manager, knotools, flake-utils
-    , grub2-themes }:
+    , grub2-themes, disko }:
     let
       system = flake-utils.lib.system.x86_64-linux;
       pkgs = import nixpkgs { inherit system; };
@@ -85,7 +91,9 @@
             ./system/desktop.nix
             ./system/avahi.nix
             ./system/reflex.nix
+            (import ./system/disko-surface.nix { device = "/dev/nvme0n1"; })
             grub2-themes.nixosModules.default
+            disko.nixosModules.default
             nixos-hardware.nixosModules.microsoft-surface-pro-intel
             base
           ] ++ homebase ++ homedesk;
