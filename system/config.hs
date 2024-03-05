@@ -176,7 +176,6 @@ myStartupHook = do
     spawnOn "1" myTerminal
     spawnOn "2" "qutebrowser"
     spawnOn "3" "brave"
-    spawnOn "5" "xournalpp"
 
 defaults =
     def
