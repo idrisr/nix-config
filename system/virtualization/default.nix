@@ -2,6 +2,8 @@
   config = {
     environment.systemPackages = with pkgs; [
       gnome.adwaita-icon-theme
+      libosinfo
+      libvirt-glib
       spice
       spice-gtk
       spice-protocol
@@ -12,7 +14,6 @@
     ];
 
     programs.dconf.enable = true;
-
     users.users.hippoid.extraGroups = [ "libvirtd" ];
 
     # Manage the virtualisation services
