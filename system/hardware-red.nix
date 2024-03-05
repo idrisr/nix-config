@@ -1,5 +1,4 @@
-{ config, lib, pkgs, modulesPath, ... }: {
-
+{ config, lib, modulesPath, ... }: {
   imports = [ (modulesPath + "/installer/scan/not-detected.nix") ];
   boot = {
     initrd = {
@@ -11,9 +10,11 @@
     kernelModules = [ "wl" ];
     extraModulePackages = [ config.boot.kernelPackages.broadcom_sta ];
 
-    loader.grub = {
-      enable = true;
-      device = "/dev/sda"; # or "nodev" for efi only
+    loader = {
+      grub = {
+        enable = true;
+        device = "/dev/sda"; # or "nodev" for efi only
+      };
     };
   };
 
@@ -31,11 +32,14 @@
     networkmanager.enable = true;
   };
 
-  nixpkgs.hostPlatform = lib.mkDefault "i686-linux";
+  nixpkgs = {
+    hostPlatform = lib.mkDefault "i686-linux";
+    config.allowUnfree = true;
+  };
+
   hardware.cpu.intel.updateMicrocode =
     lib.mkDefault config.hardware.enableRedistributableFirmware;
   system.stateVersion = "22.11"; # Did you read the comment? no.
-  nixpkgs.config.allowUnfree = true;
 
   services = { logind.lidSwitch = "ignore"; };
 }
