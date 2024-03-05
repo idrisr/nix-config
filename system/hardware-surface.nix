@@ -1,7 +1,7 @@
 { config, pkgs, lib, ... }:
 
 {
-  imports = [ ./power ];
+  imports = [ ./power ./virtualization ./cockpit ];
   options = { };
 
   config = {
