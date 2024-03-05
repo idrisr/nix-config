@@ -43,18 +43,18 @@
       firewall.allowedTCPPorts = [ 6969 ];
     };
 
-    fileSystems."/" = {
-      device = "/dev/disk/by-uuid/b5b5d2cd-824f-4004-ac7c-74457c4e8c38";
-      fsType = "ext4";
-    };
+    # fileSystems."/" = {
+    # device = "/dev/disk/by-uuid/b5b5d2cd-824f-4004-ac7c-74457c4e8c38";
+    # fsType = "ext4";
+    # };
 
-    fileSystems."/boot" = {
-      device = "/dev/disk/by-uuid/8E55-2EA9";
-      fsType = "vfat";
-    };
+    # fileSystems."/boot" = {
+    # device = "/dev/disk/by-uuid/8E55-2EA9";
+    # fsType = "vfat";
+    # };
 
-    swapDevices =
-      [{ device = "/dev/disk/by-uuid/6555459a-5de8-459d-8f67-76630ff0c91c"; }];
+    # swapDevices =
+    # [{ device = "/dev/disk/by-uuid/6555459a-5de8-459d-8f67-76630ff0c91c"; }];
 
     sound.enable = true;
 
