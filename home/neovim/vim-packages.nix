@@ -13,7 +13,6 @@ with pkgs.vimPlugins; [
   fzf-vim
   hoon-vim
   nerdcommenter
-  nerdtree
   nvim-hs-vim
   pkgs.zettel-plugin
   # tagbar

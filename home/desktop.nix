@@ -51,7 +51,7 @@ in { config, lib, pkgs, ... }: {
       "Xft.hinting" = 1;
       "Xft.antialias" = 1;
       "Xft.rgba" = "rgb";
-      "Xft.dpi" = 267;
+      "Xft.dpi" = 208;
     };
     services = {
       screen-locker = {
@@ -75,8 +75,12 @@ in { config, lib, pkgs, ... }: {
           f = pkgs.lib.getName;
         in pkg: builtins.elem (f pkg) xs;
       };
-      overlays = ol
-        ++ [ (import ./qrcp "6969") (import ./xournal) (import ./reading) ];
+      overlays = ol ++ [
+        # (import ./briss)
+        (import ./qrcp "6969")
+        (import ./xournal)
+        (import ./reading)
+      ];
     };
   };
 }

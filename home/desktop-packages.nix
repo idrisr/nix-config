@@ -1,10 +1,18 @@
 pkgs:
 with pkgs; [
   (callPackage ./reading/desktop-item.nix { })
+  deadbeef
+  baobab
+  calibre
+  sxiv
+  briss
+  vorta
+  libsForQt5.kdenlive
+  texliveFull
+  texstudio
   books
   # papers
   rofi-power-menu
-
   unoconv
   xfce.thunar
   mathpix-snipping-tool
@@ -57,7 +65,6 @@ with pkgs; [
   jq
   keepassxc
   killall
-  krop
   lastpass-cli
   ldns
   libinput
