@@ -4,6 +4,7 @@ let
     exclude = [
       "/home/hippoid/.*"
       "/home/hippoid/videos"
+      "/home/hippoid/music"
       "*.img"
       "*.iso"
       "*.qcow2"
@@ -29,3 +30,6 @@ in {
     };
   };
 }
+
+# ssh://r467e01j@r467e01j.repo.borgbase.com/./repo
+# ssh://borg@air/./.
