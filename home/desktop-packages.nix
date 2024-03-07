@@ -1,6 +1,7 @@
 pkgs:
 with pkgs; [
   (callPackage ./reading/desktop-item.nix { })
+  binwalk
   deadbeef
   baobab
   calibre

@@ -22,7 +22,7 @@
         displayManager = {
           defaultSession = "none+xmonad";
           sddm = {
-            enable = true;
+            enable = false;
             theme = "chili";
           };
         };

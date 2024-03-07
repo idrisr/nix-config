@@ -1,1 +1,1 @@
-{ config = { autorandr = { enable = true; }; }; }
+{ config = { services.autorandr = { enable = true; }; }; }
