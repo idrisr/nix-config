@@ -56,12 +56,12 @@
       nixosConfigurations = {
         fft = nixpkgs.lib.nixosSystem {
           modules = [
-            ./system/desktop.nix
+            # ./system/desktop.nix
             disko.nixosModules.default
             ./system/hardware-fft.nix
             base
             ./system/disko-fft.nix
-          ] ++ homebase ++ homedesk;
+          ]; # ++ homebase ++ homedesk;
         };
         framework = nixpkgs.lib.nixosSystem {
           modules = [

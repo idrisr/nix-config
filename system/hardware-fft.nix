@@ -4,8 +4,8 @@
   imports = [
     (modulesPath + "/installer/scan/not-detected.nix")
     ./adguard.nix
-    ./superdrive.nix
     ./borgrepo.nix
+    ./superdrive.nix
   ];
 
   config = {
@@ -13,20 +13,14 @@
       initrd = {
         availableKernelModules =
           [ "nvme" "xhci_pci" "ahci" "usb_storage" "usbhid" ];
-        kernelModules = [ "dm-snapshot" ];
       };
       kernelModules = [ "kvm-amd" ];
-      extraModulePackages = [ ];
       loader = {
         grub = {
           enable = true;
-          efiSupport = true;
           devices = [ "nodev" ];
         };
-        systemd-boot.enable = false;
-        efi = { canTouchEfiVariables = true; };
       };
-      kernelParams = [ "amd_iommu=on" ];
     };
 
     sound = {
