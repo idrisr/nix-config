@@ -134,6 +134,7 @@
           root = {
             content = {
               type = "filesystem";
+              size = "100%";
               format = "ext4";
               mountpoint = "/data";
               mountOptions = [ "defaults" ];
