@@ -23,8 +23,8 @@
                 type = "luks";
                 name = "crypted";
                 extraOpenArgs = [ ];
-                settings = {
                   passwordFile = "/tmp/secret.key";
+                settings = {
                   allowDiscards = true;
                 };
                 content = {
@@ -48,8 +48,8 @@
                 type = "luks";
                 name = "encr-hd1";
                 extraOpenArgs = [ ];
-                settings = {
                   passwordFile = "/tmp/secret.key";
+                settings = {
                   allowDiscards = true;
                 };
                 content = {
@@ -73,8 +73,8 @@
                 type = "luks";
                 name = "encr-hd2";
                 extraOpenArgs = [ ];
-                settings = {
                   passwordFile = "/tmp/secret.key";
+                settings = {
                   allowDiscards = true;
                 };
                 content = {
@@ -98,8 +98,8 @@
                 type = "luks";
                 name = "encr-hd3";
                 extraOpenArgs = [ ];
-                settings = {
                   passwordFile = "/tmp/secret.key";
+                settings = {
                   allowDiscards = true;
                 };
                 content = {
