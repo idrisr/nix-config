@@ -39,7 +39,7 @@
       };
       hd1 = {
         type = "disk";
-        device = "/dev/sda1";
+        device = "/dev/sda";
         content = {
           type = "gpt";
           partitions = {
@@ -47,7 +47,7 @@
               size = "100%";
               content = {
                 type = "luks";
-                name = "crypted";
+                name = "encr-hd1";
                 extraOpenArgs = [ ];
                 settings = {
                   keyFile = "/tmp/secret.key";
@@ -64,7 +64,7 @@
       };
       hd2 = {
         type = "disk";
-        device = "/dev/sda2";
+        device = "/dev/sdb";
         content = {
           type = "gpt";
           partitions = {
@@ -72,7 +72,7 @@
               size = "100%";
               content = {
                 type = "luks";
-                name = "crypted";
+                name = "encr-hd2";
                 extraOpenArgs = [ ];
                 settings = {
                   keyFile = "/tmp/secret.key";
@@ -89,7 +89,7 @@
       };
       hd3 = {
         type = "disk";
-        device = "/dev/sda3";
+        device = "/dev/sdc";
         content = {
           type = "gpt";
           partitions = {
@@ -97,7 +97,7 @@
               size = "100%";
               content = {
                 type = "luks";
-                name = "crypted";
+                name = "encr-hd3";
                 extraOpenArgs = [ ];
                 settings = {
                   keyFile = "/tmp/secret.key";
@@ -132,9 +132,9 @@
         type = "lvm_vg";
         lvs = {
           root = {
+            size = "10T";
             content = {
               type = "filesystem";
-              size = "100%";
               format = "ext4";
               mountpoint = "/data";
               mountOptions = [ "defaults" ];
