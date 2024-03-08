@@ -10,26 +10,17 @@
 
   config = {
     boot = {
-      initrd.availableKernelModules =
-        [ "nvme" "xhci_pci" "ahci" "usb_storage" "usbhid" ];
-      initrd.kernelModules = [ ];
+      initrd = {
+        availableKernelModules =
+          [ "nvme" "xhci_pci" "ahci" "usb_storage" "usbhid" ];
+        kernelModules = [ "dm-snapshot" ];
+      };
       kernelModules = [ "kvm-amd" ];
       extraModulePackages = [ ];
       loader.systemd-boot.enable = true;
       loader.efi.canTouchEfiVariables = true;
       loader.efi.efiSysMountPoint = "/boot/efi";
       kernelParams = [ "amd_iommu=on" ];
-    };
-
-    fileSystems = {
-      "/" = {
-        device = "/dev/disk/by-uuid/6f185d6f-29f9-42ec-8eff-84a2f1688cfe";
-        fsType = "ext4";
-      };
-      "/boot/efi" = {
-        device = "/dev/disk/by-uuid/7CA7-49BD";
-        fsType = "vfat";
-      };
     };
 
     sound = {
@@ -53,9 +44,6 @@
       };
     };
 
-    swapDevices =
-      [{ device = "/dev/disk/by-uuid/3194ead2-55c3-4f41-93b7-7d476a390d0a"; }];
-
     networking = {
       useDHCP = lib.mkDefault true;
       interfaces.enp5s0.useDHCP = lib.mkDefault true;
@@ -68,6 +56,6 @@
       cpu.amd.updateMicrocode =
         lib.mkDefault config.hardware.enableRedistributableFirmware;
     };
-    system.stateVersion = "22.05";
+    system.stateVersion = "22.11";
   };
 }
