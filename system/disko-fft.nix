@@ -24,7 +24,7 @@
                 name = "crypted";
                 extraOpenArgs = [ ];
                 settings = {
-                  keyFile = "/tmp/secret.key";
+                  passwordFile = "/tmp/secret.key";
                   allowDiscards = true;
                 };
                 content = {
@@ -49,7 +49,7 @@
                 name = "encr-hd1";
                 extraOpenArgs = [ ];
                 settings = {
-                  keyFile = "/tmp/secret.key";
+                  passwordFile = "/tmp/secret.key";
                   allowDiscards = true;
                 };
                 content = {
@@ -74,7 +74,7 @@
                 name = "encr-hd2";
                 extraOpenArgs = [ ];
                 settings = {
-                  keyFile = "/tmp/secret.key";
+                  passwordFile = "/tmp/secret.key";
                   allowDiscards = true;
                 };
                 content = {
@@ -99,7 +99,7 @@
                 name = "encr-hd3";
                 extraOpenArgs = [ ];
                 settings = {
-                  keyFile = "/tmp/secret.key";
+                  passwordFile = "/tmp/secret.key";
                   allowDiscards = true;
                 };
                 content = {
