@@ -1,5 +1,6 @@
 {
   description = "my machines' nixos configuration";
+
   inputs = {
     nixpkgs.url = "nixpkgs";
 
@@ -8,16 +9,12 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    grub2-themes = {
-      type = "github";
-      owner = "vinceliuice";
-      repo = "grub2-themes";
-    };
     nixos-hardware = {
       type = "github";
       owner = "nixos";
       repo = "nixos-hardware";
     };
+
     home-manager = {
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -30,7 +27,7 @@
   };
 
   outputs = { self, nixpkgs, nixos-hardware, home-manager, knotools, flake-utils
-    , grub2-themes, disko }:
+    , disko }:
     let
       system = flake-utils.lib.system.x86_64-linux;
       pkgs = import nixpkgs { inherit system; };
