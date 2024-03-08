@@ -24,10 +24,7 @@
           devices = [ "nodev" ];
         };
         systemd-boot.enable = false;
-        efi = {
-          canTouchEfiVariables = true;
-          efiSysMountPoint = "/boot/efi";
-        };
+        efi = { canTouchEfiVariables = true; };
       };
       kernelParams = [ "amd_iommu=on" ];
     };
@@ -65,6 +62,6 @@
       cpu.amd.updateMicrocode =
         lib.mkDefault config.hardware.enableRedistributableFirmware;
     };
-    system.stateVersion = "22.11";
+    system.stateVersion = "23.11";
   };
 }
