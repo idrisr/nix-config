@@ -51,7 +51,7 @@ in { config, lib, pkgs, ... }: {
       "Xft.hinting" = 1;
       "Xft.antialias" = 1;
       "Xft.rgba" = "rgb";
-      "Xft.dpi" = 208;
+      "Xft.dpi" = 267;
     };
     services = {
       screen-locker = {
