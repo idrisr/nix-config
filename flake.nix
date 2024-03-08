@@ -56,18 +56,19 @@
       nixosConfigurations = {
         fft = nixpkgs.lib.nixosSystem {
           modules = [
+            ./system/desktop.nix
+            disko.nixosModules.default
             ./system/hardware-fft.nix
             base
-            ./system/sdr.nix
-            ./system/avahi.nix
-          ] ++ homebase;
+            ./system/disko-fft.nix
+          ] ++ homebase ++ homedesk;
         };
         framework = nixpkgs.lib.nixosSystem {
           modules = [
             ./system/hardware-framework.nix
             ./system/desktop.nix
             base
-            nixos-hardware.nixosModules.framework-11th-gen-intel
+            # nixos-hardware.nixosModules.framework-11th-gen-intel
           ] ++ homebase ++ homedesk;
         };
         air = nixpkgs.lib.nixosSystem {
@@ -89,7 +90,6 @@
             ./system/avahi.nix
             ./system/reflex.nix
             (import ./system/disko-surface.nix { device = "/dev/nvme0n1"; })
-            grub2-themes.nixosModules.default
             disko.nixosModules.default
             nixos-hardware.nixosModules.microsoft-surface-pro-intel
             base

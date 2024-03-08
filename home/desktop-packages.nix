@@ -1,8 +1,10 @@
 pkgs:
 with pkgs; [
   (callPackage ./reading/desktop-item.nix { })
+  strawberry
+  disko
+  unetbootin
   binwalk
-  deadbeef
   baobab
   calibre
   sxiv
