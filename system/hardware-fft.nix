@@ -17,9 +17,18 @@
       };
       kernelModules = [ "kvm-amd" ];
       extraModulePackages = [ ];
-      loader.systemd-boot.enable = true;
-      loader.efi.canTouchEfiVariables = true;
-      loader.efi.efiSysMountPoint = "/boot/efi";
+      loader = {
+        grub = {
+          enable = true;
+          efiSupport = true;
+          devices = [ "nodev" ];
+        };
+        systemd-boot.enable = false;
+        efi = {
+          canTouchEfiVariables = true;
+          efiSysMountPoint = "/boot/efi";
+        };
+      };
       kernelParams = [ "amd_iommu=on" ];
     };
 

@@ -27,7 +27,6 @@
                   keyFile = "/tmp/secret.key";
                   allowDiscards = true;
                 };
-                additionalKeyFiles = [ ];
                 content = {
                   type = "lvm_pv";
                   vg = "pool";
