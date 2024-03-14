@@ -6,6 +6,7 @@
     ./adguard.nix
     ./borgrepo.nix
     ./superdrive.nix
+    ./jellyfin.nix
   ];
 
   config = {
@@ -28,10 +29,7 @@
     };
 
     services = {
-      openssh = {
-        allowSFTP = true;
-        settings.LogLevel = "DEBUG";
-      };
+      openssh = { allowSFTP = true; };
       pipewire = {
         enable = true;
         alsa.enable = true;
