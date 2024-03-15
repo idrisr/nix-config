@@ -4,7 +4,7 @@
   imports = [
     (modulesPath + "/installer/scan/not-detected.nix")
     ./adguard.nix
-    ./borgrepo.nix
+    ./borg/borgrepo.nix
     ./superdrive.nix
     ./jellyfin.nix
   ];

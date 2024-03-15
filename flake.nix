@@ -20,7 +20,7 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
     knotools = {
-      url = "github:idrisr/knotools";
+      url = "github:idrisr/knotools/6eebffaf8e43aea9e33c73e3bcb70815e3e783d8";
       inputs.nixpkgs.follows = "nixpkgs";
     };
     flake-utils.url = "github:numtide/flake-utils";
@@ -56,23 +56,25 @@
       nixosConfigurations = {
         fft = nixpkgs.lib.nixosSystem {
           modules = [
-            # ./system/desktop.nix
             disko.nixosModules.default
             ./system/hardware-fft.nix
             base
             ./system/disko-fft.nix
-          ]; # ++ homebase ++ homedesk;
+            ./system/cockpit
+          ] ++ homebase;
         };
         framework = nixpkgs.lib.nixosSystem {
           modules = [
             ./system/hardware-framework.nix
             ./system/desktop.nix
+            ./system/cockpit
             base
-            # nixos-hardware.nixosModules.framework-11th-gen-intel
+            nixos-hardware.nixosModules.framework-11th-gen-intel
           ] ++ homebase ++ homedesk;
         };
         air = nixpkgs.lib.nixosSystem {
-          modules = [ ./system/hardware-air.nix base ] ++ homebase;
+          modules = [ ./system/cockpit ./system/hardware-air.nix base ]
+            ++ homebase;
         };
         red = nixpkgs.lib.nixosSystem {
           modules = [
@@ -85,10 +87,9 @@
         surface = nixpkgs.lib.nixosSystem {
           modules = [
             ./system/hardware-surface.nix
-            ./system/borg.nix
+            ./system/borg/borg.nix
+            ./system/soulseek
             ./system/desktop.nix
-            ./system/avahi.nix
-            ./system/reflex.nix
             (import ./system/disko-surface.nix { device = "/dev/nvme0n1"; })
             disko.nixosModules.default
             nixos-hardware.nixosModules.microsoft-surface-pro-intel

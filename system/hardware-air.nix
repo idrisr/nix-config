@@ -3,7 +3,7 @@
 {
   imports = [
     (modulesPath + "/installer/scan/not-detected.nix")
-    ./borgrepo.nix
+    ./borg/borgrepo.nix
     ./adguard.nix
   ];
 
