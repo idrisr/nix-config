@@ -29,13 +29,12 @@ in {
 
       extraLuaConfig = concatFiles (regFiles pkgs ./lua-plugin);
 
-      extraConfig = with pkgs.lib.attrsets;
-        let
-          plugins = concatFiles (regFiles pkgs ./plugin);
-          files = concatFiles [ ./vimrc ./autocommand.vim ./functions.vim ];
-          last =
-            builtins.concatStringsSep "\n" [ airlineBackground vimBackground ];
-        in files + plugins + last;
+      extraConfig = let
+        plugins = concatFiles (regFiles pkgs ./plugin);
+        files = concatFiles [ ./vimrc ./autocommand.vim ./functions.vim ];
+        last =
+          builtins.concatStringsSep "\n" [ airlineBackground vimBackground ];
+      in files + plugins + last;
     };
   };
 }

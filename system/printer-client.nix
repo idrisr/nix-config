@@ -1,4 +1,4 @@
-{ config, pkgs, lib, ... }:
+{ pkgs, ... }:
 let printer_name = "Brother_HL-L2300D_series";
 in {
   config = {

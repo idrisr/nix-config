@@ -1,4 +1,4 @@
-{ config, lib, pkgs, ... }: {
+{ lib, ... }: {
   options = {
     theme = {
       enable = lib.mkEnableOption "theme";

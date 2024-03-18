@@ -4,6 +4,5 @@ in {
   config = {
     xdg.configFile."haruna/haruna.conf".text = harunaConf;
     home.packages = [ pkgs.haruna ];
-
   };
 }

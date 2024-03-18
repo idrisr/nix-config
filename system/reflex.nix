@@ -1,4 +1,4 @@
-{ config, pkgs, ... }: {
+{
   # https://github.com/reflex-frp/reflex-platform/blob/develop/notes/NixOS.md
   config = {
     nix = {

@@ -1,6 +1,5 @@
 pkgs:
 with pkgs.vimPlugins; [
-
   ale
   coc-emmet
   coc-html
