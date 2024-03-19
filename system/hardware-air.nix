@@ -23,19 +23,6 @@
 
   services.logind.lidSwitch = "ignore";
 
-  fileSystems."/" = {
-    device = "/dev/disk/by-uuid/e7d0549d-a683-42b7-ae71-86f4b1f50037";
-    fsType = "ext4";
-  };
-
-  fileSystems."/boot" = {
-    device = "/dev/disk/by-uuid/B3B0-2B43";
-    fsType = "vfat";
-  };
-
-  swapDevices =
-    [{ device = "/dev/disk/by-uuid/9e0d2205-844e-43d3-9c63-730138cc6db4"; }];
-
   networking = {
     networkmanager.enable = true;
     hostName = "air";
