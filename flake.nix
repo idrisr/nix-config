@@ -61,7 +61,8 @@
             base
             ./system/disko-fft.nix
             ./system/cockpit
-          ] ++ homebase;
+            ./system/desktop.nix
+          ] ++ homebase ++ homedesk;
         };
         framework = nixpkgs.lib.nixosSystem {
           modules = [
@@ -73,8 +74,13 @@
           ] ++ homebase ++ homedesk;
         };
         air = nixpkgs.lib.nixosSystem {
-          modules = [ ./system/cockpit ./system/hardware-air.nix base ]
-            ++ homebase;
+          modules = [
+            disko.nixosModules.default
+            (import ./system/disko-air.nix { device = "/dev/sda"; })
+            ./system/cockpit
+            ./system/hardware-air.nix
+            base
+          ] ++ homebase;
         };
         red = nixpkgs.lib.nixosSystem {
           modules = [
