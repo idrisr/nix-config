@@ -46,6 +46,7 @@
     programs = {
       zsh.enable = true;
       fuse.userAllowOther = true;
+      iotop.enable = true;
     };
 
     environment = {

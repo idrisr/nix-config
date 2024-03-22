@@ -1,11 +1,15 @@
 pkgs:
 with pkgs; [
   (callPackage ./reading/desktop-item.nix { })
+  makemkv
+  gnome.gnome-disk-utility
+  ventoy-full
+  textsnatcher
+
+  nicotine-plus
   strawberry
   disko
   unetbootin
-  binwalk
-  baobab
   calibre
   sxiv
   briss

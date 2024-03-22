@@ -64,16 +64,15 @@ in { config, lib, pkgs, ... }: {
     };
     nixpkgs = {
       config = {
-        allowUnfreePredicate = let
-          xs = [
+        allowUnfreePredicate = pkg:
+          builtins.elem (pkgs.lib.getName pkg) [
             "broadcom-sta"
             "discord"
             "gitkraken"
             "lastpass-cli"
             "mathpix-snipping-tool-03.00.0072"
+            "makemkv"
           ];
-          f = pkgs.lib.getName;
-        in pkg: builtins.elem (f pkg) xs;
       };
       overlays = ol ++ [
         # (import ./briss)

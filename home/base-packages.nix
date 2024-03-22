@@ -1,6 +1,7 @@
 pkgs:
 
 with pkgs; [
+  ntfs3g
   dfc
   lynis
   fd
@@ -18,5 +19,6 @@ with pkgs; [
   wavemon
   pstree
   weechat
+  ncdu
 
 ]
