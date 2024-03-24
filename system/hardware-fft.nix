@@ -4,6 +4,7 @@
   imports = [
     (modulesPath + "/installer/scan/not-detected.nix")
     ./adguard.nix
+    ./autorandr
     ./borg/borgrepo.nix
     ./superdrive.nix
     ./jellyfin.nix
@@ -29,7 +30,10 @@
     };
 
     services = {
-      openssh = { allowSFTP = true; };
+      openssh = {
+        settings.X11Forwarding = true;
+        allowSFTP = true;
+      };
       pipewire = {
         enable = true;
         alsa.enable = true;

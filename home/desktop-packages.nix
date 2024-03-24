@@ -5,6 +5,7 @@ with pkgs; [
   gnome.gnome-disk-utility
   ventoy-full
   textsnatcher
+  abcde
 
   nicotine-plus
   strawberry
