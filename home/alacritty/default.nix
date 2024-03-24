@@ -13,10 +13,10 @@
         };
         shell = {
           program = "${pkgs.zsh}/bin/zsh";
-          args = [
-            "-c"
-            "${pkgs.tmuxp}/bin/tmuxp load /home/hippoid/tmuxp/session.yaml"
-          ];
+          # args = [
+          # "-c"
+          # "${pkgs.tmuxp}/bin/tmuxp load /home/hippoid/tmuxp/session.yaml"
+          # ];
         };
 
         font = {
