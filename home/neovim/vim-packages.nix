@@ -14,7 +14,7 @@ with pkgs.vimPlugins; [
   nerdcommenter
   nvim-hs-vim
   pkgs.zettel-plugin
-  # tagbar
+  tagbar
   targets-vim
   ultisnips
   unicode-vim
