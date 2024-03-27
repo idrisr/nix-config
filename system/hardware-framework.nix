@@ -1,11 +1,7 @@
 { config, lib, modulesPath, ... }:
 
 {
-  imports = [
-    (modulesPath + "/installer/scan/not-detected.nix")
-    ./adguard.nix
-    ./autorandr
-  ];
+  imports = [ (modulesPath + "/installer/scan/not-detected.nix") ./autorandr ];
 
   boot = {
     initrd = {

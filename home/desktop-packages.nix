@@ -16,8 +16,6 @@ with pkgs; [
   briss
   vorta
   libsForQt5.kdenlive
-  texliveFull
-  texstudio
   books
   # papers
   rofi-power-menu
