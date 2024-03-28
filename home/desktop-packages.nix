@@ -1,6 +1,7 @@
 pkgs:
 with pkgs; [
   (callPackage ./reading/desktop-item.nix { })
+  tikzit
   makemkv
   gnome.gnome-disk-utility
   ventoy-full

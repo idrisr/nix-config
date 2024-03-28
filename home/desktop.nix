@@ -79,6 +79,7 @@ in { config, lib, pkgs, ... }: {
         (import ./qrcp "6969")
         (import ./xournal)
         (import ./reading)
+        (import ./tikzit)
       ];
     };
   };
