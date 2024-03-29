@@ -1,6 +1,7 @@
 { pkgs, ... }: {
   imports = [
     ./bat
+    ./autorandr
     ./direnv
     ./fzf
     ./git

@@ -1,7 +1,7 @@
 { config, pkgs, lib, ... }:
 
 {
-  imports = [ ./power ./virtualization ./cockpit ./autorandr ./superdrive.nix ];
+  imports = [ ./power ./virtualization ./cockpit ./superdrive.nix ];
   options = { };
 
   config = {
@@ -73,6 +73,7 @@
 
     services = {
       iptsd.config.Touch.DisableOnPalm = true;
+      autorandr.enable = true;
       usbmuxd = { enable = true; };
       emacs = {
         install = true;
