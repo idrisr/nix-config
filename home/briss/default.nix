@@ -2,7 +2,6 @@ self: super: {
   briss = super.stdenv.mkDerivation {
     pname = "briss";
     name = "briss";
-    # version = "custom";
     dontUnpack = true;
     nativeBuildInputs = [ super.makeWrapper ];
 
