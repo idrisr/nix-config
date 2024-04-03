@@ -1,7 +1,7 @@
 { pkgs, ... }: {
   imports = [
-    ./bat
     ./autorandr
+    ./bat
     ./direnv
     ./fzf
     ./git
@@ -10,10 +10,11 @@
     ./readline
     ./ripgrep
     ./starship
+    ./theme.nix
+    ./thunderbird
     ./tmux
     ./vifm
     ./zsh
-    ./theme.nix
   ];
 
   config = {
