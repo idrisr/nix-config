@@ -4,10 +4,10 @@
   imports = [
     (modulesPath + "/installer/scan/not-detected.nix")
     ./adguard.nix
-    ./autorandr
     ./borg/borgrepo.nix
     ./superdrive.nix
     ./jellyfin.nix
+    ./nvidia
   ];
 
   config = {
