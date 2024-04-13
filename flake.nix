@@ -3,26 +3,17 @@
 
   inputs = {
     nixpkgs.url = "nixpkgs";
-
     disko = {
       url = "github:nix-community/disko";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-
-    nixos-hardware = {
-      type = "github";
-      owner = "nixos";
-      repo = "nixos-hardware";
-    };
-
+    nixos-hardware.url = "github:nixos/nixos-hardware";
     home-manager = {
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    knotools = {
-      url = "github:idrisr/knotools/6eebffaf8e43aea9e33c73e3bcb70815e3e783d8";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
+    knotools.url =
+      "github:idrisr/knotools/6eebffaf8e43aea9e33c73e3bcb70815e3e783d8";
     flake-utils.url = "github:numtide/flake-utils";
   };
 

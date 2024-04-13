@@ -1,5 +1,6 @@
 pkgs:
 with pkgs; [
+  nsxiv
   (callPackage ./reading/desktop-item.nix { })
   tikzit
   makemkv

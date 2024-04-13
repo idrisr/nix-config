@@ -1,6 +1,8 @@
 pkgs:
 
 with pkgs; [
+  smem
+  smemstat
   ntfs3g
   dfc
   lynis

@@ -15,7 +15,6 @@
   ./neovim
   ./newsboat
   ./pandoc
-  ./picom
   ./qt
   ./qutebrowser
   ./readline
