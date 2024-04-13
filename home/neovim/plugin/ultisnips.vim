@@ -1,3 +1,3 @@
-let g:UltiSnipsSnippetStorageDirectoryForUltiSnipsEdit=$HOME.'/dotfiles/nix/home/neovim/plugin'
-let g:UltiSnipsSnippetDirectories=[$HOME.'/dotfiles/nix/home/neovim/plugin']
+let g:UltiSnipsSnippetStorageDirectoryForUltiSnipsEdit='/home/hippoid/dotfiles/home/neovim/plugin'
+let g:UltiSnipsSnippetDirectories=['/home/hippoid/dotfiles/home/neovim/snippets']
 nnoremap <leader>u <Cmd>call UltiSnips#RefreshSnippets()<CR>

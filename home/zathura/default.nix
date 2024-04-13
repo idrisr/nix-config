@@ -3,16 +3,14 @@ let
     set selection-clipboard clipboard
     set sandbox none
     set guioptions none
+    map D set first-page-column 1:1
+    map E set first-page-column 1:2
   '';
 in {
   config = {
     programs.zathura = {
       enable = true;
-
-      extraConfig = builtins.concatStringsSep "\n" [
-        # (builtins.readFile ./zathurarc)
-        extraConfig
-      ];
+      extraConfig = extraConfig;
     };
   };
 }
