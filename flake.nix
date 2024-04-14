@@ -1,98 +1,40 @@
 {
-  description = "my machines' nixos configuration";
-
   inputs = {
-    nixpkgs.url = "nixpkgs";
+    nixpkgs.url = "nixpkgs/nixos-unstable";
+    nixos-hardware.url = "github:nixos/nixos-hardware";
+    flake-utils.url = "github:numtide/flake-utils";
+    knotools.url =
+      "github:idrisr/knotools/6eebffaf8e43aea9e33c73e3bcb70815e3e783d8";
     disko = {
       url = "github:nix-community/disko";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    nixos-hardware.url = "github:nixos/nixos-hardware";
     home-manager = {
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    knotools.url =
-      "github:idrisr/knotools/6eebffaf8e43aea9e33c73e3bcb70815e3e783d8";
-    flake-utils.url = "github:numtide/flake-utils";
+    nixvim = {
+      url = "github:nix-community/nixvim";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
-  outputs = { self, nixpkgs, nixos-hardware, home-manager, knotools, flake-utils
-    , disko }:
+  outputs = inputs@{ self, nixpkgs, nixos-hardware, home-manager, knotools
+    , flake-utils, disko, nixvim }:
     let
       system = flake-utils.lib.system.x86_64-linux;
       pkgs = import nixpkgs { inherit system; };
-      base = ./system/base.nix;
-      homebase = [
-        home-manager.nixosModules.home-manager
-        {
-          home-manager = {
-            users.hippoid = import ./home/base.nix;
-            useUserPackages = true;
-          };
-        }
-      ];
-
-      homedesk = [
-        home-manager.nixosModules.home-manager
-        {
-          home-manager = {
-            users.hippoid = import ./home/desktop.nix knotools;
-            useUserPackages = true;
-          };
-        }
-      ];
-
+      makeMachine = host:
+        nixpkgs.lib.nixosSystem {
+          specialArgs = { inherit inputs; };
+          modules = [ ./hosts/${host} ./nixos-modules ];
+        };
     in {
-      nixosConfigurations = {
-        fft = nixpkgs.lib.nixosSystem {
-          modules = [
-            disko.nixosModules.default
-            ./system/hardware-fft.nix
-            base
-            ./system/disko-fft.nix
-            ./system/cockpit
-            ./system/desktop.nix
-          ] ++ homebase ++ homedesk;
-        };
-        framework = nixpkgs.lib.nixosSystem {
-          modules = [
-            ./system/hardware-framework.nix
-            ./system/desktop.nix
-            ./system/cockpit
-            base
-            nixos-hardware.nixosModules.framework-11th-gen-intel
-          ] ++ homebase ++ homedesk;
-        };
-        air = nixpkgs.lib.nixosSystem {
-          modules = [
-            disko.nixosModules.default
-            (import ./system/disko-air.nix { device = "/dev/sda"; })
-            ./system/cockpit
-            ./system/hardware-air.nix
-            base
-          ] ++ homebase;
-        };
-        red = nixpkgs.lib.nixosSystem {
-          modules = [
-            ./system/hardware-red.nix
-            base
-            ./system/printing.nix
-            ./system/printer-client.nix
-          ] ++ homebase;
-        };
-        surface = nixpkgs.lib.nixosSystem {
-          modules = [
-            ./system/hardware-surface.nix
-            ./system/borg/borg.nix
-            ./system/soulseek
-            ./system/desktop.nix
-            (import ./system/disko-surface.nix { device = "/dev/nvme0n1"; })
-            disko.nixosModules.default
-            nixos-hardware.nixosModules.microsoft-surface-pro-intel
-            base
-          ] ++ homebase ++ homedesk;
-        };
+      nixosConfigurations = { # todo use a fmap
+        air = makeMachine "air";
+        fft = makeMachine "fft";
+        framework = makeMachine "framework";
+        surface = makeMachine "surface";
       };
 
       devShells.${system}.default = with pkgs;
