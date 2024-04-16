@@ -47,20 +47,6 @@ nnoremap M :call Goto()<cr>
 " }}}
 "
 "{{{ maps
-inoremap jk <esc>
-nnoremap <c-h><c-h> :set hlsearch!<cr>
-nnoremap dd dd<esc>
-nnoremap H 0
-nnoremap <leader>ss :set spell!<cr>
-nnoremap L $
-nnoremap <leader>dt :r !date -I <cr>
-nnoremap <leader>cv :source code.vim<CR>
-nnoremap <leader>ev :tabnew $HOME/.vimrc<cr>:lcd $HOME/dotfiles/vim<cr>
-nnoremap <leader>rv :tabnew $HOME/roam-export/<cr>:lcd $HOME/roam-export<cr>
-nnoremap <leader>q :q <CR>
-nnoremap <leader>sv :source $MYVIMRC<CR>
-nnoremap <leader>ma :execute "make " . expand('%:r')
-
 nnoremap <leader>vt :<c-u>call VisualToNumbers()<cr>
 vnoremap <leader>na :EasyAlign -1 /\v\s+[0-9]+$/<cr>
 
@@ -69,12 +55,10 @@ nnoremap <leader>" viw<esc>a"<esc>bi"<esc>lel
 nnoremap <leader>' viw<esc>a'<esc>bi'<esc>lel
 vnoremap <leader>" <esc>`>a"<esc>`<i"<esc>
 vnoremap <leader>' <esc>`>a'<esc>`<i'<esc>
-nnoremap <leader>w :w <CR>
-nnoremap /  /\v
 nnoremap <leader>s  :set conceallevel=0<CR>
 
 " insert title for notes file
-nnoremap <leader>T ggi<cr><cr><esc>ggi---<esc>otitle: <c-r>%<esc>xxxo---<esc>jj
+nnoremap <leader>T ggI<cr><cr><esc>ggI---<esc>otitle: <c-r>%<esc>xxxo---<esc>jj
 noremap <leader>nj :set invnumber<CR>
 noremap <leader>sp :sp<cr>
 noremap <leader>vsp :vsp<cr>
@@ -86,55 +70,14 @@ nmap ga <Plug>(EasyAlign)
 
 "}}}
 " {{{ options
-set autoindent
 set backup
 set backupdir=$HOME/vimtmp
 set directory=$HOME/vimtmp
-set expandtab
-set exrc
-set foldcolumn=1
-set foldmethod=indent
-set ignorecase " needed for smartcase to work
-set incsearch
-set laststatus=2
 set listchars=trail:_
-set noautochdir
 set nolist
-set number
-set numberwidth=2
-set relativenumber
-set ruler
-set secure
-set shiftwidth=4
-set smartcase
-set softtabstop=4
-set splitright
-set tabstop=4
-set tags=tags
-set textwidth=80
-set timeoutlen=1000
-set nohlsearch
-set wrap
-
+set foldcolumn=1
 set spellcapcheck=""
-" }}}
-" {{{ abbreviations
-iabbrev Idrsi Idris
-iabbrev idrsi idris
-iabbrev idsir idris
-iabbrev Idsir idris
-" }}}
-"
 colorscheme solarized
 highlight Search ctermfg=0 cterm=undercurl ctermbg=7
 highlight SpellBad ctermfg=0 cterm=undercurl ctermbg=5
 highlight Normal ctermbg=NONE
-
-nnoremap <silent> K :call ShowDocumentation()<CR>
-function! ShowDocumentation()
-  if CocAction('hasProvider', 'hover')
-    call CocActionAsync('doHover', 'float')
-  else
-    call feedkeys('K', 'in')
-  endif
-endfunction

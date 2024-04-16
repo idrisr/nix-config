@@ -1,5 +1,7 @@
 let
   extraConfig = ''
+    set synctex true
+    set synctex-editor-command "nvim --remote-silent +%{line} %{input}"
     set selection-clipboard clipboard
     set sandbox none
     set guioptions none

@@ -1,17 +1,4 @@
-{ pkgs, inputs, ... }:
-let
-  ol = (with inputs.knotools.overlays; [
-    awscost
-    booknote
-    epubthumb
-    mdtopdf
-    newcover
-    pdftc
-    roamamer
-    seder
-    transcribe
-  ]);
-in {
+{ pkgs, ... }: {
 
   imports = [
     ./base.nix
@@ -61,26 +48,6 @@ in {
         inactiveInterval = 15;
       };
       poweralertd.enable = true;
-    };
-    nixpkgs = {
-      config = {
-        allowUnfreePredicate = pkg:
-          builtins.elem (pkgs.lib.getName pkg) [
-            "broadcom-sta"
-            "discord"
-            "gitkraken"
-            "lastpass-cli"
-            "mathpix-snipping-tool-03.00.0072"
-            "makemkv"
-          ];
-      };
-      overlays = ol ++ [
-        # (import ./briss)
-        (import ../modules/qrcp "6969")
-        (import ../modules/xournal)
-        (import ../modules/reading)
-        (import ../modules/tikzit)
-      ];
     };
   };
 }

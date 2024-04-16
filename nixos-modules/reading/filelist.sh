@@ -1,6 +1,6 @@
 folder="/home/hippoid/books"
 selected_filename=$(\
-    find "$folder" -type f -maxdepth 1 \( -name "*.pdf" -o -name "*.epub" \) -print0 \
+    find "$folder" -type f  \( -name "*.pdf" -o -name "*.epub" \) -print0 \
     | xargs -0 -n 1 basename \
     | sort  \
     | rofi -dmenu -p "Book")

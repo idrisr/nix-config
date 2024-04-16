@@ -27,9 +27,5 @@
 
     # Let Home Manager install and manage itself.
     programs = { home-manager.enable = true; };
-    nixpkgs = {
-      overlays =
-        (let xs = [ ../modules/overlays/zettel-plugin.nix ]; in map import xs);
-    };
   };
 }

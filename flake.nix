@@ -17,13 +17,14 @@
       url = "github:nix-community/nixvim";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    # zettel.url = "github:idrisr/zettel";
+    zettel.url = "path:/home/hippoid/fun/zettel";
   };
 
-  outputs = inputs@{ self, nixpkgs, nixos-hardware, home-manager, knotools
-    , flake-utils, disko, nixvim }:
+  outputs = inputs@{ nixpkgs, flake-utils, ... }:
     let
-      system = flake-utils.lib.system.x86_64-linux;
-      pkgs = import nixpkgs { inherit system; };
+      # system = flake-utils.lib.system.x86_64-linux;
+      # pkgs = import nixpkgs { inherit system; };
       makeMachine = host:
         nixpkgs.lib.nixosSystem {
           specialArgs = { inherit inputs; };
@@ -37,15 +38,18 @@
         surface = makeMachine "surface";
       };
 
-      devShells.${system}.default = with pkgs;
-        mkShell {
-          buildInputs = [
-            ghcid
-            (ghc.withPackages (p: with p; [ xmonad xmonad-extras dbus ]))
-            haskell-language-server
-            luajitPackages.lua-lsp
-            nodePackages.vim-language-server
-          ];
-        };
+      # devShells.${system} = {
+      # default = with pkgs;
+      # mkShell {
+      # buildInputs = [
+      # ghcid
+      # (ghc.withPackages (p: with p; [ xmonad xmonad-extras dbus ]))
+      # haskell-language-server
+      # luajitPackages.lua-lsp
+      # nodePackages.vim-language-server
+      # ];
+      # };
+      # };
+
     };
 }

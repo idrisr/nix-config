@@ -165,6 +165,24 @@
         "type": "github"
       }
     },
+    "flake-utils_5": {
+      "inputs": {
+        "systems": "systems_5"
+      },
+      "locked": {
+        "lastModified": 1710146030,
+        "narHash": "sha256-SZ5L6eA7HJ/nmkzGG7/ISclqe6oZdOZTNoesiInkXPQ=",
+        "owner": "numtide",
+        "repo": "flake-utils",
+        "rev": "b1d9ab70662946ef0850d488da1c9019f3a9752a",
+        "type": "github"
+      },
+      "original": {
+        "owner": "numtide",
+        "repo": "flake-utils",
+        "type": "github"
+      }
+    },
     "gitignore": {
       "inputs": {
         "nixpkgs": [
@@ -315,6 +333,22 @@
         "type": "indirect"
       }
     },
+    "nixpkgs_3": {
+      "locked": {
+        "lastModified": 1701282334,
+        "narHash": "sha256-MxCVrXY6v4QmfTwIysjjaX0XUhqBbxTWWB4HXtDYsdk=",
+        "owner": "nixos",
+        "repo": "nixpkgs",
+        "rev": "057f9aecfb71c4437d2b27d3323df7f93c010b7e",
+        "type": "github"
+      },
+      "original": {
+        "owner": "nixos",
+        "ref": "23.11",
+        "repo": "nixpkgs",
+        "type": "github"
+      }
+    },
     "nixvim": {
       "inputs": {
         "devshell": "devshell",
@@ -377,7 +411,8 @@
         "knotools": "knotools",
         "nixos-hardware": "nixos-hardware",
         "nixpkgs": "nixpkgs_2",
-        "nixvim": "nixvim"
+        "nixvim": "nixvim",
+        "zettel": "zettel"
       }
     },
     "systems": {
@@ -438,6 +473,37 @@
         "owner": "nix-systems",
         "repo": "default",
         "type": "github"
+      }
+    },
+    "systems_5": {
+      "locked": {
+        "lastModified": 1681028828,
+        "narHash": "sha256-Vy1rq5AaRuLzOxct8nz4T6wlgyUR7zLU309k9mBC768=",
+        "owner": "nix-systems",
+        "repo": "default",
+        "rev": "da67096a3b9bf56a91d16901293e51ba5b49a27e",
+        "type": "github"
+      },
+      "original": {
+        "owner": "nix-systems",
+        "repo": "default",
+        "type": "github"
+      }
+    },
+    "zettel": {
+      "inputs": {
+        "flake-utils": "flake-utils_5",
+        "nixpkgs": "nixpkgs_3"
+      },
+      "locked": {
+        "lastModified": 1713361738,
+        "narHash": "sha256-jDR6k870b8S9SokiUnRNkZmFQw4lmjPbl7MuAOijxXQ=",
+        "path": "/home/hippoid/fun/zettel",
+        "type": "path"
+      },
+      "original": {
+        "path": "/home/hippoid/fun/zettel",
+        "type": "path"
       }
     }
   },

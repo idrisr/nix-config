@@ -23,38 +23,25 @@ in {
     xdg.configFile."nvim/coc-settings.json".text = cocSettings;
 
     programs.neovim = {
-      enable = true;
+      enable = false;
       vimAlias = true;
       viAlias = true;
       vimdiffAlias = true;
       plugins = with pkgs.vimPlugins; [
         ale
-        coc-emmet
-        coc-html
         coc-nvim
-        coc-pyright
-        # coc-texlab
-        coc-tsserver
-        emmet-vim
         fzf-vim
         fugitive
         nerdcommenter
         nvim-hs-vim
-        pkgs.zettel-plugin
+        pkgs.zettel
         tagbar
-        targets-vim
-        ultisnips
-        unicode-vim
         vim-airline
         vim-airline-themes
         vim-colors-solarized
         vim-css-color
         vim-easy-align
         vim-nix
-        lean-nvim
-        vim-obsession
-        vim-scriptease
-        vimspector
         vim-startify
         vim-surround
         vimtex

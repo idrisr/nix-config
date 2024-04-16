@@ -1,33 +1,6 @@
 pkgs:
 with pkgs; [
-  nsxiv
-  (callPackage ../modules/reading/desktop-item.nix { })
-  tikzit
-  makemkv
-  gnome.gnome-disk-utility
-  ventoy-full
-  textsnatcher
   abcde
-
-  nicotine-plus
-  strawberry
-  disko
-  unetbootin
-  calibre
-  sxiv
-  briss
-  vorta
-  libsForQt5.kdenlive
-  books
-  # papers
-  rofi-power-menu
-  unoconv
-  xfce.thunar
-  mathpix-snipping-tool
-  nil
-  xournalpp
-  brave
-  imagemagick
   alsa-utils
   ansifilter
   arandr
@@ -39,6 +12,9 @@ with pkgs; [
   binutils
   booknote
   bpftrace
+  brave
+  briss
+  calibre
   copyq
   cryptsetup
   dconf
@@ -47,6 +23,7 @@ with pkgs; [
   dfc # better df
   dig
   discord
+  disko
   djvu2pdf
   dmenu
   dracut
@@ -61,13 +38,14 @@ with pkgs; [
   foremost
   gallery-dl
   gimp
-  gitkraken
+  gnome.gnome-disk-utility
   gnupg
   gnuradio
   gparted
   gqrx
   graphviz
   haskellPackages.hasktags
+  imagemagick
   inkscape
   inxi
   jq
@@ -77,10 +55,13 @@ with pkgs; [
   ldns
   libinput
   libreoffice
+  libsForQt5.kdenlive
   light
   lmms
   lm_sensors
   lsof
+  makemkv
+  mathpix-snipping-tool
   mdtopdf
   mediainfo
   mplayer
@@ -89,6 +70,8 @@ with pkgs; [
   ncdu
   neofetch
   newcover
+  nicotine-plus
+  nil
   nitrogen
   nix-du
   nixfmt-classic
@@ -99,6 +82,7 @@ with pkgs; [
   nix-query-tree-viewer
   nix-tree
   nodePackages.bash-language-server
+  nsxiv
   nuclear
   nvme-cli
   nwipe
@@ -121,29 +105,40 @@ with pkgs; [
   qrcp
   rlwrap
   roamamer
+  rofi-power-menu
   seder
   shellharden
   spectacle # screenshots
   sqlitebrowser
   (sqlite.override { interactive = true; })
   sshfs
+  strawberry
+  sxiv
   sxiv
   tabbed
   tcpdump
+  textsnatcher
+  tikzit
   timer
   tlp
   traceroute
   transcribe
   ueberzugpp
+  unetbootin
+  unoconv
   unzip
+  ventoy-full
+  vorta
   weechat
   wget
   wireshark
   writedisk
   xclip
   xdotool
+  xfce.thunar
   xorg.xev
   xorg.xwininfo
+  xournalpp
   yt-dlp
   ytfzf
   zbar

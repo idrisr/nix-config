@@ -1,6 +1,4 @@
-{ config, pkgs, lib, inputs, ... }:
-
-{
+{ config, pkgs, lib, inputs, ... }: {
   imports = [
     ../../nixos-modules/power
     inputs.nixos-hardware.nixosModules.microsoft-surface-pro-intel
@@ -74,7 +72,40 @@
       usbmuxd = { enable = true; };
     };
 
-    nixpkgs.hostPlatform = lib.mkDefault "x86_64-linux";
+    nixpkgs = let
+      ol = with inputs.knotools.overlays; [
+        awscost
+        booknote
+        epubthumb
+        mdtopdf
+        newcover
+        pdftc
+        roamamer
+        seder
+        transcribe
+      ];
+      ol2 = [
+        (import ../../nixos-modules/briss)
+        (import ../../nixos-modules/qrcp "6969")
+        (import ../../nixos-modules/xournal)
+        (import ../../nixos-modules/tikzit)
+      ];
+    in {
+      hostPlatform = lib.mkDefault "x86_64-linux";
+      overlays = ol ++ ol2 ++ [ inputs.zettel.overlays.zettel ];
+      config = {
+        allowUnfreePredicate = pkg:
+          builtins.elem (pkgs.lib.getName pkg) [
+            "broadcom-sta"
+            "discord"
+            "gitkraken"
+            "lastpass-cli"
+            "mathpix-snipping-tool-03.00.0072"
+            "makemkv"
+          ];
+      };
+    };
+
     powerManagement.enable = true;
     system.stateVersion = "24.05";
   };

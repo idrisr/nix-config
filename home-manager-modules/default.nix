@@ -2,19 +2,17 @@
 { config, inputs, lib, ... }:
 let cfg = config.profile;
 in {
-  config.home-manager = lib.mkMerge [
-    {
-      users.hippoid = import ./profiles/base.nix;
-      useUserPackages = true;
-      extraSpecialArgs = { inherit inputs; };
-    }
-
-    (lib.mkIf cfg.dailydrive.enable {
-      users.hippoid = import ./profiles/desktop.nix;
-      useUserPackages = true;
-      extraSpecialArgs = { inherit inputs; };
-    })
-  ];
+  config.home-manager = {
+    useGlobalPkgs = true;
+    useUserPackages = true;
+    extraSpecialArgs = { inherit inputs; };
+    users = lib.mkMerge [
+      { hippoid = import ./profiles/base.nix; }
+      (lib.mkIf cfg.dailydrive.enable {
+        hippoid = import ./profiles/desktop.nix;
+      })
+    ];
+  };
 
   options = {
     profile = {
