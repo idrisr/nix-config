@@ -7,6 +7,7 @@
         expandtab = true;
         exrc = true;
         foldmethod = "indent";
+        foldlevel = 99;
         ignorecase = true;
         incsearch = true;
         laststatus = 2;

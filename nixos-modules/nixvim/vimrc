@@ -75,9 +75,4 @@ set backupdir=$HOME/vimtmp
 set directory=$HOME/vimtmp
 set listchars=trail:_
 set nolist
-set foldcolumn=1
 set spellcapcheck=""
-colorscheme solarized
-highlight Search ctermfg=0 cterm=undercurl ctermbg=7
-highlight SpellBad ctermfg=0 cterm=undercurl ctermbg=5
-highlight Normal ctermbg=NONE

@@ -1,16 +1,32 @@
 {
   config.programs.nixvim.plugins = {
-    lsp.keymaps.diagnostic = {
-      "<leader>j" = "goto_next";
-      "<leader>k" = "goto_prev";
+    lspsaga = {
+      enable = true;
+      outline.winWidth = 80;
+      lightbulb.sign = false;
     };
+    lsp = {
+      enable = true;
+      servers = {
+        nil_ls.enable = true;
+        lua-ls.enable = true;
+      };
 
-    lsp.keymaps.lspBuf = {
-      K = "hover";
-      gD = "references";
-      gd = "definition";
-      gi = "implementation";
-      gt = "type_definition";
+      keymaps = {
+        diagnostic = {
+          "<leader>j" = "goto_next";
+          "<leader>k" = "goto_prev";
+          "<space>q" = "setloclist";
+        };
+
+        lspBuf = {
+          K = "hover";
+          "<leader>gr" = "references";
+          "<leader>gd" = "definition";
+          "<leader>gi" = "implementation";
+          "<leader>gt" = "type_definition";
+        };
+      };
     };
   };
 }

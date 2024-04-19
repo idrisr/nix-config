@@ -13,14 +13,17 @@ in {
     ./keymap.nix
     ./latex.nix
     ./lsp.nix
+    ./oil.nix
+    ./neo-tree.nix
     ./surround.nix
     ./vimrc.nix
+    ./telescope.nix
   ];
 
   config.programs.nixvim = {
     enable = true;
-    plugins.lsp.enable = true;
 
+    colorschemes.gruvbox.enable = true;
     extraPlugins = with pkgs.vimPlugins; [
       ale
       fzf-vim # switch to fzf-lua
