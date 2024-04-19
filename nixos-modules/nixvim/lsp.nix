@@ -23,7 +23,6 @@
           K = "hover";
           "<leader>gr" = "references";
           "<leader>gd" = "definition";
-          "<leader>gi" = "implementation";
           "<leader>gt" = "type_definition";
         };
       };

@@ -13,15 +13,18 @@ in {
     ./keymap.nix
     ./latex.nix
     ./lsp.nix
-    ./oil.nix
     ./neo-tree.nix
+    ./oil.nix
+    ./ollama.nix
     ./surround.nix
-    ./vimrc.nix
     ./telescope.nix
+    ./vimrc.nix
   ];
 
   config.programs.nixvim = {
     enable = true;
+    viAlias = true;
+    vimAlias = true;
 
     colorschemes.gruvbox.enable = true;
     extraPlugins = with pkgs.vimPlugins; [
