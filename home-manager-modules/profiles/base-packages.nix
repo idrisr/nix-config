@@ -2,11 +2,13 @@ pkgs:
 
 with pkgs; [
   dfc
+  jetbrains-mono
   fd
   file
   htop
   jq
   lynis
+  monaspace
   ncdu
   nix-derivation
   nodejs # for vim things

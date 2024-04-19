@@ -20,8 +20,11 @@
         };
 
         font = {
-          normal = { style = "Medium"; };
-          size = 9;
+          normal = {
+            family = "JetBrainsMono Nerd Font";
+            style = "Medium";
+          };
+          size = 10;
         };
 
         colors = import ./${config.theme.color}.nix;

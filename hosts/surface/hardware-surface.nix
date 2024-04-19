@@ -1,4 +1,8 @@
-{ config, pkgs, lib, inputs, ... }: {
+{ config, pkgs, lib, inputs, ... }:
+let
+  customFonts =
+    pkgs.nerdfonts.override { fonts = [ "JetBrainsMono" "Iosevka" ]; };
+in {
   imports = [
     ../../nixos-modules/power
     inputs.nixos-hardware.nixosModules.microsoft-surface-pro-intel
@@ -47,6 +51,8 @@
     };
 
     sound.enable = true;
+
+    fonts.packages = with pkgs; [ customFonts font-awesome ];
 
     hardware = {
       pulseaudio.enable = true;
