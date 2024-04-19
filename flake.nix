@@ -3,6 +3,7 @@
     nixpkgs.url = "nixpkgs/nixos-unstable";
     nixos-hardware.url = "github:nixos/nixos-hardware";
     flake-utils.url = "github:numtide/flake-utils";
+    nix-colors.url = "github:misterio77/nix-colors";
     knotools.url =
       "github:idrisr/knotools/6eebffaf8e43aea9e33c73e3bcb70815e3e783d8";
     disko = {
