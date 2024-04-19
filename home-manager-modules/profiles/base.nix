@@ -10,13 +10,11 @@
     ../modules/readline
     ../modules/ripgrep
     ../modules/starship
-    ../modules/theme.nix
     ../modules/thunderbird
     ../modules/tmux
     ../modules/vifm
     ../modules/zsh
     inputs.nix-colors.homeManagerModules.default
-    ../modules/test.nix
   ];
 
   config = {

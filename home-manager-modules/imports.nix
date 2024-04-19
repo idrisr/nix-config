@@ -22,7 +22,6 @@
   ./rofi
   ./starship
   ./syncthing
-  ./theme.nix
   ./tmux
   ./vifm
   ./vscode

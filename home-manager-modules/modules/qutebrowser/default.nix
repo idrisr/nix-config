@@ -1,12 +1,11 @@
 # https://github.com/IvarWithoutBones/dotfiles/blob/b6074cf26ed70bf3d10d36b3e0122ef6cfbc5f81/home-manager/modules/qutebrowser.nix
-{ config, ... }: {
+{
   config = {
     programs.qutebrowser = {
       enable = true;
       keyBindings = { normal = { "cm" = "clear-messages"; }; };
 
       settings = {
-        colors.webpage.preferred_color_scheme = config.theme.color;
         downloads.location.directory = "$HOME/downloads";
         zoom.default = "75%";
         statusbar.position = "top";

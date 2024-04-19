@@ -3,7 +3,7 @@
     programs.alacritty = {
       enable = true;
       settings = {
-        colors = with config.colorScheme.colors;
+        colors = with config.colorScheme.palette;
           let f = x: "0x${builtins.substring 0 6 x}";
           in {
             bright = {

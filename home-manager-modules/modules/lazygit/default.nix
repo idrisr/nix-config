@@ -1,17 +1,11 @@
-{ config, ... }:
-let
-  str2Bool = (x: if x == "dark" then false else true);
-  isLight = str2Bool config.theme.color;
-in {
+{
+  # todo: fixme so it figures out light/dark from colorscheme
   config = {
     programs.lazygit = {
       enable = true;
       settings = {
         gui = {
-          theme = {
-            lightTheme = isLight;
-            showCommandLog = false;
-          };
+          theme = { showCommandLog = false; };
           git = { };
           disableStartupPopups = true;
           keybinding = { universal = { select = "a"; }; };

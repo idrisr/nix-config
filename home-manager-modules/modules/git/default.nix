@@ -1,7 +1,6 @@
 { config, ... }:
-let
-  str2Bool = (x: if x == "dark" then false else true);
-  isLight = str2Bool config.theme.color;
+# todo: fixme so it figures out light/dark from colorscheme
+let isLight = false;
 in {
   config = {
     programs.git = {

@@ -1,9 +1,5 @@
-{ lib, pkgs, config, ... }:
+{ lib, pkgs, ... }:
 let
-  vifm-color = if config.theme.color == "dark" then
-    ./solarized-dark.vifm
-  else
-    ./solarized-light.vifm;
   f = builtins.readFile;
   mkLink = x: {
     "vifm/scripts/${x}" = {
@@ -14,7 +10,7 @@ let
 in {
   config = {
     xdg.configFile = let
-      y = builtins.concatStringsSep "\n" (map f [ ./vifmrc vifm-color ]);
+      y = builtins.concatStringsSep "\n" (map f [ ./vifmrc ]);
       x1 = (map mkLink [ "scope" "cleaner" ]);
       x2 = [{ "vifm/vifmrc".text = y; }];
     in lib.mkMerge (x1 ++ x2);
