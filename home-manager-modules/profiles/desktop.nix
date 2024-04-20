@@ -13,7 +13,6 @@
     ../modules/lsd
     ../modules/newsboat
     ../modules/pandoc
-    ../modules/picom
     ../modules/polybar
     ../modules/qt
     ../modules/qutebrowser

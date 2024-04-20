@@ -1,6 +1,14 @@
 {
   config.programs.nixvim = {
     plugins.fugitive = { enable = true; };
+    userCommands = {
+      "Gb" = {
+        bang = true;
+        command = "Git blame --date relative";
+        desc = "Show git history with relative dates";
+      };
+    };
+    # " command! Gb Git blame --date=relative
     keymaps = [
       {
         key = "<leader>l";

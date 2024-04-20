@@ -6,7 +6,6 @@
     ../modules/fzf
     ../modules/git
     ../modules/lazygit
-    ../modules/neovim
     ../modules/readline
     ../modules/ripgrep
     ../modules/starship

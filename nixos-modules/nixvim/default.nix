@@ -7,17 +7,21 @@ let
       k = builtins.concatStringsSep "\n" ([ " " ] ++ j);
     in k;
 in {
-
   imports = [
+    ./align.nix
+    ./comment.nix
     ./fugitive.nix
     ./keymap.nix
     ./latex.nix
     ./lsp.nix
     ./neo-tree.nix
+    ./cmp.nix
     ./oil.nix
     ./ollama.nix
     ./surround.nix
     ./telescope.nix
+    ./ultisnips.nix
+    ./whichkey.nix
     ./vimrc.nix
   ];
 
@@ -29,14 +33,11 @@ in {
     colorschemes.gruvbox.enable = true;
     extraPlugins = with pkgs.vimPlugins; [
       ale
-      fzf-vim # switch to fzf-lua
-      nerdcommenter
+      fzf-vim # switch to fzf-lua?
       pkgs.zettel # option or module in flake with other packages
-      vim-colors-solarized
     ];
 
-    extraConfigVim =
-      concatFiles [ ./vimrc ./ale.vim ./fzf.vim ./nerdcommenter.vim ];
+    extraConfigVim = concatFiles [ ./vimrc ./ale.vim ./fzf.vim ];
     extraConfigLua = concatFiles [ ./fzf.lua ./surround.lua ];
   };
 }

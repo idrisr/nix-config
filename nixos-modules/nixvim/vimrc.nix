@@ -1,6 +1,27 @@
 {
   config = {
     programs.nixvim = {
+      keymaps = [
+        {
+          key = "<leader>sp";
+          action = ":split";
+          mode = "n";
+        }
+        {
+          key = "<leader>vsp";
+          action = ":vsplit";
+          mode = "n";
+        }
+        {
+          key = "<leader>b";
+          action = ":Telescope buffers<cr>";
+          mode = "n";
+        }
+      ];
+      globals = {
+        maplocalleader = ",";
+        mapleader = ";";
+      };
       opts = {
         autochdir = false;
         autoindent = true;

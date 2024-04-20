@@ -1,6 +1,7 @@
 {
   config.programs.nixvim.plugins.vimtex = {
     enable = true;
+    texlivePackage = null;
     settings = {
       quickfix_autoclose_after_keystrokes = 3;
       quickfix_open_on_warning = 0;
@@ -9,7 +10,7 @@
         executable = "latexmk";
         continuous = 1;
         callback = 1;
-        engine = "-pdf";
+        engine = "-lualatex";
         viewer = "General";
         options = [
           "-synctex=1"
