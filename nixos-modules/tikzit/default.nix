@@ -1,5 +1,5 @@
 self: super: {
-  tikzit-wrapped = super.stdenv.mkDerivation {
+  tikzit-wrapped = super.stdenvNoCC.mkDerivation {
     name = "tikzit";
     dontUnpack = true;
     nativeBuildInputs = [ super.makeWrapper super.texliveFull ];

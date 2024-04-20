@@ -1,5 +1,5 @@
 port: self: super: {
-  qrcp = super.stdenv.mkDerivation {
+  qrcp = super.stdenvNoCC.mkDerivation {
     pname = "qrcp";
     name = "qrcp";
     dontUnpack = true;

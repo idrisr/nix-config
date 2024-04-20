@@ -1,5 +1,5 @@
 self: super: {
-  briss = super.stdenv.mkDerivation {
+  briss = super.stdenvNoCC.mkDerivation {
     pname = "briss";
     name = "briss";
     dontUnpack = true;

@@ -1,5 +1,5 @@
 self: super: {
-  xournalpp-wrapped = super.stdenv.mkDerivation {
+  xournalpp-wrapped = super.stdenvNoCC.mkDerivation {
     name = "xournal";
     dontUnpack = true;
     nativeBuildInputs = [ super.makeWrapper super.texliveFull ];
