@@ -5,6 +5,7 @@
       key = "<leader>na";
       action = ":EasyAlign -1 /\\v\\s+[0-9]+$/<cr>";
       mode = "v";
+      options = { desc = "align last number of each line in selection"; };
     }];
   };
 }

@@ -33,9 +33,9 @@
         };
     in {
       nixosConfigurations = { # todo use a fmap
-        air = makeMachine "air";
+        # air = makeMachine "air";
         fft = makeMachine "fft";
-        framework = makeMachine "framework";
+        # framework = makeMachine "framework";
         surface = makeMachine "surface";
       };
 

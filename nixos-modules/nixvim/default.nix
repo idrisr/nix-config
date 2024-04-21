@@ -20,7 +20,7 @@ in {
     ./ollama.nix
     ./surround.nix
     ./telescope.nix
-    ./ultisnips.nix
+    ./ultisnips.nix # move to other snip thing
     ./whichkey.nix
     ./vimrc.nix
   ];
@@ -38,6 +38,6 @@ in {
     ];
 
     extraConfigVim = concatFiles [ ./vimrc ./ale.vim ./fzf.vim ];
-    extraConfigLua = concatFiles [ ./fzf.lua ./surround.lua ];
+    extraConfigLua = concatFiles [ ./fzf.lua ./surround.lua ./cmp.lua ];
   };
 }

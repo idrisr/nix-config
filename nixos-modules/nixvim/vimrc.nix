@@ -1,23 +1,6 @@
 {
   config = {
     programs.nixvim = {
-      keymaps = [
-        {
-          key = "<leader>sp";
-          action = ":split";
-          mode = "n";
-        }
-        {
-          key = "<leader>vsp";
-          action = ":vsplit";
-          mode = "n";
-        }
-        {
-          key = "<leader>b";
-          action = ":Telescope buffers<cr>";
-          mode = "n";
-        }
-      ];
       globals = {
         maplocalleader = ",";
         mapleader = ";";
@@ -25,6 +8,8 @@
       opts = {
         autochdir = false;
         autoindent = true;
+        compatible = false;
+        cursorline = true;
         expandtab = true;
         exrc = true;
         foldmethod = "indent";
@@ -32,6 +17,7 @@
         ignorecase = true;
         incsearch = true;
         laststatus = 2;
+        list = false;
         hlsearch = false;
         number = true;
         numberwidth = 2;
@@ -41,11 +27,17 @@
         shiftwidth = 4;
         smartcase = true;
         softtabstop = 4;
+        showtabline = 2; # always show tabs
+        spellcapcheck = ''""'';
         splitright = true;
+        splitbelow = true;
         tabstop = 4;
+        termguicolors = true; # Enables 24-bit RGB color in the tui
         textwidth = 80;
         timeoutlen = 1000;
         wrap = true;
+        writebackup =
+          false; # if file is being written by another program, dont allow it to be edited
       };
     };
   };
