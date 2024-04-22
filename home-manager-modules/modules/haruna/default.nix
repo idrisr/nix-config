@@ -1,8 +1,6 @@
-{ pkgs, ... }:
-let harunaConf = builtins.readFile ./haruna.conf;
-in {
+{ pkgs, ... }: {
   config = {
-    xdg.configFile."haruna/haruna.conf".text = harunaConf;
+    xdg.configFile."haruna/haruna.conf".text = builtins.readFile ./haruna.conf;
     home.packages = [ pkgs.haruna ];
   };
 }

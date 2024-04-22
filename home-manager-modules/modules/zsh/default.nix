@@ -58,7 +58,6 @@
         builtins.concatStringsSep "\n" [ ''eval "$(direnv hook zsh)"'' ];
 
       envExtra = ''
-        export RIPGREP_CONFIG_PATH="${config.ripgreprc}"
         export VIFM="/home/hippoid/.config/vifm";
       '';
     };

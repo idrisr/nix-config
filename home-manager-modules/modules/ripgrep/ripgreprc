@@ -2,3 +2,4 @@
 --max-columns-preview
 --smart-case
 --hidden
+--glob=!.git/
