@@ -7,9 +7,8 @@
       mode = "n";
     }];
     globals = {
-      UltiSnipsSnippetDirectories = [
-        "/home/hippoid/dotfiles/home-manager-modules/modules/neovim/snippets/"
-      ];
+      UltiSnipsSnippetDirectories =
+        [ "/home/hippoid/dotfiles/nixos-modules/nixvim/snippets/" ];
     };
   };
 }

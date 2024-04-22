@@ -5,6 +5,7 @@
     cmp-path.enable = true;
     cmp-cmdline.enable = true;
     cmp-nvim-ultisnips.enable = true;
+    cmp-nvim-lsp.enable = true;
     friendly-snippets.enable = true;
   };
 }

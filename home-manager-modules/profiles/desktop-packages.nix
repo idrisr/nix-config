@@ -1,5 +1,6 @@
 pkgs:
 with pkgs; [
+
   abcde
   alsa-utils
   ansifilter
@@ -114,7 +115,6 @@ with pkgs; [
   sshfs
   strawberry
   sxiv
-  sxiv
   tabbed
   tcpdump
   textsnatcher
@@ -143,4 +143,5 @@ with pkgs; [
   ytfzf
   zbar
   zip
+  zotero
 ]

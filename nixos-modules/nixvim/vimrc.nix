@@ -28,7 +28,7 @@
         smartcase = true;
         softtabstop = 4;
         showtabline = 2; # always show tabs
-        spellcapcheck = ''""'';
+        spellcapcheck = "";
         splitright = true;
         splitbelow = true;
         tabstop = 4;

@@ -5,7 +5,7 @@ snippet beg "begin{} / end{}" bA
 endsnippet
 
 snippet enum "begin enumerate" bA
-\begin{enumerate}
+\begin{enumerate}[label = {(\alph*)}]
 	\item $0
 \end{enumerate}
 endsnippet
@@ -17,9 +17,9 @@ snippet defi "begin definition" bA
 endsnippet
 
 snippet exer "begin exercise" bA
-\begin{exercise}
+\begin{myexercise}[newpage]
 	$0
-\end{exercise}
+\end{myexercise}
 endsnippet
 
 snippet alig "begin align" bA

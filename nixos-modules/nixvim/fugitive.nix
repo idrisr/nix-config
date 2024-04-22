@@ -1,6 +1,7 @@
 {
   config.programs.nixvim = {
-    plugins.fugitive = { enable = true; };
+    plugins.gitsigns.enable = true;
+    plugins.fugitive.enable = true;
     userCommands = {
       "Gb" = {
         bang = true;

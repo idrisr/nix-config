@@ -10,7 +10,6 @@
         executable = "latexmk";
         continuous = 1;
         callback = 1;
-        engine = "-lualatex";
         viewer = "General";
         options = [
           "-synctex=1"

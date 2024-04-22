@@ -3,6 +3,31 @@
     programs.nixvim = {
       keymaps = [
         {
+          key = "<C-Up>";
+          action = ":resize +2<CR>";
+          mode = "n";
+          options = { desc = "resize up"; };
+        }
+        {
+          key = "<C-Down>";
+          action = ":resize -2<CR>";
+          mode = "n";
+          options = { desc = "resize down"; };
+        }
+        {
+          key = "<C-Left>";
+          action = ":vertical resize +2<CR>";
+          mode = "n";
+          options = { desc = "resize left"; };
+        }
+        {
+          key = "<C-Right>";
+          action = ":vertical resize -2<CR>";
+          mode = "n";
+          options = { desc = "resize right"; };
+        }
+
+        {
           key = "<leader>sp";
           action = ":split<cr>";
           mode = "n";

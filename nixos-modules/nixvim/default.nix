@@ -35,8 +35,12 @@ in {
       ale
       fzf-vim # switch to fzf-lua?
       pkgs.zettel # option or module in flake with other packages
+      nvim-lspconfig
     ];
 
+    # should be an option declared as a list
+    # then merged together
+    # so everything can live in the right file
     extraConfigVim = concatFiles [ ./vimrc ./ale.vim ./fzf.vim ];
     extraConfigLua = concatFiles [ ./fzf.lua ./surround.lua ./cmp.lua ];
   };
