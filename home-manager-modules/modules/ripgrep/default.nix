@@ -1,8 +1,14 @@
-{ pkgs, ... }:
-let ripgrepConf = pkgs.writeText "ripgrepConf" (builtins.readFile ./ripgreprc);
-in {
-  config.home = {
-    packages = [ pkgs.ripgrep ];
-    sessionVariables = { RIPGREP_CONFIG_PATH = "${ripgrepConf}"; };
+{ pkgs, ... }: {
+  config = {
+    programs.ripgrep = {
+      enable = true;
+      arguments = [
+        "--max-columns=150"
+        "--max-columns-preview"
+        "--smart-case"
+        "--hidden"
+        "--glob=!.git/"
+      ];
+    };
   };
 }
