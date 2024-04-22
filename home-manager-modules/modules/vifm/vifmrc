@@ -1,42 +1,9 @@
-set vicmd=vim
-set syscalls
-set trash
-set history=100
-set nofollowlinks
-set sortnumbers
-set undolevels=100
-set vimhelp
-set norunexec
-set timefmt=%m/%d\ %H:%M
-set wildmenu
-set wildstyle=popup
-set suggestoptions=normal,visual,view,otherpane,keys,marks,registers
-set ignorecase
-set smartcase
-set nohlsearch
-set incsearch
-set scrolloff=4
-
 if !has('win')
     set slowfs=curlftpfs
 endif
 
-set statusline="  Hint: %z%= %A %10u:%-7g %15s %20d  "
-
-mark b ~/books
-mark c ~/documents
-mark h ~/
-mark m ~/fun/memorandum
-mark p ~/documents/papers
-mark r ~/roam-export
-mark s ~/screenshots
-mark v ~/videos
-mark w ~/downloads
-mark x ~/dotfiles/nix
-
 fileviewer */ lsd --tree --depth 2 --almost-all --ignore-glob .git %c
 filextype *.pdf,*.epub zathura %c %i &, apvlv %c, xpdf %c
-" fileviewer *pdf,*mkv,*webm,*mp4,*mov,*avi,*jpg,*png
 
 filextype *mkv,*webm,*mp4,*mov,*avi,*m4v
         \ haruna %f 2>/dev/null &

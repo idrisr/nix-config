@@ -12,6 +12,7 @@
     ../modules/thunderbird
     ../modules/tmux
     ../modules/vifm
+    ../modules/vifm/program.nix
     ../modules/zsh
     inputs.nix-colors.homeManagerModules.default
   ];
