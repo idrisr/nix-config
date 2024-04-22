@@ -20,6 +20,7 @@ in {
     ./ollama.nix
     ./surround.nix
     ./telescope.nix
+    ./transparent.nix
     ./ultisnips.nix # move to other snip thing
     ./whichkey.nix
     ./vimrc.nix
