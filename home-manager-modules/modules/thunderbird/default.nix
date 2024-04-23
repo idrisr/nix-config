@@ -1,6 +1,6 @@
 {
   programs.thunderbird = {
-    enable = false;
+    enable = true;
     profiles = { "hippoid" = { isDefault = true; }; };
   };
 }
