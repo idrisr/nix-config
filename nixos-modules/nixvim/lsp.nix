@@ -1,4 +1,4 @@
-{
+{ pkgs, ... }: {
   config.programs.nixvim.plugins = {
     lspsaga = {
       enable = true;
@@ -11,6 +11,7 @@
         nil_ls.enable = true;
         lua-ls.enable = true;
         texlab.enable = true;
+        hls = { enable = true; };
       };
 
       keymaps = {
