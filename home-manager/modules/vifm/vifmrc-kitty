@@ -1,0 +1,26 @@
+" vi: ft=vim
+" https://gist.github.com/ret2src/e0477a56ee272743aea9f47945073dcc
+fileviewer <image/*>
+    \ visualpreview image %pw %ph %px %py %c %N
+    \ %pc
+    \ visualpreview clear
+
+fileviewer <video/*>
+    \ visualpreview video %pw %ph %px %py %c %N
+    \ %pc
+    \ visualpreview clear
+
+fileviewer <font/*>
+    \ visualpreview font %pw %ph %px %py %c %N
+    \ %pc
+    \ visualpreview clear
+
+fileviewer {*.pdf}
+    \ visualpreview pdf %pw %ph %px %py %c %N
+    \ %pc
+    \ visualpreview clear
+
+fileviewer {*.epub,*.mobi,*.azw,*.azw[0-9]},<application/epub+zip>,<application/x-mobipocket-ebook>,<application/vnd.amazon.ebook>
+    \ visualpreview epub %pw %ph %px %py %c %N
+    \ %pc
+    \ visualpreview clear

@@ -3,7 +3,6 @@ let configSubDir = "vifm";
 in {
   config = {
     programs.vifm = {
-
       enable = true;
       marks = {
         b = "~/books";
@@ -47,16 +46,6 @@ in {
         vimhelp = true;
         wildmenu = true;
         wildstyle = "popup";
-      };
-    };
-    xdg.configFile = {
-      "${configSubDir}/scripts/cleaner" = {
-        text = builtins.readFile ./scripts/cleaner;
-        executable = true;
-      };
-      "${configSubDir}/scripts/scope" = {
-        text = builtins.readFile ./scripts/scope;
-        executable = true;
       };
     };
     home.packages = with pkgs; [ libheif ];

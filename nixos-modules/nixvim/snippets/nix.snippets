@@ -1,0 +1,16 @@
+snippet inputs "nix flake-starter" b
+{
+	inputs = {
+		nixpkgs.url = "github:nixos/nixpkgs/23.11";
+		flake-utils.url = "github:numtide/flake-utils";
+	};
+
+	outputs = { nixpkgs, flake-utils, ... }:
+	let
+	  system = flake-utils.lib.system.x86_64-linux;
+	  pkgs = nixpkgs.legacyPackages.${system};
+	  in {
+	  $0
+	  };
+}
+endsnippet

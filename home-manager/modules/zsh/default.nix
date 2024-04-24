@@ -48,9 +48,6 @@
         ll = "ls --color -la";
         l = "ls --color -la";
         ne = "nix-instantiate --eval";
-        #TODO make this vifm/ueberzug thing a package
-        vifm =
-          "/home/hippoid/dotfiles/home-manager-modules/modules/vifm/vifmub";
         v = "nvim";
       };
 

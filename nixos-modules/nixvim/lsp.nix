@@ -8,10 +8,11 @@
     lsp = {
       enable = true;
       servers = {
-        nil_ls.enable = true;
+        bashls.enable = true;
+        hls.enable = true;
         lua-ls.enable = true;
+        nil_ls.enable = true;
         texlab.enable = true;
-        hls = { enable = true; };
       };
 
       keymaps = {

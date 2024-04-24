@@ -3,6 +3,7 @@
   imports = [
     ./base.nix
     ../modules/alacritty
+    ../modules/kitty
     ../modules/ctags
     ../modules/emacs
     ../modules/firefox

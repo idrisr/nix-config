@@ -8,7 +8,7 @@
     ./desktop.nix
     ./monitoring
     ./superdrive.nix
-    ../home-manager-modules
+    ../home-manager
     ./nixvim
     ./reading
     ./nh

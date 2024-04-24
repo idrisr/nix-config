@@ -77,7 +77,7 @@ myMouseBindings (XConfig{XMonad.modMask = modMask}) =
         [((modMask, button1), \_ -> return ())]
 
 myTerminal :: String
-myTerminal = "alacritty --title sh"
+myTerminal = "kitty"
 
 myClickJustFocuses :: Bool
 myClickJustFocuses = False

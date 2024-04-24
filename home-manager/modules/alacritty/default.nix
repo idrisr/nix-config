@@ -1,7 +1,7 @@
 { config, pkgs, ... }: {
   config = {
     programs.alacritty = {
-      enable = true;
+      enable = false;
       settings = {
         colors = with config.colorScheme.palette;
           let f = x: "0x${builtins.substring 0 6 x}";

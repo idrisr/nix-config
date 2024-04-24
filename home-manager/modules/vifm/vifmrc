@@ -1,20 +1,39 @@
+" vi: ft=vim
 if !has('win')
     set slowfs=curlftpfs
 endif
 
-fileviewer */ lsd --tree --depth 2 --almost-all --ignore-glob .git %c
-filextype *.pdf,*.epub zathura %c %i &, apvlv %c, xpdf %c
-
-filextype *mkv,*webm,*mp4,*mov,*avi,*m4v
-        \ haruna %f 2>/dev/null &
-
-fileviewer *
-        \ scope %c %px %py %pw %ph
-        \ %pc
-        \ cleaner
+" https://gist.github.com/ret2src/e0477a56ee272743aea9f47945073dcc
+fileviewer <image/*>
+    \ visualpreview image %pw %ph %px %py %c %N
+    \ %pc
+    \ visualpreview clear
 filextype *.bmp,*.jpg,*.jpeg,*.png,*.gif,*.xpm,*.JPG
         \ {View in sxiv}
         \ sxiv -ia %f &,
+
+fileviewer <video/*>
+    \ visualpreview video %pw %ph %px %py %c %N
+    \ %pc
+    \ visualpreview clear
+filextype *mkv,*webm,*mp4,*mov,*avi,*m4v haruna %f 2>/dev/null &
+
+fileviewer <font/*>
+    \ visualpreview font %pw %ph %px %py %c %N
+    \ %pc
+    \ visualpreview clear
+
+fileviewer {*.pdf}
+    \ visualpreview pdf %pw %ph %px %py %c %N
+    \ %pc
+    \ visualpreview clear
+fileviewer {*.epub,*.mobi,*.azw,*.azw[0-9]},<application/epub+zip>,<application/x-mobipocket-ebook>,<application/vnd.amazon.ebook>
+    \ visualpreview epub %pw %ph %px %py %c %N
+    \ %pc
+    \ visualpreview clear
+filextype *.pdf,*.epub zathura %c %i &, apvlv %c, xpdf %c
+
+fileviewer */ lsd --tree --depth 2 --almost-all --ignore-glob .git %c
 
 " Toggle visibility of preview window
 nnoremap w :view<cr>
@@ -24,22 +43,6 @@ nnoremap ;q :q <CR>
 nnoremap S :sort <CR>
 nnoremap O :!nvim %f<cr> " open file in running nvim instance
 nnoremap bg :!feh --bg-max %f<cr>
-
-command! FZFfind : set quickview
-                \| let $FZF_PICK = term('find | fzf 2>/dev/tty --preview ' . "'" . '/home/hippoid/.config/vifm/scripts/scope {} 96 2 89 54' . "'")
-                \| if $FZF_PICK != ''
-                \|     execute 'goto' fnameescape($FZF_PICK)
-                \| endif
-
-" variation that automatically enters directories
-command! FZFlocate : set quickview
-                  \| let $FZF_PICK = term('find | fzf 2>/dev/tty')
-                  \| if $FZF_PICK != ''
-                  \|     execute system('[ -f "$FZF_PICK" ] && echo goto || echo cd') fnameescape($FZF_PICK)
-                  \| endif
-
-nnoremap <c-g> :FZFlocate<cr>
-nnoremap <c-f> :FZFfind<cr>
 
 " :com[mand][!] command_name action
 " The following macros can be used in a command
