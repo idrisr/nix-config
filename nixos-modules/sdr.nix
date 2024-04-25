@@ -8,9 +8,9 @@
     config.allowUnfreePredicate = pkg:
       builtins.elem (lib.getName pkg) [ "sdrplay" ];
     overlays = [
-      (self: super: {
-        soapysdr-with-plugins = super.soapysdr.override {
-          extraPackages = with super; [ soapyrtlsdr ];
+      (_: prev: {
+        soapysdr-with-plugins = prev.soapysdr.override {
+          extraPackages = with prev; [ soapyrtlsdr ];
         };
       })
     ];

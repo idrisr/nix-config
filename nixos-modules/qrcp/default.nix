@@ -1,13 +1,13 @@
-port: self: super: {
-  qrcp = super.stdenvNoCC.mkDerivation {
+port: _: prev: {
+  qrcp = prev.stdenvNoCC.mkDerivation {
     pname = "qrcp";
     name = "qrcp";
     dontUnpack = true;
-    nativeBuildInputs = [ super.makeWrapper ];
+    nativeBuildInputs = [ prev.makeWrapper ];
 
     installPhase = ''
       mkdir -p "$out/bin"
-      cp ${super.qrcp}/bin/qrcp $out/bin/
+      cp ${prev.qrcp}/bin/qrcp $out/bin/
       wrapProgram $out/bin/qrcp --add-flags "--port ${port}"
     '';
   };

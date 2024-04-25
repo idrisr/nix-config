@@ -4,6 +4,7 @@
     nixos-hardware.url = "github:nixos/nixos-hardware";
     flake-utils.url = "github:numtide/flake-utils";
     nix-colors.url = "github:misterio77/nix-colors";
+    pre-commit-hooks.url = "github:cachix/pre-commit-hooks.nix";
     knotools.url =
       "github:idrisr/knotools/6eebffaf8e43aea9e33c73e3bcb70815e3e783d8";
     disko = {
@@ -20,6 +21,7 @@
     };
     # zettel.url = "github:idrisr/zettel";
     zettel.url = "path:/home/hippoid/fun/zettel";
+    visualpreview.url = "path:/home/hippoid/fun/visualpreview";
   };
 
   outputs = inputs@{ nixpkgs, flake-utils, ... }:
@@ -34,8 +36,8 @@
     in {
       nixosConfigurations = { # todo use a fmap
         # air = makeMachine "air";
-        fft = makeMachine "fft";
         # framework = makeMachine "framework";
+        fft = makeMachine "fft";
         surface = makeMachine "surface";
       };
 
@@ -50,6 +52,16 @@
               nodePackages.vim-language-server
             ];
           };
+      };
+
+      checks.${system} = {
+        pre-commit-check = inputs.pre-commit-hooks.lib.${system}.run {
+          src = ./.;
+          hooks = {
+            nixfmt.enable = true;
+            deadnix.enable = true;
+          };
+        };
       };
     };
 }
