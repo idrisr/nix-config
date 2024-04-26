@@ -24,6 +24,15 @@ in {
         '';
       };
 
+      viewer = mkOption {
+        type = types.derivation;
+        # type = types.package;
+        default = null;
+        description = ''
+          attribute set of anything
+        '';
+      };
+
       opts = mkOption {
         type = with types; attrs;
         default = { };
@@ -41,10 +50,10 @@ in {
         type = types.str;
         default = "";
         example = ''
-          yo extra config
+          nnoremap w :view<cr>
         '';
         description = ''
-          extra config
+          extra config to add to vifmrc
         '';
       };
     };

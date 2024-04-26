@@ -53,10 +53,6 @@
 
       initExtra =
         builtins.concatStringsSep "\n" [ ''eval "$(direnv hook zsh)"'' ];
-
-      envExtra = ''
-        export VIFM="/home/hippoid/.config/vifm";
-      '';
     };
   };
 }

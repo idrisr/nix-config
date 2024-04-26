@@ -1,8 +1,11 @@
-{ pkgs, lib, ... }:
-let configSubDir = "vifm";
-in {
+{ pkgs, lib, ... }: {
   config = {
     programs.vifm = {
+      viewer = pkgs.writeShellApplication {
+        name = "YO";
+        runtimeInputs = [ ];
+        text = "";
+      };
       enable = true;
       marks = {
         b = "~/books";
@@ -34,7 +37,6 @@ in {
         scrolloff = 4;
         smartcase = true;
         sortnumbers = true;
-        # statusline = ''"  Hint: %z%= %A %10u:%-7g %15s %20d  "'';
         statusline =
           ''"%1* %-10t %2* owner:%u:%-7g %5* size:%s %N %3* attr:%A 4* %20d "'';
         suggestoptions = "normal,visual,view,otherpane,keys,marks,registers";
