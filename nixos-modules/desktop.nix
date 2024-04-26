@@ -68,6 +68,7 @@ in {
         libsForQt5.qt5.qtgraphicaleffects
         sddm-chili-theme
         feh
+        devenv
       ];
     };
   };

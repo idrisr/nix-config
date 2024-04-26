@@ -27,11 +27,49 @@
   outputs = inputs@{ nixpkgs, flake-utils, ... }:
     let
       system = flake-utils.lib.system.x86_64-linux;
-      pkgs = import nixpkgs { inherit system; };
+      pkgs = nixpkgs.legacyPackages.${system};
       makeMachine = host:
         nixpkgs.lib.nixosSystem {
+          modules = [
+            ./hosts/${host}
+            ./nixos-modules
+            {
+              config.nixpkgs = let
+                ol = with inputs.knotools.overlays; [
+                  awscost
+                  booknote
+                  epubthumb
+                  mdtopdf
+                  newcover
+                  pdftc
+                  roamamer
+                  seder
+                  transcribe
+                ];
+                ol2 = [
+                  (import ./nixos-modules/qrcp "6969")
+                  (import ./nixos-modules/xournal)
+                  (import ./nixos-modules/tikzit)
+                ];
+              in {
+                hostPlatform = pkgs.lib.mkDefault "x86_64-linux";
+                overlays = ol ++ ol2 ++ [ inputs.zettel.overlays.zettel ];
+                config = {
+                  allowUnfreePredicate = pkg:
+                    builtins.elem
+                    (nixpkgs.legacyPackages.${system}.lib.getName pkg) [
+                      "broadcom-sta"
+                      "discord"
+                      "gitkraken"
+                      "lastpass-cli"
+                      "mathpix-snipping-tool-03.00.0072"
+                      "makemkv"
+                    ];
+                };
+              };
+            }
+          ];
           specialArgs = { inherit inputs; };
-          modules = [ ./hosts/${host} ./nixos-modules ];
         };
     in {
       nixosConfigurations = { # todo use a fmap
@@ -39,16 +77,17 @@
         # framework = makeMachine "framework";
         fft = makeMachine "fft";
         surface = makeMachine "surface";
+        hostPlatform = pkgs.lib.mkDefault "x86_64-linux";
       };
 
       devShells.${system} = {
         default = with pkgs;
           mkShell {
             buildInputs = [
-              # ghcid
-              # (ghc.withPackages (p: with p; [ xmonad xmonad-extras dbus ]))
-              # haskell-language-server
-              # luajitPackages.lua-lsp
+              ghcid
+              (ghc.withPackages (p: with p; [ xmonad xmonad-extras dbus ]))
+              haskell-language-server
+              luajitPackages.lua-lsp
               nodePackages.vim-language-server
             ];
           };

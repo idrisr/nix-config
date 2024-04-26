@@ -14,7 +14,6 @@ with pkgs; [
   booknote
   bpftrace
   brave
-  briss
   calibre
   copyq
   cryptsetup
