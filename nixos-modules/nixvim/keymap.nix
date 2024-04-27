@@ -1,6 +1,11 @@
 {
   config = {
     programs.nixvim = {
+      autoCmd = [{
+        event = [ "BufEnter" ];
+        pattern = [ "*.tex" ];
+        command = ":setlocal textwidth=0";
+      }];
       keymaps = [
         {
           key = "<C-Up>";

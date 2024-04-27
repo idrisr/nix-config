@@ -5,14 +5,13 @@ let g:ale_linters_explicit = 1
 let g:ale_fix_on_save = 1
 
 let g:ale_linters = {
-\   'ansible': ['ansible-lint'],
 \   'c': ['clangtidy'],
 \   'css': ['csslint'],
-\   'Dockerfile': ['hadolint'],
 \   'html': ['tidy'],
 \   'markdown': ['markdownlint'],
 \   'json': ['jq'],
 \   'sh': ['shellcheck'],
+\   'tex': ['chktex'],
 \   'yaml': ['yamllint'],
 \}
 
@@ -25,9 +24,10 @@ let g:ale_fixers = {
 \   'lua': ['stylua'] + s:default,
 \   'json': ['jq'],
 \   'pdf': [],
-\   'sh': ['shfmt'] + s:default,
+\   'sh': ['shfmt', 'beautysh'] + s:default,
 \   'sql': ['sqlformat'],
 \   'terraform': ['terraform'] + s:default,
+\   'tex': ['latexindent'] + s:default,
 \   'tf': ['terraform'] + s:default,
 \   'text': [],
 \   'yaml': ['yamlfix'],
@@ -35,5 +35,4 @@ let g:ale_fixers = {
 \}
 
 let g:ale_sql_sqlformat_options='--wrap_after 80 -k upper -r -s'
-let g:ale_dockerfile_hadolint_use_docker='never'
 let g:ale_disable_lsp=1
