@@ -31,9 +31,7 @@ with pkgs; [
   efibootmgr
   electrum
   epr
-  epubthumb
   ffmpeg
-  ffmpegthumbnailer
   fontpreview
   foremost
   gallery-dl
@@ -122,7 +120,6 @@ with pkgs; [
   tlp
   traceroute
   transcribe
-  ueberzugpp
   unetbootin
   unoconv
   unzip
