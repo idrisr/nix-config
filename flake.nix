@@ -5,8 +5,11 @@
     flake-utils.url = "github:numtide/flake-utils";
     nix-colors.url = "github:misterio77/nix-colors";
     pre-commit-hooks.url = "github:cachix/pre-commit-hooks.nix";
-    knotools.url =
-      "github:idrisr/knotools/6eebffaf8e43aea9e33c73e3bcb70815e3e783d8";
+    devenv.url = "github:cachix/devenv";
+    knotools = {
+      url = "github:idrisr/knotools";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
     disko = {
       url = "github:nix-community/disko";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -35,17 +38,7 @@
             ./nixos-modules
             {
               config.nixpkgs = let
-                ol = with inputs.knotools.overlays; [
-                  awscost
-                  booknote
-                  epubthumb
-                  mdtopdf
-                  newcover
-                  pdftc
-                  roamamer
-                  seder
-                  transcribe
-                ];
+                ol = [ inputs.knotools.overlays.all ];
                 ol2 = [
                   (import ./nixos-modules/qrcp "6969")
                   (import ./nixos-modules/xournal)
@@ -60,9 +53,8 @@
                     (nixpkgs.legacyPackages.${system}.lib.getName pkg) [
                       "broadcom-sta"
                       "discord"
-                      "gitkraken"
                       "lastpass-cli"
-                      "mathpix-snipping-tool-03.00.0072"
+                      "mathpix-snipping-tool"
                       "makemkv"
                     ];
                 };
@@ -71,35 +63,31 @@
           ];
           specialArgs = { inherit inputs; };
         };
+      hooks = {
+        nixfmt.enable = true;
+        deadnix.enable = true;
+        beautysh.enable = true;
+      };
     in {
       nixosConfigurations = { # todo use a fmap
         # air = makeMachine "air";
         # framework = makeMachine "framework";
         fft = makeMachine "fft";
         surface = makeMachine "surface";
-        hostPlatform = pkgs.lib.mkDefault "x86_64-linux";
       };
 
-      devShells.${system} = {
-        default = with pkgs;
-          mkShell {
-            buildInputs = [
-              ghcid
-              (ghc.withPackages (p: with p; [ xmonad xmonad-extras dbus ]))
-              haskell-language-server
-              luajitPackages.lua-lsp
-              nodePackages.vim-language-server
-            ];
-          };
+      devShells.${system} = let pkgs = nixpkgs.legacyPackages.${system};
+      in {
+        default = inputs.devenv.lib.mkShell {
+          inherit inputs pkgs;
+          modules = [{ pre-commit.hooks = hooks; }];
+        };
       };
 
       checks.${system} = {
         pre-commit-check = inputs.pre-commit-hooks.lib.${system}.run {
           src = ./.;
-          hooks = {
-            nixfmt.enable = true;
-            deadnix.enable = true;
-          };
+          inherit hooks;
         };
       };
     };

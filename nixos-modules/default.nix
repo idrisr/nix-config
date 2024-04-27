@@ -12,6 +12,8 @@
     ./nixvim
     ./reading
     ./nh
+    ./docker
+    ./nvidia
     inputs.nixvim.nixosModules.nixvim
     inputs.disko.nixosModules.default
     inputs.home-manager.nixosModules.home-manager
