@@ -5,8 +5,29 @@
         event = [ "BufEnter" ];
         pattern = [ "*.tex" ];
         command = ":setlocal textwidth=0";
-      }];
+      }
+
+        ];
       keymaps = [
+        # move to filetype only for zettel
+        {
+          key = "<leader>k";
+          action = ":LinksOut<cr>";
+          mode = "n";
+          options = {
+            desc = "zettel out links";
+            silent = true;
+          };
+        }
+        {
+          key = "<leader>K";
+          action = ":LinksIn<cr>";
+          mode = "n";
+          options = {
+            desc = "zettel in links";
+            silent = true;
+          };
+        }
         {
           key = "<C-Up>";
           action = ":resize +2<CR>";

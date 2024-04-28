@@ -11,10 +11,6 @@ vim.api.nvim_set_keymap('n', '<leader>d', ':Windows<CR>', { silent = true })
 vim.api.nvim_set_keymap('n', '<leader>r', ':Rg<CR>', { silent = true })
 vim.api.nvim_set_keymap('n', '<leader>t', ':Tg<CR>', { silent = true })
 
--- set only for zettel files
-vim.api.nvim_set_keymap('n', '<leader>k', ':LinksOut<CR>', { silent = true })
-vim.api.nvim_set_keymap('n', '<leader>K', ':LinksIn<CR>', { silent = true })
-
 vim.g.fzf_buffers_jump = 0
 vim.g.fzf_tags_command = 'ctags -R'
 
