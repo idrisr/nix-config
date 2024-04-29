@@ -21,11 +21,6 @@
         action = ":tab Git log --follow -p %<cr>";
         mode = "n";
       }
-      {
-        key = "<leader>f";
-        action = '':Git show --follow --pretty=" " --name-only <cword><cr>'';
-        mode = "n";
-      }
     ];
   };
 }
