@@ -20,7 +20,7 @@
       formattersByFt = {
         tex = [ "latexindent" ];
         nix = [ "nixfmt" ];
-        "*" = [ "trim_whitespace" "codespell" ];
+        "*" = [ "trim_newlines" "trim_whitespace" "codespell" ];
       };
     };
   };

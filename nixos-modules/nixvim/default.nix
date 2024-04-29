@@ -34,7 +34,6 @@ in {
 
     colorschemes.gruvbox.enable = true;
     extraPlugins = with pkgs.vimPlugins; [
-      # ale
       fzf-vim # switch to fzf-lua?
       pkgs.zettel # option or module in flake with other packages
       nvim-lspconfig
@@ -43,7 +42,7 @@ in {
     # should be an option declared as a list
     # then merged together
     # so everything can live in the right file
-    extraConfigVim = concatFiles [ ./ale.vim ./vimrc ./fzf.vim ];
+    extraConfigVim = concatFiles [ ./vimrc ./fzf.vim ];
     extraConfigLua = concatFiles [ ./fzf.lua ./surround.lua ./cmp.lua ];
   };
 }

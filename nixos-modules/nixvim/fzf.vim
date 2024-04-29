@@ -1,8 +1,8 @@
-nnoremap <leader>g  :set operatorfunc=<SID>GrepOperator<cr>g@
-nnoremap <leader>gt :set operatorfunc=<SID>GrepOperator<cr>g@i[
-vnoremap <leader>g :<c-u>call <SID>GrepOperator(visualmode())<cr>
+nnoremap <leader>g  :set operatorfunc=GrepOperator<cr>g@
+nnoremap <leader>gt :set operatorfunc=GrepOperator<cr>g@i[
+vnoremap <leader>g :<c-u>call GrepOperator(visualmode())<cr>
 
-function! s:GrepOperator(type)
+function! g:GrepOperator(type)
     let saved_unnamed_register = @@
     if a:type ==# 'v'
         normal! `<v`>y

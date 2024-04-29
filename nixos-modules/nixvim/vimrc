@@ -22,7 +22,5 @@ nnoremap M :call Goto()<cr>
 " insert title for notes file
 nnoremap <leader>T ggI<cr><cr><esc>ggI---<esc>otitle: <c-r>%<esc>xxxo---<esc>jj
 
-set listchars=trail:_
-
 " https://vi.stackexchange.com/questions/29301/xelatex-as-default-latex-engine
 let g:vimtex_compiler_latexmk_engines = { '_': '-lualatex' }
