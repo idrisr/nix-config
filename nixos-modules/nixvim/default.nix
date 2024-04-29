@@ -9,21 +9,22 @@ let
 in {
   imports = [
     ./align.nix
+    ./cmp.nix
     ./comment.nix
+    ./conform.nix
     ./fugitive.nix
     ./keymap.nix
     ./latex.nix
     ./lsp.nix
     ./neo-tree.nix
-    ./cmp.nix
     ./oil.nix
     ./ollama.nix
     ./surround.nix
     ./telescope.nix
     ./transparent.nix
     ./ultisnips.nix # move to other snip thing
-    ./whichkey.nix
     ./vimrc.nix
+    ./whichkey.nix
   ];
 
   config.programs.nixvim = {
@@ -33,7 +34,7 @@ in {
 
     colorschemes.gruvbox.enable = true;
     extraPlugins = with pkgs.vimPlugins; [
-      ale
+      # ale
       fzf-vim # switch to fzf-lua?
       pkgs.zettel # option or module in flake with other packages
       nvim-lspconfig
@@ -42,7 +43,7 @@ in {
     # should be an option declared as a list
     # then merged together
     # so everything can live in the right file
-    extraConfigVim = concatFiles [ ./vimrc ./ale.vim ./fzf.vim ];
+    extraConfigVim = concatFiles [ ./ale.vim ./vimrc ./fzf.vim ];
     extraConfigLua = concatFiles [ ./fzf.lua ./surround.lua ./cmp.lua ];
   };
 }
