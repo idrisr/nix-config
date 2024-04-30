@@ -14,6 +14,9 @@
     ./nh
     ./docker
     ./nvidia
+    ./sdr
+    ./home-assistant
+    ./ollama
     inputs.nixvim.nixosModules.nixvim
     inputs.disko.nixosModules.default
     inputs.home-manager.nixosModules.home-manager
