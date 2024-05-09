@@ -1,4 +1,4 @@
-{ config, lib, modulesPath, inputs, ... }:
+{ config, lib, modulesPath, ... }:
 
 {
   imports =
@@ -51,10 +51,7 @@
       adblocker.enable = true;
     };
 
-    nixpkgs = {
-      hostPlatform = lib.mkDefault "x86_64-linux";
-      overlays = [ inputs.zettel.overlays.zettel ];
-    };
+    nixpkgs = { hostPlatform = lib.mkDefault "x86_64-linux"; };
     hardware = {
       superdrive.enable = true;
       cpu.amd.updateMicrocode =

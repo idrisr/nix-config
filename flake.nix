@@ -22,8 +22,6 @@
       url = "github:nix-community/nixvim";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    # zettel.url = "github:idrisr/zettel";
-    zettel.url = "path:/home/hippoid/fun/zettel";
     visualpreview.url = "path:/home/hippoid/fun/visualpreview";
   };
 
@@ -46,7 +44,8 @@
                 ];
               in {
                 hostPlatform = pkgs.lib.mkDefault "x86_64-linux";
-                overlays = ol ++ ol2 ++ [ inputs.zettel.overlays.zettel ];
+                overlays = ol ++ ol2
+                  ++ [ inputs.visualpreview.overlays.visualpreview ];
                 config = {
                   allowUnfreePredicate = pkg:
                     builtins.elem
@@ -56,6 +55,7 @@
                       "lastpass-cli"
                       "mathpix-snipping-tool"
                       "makemkv"
+                      "obsidian"
                     ];
                 };
               };
@@ -64,9 +64,9 @@
           specialArgs = { inherit inputs; };
         };
       hooks = {
-        nixfmt.enable = true;
-        deadnix.enable = true;
         beautysh.enable = true;
+        deadnix.enable = true;
+        nixfmt.enable = true;
       };
     in {
       nixosConfigurations = { # todo use a fmap
@@ -86,8 +86,8 @@
 
       checks.${system} = {
         pre-commit-check = inputs.pre-commit-hooks.lib.${system}.run {
-          src = ./.;
           inherit hooks;
+          src = ./.;
         };
       };
     };

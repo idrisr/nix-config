@@ -2,27 +2,23 @@
   config.programs.nixvim = {
     plugins.gitsigns.enable = true;
     plugins.fugitive.enable = true;
-    userCommands = {
-      "Gb" = {
-        bang = true;
-        command = "Git blame --date relative";
-        desc = "Show git history with relative dates";
-      };
-    };
-    # " command! Gb Git blame --date=relative
     keymaps = [
       {
-        key = "<leader>l";
+        key = "<leader>gl";
         action = '':Git log --relative --pretty=format:"%h %as %ar %s" %<cr>'';
         mode = "n";
       }
       {
-        key = "<leader>L";
+        key = "<leader>gB";
+        action = ":Git blame --date relative %<cr>";
+        mode = "n";
+        options = { desc = "Show git history with relative dates"; };
+      }
+      {
+        key = "<leader>gL";
         action = ":tab Git log --follow -p %<cr>";
         mode = "n";
       }
     ];
   };
 }
-
-# autocmd! User FugitiveCommit execute 'Git log -n1 --stat ' . expand('%:t')

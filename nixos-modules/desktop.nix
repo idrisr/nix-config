@@ -57,7 +57,11 @@ in {
     };
 
     nixpkgs.config.allowUnfreePredicate = pkg:
-      builtins.elem (pkgs.lib.getName pkg) [ "tesseract5" "transcribe" ];
+      builtins.elem (pkgs.lib.getName pkg) [
+        "tesseract5"
+        "transcribe"
+        "obsidian"
+      ];
 
     environment = {
       sessionVariables = {

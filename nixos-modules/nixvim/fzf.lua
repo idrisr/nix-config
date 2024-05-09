@@ -1,7 +1,6 @@
 -- init.lua (or any Lua script name of your choice)
 
 -- Set the fzf.vim configuration options
-vim.g.fzf_layout = { window = { width = 0.95, height = 0.95 } }
 -- vim.g.fzf_preview_window = { 'top,70%', 'ctrl-/' }
 
 vim.api.nvim_set_keymap('n', '<leader>z', ':GFiles<CR>', { silent = true })
@@ -46,7 +45,7 @@ vim.g.fzf_action = {
   ['ctrl-b'] = ':bd',
 }
 
-commands = {'--bind ctrl-a:select-all';
+vim.g.fzf_commands = {'--bind ctrl-a:select-all';
 '--bind ctrl-u:page-up';
 '--bind ctrl-d:page-down';
 '--bind ctrl-alt-u:preview-page-up';

@@ -1,7 +1,9 @@
 pkgs:
 with pkgs; [
 
+  obsidian
   abcde
+  stylua
   alsa-utils
   ansifilter
   arandr

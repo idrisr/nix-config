@@ -1,13 +1,5 @@
 {
   config.programs.nixvim.plugins = {
-    lspsaga = {
-      enable = true;
-      outline.winWidth = 40;
-      lightbulb = {
-        sign = false;
-        enable = false;
-      };
-    };
     lsp = {
       enable = true;
       servers = {

@@ -1,6 +1,15 @@
 { pkgs, ... }:
 let
-  # maybe use concatTextFile
+  vimkind = pkgs.vimUtils.buildVimPlugin {
+    pname = "one-small-step-for-vimkind";
+    version = "2023-06-30";
+    src = pkgs.fetchFromGitHub {
+      repo = "one-small-step-for-vimkind";
+      owner = "jbyuki";
+      rev = "0dd306e68bf79b38cc01b15c22047e6a867df7de";
+      sha256 = "sha256-G5soAD3+z7BOxMaZVLPBEHxNa2H3Jp+dqDwQDMAlx2k=";
+    };
+  };
   concatFiles = files:
     let
       j = map builtins.readFile files;
@@ -9,16 +18,21 @@ let
 in {
   imports = [
     ./align.nix
+    ./alpha.nix
     ./cmp.nix
     ./comment.nix
     ./conform.nix
+    ./dap.nix
     ./fugitive.nix
+    ./fzf.nix
     ./keymap.nix
     ./latex.nix
     ./lsp.nix
     ./neo-tree.nix
+    ./obsidian.nix
     ./oil.nix
     ./ollama.nix
+    ./persistence.nix
     ./surround.nix
     ./telescope.nix
     ./transparent.nix
@@ -28,21 +42,18 @@ in {
   ];
 
   config.programs.nixvim = {
+    plugins.notify.enable = true;
     enable = true;
     viAlias = true;
     vimAlias = true;
-
     colorschemes.gruvbox.enable = true;
+
     extraPlugins = with pkgs.vimPlugins; [
       fzf-vim # switch to fzf-lua?
-      pkgs.zettel # option or module in flake with other packages
-      nvim-lspconfig
+      nvim-dap-ui
+      vimkind
     ];
-
-    # should be an option declared as a list
-    # then merged together
-    # so everything can live in the right file
-    extraConfigVim = concatFiles [ ./vimrc ./fzf.vim ];
-    extraConfigLua = concatFiles [ ./fzf.lua ./surround.lua ./cmp.lua ];
+    extraConfigVim = concatFiles [ ./vimrc ];
+    extraConfigLua = concatFiles [ ./cmp.lua ./surround.lua ./vimkind.lua ];
   };
 }

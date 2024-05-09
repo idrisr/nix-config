@@ -1,35 +1,66 @@
 {
   config.programs.nixvim = {
-    keymaps = [
-      {
-        key = "<leader>z";
-        action = ":Telescope git_files<cr>";
-        mode = "n";
-      }
-      {
-        key = "<leader>x";
-        action = ":Telescope find_files<cr>";
-        mode = "n";
-      }
-      {
-        key = "<leader>b";
-        action = ":Telescope buffers<cr>";
-        mode = "n";
-      }
-    ];
+    plugins.treesitter.enable = true;
     plugins.telescope = {
+      extensions = {
+        media-files.enable = true;
+        ui-select.enable = true;
+        file-browser.enable = true;
+      };
       enable = true;
+      keymaps = {
+        "<leader>tx" = {
+          action = "find_files";
+          options = {
+            desc = "tele files";
+            silent = true;
+          };
+          mode = "n";
+        };
+        "<leader>tz" = {
+          action = "git_files";
+          options = {
+            desc = "tele git files";
+            silent = true;
+          };
+          mode = "n";
+        };
+        "<leader>tb" = {
+          action = "buffers";
+          options = {
+            desc = "tele buffers";
+            silent = true;
+          };
+          mode = "n";
+        };
+        "<leader>tg" = {
+          action = "grep_string";
+          options = {
+            desc = "tele grep current word";
+            silent = true;
+          };
+          mode = "n";
+        };
+        "<leader>tr" = {
+          action = "live_grep";
+          options = {
+            desc = "tele grep current word";
+            silent = true;
+          };
+          mode = "n";
+        };
+      };
+
       settings = {
         defaults = {
-          file_ignore_patterns = [
-            "^.git/"
-            "^.mypy_cache/"
-            "^__pycache__/"
-            "^output/"
-            "^data/"
-            "%.ipynb"
-          ];
-          # layout_config = { prompt_position = "top"; };
+          file_ignore_patterns = [ "^.git/" ];
+          layout_config = {
+            prompt_position = "bottom";
+            horizontal = {
+              width = 0.98;
+              height = 0.98;
+            };
+          };
           mappings = {
             i = {
               "<c-j>" = {
@@ -43,6 +74,5 @@
         };
       };
     };
-    plugins.treesitter = { enable = true; };
   };
 }

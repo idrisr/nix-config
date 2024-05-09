@@ -50,6 +50,6 @@
         wildstyle = "popup";
       };
     };
-    home.packages = with pkgs; [ libheif ];
+    home.packages = with pkgs; [ visualpreview libheif ];
   };
 }

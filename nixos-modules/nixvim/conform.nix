@@ -20,6 +20,9 @@
       formattersByFt = {
         tex = [ "latexindent" ];
         nix = [ "nixfmt" ];
+        lua = [ "stylua" ];
+        bib = [ "bibtex-tidy" ];
+        terraform = [ "terraform_fmt" ];
         "*" = [ "trim_newlines" "trim_whitespace" "codespell" ];
       };
     };
