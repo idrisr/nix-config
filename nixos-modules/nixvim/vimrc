@@ -1,30 +1,7 @@
 " " insert title for notes file
 nnoremap <leader>T ggI<cr><cr><esc>ggI---<esc>otitle: <c-r>%<esc>xxxo---<esc>jj
 
-" vim.api.key.bind("n", "<leader>T", function()
-  " vim.cmd("normal ggI<cr><cr><esc>") -- Move to end, insert empty lines
-  " vim.cmd("normal A---<esc>") -- Append dashes at the end
-  " vim.cmd("normal ggI") -- Move to beginning, enter insert mode
-  " vim.cmd("normal otitle: " .. vim.fn.expand("%:p") .. "<esc>") -- Insert title with filename
-  " vim.cmd("normal xxxo---<esc>") -- Move right, insert dashes at the end
-  " vim.cmd("normal jj") -- Move down two lines
-" end)
-
 " https://vi.stackexchange.com/questions/29301/xelatex-as-default-latex-engine
 let g:vimtex_compiler_latexmk_engines = { '_': '-lualatex' }
 
 nnoremap <leader>gt :set operatorfunc=GrepOperator<cr>g@i[
-
-function! g:GrepOperator(type)
-    let saved_unnamed_register = @@
-    if a:type ==# 'v'
-        normal! `<v`>y
-    elseif a:type ==# 'char'
-        normal! `[v`]y
-    else
-        return
-    endif
-
-    silent execute "Rg " . @@
-    let @@ = saved_unnamed_register
-endfunction

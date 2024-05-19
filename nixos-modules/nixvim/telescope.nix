@@ -9,6 +9,7 @@
       };
       enable = true;
       keymaps = {
+
         "<leader>tx" = {
           action = "find_files";
           options = {
@@ -17,6 +18,7 @@
           };
           mode = "n";
         };
+
         "<leader>tz" = {
           action = "git_files";
           options = {
@@ -25,6 +27,7 @@
           };
           mode = "n";
         };
+
         "<leader>tb" = {
           action = "buffers";
           options = {
@@ -33,6 +36,7 @@
           };
           mode = "n";
         };
+
         "<leader>tg" = {
           action = "grep_string";
           options = {
@@ -41,10 +45,11 @@
           };
           mode = "n";
         };
+
         "<leader>tr" = {
           action = "live_grep";
           options = {
-            desc = "tele grep current word";
+            desc = "tele grep live word";
             silent = true;
           };
           mode = "n";

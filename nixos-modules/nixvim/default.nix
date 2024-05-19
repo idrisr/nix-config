@@ -29,12 +29,14 @@ in {
     ./latex.nix
     ./lsp.nix
     ./neo-tree.nix
+    ./notify.nix
     ./obsidian.nix
     ./oil.nix
     ./ollama.nix
     ./persistence.nix
     ./surround.nix
     ./telescope.nix
+    ./toggleterm.nix
     ./transparent.nix
     ./ultisnips.nix # move to other snip thing
     ./vimrc.nix
@@ -42,7 +44,6 @@ in {
   ];
 
   config.programs.nixvim = {
-    plugins.notify.enable = true;
     enable = true;
     viAlias = true;
     vimAlias = true;
@@ -52,8 +53,16 @@ in {
       fzf-vim # switch to fzf-lua?
       nvim-dap-ui
       vimkind
+      pkgs.zettel
+      telescope_hoogle
     ];
     extraConfigVim = concatFiles [ ./vimrc ];
-    extraConfigLua = concatFiles [ ./cmp.lua ./surround.lua ./vimkind.lua ];
+    extraConfigLua = concatFiles [
+      ./init.lua
+      ./cmp.lua
+      ./surround.lua
+      ./vimkind.lua
+      ./lua-plugin/telescope.lua
+    ];
   };
 }

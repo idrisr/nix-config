@@ -30,7 +30,7 @@
         };
       }
       {
-        key = "<leader>od";
+        key = "<leader>O";
         action = ":ObsidianToday<cr>";
         mode = "n";
         options = {
@@ -44,6 +44,15 @@
         mode = "n";
         options = {
           desc = "obsidian tomorrow";
+          silent = false;
+        };
+      }
+      {
+        key = "<leader>ody";
+        action = ":ObsidianYesterday<cr>";
+        mode = "n";
+        options = {
+          desc = "obsidian yesterday";
           silent = false;
         };
       }

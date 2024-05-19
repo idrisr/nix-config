@@ -17,12 +17,22 @@
     conform-nvim = {
       enable = true;
       formatAfterSave = "true";
+      notifyOnError = true;
+      extraOptions = {
+        quiet = false;
+        async = true;
+      };
       formattersByFt = {
-        tex = [ "latexindent" ];
-        nix = [ "nixfmt" ];
-        lua = [ "stylua" ];
         bib = [ "bibtex-tidy" ];
+        cabal = [ "cabal_fmt" ];
+        haskell = [ "fourmolu" ];
+        html = [ "htmlbeautifier" ];
+        javascript = [ "prettierd" ];
+        json = [ "fixjson" ];
+        lua = [ "stylua" ];
+        nix = [ "nixfmt" ];
         terraform = [ "terraform_fmt" ];
+        tex = [ "latexindent" ];
         "*" = [ "trim_newlines" "trim_whitespace" "codespell" ];
       };
     };
