@@ -22,7 +22,11 @@
       url = "github:nix-community/nixvim";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    # zettel.url = "github:idrisr/zettel";
+    zettel.url = "path:/home/hippoid/fun/zettel";
     visualpreview.url = "path:/home/hippoid/fun/visualpreview";
+    mods.url = "path:/home/hippoid/fun/mods";
+    slide2text.url = "github:idrisr/slide2text";
   };
 
   outputs = inputs@{ nixpkgs, flake-utils, ... }:
@@ -44,8 +48,12 @@
                 ];
               in {
                 hostPlatform = pkgs.lib.mkDefault "x86_64-linux";
-                overlays = ol ++ ol2
-                  ++ [ inputs.visualpreview.overlays.visualpreview ];
+                overlays = ol ++ ol2 ++ [
+                  inputs.zettel.overlays.zettel
+                  inputs.visualpreview.overlays.visualpreview
+                  inputs.mods.overlays.mods
+                  inputs.slide2text.overlays.slide2text
+                ];
                 config = {
                   allowUnfreePredicate = pkg:
                     builtins.elem
