@@ -11,7 +11,6 @@ with pkgs; [
   monaspace
   ncdu
   nix-derivation
-  nodejs # for vim things
   ntfs3g
   pipe-rename
   pstree
