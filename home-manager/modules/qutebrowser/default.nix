@@ -13,12 +13,11 @@
 
         completion.web_history.max_items = 10000;
         completion.cmd_history_max_items = 10000;
-
         auto_save.session = true;
+        search = { ignore_case = "never"; };
 
         content = {
-          javascript = { enabled = true; };
-
+          javascript.enabled = true;
           autoplay = false;
           canvas_reading = false;
           geolocation = false;
@@ -42,6 +41,8 @@
         amz = "https://www.amazon.com/s?k={}&i=stripbooks";
         cpl = "https://chipublib.bibliocommons.com/v2/search?query={}";
         ho = "https://hoogle.haskell.org/?hoogle={}";
+        lo = "http://localhost:8080/?hoogle={}";
+        loe = "http://localhost:8080/?hoogle={}%20is%3Aexact";
         hoe = "https://hoogle.haskell.org/?hoogle={}%20is%3Aexact";
         hm =
           "https://home-manager-options.extranix.com/?query={}&release=master";

@@ -1,7 +1,10 @@
 pkgs:
 with pkgs; [
 
+  slide2text
+  mods
   obsidian
+  git-crypt
   abcde
   stylua
   alsa-utils
@@ -104,7 +107,6 @@ with pkgs; [
   qpdf
   qrcp
   rlwrap
-  roamamer
   rofi-power-menu
   seder
   shellharden

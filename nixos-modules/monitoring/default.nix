@@ -1,9 +1,9 @@
 { config, lib, ... }:
 
+# https://github.com/starcraft66/nix-dotnet-aspire-dashboard
 with lib;
 let cfg = config.monitoring;
 in {
-
   options = {
     monitoring = {
       enable = mkOption {
@@ -15,7 +15,6 @@ in {
       };
     };
   };
-
   config = mkIf cfg.enable {
     services = {
       cockpit = {
