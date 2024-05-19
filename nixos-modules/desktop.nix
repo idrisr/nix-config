@@ -23,6 +23,13 @@ in {
           theme = "chili";
         };
       };
+      libinput = {
+        enable = true;
+        touchpad = {
+          disableWhileTyping = true;
+          naturalScrolling = true;
+        };
+      };
       xserver = {
         enable = true;
         windowManager = {
@@ -40,13 +47,6 @@ in {
           };
         };
         dpi = 267;
-        libinput = {
-          enable = true;
-          touchpad = {
-            disableWhileTyping = true;
-            naturalScrolling = true;
-          };
-        };
         xkb = {
           options = "caps:escape";
           layout = "us";
