@@ -136,7 +136,7 @@ myKeys conf@(XConfig{XMonad.modMask = modm}) =
         , ((modm, xK_l), sendMessage Expand)
         , ((modm .|. shiftMask, xK_t), sendMessage ToggleStruts)
         , ((modm, xK_t), withFocused $ windows . W.sink)
-        , ((modm, xK_q), spawn "xmonad --recompile; xmonad --restart")
+        , ((modm .|. shiftMask, xK_q), spawn "xmonad --recompile; xmonad --restart")
         , ((modm .|. shiftMask, xK_n), withFocused toggleBorder)
         , ((modm .|. shiftMask, xK_f), sendMessage $ Toggle FULL)
         , ((modm, xK_w), nextScreen)
