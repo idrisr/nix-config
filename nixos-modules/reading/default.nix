@@ -12,8 +12,10 @@ in {
   config = lib.mkIf cfg.enable {
     environment = {
       systemPackages = with pkgs; [
-        (callPackage ./desktop-item.nix { })
-        (callPackage ./rofi-launcher.nix { })
+        papers
+        papersDesktopItem
+        books
+        booksDesktopItem
       ];
     };
   };
