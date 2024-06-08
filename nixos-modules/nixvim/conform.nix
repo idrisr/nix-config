@@ -24,16 +24,22 @@
       };
       formattersByFt = {
         bib = [ "bibtex-tidy" ];
+        c = [ "clang-format" ];
         cabal = [ "cabal_fmt" ];
         haskell = [ "fourmolu" ];
         html = [ "htmlbeautifier" ];
         javascript = [ "prettierd" ];
+        jsonc = [ "fixjson" ];
         json = [ "fixjson" ];
         lua = [ "stylua" ];
         nix = [ "nixfmt" ];
+        purescript = [ "purescriptls" ];
+        python = [ "isort" "black" ];
         terraform = [ "terraform_fmt" ];
         tex = [ "latexindent" ];
-        "*" = [ "trim_newlines" "trim_whitespace" "codespell" ];
+        text = [ ];
+        typescript = [ "prettierd" ];
+        "*" = [ "trim_newlines" "trim_whitespace" ];
       };
     };
   };

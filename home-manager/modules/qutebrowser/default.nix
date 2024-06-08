@@ -52,6 +52,7 @@
         nog = "https://noogle.dev/q?term={}";
         npl =
           "https://encore.naperville-lib.org/iii/encore/search/C__S{}__Orightresult__U?lang=eng";
+        py = "https://www.python.org/search/?q={}&submit=";
         yt = "https://www.youtube.com/results?search_query={}";
       };
 

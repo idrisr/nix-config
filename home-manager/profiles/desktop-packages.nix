@@ -2,6 +2,7 @@ pkgs:
 with pkgs; [
 
   slide2text
+  losslesscut-bin
   mods
   obsidian
   git-crypt
