@@ -25,6 +25,7 @@
         ruler = true;
         secure = true;
         shiftwidth = 4;
+        signcolumn = "yes";
         smartcase = true;
         softtabstop = 4;
         showtabline = 2; # always show tabs

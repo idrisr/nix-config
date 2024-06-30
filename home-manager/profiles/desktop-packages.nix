@@ -1,10 +1,14 @@
 pkgs:
 with pkgs; [
 
+  ocamlPackages.ocamlformat
+  ocamlPackages.ocamlformat-rpc-lib
+  zulip
+  zulip-term
   slide2text
   losslesscut-bin
   mods
-  obsidian
+  # obsidian
   git-crypt
   abcde
   stylua
@@ -90,7 +94,6 @@ with pkgs; [
   nuclear
   nvme-cli
   nwipe
-  nyxt
   okular
   openscad
   parted

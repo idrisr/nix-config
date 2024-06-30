@@ -33,6 +33,7 @@
         json = [ "fixjson" ];
         lua = [ "stylua" ];
         nix = [ "nixfmt" ];
+        ocaml = [ "ocamlformat" ];
         purescript = [ "purescriptls" ];
         python = [ "isort" "black" ];
         terraform = [ "terraform_fmt" ];

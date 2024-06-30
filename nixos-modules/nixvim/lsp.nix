@@ -1,5 +1,4 @@
-{ lib, ... }:
-with lib; {
+{
   config.programs.nixvim.plugins = {
     lspsaga.enable = false;
     lsp = {
@@ -10,11 +9,12 @@ with lib; {
         cssls.enable = true;
         hls.enable = true;
         html.enable = true;
-        idris.enable = true;
+        # leanls.enable = true;
         jsonls.enable = true;
         lua-ls.enable = true;
         marksman.enable = true;
         nil_ls.enable = true;
+        ocamllsp.enable = true;
         purescriptls.enable = true;
         pyright.enable = true;
         texlab.enable = true;

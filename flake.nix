@@ -1,6 +1,7 @@
 {
   inputs = {
     nixpkgs.url = "nixpkgs/nixos-unstable";
+    nixpkgs-lean43.url = "nixpkgs/cbcf0e94ac74";
     nixos-hardware.url = "github:nixos/nixos-hardware";
     flake-utils.url = "github:numtide/flake-utils";
     nix-colors.url = "github:misterio77/nix-colors";
@@ -20,13 +21,13 @@
     };
     nixvim = {
       url = "github:nix-community/nixvim";
-      inputs.nixpkgs.follows = "nixpkgs";
+      # inputs.nixpkgs.follows = "nixpkgs";
     };
-    # zettel.url = "github:idrisr/zettel";
     zettel.url = "path:/home/hippoid/fun/zettel";
     visualpreview.url = "path:/home/hippoid/fun/visualpreview";
     mods.url = "path:/home/hippoid/fun/mods";
     slide2text.url = "github:idrisr/slide2text";
+    rofi.url = "path:/home/hippoid/fun/rofi-picker";
   };
 
   outputs = inputs@{ nixpkgs, flake-utils, ... }:
@@ -40,7 +41,10 @@
             ./nixos-modules
             {
               config.nixpkgs = let
-                ol = [ inputs.knotools.overlays.all ];
+                ol = [
+                  inputs.knotools.overlays.all
+                  inputs.knotools.overlays.pipe-rename
+                ];
                 ol2 = [
                   (import ./nixos-modules/qrcp "6969")
                   (import ./nixos-modules/xournal)
@@ -53,6 +57,7 @@
                   inputs.visualpreview.overlays.visualpreview
                   inputs.mods.overlays.mods
                   inputs.slide2text.overlays.slide2text
+                  inputs.rofi.overlays.all
                 ];
                 config = {
                   allowUnfreePredicate = pkg:

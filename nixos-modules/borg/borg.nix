@@ -8,6 +8,7 @@ let
       "/home/hippoid/videos"
       "/home/hippoid/music"
       "/home/hippoid/downloads"
+      "**/.lake"
       "*.img"
       "*.iso"
       "*.qcow2"

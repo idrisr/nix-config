@@ -71,10 +71,20 @@
       enable = true;
       settings = {
         disable_frontmatter = true;
+        follow_url_func = ''
+          function(url)
+            vim.fn.jobstart({"xdg-open", url})  -- linux
+          end
+        '';
         workspaces = [{
           path = "/home/hippoid/roam-export";
           name = "roam";
         }];
+        note_id_func = ''
+          function(title)
+              return title .. ".md"
+          end
+        '';
       };
     };
   };

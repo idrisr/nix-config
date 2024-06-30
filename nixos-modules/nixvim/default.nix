@@ -27,6 +27,7 @@ in {
     ./fzf.nix
     ./keymap.nix
     ./latex.nix
+    ./lean
     ./lsp.nix
     ./neo-tree.nix
     ./notify.nix
@@ -55,13 +56,15 @@ in {
       vimkind
       pkgs.zettel
       telescope_hoogle
+      # idris2-nvim
     ];
+
     extraConfigVim = concatFiles [ ./vimrc ];
     extraConfigLua = concatFiles [
       ./init.lua
       ./cmp.lua
       ./surround.lua
-      ./vimkind.lua
+      ./debug-adapter.lua
       ./lua-plugin/telescope.lua
     ];
   };
