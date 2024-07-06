@@ -15,5 +15,6 @@
     monitoring.enable = true;
     nvidia-gpu.enable = true;
     ollama.enable = true;
+    unifi.enable = true;
   };
 }

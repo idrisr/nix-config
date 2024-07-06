@@ -1,6 +1,7 @@
 pkgs:
 with pkgs; [
 
+  neomutt
   ocamlPackages.ocamlformat
   ocamlPackages.ocamlformat-rpc-lib
   zulip

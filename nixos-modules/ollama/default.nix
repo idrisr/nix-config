@@ -17,7 +17,8 @@ in {
   config = mkIf cfg.enable {
     nvidia-gpu.enable = true;
     services.ollama = {
-      listenAddress = "0.0.0.0:11111";
+      host = "0.0.0.0";
+      port = 11111;
       enable = true;
       acceleration = "cuda";
     };

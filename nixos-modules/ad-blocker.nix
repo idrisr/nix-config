@@ -30,8 +30,9 @@ in {
       adguardhome = {
         enable = true;
         openFirewall = true;
+        port = adguardPort;
         settings = {
-          bind_port = adguardPort;
+          # bind_port = adguardPort;
           schema_version = 20;
         };
       };

@@ -21,19 +21,25 @@ in {
     nixpkgs = {
       config.allowUnfreePredicate = pkg:
         builtins.elem (lib.getName pkg) [
+          "cuda-merged-12.2"
+          "cuda-merged"
           "nvidia-x11"
           "nvidia-settings"
           "nvidia-persistenced"
           "nvtop-nvidia"
+          "cudatoolkit-12.2.2"
+          # "cudatoolkit-12.2"
+          "cudaPackages.cudatoolkit"
         ];
+      config.allowUnfree = true;
+
     };
     environment.systemPackages = with pkgs; [ nvtopPackages.nvidia ];
 
     # Enable OpenGL
-    hardware.opengl = {
+    hardware.graphics = {
       enable = true;
-      driSupport = true;
-      driSupport32Bit = true;
+      enable32Bit = true;
     };
 
     # Load nvidia driver for Xorg and Wayland

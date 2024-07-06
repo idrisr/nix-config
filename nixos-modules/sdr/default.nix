@@ -1,6 +1,6 @@
 { config, pkgs, lib, ... }:
 with lib;
-let cfg = config.nvidia-gpu;
+let cfg = config.sdr;
 in {
   options = {
     sdr = {
@@ -25,7 +25,7 @@ in {
       overlays = [
         (_: prev: {
           soapysdr-with-plugins = prev.soapysdr.override {
-            extraPackages = with prev; [ soapyrtlsdr ];
+            extraPackages = with prev; [ soapyrtlsdr sdrplay ];
           };
         })
       ];

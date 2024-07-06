@@ -6,17 +6,19 @@
     ./base.nix
     ./borg/borg.nix
     ./desktop.nix
-    ./monitoring
-    ./superdrive.nix
-    ../home-manager
-    ./nixvim
-    ./reading
-    ./nh
     ./docker
-    ./nvidia
-    ./sdr
     ./home-assistant
+    ../home-manager
+    ./monitoring
+    ./nh
+    ./unifi
+    ./nixvim
+    ./nvidia
     ./ollama
+    ./reading
+    ./sdr
+    ./superdrive.nix
+
     inputs.nixvim.nixosModules.nixvim
     inputs.disko.nixosModules.default
     inputs.home-manager.nixosModules.home-manager
