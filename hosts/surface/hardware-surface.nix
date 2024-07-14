@@ -62,7 +62,12 @@ in {
     };
 
     environment = {
-      systemPackages = with pkgs; [ libimobiledevice protonmail-bridge ifuse ];
+      systemPackages = with pkgs; [
+        libimobiledevice
+        protonmail-bridge-gui
+        protonmail-bridge
+        ifuse
+      ];
 
       variables = {
         QT_SCALE_FACTOR = "1";
