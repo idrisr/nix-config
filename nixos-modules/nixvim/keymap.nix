@@ -12,6 +12,11 @@
           pattern = [ "*.purs" ];
           command = ":setlocal filetype=purescript";
         }
+        {
+          event = [ "BufEnter" ];
+          pattern = [ "*.pl" ];
+          command = ":setlocal filetype=prolog";
+        }
 
       ];
       keymaps = [

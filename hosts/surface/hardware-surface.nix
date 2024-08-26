@@ -39,7 +39,6 @@ in {
         # "intel_iommu=on"
         "i915.enable_rc6=1"
         "i915.enable_psr=0"
-        "systemd.unified_cgroup_hierarchy=0"
       ];
     };
 
@@ -49,8 +48,6 @@ in {
       interfaces.wlp0s20f3.useDHCP = true;
       firewall.allowedTCPPorts = [ 6969 2234 1143 1025 ];
     };
-
-    sound.enable = true;
 
     fonts.packages = with pkgs; [ customFonts font-awesome ];
 
@@ -74,6 +71,8 @@ in {
         GDK_SCALE = "1.0";
       };
     };
+
+    hardware.alsa.enablePersistence = true;
 
     services = {
       iptsd.config.Touch.DisableOnPalm = true;

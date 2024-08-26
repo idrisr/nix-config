@@ -8,7 +8,7 @@ fileviewer <image/*>
     \ visualpreview image %pw %ph %px %py %c %N
     \ %pc
     \ visualpreview clear
-filextype *.bmp,*.jpg,*.jpeg,*.png,*.gif,*.xpm,*.JPG
+filextype *.bmp,*.jpg,*.jpeg,*.png,*.gif,*.xpm,*.JPG,*.webp
         \ {View in sxiv}
         \ sxiv -ia %f &,
 

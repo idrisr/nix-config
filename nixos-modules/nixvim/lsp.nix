@@ -15,6 +15,7 @@
         marksman.enable = true;
         nil_ls.enable = true;
         ocamllsp.enable = true;
+        prolog-ls.enable = false;
         purescriptls.enable = true;
         pyright.enable = true;
         texlab.enable = true;

@@ -1,6 +1,7 @@
 pkgs:
 with pkgs; [
 
+  racket
   neomutt
   ocamlPackages.ocamlformat
   ocamlPackages.ocamlformat-rpc-lib
@@ -47,7 +48,7 @@ with pkgs; [
   foremost
   gallery-dl
   gimp
-  gnome.gnome-disk-utility
+  gnome-disk-utility
   gnupg
   gnuradio
   gparted
