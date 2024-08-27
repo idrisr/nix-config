@@ -2102,8 +2102,8 @@
         "nixpkgs": "nixpkgs_10"
       },
       "locked": {
-        "lastModified": 1716834170,
-        "narHash": "sha256-1wHrAw8d9ZScBEQm+7E66A3j9MdNnoi46YG0aLLhpew=",
+        "lastModified": 1724776244,
+        "narHash": "sha256-IlPb5Unz/gMdLBcQuOtf3SSHe8g6DYyeP/N8Stx9qm4=",
         "path": "/home/hippoid/fun/rofi-picker",
         "type": "path"
       },
@@ -2420,8 +2420,8 @@
         "pre-commit-hooks": "pre-commit-hooks_6"
       },
       "locked": {
-        "lastModified": 1715184059,
-        "narHash": "sha256-9pfGMxfa6nT6WbwbnGha72XTd+FWa90JoS8uCrP130E=",
+        "lastModified": 1724776192,
+        "narHash": "sha256-LXOdM6YwNneXiEipwlpSA+N043vmISe/cV5F5KXC2gU=",
         "path": "/home/hippoid/fun/visualpreview",
         "type": "path"
       },
