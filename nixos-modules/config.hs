@@ -86,7 +86,7 @@ myBorderWidth :: Dimension
 myBorderWidth = 8
 
 myWorkspaces :: Int -> [String]
-myWorkspaces x = fmap show [1..x]
+myWorkspaces x = show <$> [1..x]
 
 myNormalBorderColor :: String
 myNormalBorderColor = "#000000"
@@ -171,11 +171,11 @@ myLayout =
     delta = 3 / 100
 
 myStartupHook :: X ()
-myStartupHook = do
+myStartupHook = pure ()
     -- setWMName "LG3D"
-    spawnOn "1" myTerminal
-    spawnOn "2" "qutebrowser"
-    spawnOn "3" "brave"
+    -- spawnOn "1" myTerminal
+    -- spawnOn "2" "qutebrowser"
+    -- spawnOn "3" "brave"
 
 defaults =
     def
@@ -192,11 +192,10 @@ defaults =
         , layoutHook = myLayout
         , manageHook = composeAll []
         , handleEventHook = mempty
-        , logHook = return ()
+        , logHook = pure ()
         , startupHook = myStartupHook
         }
 
 main :: IO ()
 main = do
-    _ <- spawnPipe "polybar"
     xmonad $ (docks . ewmh) defaults

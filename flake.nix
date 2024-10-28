@@ -27,7 +27,10 @@
     visualpreview.url = "path:/home/hippoid/fun/visualpreview";
     mods.url = "path:/home/hippoid/fun/mods";
     slide2text.url = "github:idrisr/slide2text";
-    rofi.url = "path:/home/hippoid/fun/rofi-picker";
+    rofi = {
+      url = "github:idrisr/rofi-picker";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   outputs = inputs@{ nixpkgs, flake-utils, ... }:
@@ -64,6 +67,7 @@
                     builtins.elem
                     (nixpkgs.legacyPackages.${system}.lib.getName pkg) [
                       "broadcom-sta"
+                      "ciscoPacketTracer8"
                       "discord"
                       "lastpass-cli"
                       "mathpix-snipping-tool"

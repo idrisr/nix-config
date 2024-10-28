@@ -10,7 +10,7 @@ in {
         default = false;
         type = lib.types.bool;
         description = lib.mdDoc ''
-          Direct transfer of the old base module.
+          direct transfer of the old base module.
         '';
       };
     };

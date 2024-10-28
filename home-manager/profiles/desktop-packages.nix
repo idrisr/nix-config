@@ -1,6 +1,11 @@
 pkgs:
 with pkgs; [
 
+  bluez
+  frescobaldi
+  lilypond
+  alloy
+  btop
   racket
   neomutt
   ocamlPackages.ocamlformat
@@ -26,7 +31,6 @@ with pkgs; [
   booknote
   bpftrace
   brave
-  calibre
   copyq
   cryptsetup
   dconf
@@ -128,7 +132,6 @@ with pkgs; [
   tikzit
   timer
   tlp
-  traceroute
   transcribe
   unetbootin
   unoconv

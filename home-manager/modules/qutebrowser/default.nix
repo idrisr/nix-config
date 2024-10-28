@@ -3,7 +3,12 @@
   config = {
     programs.qutebrowser = {
       enable = true;
-      keyBindings = { normal = { "cm" = "clear-messages"; }; };
+      keyBindings = {
+        normal = {
+          "cm" = "clear-messages";
+          "cc" = "config-cycle colors.webpage.darkmode.enabled";
+        };
+      };
 
       settings = {
         downloads.location.directory = "$HOME/downloads";

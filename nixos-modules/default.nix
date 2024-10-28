@@ -9,15 +9,17 @@
     ./docker
     ./home-assistant
     ../home-manager
+    ./hoogle
     ./monitoring
     ./nh
-    ./unifi
     ./nixvim
     ./nvidia
     ./ollama
+    ./printer/printer-client.nix
     ./reading
     ./sdr
     ./superdrive.nix
+    ./unifi
 
     inputs.nixvim.nixosModules.nixvim
     inputs.disko.nixosModules.default

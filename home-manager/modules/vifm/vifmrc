@@ -8,7 +8,8 @@ fileviewer <image/*>
     \ visualpreview image %pw %ph %px %py %c %N
     \ %pc
     \ visualpreview clear
-filextype *.bmp,*.jpg,*.jpeg,*.png,*.gif,*.xpm,*.JPG,*.webp
+" filextype *.bmp,*.jpg,*.jpeg,*.png,*.gif,*.xpm,*.JPG,*.webp
+filextype <image/*>
         \ {View in sxiv}
         \ sxiv -ia %f &,
 
@@ -26,11 +27,15 @@ fileviewer <font/*>
 fileviewer {*.pdf}
     \ visualpreview pdf %pw %ph %px %py %c %N
     \ %pc
-    \ visualpreview clear
+    \ visualpreview clear,pdfinfo,pdftc
+
+fileviewer {*.zip} unzip -l
+
 fileviewer {*.epub,*.mobi,*.azw,*.azw[0-9]},<application/epub+zip>,<application/x-mobipocket-ebook>,<application/vnd.amazon.ebook>
     \ visualpreview epub %pw %ph %px %py %c %N
     \ %pc
     \ visualpreview clear
+
 filextype *.pdf,*.epub zathura %c %i &, apvlv %c, xpdf %c
 
 fileviewer */ lsd --tree --depth 2 --almost-all --ignore-glob .git %c
@@ -43,6 +48,10 @@ nnoremap ;q :q <CR>
 nnoremap S :sort <CR>
 nnoremap O :!nvim %f<cr> " open file in running nvim instance
 nnoremap bg :!feh --bg-max %f<cr>
+
+nnoremap I cW<c-a>
+nnoremap A cW<c-u>
+nnoremap pa vifm-q_a
 
 " :com[mand][!] command_name action
 " The following macros can be used in a command

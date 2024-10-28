@@ -44,16 +44,17 @@ in {
 
     networking = {
       hostName = "surface";
+      wireless.iwd.enable = false;
       networkmanager.enable = true;
       interfaces.wlp0s20f3.useDHCP = true;
-      firewall.allowedTCPPorts = [ 6969 2234 1143 1025 ];
+      firewall.allowedTCPPorts = [ 631 6969 2234 1143 1025 ];
     };
 
     fonts.packages = with pkgs; [ customFonts font-awesome ];
 
     hardware = {
-      pulseaudio.enable = true;
-      bluetooth.enable = false;
+      pulseaudio.enable = false;
+      bluetooth.enable = true;
       cpu.intel.updateMicrocode =
         lib.mkDefault config.hardware.enableRedistributableFirmware;
     };

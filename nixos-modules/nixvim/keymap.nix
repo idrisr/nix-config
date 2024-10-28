@@ -53,6 +53,12 @@
           options = { desc = "horizontal split"; };
         }
         {
+          key = "<leader>tw";
+          action = ":set textwidth=80<CR>";
+          mode = "n";
+          options = { desc = "set textwidth to 80"; };
+        }
+        {
           key = "<leader>vsp";
           action = ":vsplit<cr>";
           mode = "n";

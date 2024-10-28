@@ -16,6 +16,7 @@
         p = "~/documents/papers";
         r = "~/roam-export";
         s = "~/screenshots";
+        t = "~/documents/tech-talks";
         v = "~/videos";
         w = "~/downloads";
         W = "~/wallpapers";

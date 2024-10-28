@@ -56,7 +56,7 @@ in {
       vimkind
       pkgs.zettel
       telescope_hoogle
-      # idris2-nvim
+      nvim-lilypond-suite
     ];
 
     extraConfigVim = concatFiles [ ./vimrc ];

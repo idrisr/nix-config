@@ -19,7 +19,7 @@
         purescriptls.enable = true;
         pyright.enable = true;
         texlab.enable = true;
-        tsserver.enable = true;
+        # tsserver.enable = true;
       };
 
       keymaps = {
