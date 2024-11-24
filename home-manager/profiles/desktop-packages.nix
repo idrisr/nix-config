@@ -1,15 +1,14 @@
 pkgs:
 with pkgs; [
 
+  insomnia
+  flameshot
+  zoom-us
   bluez
   frescobaldi
   lilypond
   alloy
   btop
-  racket
-  neomutt
-  ocamlPackages.ocamlformat
-  ocamlPackages.ocamlformat-rpc-lib
   zulip
   zulip-term
   slide2text
@@ -59,7 +58,6 @@ with pkgs; [
   gqrx
   graphviz
   haskellPackages.hasktags
-  imagemagick
   inkscape
   inxi
   jq

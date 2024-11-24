@@ -29,6 +29,10 @@ fileviewer {*.pdf}
     \ %pc
     \ visualpreview clear,pdfinfo,pdftc
 
+fileviewer {*.vtt} vttclean --file %c
+
+filextype *.docx libreoffice %c
+
 fileviewer {*.zip} unzip -l
 
 fileviewer {*.epub,*.mobi,*.azw,*.azw[0-9]},<application/epub+zip>,<application/x-mobipocket-ebook>,<application/vnd.amazon.ebook>

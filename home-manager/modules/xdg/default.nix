@@ -1,6 +1,6 @@
 { config, ... }:
 let
-  browser = "org.qutebrowser.desktop";
+  browser = "org.qutebrowser.qutebrowser.desktop";
   # spreadsheet = "libreoffice-calc.desktop";
   pdf = "org.pwmt.zathura.desktop";
 in {
@@ -29,8 +29,6 @@ in {
           "x-scheme-handler/http" = browser;
           "x-scheme-handler/https" = browser;
           "x-scheme-handler/unknown" = browser;
-
-          # "application/vnd.oasis.opendocument.spreadsheet" = spreadsheet;
         };
       };
     };
