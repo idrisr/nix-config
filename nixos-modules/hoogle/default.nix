@@ -22,6 +22,7 @@
         persistent-sqlite
         pipes
         QuickCheck
+        scotty
         smallcheck
         streaming
         tasty
@@ -29,7 +30,6 @@
         tasty-quickcheck
         test-invariant
         text-format
-        transformers_0_6_1_1
         turtle
         xmonad
       ];

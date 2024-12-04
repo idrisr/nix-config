@@ -19,6 +19,7 @@ in {
   imports = [
     ./align.nix
     ./alpha.nix
+    ./autocommand.nix
     ./cmp.nix
     ./comment.nix
     ./conform.nix
@@ -56,6 +57,7 @@ in {
       vimkind
       pkgs.zettel
       telescope_hoogle
+      outline-nvim
       nvim-lilypond-suite
     ];
 

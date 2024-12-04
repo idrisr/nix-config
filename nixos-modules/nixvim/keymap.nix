@@ -1,24 +1,6 @@
 {
   config = {
     programs.nixvim = {
-      autoCmd = [
-        {
-          event = [ "BufEnter" ];
-          pattern = [ "*.tex" ];
-          command = ":setlocal textwidth=0";
-        }
-        {
-          event = [ "BufEnter" ];
-          pattern = [ "*.purs" ];
-          command = ":setlocal filetype=purescript";
-        }
-        {
-          event = [ "BufEnter" ];
-          pattern = [ "*.pl" ];
-          command = ":setlocal filetype=prolog";
-        }
-
-      ];
       keymaps = [
         # move to filetype only for zettel
         {
@@ -26,6 +8,12 @@
           action = ":resize +2<CR>";
           mode = "n";
           options = { desc = "resize up"; };
+        }
+        {
+          key = "<leader>ot";
+          action = "<cmd>Outline<CR>";
+          mode = "n";
+          options = { desc = "Toggle Outline"; };
         }
         {
           key = "<C-Down>";
@@ -53,7 +41,7 @@
           options = { desc = "horizontal split"; };
         }
         {
-          key = "<leader>tw";
+          key = "<leader>8";
           action = ":set textwidth=80<CR>";
           mode = "n";
           options = { desc = "set textwidth to 80"; };
@@ -63,6 +51,18 @@
           action = ":vsplit<cr>";
           mode = "n";
           options = { desc = "vertical split"; };
+        }
+        {
+          key = "<leader>la";
+          action = ":lua= vim.lsp.buf.code_action()<CR>";
+          mode = "n";
+          options = { desc = "lsp code actions"; };
+        }
+        {
+          key = "<leader>lt";
+          action = '':lua= require("lsp_lines").toggle()<CR>'';
+          mode = "n";
+          options = { desc = "toggle lsp lines"; };
         }
         {
           key = "<leader>b";

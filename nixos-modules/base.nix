@@ -19,7 +19,7 @@ in {
   config = lib.mkIf cfg.enable {
     boot.loader.systemd-boot.configurationLimit = 10;
     nix = {
-      package = pkgs.nixFlakes;
+      package = pkgs.nixVersions.stable;
       settings = {
         experimental-features = [ "nix-command" "flakes" ];
         trusted-users = [ "root" "hippoid" ];

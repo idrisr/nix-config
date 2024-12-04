@@ -43,7 +43,7 @@ in {
                 xmonad-contrib
                 xmonad
               ];
-            config = ./config.hs;
+            config = ../xmonad/Main.hs;
           };
         };
         dpi = 267;
@@ -55,13 +55,6 @@ in {
         exportConfiguration = true;
       };
     };
-
-    nixpkgs.config.allowUnfreePredicate = pkg:
-      builtins.elem (pkgs.lib.getName pkg) [
-        "tesseract5"
-        "transcribe"
-        "obsidian"
-      ];
 
     environment = {
       sessionVariables = {

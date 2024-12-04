@@ -1,1 +1,1 @@
-{ config.programs.nixvim = { plugins.surround = { enable = true; }; }; }
+{ config.programs.nixvim = { plugins.vim-surround = { enable = true; }; }; }
