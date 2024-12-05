@@ -2,9 +2,14 @@
 
 -- [># OPTIONS_GHC -Wno-missing-signatures #<]
 
+import Data.Map qualified as M
 import XMonad
 import XMonad.Actions.NoBorders
+import XMonad.Actions.Search
+import XMonad.Actions.Volume
+import XMonad.Hooks.EwmhDesktops
 import XMonad.Hooks.ManageDocks
+import XMonad.Layout.LayoutModifier qualified
 import XMonad.Layout.MultiColumns ()
 import XMonad.Layout.MultiToggle (
     EOT (EOT),
@@ -21,20 +26,23 @@ import XMonad.Layout.Spacing (
     Spacing,
     spacingRaw,
  )
-
-import Data.Map qualified as M
+import XMonad.Prompt (XPConfig (height, position), XPPosition (CenteredAt), amberXPConfig, greenXPConfig)
 import XMonad.StackSet qualified as W
-
-import XMonad.Hooks.EwmhDesktops
-import XMonad.Layout.LayoutModifier qualified
 import XMonad.Util.Dzen
 
 alert :: Double -> X ()
-alert = dzenConfig centered . show . round
+alert = dzenConfig centered . (show :: Int -> String) . round
+
+alertMute :: Bool -> X ()
+alertMute = dzenConfig centered . f
+  where
+    f :: Bool -> String
+    f True = "muted"
+    f False = "unmuted"
 
 centered :: (Int, [String]) -> X (Int, [String])
 centered =
-    onCurr (center 150 66)
+    onCurr (center 150 90)
         >=> font "-*-helvetica-*-r-*-*-64-*-*-*-*-*-*-*"
         >=> addArgs ["-fg", "#80c0ff"]
         >=> addArgs ["-bg", "#000040"]
@@ -51,36 +59,53 @@ mySpacing =
         (Border 5 5 5 5) -- Window border size
         True -- Enable window borders
 
+promptConfig :: XPConfig
+promptConfig = greenXPConfig{height = 200, position = CenteredAt 0.5 0.5}
+
+qute :: String
+qute = "qutebrowser"
+
+brave :: String
+brave = "brave"
+
+quteSearch :: SearchEngine -> X ()
+quteSearch = promptSearchBrowser promptConfig qute
+
+braveSearch :: SearchEngine -> X ()
+braveSearch = promptSearchBrowser promptConfig brave
+
 ------------------------------------------------------------------------
 -- Key bindings. Add, modify or remove key bindings here.
 --
 myKeys :: XConfig Layout -> M.Map (KeyMask, KeySym) (X ())
 myKeys conf@(XConfig{XMonad.modMask = modm}) =
     M.fromList $
-        [ ((modm .|. shiftMask, xK_Return), spawn $ XMonad.terminal conf)
-        , ((modm .|. shiftMask, xK_b), spawn "qutebrowser")
-        , ((modm .|. shiftMask, xK_v), spawn "brave")
-        , -- , ((modm, xK_6), lowerVolume 4 >>= alert)
-          -- , ((modm, xK_7), raiseVolume 4 >>= alert)
-          ((modm .|. shiftMask, xK_o), kill)
-        , ((modm, xK_space), sendMessage NextLayout)
-        , ((modm .|. shiftMask, xK_space), setLayout $ XMonad.layoutHook conf)
-        , ((modm, xK_g), spawn "rofi -show window")
-        , ((modm, xK_p), spawn "rofi -show drun -show-icons")
-        , ((modm, xK_r), spawn "rofi -modi drun,window,emoji -show emoji")
-        , ((modm, xK_j), windows W.focusDown)
-        , ((modm, xK_k), windows W.focusUp)
-        , ((modm, xK_6), lowerVolume 4 >>= alert)
-        , ((modm, xK_7), raiseVolume 4 >>= alert)
+        [ ((modm .|. shiftMask, xK_b), spawn qute)
+        , ((modm .|. shiftMask, xK_f), sendMessage . Toggle $ FULL)
         , ((modm .|. shiftMask, xK_j), windows W.swapDown)
         , ((modm .|. shiftMask, xK_k), windows W.swapUp)
-        , ((modm, xK_h), sendMessage Shrink)
-        , ((modm, xK_l), sendMessage Expand)
-        , ((modm .|. shiftMask, xK_t), sendMessage ToggleStruts)
-        , ((modm, xK_t), withFocused $ windows . W.sink)
-        , ((modm .|. shiftMask, xK_q), spawn "xmonad --recompile; xmonad --restart")
         , ((modm .|. shiftMask, xK_n), withFocused toggleBorder)
-        , ((modm .|. shiftMask, xK_f), sendMessage $ Toggle FULL)
+        , ((modm .|. shiftMask, xK_o), kill)
+        , ((modm .|. shiftMask, xK_q), spawn "xmonad --recompile; xmonad --restart")
+        , ((modm .|. shiftMask, xK_Return), spawn . XMonad.terminal $ conf)
+        , ((modm .|. shiftMask, xK_space), setLayout . XMonad.layoutHook $ conf)
+        , ((modm .|. shiftMask, xK_t), sendMessage ToggleStruts)
+        , ((modm .|. shiftMask, xK_v), spawn brave)
+        , ((modm, xK_6), lowerVolume 4 >>= alert)
+        , ((modm, xK_7), raiseVolume 4 >>= alert)
+        , ((modm, xK_8), toggleMute >> getMute >>= alertMute)
+        , ((modm, xK_a), quteSearch nixos)
+        , ((modm, xK_b), quteSearch flora)
+        , ((modm, xK_c), braveSearch youtube)
+        , ((modm, xK_g), spawn "rofi -show window")
+        , ((modm, xK_h), sendMessage Shrink)
+        , ((modm, xK_j), windows W.focusDown)
+        , ((modm, xK_k), windows W.focusUp)
+        , ((modm, xK_l), sendMessage Expand)
+        , ((modm, xK_p), spawn "rofi -show drun -show-icons")
+        , ((modm, xK_r), spawn "rofi -modi drun,window,emoji -show emoji")
+        , ((modm, xK_space), sendMessage NextLayout)
+        , ((modm, xK_t), withFocused $ windows . W.sink)
         , ((modm, xK_t), withFocused actionA)
         ]
             ++ [ ((m .|. modm, k), windows $ f i)

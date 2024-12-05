@@ -6,7 +6,10 @@
     flake-utils.url = "github:numtide/flake-utils";
     nix-colors.url = "github:misterio77/nix-colors";
     pre-commit-hooks.url = "github:cachix/pre-commit-hooks.nix";
-    devenv.url = "github:cachix/devenv";
+    devenv = {
+      url = "github:cachix/devenv";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
     knotools = {
       url = "github:idrisr/knotools";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -21,10 +24,13 @@
     };
     nixvim = {
       url = "github:nix-community/nixvim";
-      # inputs.nixpkgs.follows = "nixpkgs";
+      inputs.nixpkgs.follows = "nixpkgs";
     };
     zettel.url = "path:/home/hippoid/fun/zettel";
-    visualpreview.url = "path:/home/hippoid/fun/visualpreview";
+    visualpreview = {
+      url = "github:idrisr/visualpreview";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
     mods.url = "path:/home/hippoid/fun/mods";
     slide2text.url = "github:idrisr/slide2text";
     rofi = {
@@ -73,6 +79,8 @@
                       "mathpix-snipping-tool"
                       "makemkv"
                       "obsidian"
+                      "zoom"
+                      "postman"
                     ];
                 };
               };
@@ -80,32 +88,12 @@
           ];
           specialArgs = { inherit inputs; };
         };
-      hooks = {
-        beautysh.enable = true;
-        deadnix.enable = true;
-        nixfmt.enable = true;
-      };
     in {
       nixosConfigurations = { # todo use a fmap
         # air = makeMachine "air";
         # framework = makeMachine "framework";
         fft = makeMachine "fft";
         surface = makeMachine "surface";
-      };
-
-      devShells.${system} = let pkgs = nixpkgs.legacyPackages.${system};
-      in {
-        default = inputs.devenv.lib.mkShell {
-          inherit inputs pkgs;
-          modules = [{ pre-commit.hooks = hooks; }];
-        };
-      };
-
-      checks.${system} = {
-        pre-commit-check = inputs.pre-commit-hooks.lib.${system}.run {
-          inherit hooks;
-          src = ./.;
-        };
       };
     };
 }
