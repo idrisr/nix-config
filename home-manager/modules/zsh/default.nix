@@ -13,7 +13,7 @@
         bindkey -s '^g' 'lg ^M'
         bindkey -s '^a' 'tmux attach || tmux ^M'
         bindkey -s '^z' 'exec zsh ^M'
-        bindkey -s '^p' 'tmuxp load ~/tmuxp/session.yaml ^M'
+        bindkey -s '^p' 'tmuxp load session.yaml ^M'
         bindkey -s '^f' 'vifm ^M'
         bindkey -r '^v'
         bindkey -r '^V'

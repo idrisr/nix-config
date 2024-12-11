@@ -1,9 +1,22 @@
 {
   config = {
     programs.emacs = {
-      enable = false;
+      enable = true;
       extraConfig = builtins.readFile ./init.el;
-      extraPackages = e: with e; [ direnv evil haskell-mode racket-mode ];
+      extraPackages = e:
+        with e; [
+          direnv
+          evil
+          fuzzy-finder
+          haskell-mode
+          nix-mode
+          obsidian
+          prolog-mode
+          quack
+          racket-mode
+          zerodark-theme
+          zoxide
+        ];
     };
   };
 }

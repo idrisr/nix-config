@@ -1,9 +1,14 @@
 pkgs:
 with pkgs; [
 
-  neomutt
-  ocamlPackages.ocamlformat
-  ocamlPackages.ocamlformat-rpc-lib
+  insomnia
+  flameshot
+  zoom-us
+  bluez
+  frescobaldi
+  lilypond
+  alloy
+  btop
   zulip
   zulip-term
   slide2text
@@ -25,7 +30,6 @@ with pkgs; [
   booknote
   bpftrace
   brave
-  calibre
   copyq
   cryptsetup
   dconf
@@ -47,14 +51,13 @@ with pkgs; [
   foremost
   gallery-dl
   gimp
-  gnome.gnome-disk-utility
+  gnome-disk-utility
   gnupg
   gnuradio
   gparted
   gqrx
   graphviz
   haskellPackages.hasktags
-  imagemagick
   inkscape
   inxi
   jq
@@ -127,7 +130,6 @@ with pkgs; [
   tikzit
   timer
   tlp
-  traceroute
   transcribe
   unetbootin
   unoconv

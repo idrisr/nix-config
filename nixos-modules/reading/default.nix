@@ -16,6 +16,8 @@ in {
         papersDesktopItem
         books
         booksDesktopItem
+        techtalk
+        techtalkDesktopItem
       ];
     };
   };

@@ -10,7 +10,7 @@ in {
         default = false;
         type = lib.types.bool;
         description = lib.mdDoc ''
-          Direct transfer of the old base module.
+          direct transfer of the old base module.
         '';
       };
     };
@@ -19,7 +19,7 @@ in {
   config = lib.mkIf cfg.enable {
     boot.loader.systemd-boot.configurationLimit = 10;
     nix = {
-      package = pkgs.nixFlakes;
+      package = pkgs.nixVersions.stable;
       settings = {
         experimental-features = [ "nix-command" "flakes" ];
         trusted-users = [ "root" "hippoid" ];

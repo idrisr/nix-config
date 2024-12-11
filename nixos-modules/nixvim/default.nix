@@ -19,6 +19,7 @@ in {
   imports = [
     ./align.nix
     ./alpha.nix
+    ./autocommand.nix
     ./cmp.nix
     ./comment.nix
     ./conform.nix
@@ -56,7 +57,8 @@ in {
       vimkind
       pkgs.zettel
       telescope_hoogle
-      # idris2-nvim
+      outline-nvim
+      nvim-lilypond-suite
     ];
 
     extraConfigVim = concatFiles [ ./vimrc ];

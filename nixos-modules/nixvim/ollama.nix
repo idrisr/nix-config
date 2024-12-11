@@ -1,6 +1,6 @@
 { pkgs, ... }: {
   config.programs.nixvim.plugins.ollama = {
-    enable = true;
+    enable = false;
     url = "http://fft:11111";
     model = "mistral";
 
@@ -11,10 +11,10 @@
           the problem statement towards the beginning. It might be a math proof,
           it might be someting looser.
           Consider feedback on
-              the presentation,
-              the english prose
-              the latex macros used,
-              as well as the correctness of the proof itself'';
+          the presentation,
+          the english prose
+          the latex macros used,
+          as well as the correctness of the proof itself'';
         model = "mistral";
         inputLabel = "> ";
       };
