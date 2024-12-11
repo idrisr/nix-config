@@ -12,7 +12,8 @@
         [ "xhci_pci" "thunderbolt" "nvme" "usb_storage" "sd_mod" ];
       kernelModules = [ ];
       luks.devices = {
-  "luks-edef38c3-d8f8-444d-9e96-fedfbde573bc".device = "/dev/disk/by-uuid/edef38c3-d8f8-444d-9e96-fedfbde573bc";
+        "luks-edef38c3-d8f8-444d-9e96-fedfbde573bc".device =
+          "/dev/disk/by-uuid/edef38c3-d8f8-444d-9e96-fedfbde573bc";
       };
     };
     kernelModules = [ "kvm-intel" ];
@@ -23,24 +24,19 @@
     };
   };
 
-  fileSystems."/" =
-    { device = "/dev/disk/by-uuid/65140436-aea1-4525-90a6-000dd8284bdb";
-      fsType = "ext4";
-    };
+  fileSystems."/" = {
+    device = "/dev/disk/by-uuid/65140436-aea1-4525-90a6-000dd8284bdb";
+    fsType = "ext4";
+  };
 
-
-  fileSystems."/boot" =
-    { device = "/dev/disk/by-uuid/F971-583B";
-      fsType = "vfat";
-      options = [ "fmask=0077" "dmask=0077" ];
-    };
-
+  fileSystems."/boot" = {
+    device = "/dev/disk/by-uuid/F971-583B";
+    fsType = "vfat";
+    options = [ "fmask=0077" "dmask=0077" ];
+  };
 
   services.fwupd.enable = true;
-  sound.enable = true;
-  swapDevices =
-    [ { device = "/dev/disk/by-uuid/a2670414-e2e1-4ba6-8fa0-416df590d006"; }
-    ];
+  swapDevices = [ ];
 
   networking = {
     useDHCP = lib.mkDefault true;

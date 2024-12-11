@@ -1,5 +1,10 @@
-{ pkgs, ... }: {
-
+{ pkgs, host, ... }:
+let
+  dpiMap = {
+    "surface" = 267;
+    "framework" = 180;
+  };
+in {
   imports = [
     ./base.nix
     ../modules/alacritty
@@ -38,7 +43,7 @@
       "Xft.hinting" = 1;
       "Xft.antialias" = 1;
       "Xft.rgba" = "rgb";
-      "Xft.dpi" = 267;
+      "Xft.dpi" = dpiMap.${host} or 200;
     };
     services = {
       screen-locker = {

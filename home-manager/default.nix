@@ -1,11 +1,11 @@
 # nixos module entry point to home-manager
-{ config, inputs, lib, ... }:
+{ config, inputs, host, lib, ... }:
 let cfg = config.profile;
 in {
   config.home-manager = {
     useGlobalPkgs = true;
     useUserPackages = true;
-    extraSpecialArgs = { inherit inputs; };
+    extraSpecialArgs = { inherit inputs; inherit host;};
     users = lib.mkMerge [
       { hippoid = import ./profiles/base.nix; }
       (lib.mkIf cfg.dailydrive.enable {
