@@ -6,12 +6,6 @@ let
 in {
   options = {
     programs.vifm = {
-      enable = mkOption {
-        default = false;
-        type = types.bool;
-      };
-
-      package = mkPackageOption pkgs "vifm" { };
       marks = mkOption {
         type = with types; attrs;
         default = { };
@@ -43,17 +37,6 @@ in {
         };
         description = ''
           attribute set of anything
-        '';
-      };
-
-      extraConfig = mkOption {
-        type = types.str;
-        default = "";
-        example = ''
-          nnoremap w :view<cr>
-        '';
-        description = ''
-          extra config to add to vifmrc
         '';
       };
     };

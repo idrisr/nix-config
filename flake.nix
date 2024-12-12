@@ -26,12 +26,10 @@
       url = "github:nix-community/nixvim";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    zettel.url = "path:/home/hippoid/fun/zettel";
     visualpreview = {
       url = "github:idrisr/visualpreview";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    mods.url = "path:/home/hippoid/fun/mods";
     slide2text.url = "github:idrisr/slide2text";
     rofi = {
       url = "github:idrisr/rofi-picker";
@@ -62,9 +60,7 @@
               in {
                 hostPlatform = pkgs.lib.mkDefault "x86_64-linux";
                 overlays = ol ++ ol2 ++ [
-                  inputs.zettel.overlays.zettel
                   inputs.visualpreview.overlays.visualpreview
-                  inputs.mods.overlays.mods
                   inputs.slide2text.overlays.slide2text
                   inputs.rofi.overlays.all
                 ];
@@ -86,12 +82,15 @@
               };
             }
           ];
-          specialArgs = { inherit inputs; };
+          specialArgs = {
+            inherit inputs;
+            inherit host;
+          };
         };
     in {
       nixosConfigurations = { # todo use a fmap
         # air = makeMachine "air";
-        # framework = makeMachine "framework";
+        framework = makeMachine "framework";
         fft = makeMachine "fft";
         surface = makeMachine "surface";
       };

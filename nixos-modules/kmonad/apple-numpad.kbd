@@ -1,0 +1,17 @@
+(defsrc
+ esc f1 f2   f3   f4  f5   f6   f7   f8 f9   f10 f11 f12 KeyEjectCd f13 f14 f15 f16 f17 f18 f19
+ `    1  2    3    4   5    6    7    8  9    0   -   =   bspc Fn home
+ tab  q  w    e    r   t    y    u    i  o    p   [   ]   bksl
+ caps a  s    d    f   g    h    j    k  l    ;   '   return
+ lsft z  x    c    v   b    n    m    ,  .    /   rsft
+ lctl lalt lmet  spc ralt rctl left up down right
+ )
+
+(deflayer base
+ esc f1 f2   f3   f4  f5   f6   f7   f8 f9   f10 f11 f12 KeyEjectCd f13 f14 f15 f16 f17 f18 f19
+ `    1  2    3    4   5    6    7    8  9    0   -   =   bspc Fn home
+ tab  q  w    e    r   t    y    u    i  o    p   [   ]   bksl
+ esc a  s    d    f   g    h    j    k  l    ;   '   return
+ lsft z  x    c    v   b    n    m    ,  .    /   rsft
+ lctl lmet lalt  spc ralt rctl left up down right
+)

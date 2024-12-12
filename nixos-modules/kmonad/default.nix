@@ -6,9 +6,19 @@
       defcfg = {
         fallthrough = true;
         enable = true;
-        allowCommands = true;
+        allowCommands = false;
       };
       config = builtins.readFile ./config.kbd;
+    };
+
+    keyboards."apple-numpad" = {
+      device = "/dev/input/by-id/usb-Apple_Inc._Apple_Keyboard-event-kbd";
+      defcfg = {
+        fallthrough = true;
+        enable = true;
+        allowCommands = false;
+      };
+      config = builtins.readFile ./apple-numpad.kbd;
     };
   };
 }
