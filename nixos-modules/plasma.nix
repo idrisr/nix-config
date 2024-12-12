@@ -6,7 +6,6 @@
       displayManager.sddm.enable = true;
       enable = true;
       layout = "us";
-      xkbOptions = "caps:escape";
       xkbVariant = "";
     };
   };

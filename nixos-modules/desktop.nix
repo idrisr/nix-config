@@ -48,7 +48,6 @@ in {
         };
         dpi = 267;
         xkb = {
-          options = "caps:escape";
           layout = "us";
           variant = "";
         };

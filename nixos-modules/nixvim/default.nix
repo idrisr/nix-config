@@ -55,10 +55,10 @@ in {
       fzf-vim # switch to fzf-lua?
       nvim-dap-ui
       vimkind
-      pkgs.zettel
       telescope_hoogle
       outline-nvim
       nvim-lilypond-suite
+      kmonad-vim
     ];
 
     extraConfigVim = concatFiles [ ./vimrc ];

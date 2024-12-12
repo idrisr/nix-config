@@ -8,7 +8,6 @@
 
         enable = true;
         layout = "us";
-        xkbOptions = "caps:escape";
         xkbVariant = "";
       };
     };

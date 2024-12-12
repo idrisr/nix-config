@@ -10,6 +10,7 @@
     ./home-assistant
     ../home-manager
     ./hoogle
+    ./kmonad
     ./monitoring
     ./nh
     ./nixvim

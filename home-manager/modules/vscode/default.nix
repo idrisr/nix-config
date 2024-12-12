@@ -14,10 +14,6 @@
 
       keybindings = [
         {
-          key = "capslock";
-          command = "extension.vim_escape";
-        }
-        {
           key = "ctrl+h";
           command = "workbench.action.navigateLeft";
         }
