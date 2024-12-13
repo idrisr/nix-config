@@ -4,6 +4,7 @@
     nixpkgs-lean43.url = "nixpkgs/cbcf0e94ac74";
     nixos-hardware.url = "github:nixos/nixos-hardware";
     flake-utils.url = "github:numtide/flake-utils";
+    zettel.url = "github:idrisr/zettel";
     stylix = {
       url = "github:danth/stylix";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -51,22 +52,18 @@
             ./hosts/${host}
             ./nixos-modules
             {
-              config.nixpkgs = let
-                ol = [
-                  inputs.knotools.overlays.all
-                  inputs.knotools.overlays.pipe-rename
-                ];
-                ol2 = [
-                  (import ./nixos-modules/qrcp "6969")
-                  (import ./nixos-modules/xournal)
-                  (import ./nixos-modules/tikzit)
-                ];
-              in {
+              config.nixpkgs = {
                 hostPlatform = pkgs.lib.mkDefault "x86_64-linux";
-                overlays = ol ++ ol2 ++ [
+                overlays = [
                   inputs.visualpreview.overlays.visualpreview
                   inputs.slide2text.overlays.slide2text
                   inputs.rofi.overlays.all
+                  inputs.knotools.overlays.all
+                  inputs.knotools.overlays.pipe-rename
+                  inputs.zettel.overlays.zettel
+                  (import ./nixos-modules/qrcp "6969")
+                  (import ./nixos-modules/xournal)
+                  (import ./nixos-modules/tikzit)
                 ];
                 config = {
                   allowUnfreePredicate = pkg:

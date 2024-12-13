@@ -626,6 +626,24 @@
         "type": "github"
       }
     },
+    "flake-utils_14": {
+      "inputs": {
+        "systems": "systems_14"
+      },
+      "locked": {
+        "lastModified": 1710146030,
+        "narHash": "sha256-SZ5L6eA7HJ/nmkzGG7/ISclqe6oZdOZTNoesiInkXPQ=",
+        "owner": "numtide",
+        "repo": "flake-utils",
+        "rev": "b1d9ab70662946ef0850d488da1c9019f3a9752a",
+        "type": "github"
+      },
+      "original": {
+        "owner": "numtide",
+        "repo": "flake-utils",
+        "type": "github"
+      }
+    },
     "flake-utils_2": {
       "inputs": {
         "systems": "systems_2"
@@ -1586,6 +1604,22 @@
         "type": "github"
       }
     },
+    "nixpkgs_12": {
+      "locked": {
+        "lastModified": 1717179513,
+        "narHash": "sha256-vboIEwIQojofItm2xGCdZCzW96U85l9nDW3ifMuAIdM=",
+        "owner": "nixos",
+        "repo": "nixpkgs",
+        "rev": "63dacb46bf939521bdc93981b4cbb7ecb58427a0",
+        "type": "github"
+      },
+      "original": {
+        "owner": "nixos",
+        "ref": "24.05",
+        "repo": "nixpkgs",
+        "type": "github"
+      }
+    },
     "nixpkgs_2": {
       "locked": {
         "lastModified": 1717432640,
@@ -1977,7 +2011,8 @@
         "rofi": "rofi",
         "slide2text": "slide2text",
         "stylix": "stylix",
-        "visualpreview": "visualpreview"
+        "visualpreview": "visualpreview",
+        "zettel": "zettel"
       }
     },
     "slide2text": {
@@ -2092,6 +2127,21 @@
       }
     },
     "systems_13": {
+      "locked": {
+        "lastModified": 1681028828,
+        "narHash": "sha256-Vy1rq5AaRuLzOxct8nz4T6wlgyUR7zLU309k9mBC768=",
+        "owner": "nix-systems",
+        "repo": "default",
+        "rev": "da67096a3b9bf56a91d16901293e51ba5b49a27e",
+        "type": "github"
+      },
+      "original": {
+        "owner": "nix-systems",
+        "repo": "default",
+        "type": "github"
+      }
+    },
+    "systems_14": {
       "locked": {
         "lastModified": 1681028828,
         "narHash": "sha256-Vy1rq5AaRuLzOxct8nz4T6wlgyUR7zLU309k9mBC768=",
@@ -2317,6 +2367,25 @@
       "original": {
         "owner": "idrisr",
         "repo": "visualpreview",
+        "type": "github"
+      }
+    },
+    "zettel": {
+      "inputs": {
+        "flake-utils": "flake-utils_14",
+        "nixpkgs": "nixpkgs_12"
+      },
+      "locked": {
+        "lastModified": 1734104142,
+        "narHash": "sha256-nlvgtEVBJhHkoL/gHYE3/X57V06DRIkGa3KfNDtIhSI=",
+        "owner": "idrisr",
+        "repo": "zettel",
+        "rev": "a6dbd588eeefe61d84a0384b2cb401951a8412a1",
+        "type": "github"
+      },
+      "original": {
+        "owner": "idrisr",
+        "repo": "zettel",
         "type": "github"
       }
     }
