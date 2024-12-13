@@ -19,6 +19,7 @@
     ./printer/printer-client.nix
     ./reading
     ./sdr
+    ./stylix
     ./superdrive.nix
     ./unifi
 

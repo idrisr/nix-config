@@ -3,7 +3,6 @@
     programs.rofi = {
       enable = true;
       terminal = "${pkgs.alacritty}/bin/alacritty";
-      font = "hack 24";
       location = "center";
       plugins = with pkgs; [ rofi-calc rofi-emoji rofi-power-menu ];
       extraConfig = {

@@ -5,7 +5,10 @@ in {
   config.home-manager = {
     useGlobalPkgs = true;
     useUserPackages = true;
-    extraSpecialArgs = { inherit inputs; inherit host;};
+    extraSpecialArgs = {
+      inherit inputs;
+      inherit host;
+    };
     users = lib.mkMerge [
       { hippoid = import ./profiles/base.nix; }
       (lib.mkIf cfg.dailydrive.enable {

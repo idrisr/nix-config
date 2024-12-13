@@ -13,7 +13,6 @@ in {
     ../modules/emacs
     ../modules/firefox
     ../modules/github
-    ../modules/gtk
     ../modules/haruna
     ../modules/haskeline
     ../modules/lsd

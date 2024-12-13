@@ -4,7 +4,10 @@
     nixpkgs-lean43.url = "nixpkgs/cbcf0e94ac74";
     nixos-hardware.url = "github:nixos/nixos-hardware";
     flake-utils.url = "github:numtide/flake-utils";
-    nix-colors.url = "github:misterio77/nix-colors";
+    stylix = {
+      inputs.nixpkgs.follows = "nixpkgs";
+      url = "github:danth/stylix";
+    };
     pre-commit-hooks.url = "github:cachix/pre-commit-hooks.nix";
     devenv = {
       url = "github:cachix/devenv";
@@ -37,13 +40,14 @@
     };
   };
 
-  outputs = inputs@{ nixpkgs, flake-utils, ... }:
+  outputs = inputs@{ nixpkgs, flake-utils, stylix, ... }:
     let
       system = flake-utils.lib.system.x86_64-linux;
       pkgs = nixpkgs.legacyPackages.${system};
       makeMachine = host:
         nixpkgs.lib.nixosSystem {
           modules = [
+            stylix.nixosModules.stylix
             ./hosts/${host}
             ./nixos-modules
             {
@@ -69,14 +73,11 @@
                     builtins.elem
                     (nixpkgs.legacyPackages.${system}.lib.getName pkg) [
                       "broadcom-sta"
-                      "ciscoPacketTracer8"
                       "discord"
-                      "lastpass-cli"
                       "mathpix-snipping-tool"
                       "makemkv"
                       "obsidian"
                       "zoom"
-                      "postman"
                     ];
                 };
               };

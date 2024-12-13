@@ -24,7 +24,6 @@
       extraConfig = lib.concatStringsSep "\n" [
         (builtins.readFile ./vifmrc)
         (builtins.readFile ./favicons.vifm)
-        (builtins.readFile ./vifm-colors/gruvbox.vifm)
       ];
       opts = {
         viewcolumns = "-80%{name}";

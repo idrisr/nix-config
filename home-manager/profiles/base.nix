@@ -1,4 +1,4 @@
-{ pkgs, inputs, ... }: {
+{ pkgs, ... }: {
   imports = [
     ../modules/autorandr
     ../modules/bat
@@ -14,12 +14,9 @@
     ../modules/vifm
     ../modules/vifm/program.nix
     ../modules/zsh
-    inputs.nix-colors.homeManagerModules.default
   ];
 
   config = {
-    colorScheme = inputs.nix-colors.colorSchemes.gruvbox-dark-medium;
-
     home = {
       username = "hippoid";
       homeDirectory = "/home/hippoid";
