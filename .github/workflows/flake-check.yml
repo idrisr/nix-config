@@ -1,0 +1,21 @@
+name: push
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build_and_test_nix:
+    name: nix flake check
+    strategy:
+      matrix:
+        os: [ubuntu-24.04]
+    runs-on: ubuntu-24.04
+    steps:
+      - name: git checkout
+        uses: actions/checkout@v4
+      - name: Install Nix
+        uses: DeterminateSystems/nix-installer-action@main
+      - name: check flake
+        run: nix flake check

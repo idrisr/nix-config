@@ -1,4 +1,3 @@
 # My Config
 
-## Problems
-overlays defined per host. Perhaps better in a module.
+![flake check status](https://github.com/idrisr/zettel/actions/workflows/flake-check.yml/badge.svg)
