@@ -1,6 +1,10 @@
 pkgs:
 with pkgs; [
 
+  dust
+  eza
+  btop
+  atuin
   insomnia
   flameshot
   zoom-us
@@ -93,7 +97,6 @@ with pkgs; [
   nix-output-monitor
   nix-query-tree-viewer
   nix-tree
-  nodePackages.bash-language-server
   nsxiv
   nuclear
   nvme-cli

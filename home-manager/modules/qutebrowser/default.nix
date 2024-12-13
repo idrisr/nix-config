@@ -49,6 +49,7 @@
         lo = "http://localhost:8080/?hoogle={}";
         loe = "http://localhost:8080/?hoogle={}%20is%3Aexact";
         hoe = "https://hoogle.haskell.org/?hoogle={}%20is%3Aexact";
+        fl = "https://flora.pm/search?q={}";
         hm =
           "https://home-manager-options.extranix.com/?query={}&release=master";
         mdn = "https://developer.mozilla.org/en-US/search?q={}";

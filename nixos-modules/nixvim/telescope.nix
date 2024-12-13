@@ -1,14 +1,35 @@
 {
   config.programs.nixvim = {
-    # plugins.treesitter.enable = true;
+    plugins.treesitter = {
+      enable = true;
+      settings = {
+        highlight.enable = true;
+        auto_install = true;
+      };
+    };
+
     plugins.web-devicons.enable = true;
+    keymaps = [
+      {
+        key = "<leader>tj";
+        action = "<cmd>Outline<CR>";
+        mode = "n";
+        options = { desc = "Toggle Outline"; };
+      }
+      {
+        key = "<leader>tk";
+        action = ":lua= vim.diagnostic.setloclist()<CR>";
+        mode = "n";
+        options = { desc = "diagnostics to loclist"; };
+      }
+    ];
+
     plugins.telescope = {
       extensions = {
         ui-select.enable = true;
         file-browser.enable = true;
       };
       enable = true;
-      # lsp_type_definitions
 
       keymaps = {
         "<leader>ta" = {
@@ -37,10 +58,39 @@
           };
           mode = "n";
         };
+
         "<leader>td" = {
           action = "lsp_definitions";
           options = {
             desc = "🎸 lsp definitions";
+            silent = true;
+          };
+          mode = "n";
+        };
+
+        "<leader>te" = {
+          action = "lsp_implementations";
+          options = {
+            desc = "🎸 lsp implementations";
+            silent = true;
+          };
+          mode = "n";
+
+        };
+
+        "<leader>tf" = {
+          action = "live_grep";
+          options = {
+            desc = "🎸 grep live word";
+            silent = true;
+          };
+          mode = "n";
+        };
+
+        "<leader>th" = {
+          action = "hoogle";
+          options = {
+            desc = "🎸 hoogle";
             silent = true;
           };
           mode = "n";
@@ -73,7 +123,7 @@
           mode = "n";
         };
 
-        "<leader>tx" = {
+        "<leader>x" = {
           action = "find_files";
           options = {
             desc = "🎸 files";
@@ -82,7 +132,7 @@
           mode = "n";
         };
 
-        "<leader>tz" = {
+        "<leader>z" = {
           action = "git_files";
           options = {
             desc = "🎸 git files";
@@ -91,6 +141,14 @@
           mode = "n";
         };
 
+        "<leader>b" = {
+          action = "buffers";
+          options = {
+            desc = "🎸 buffers";
+            silent = true;
+          };
+          mode = "n";
+        };
         "<leader>tg" = {
           action = "grep_string";
           options = {
@@ -100,14 +158,6 @@
           mode = "n";
         };
 
-        "<leader>te" = {
-          action = "live_grep";
-          options = {
-            desc = "🎸 grep live word";
-            silent = true;
-          };
-          mode = "n";
-        };
       };
 
       settings = {
