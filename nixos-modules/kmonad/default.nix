@@ -20,5 +20,15 @@
       };
       config = builtins.readFile ./apple-numpad.kbd;
     };
+
+    keyboards."surface" = {
+      device = "/dev/input/by-path/platform-MSHW0343:00-event-kbd";
+      defcfg = {
+        fallthrough = true;
+        enable = true;
+        allowCommands = false;
+      };
+      config = builtins.readFile ./config.kbd;
+    };
   };
 }
