@@ -25,6 +25,7 @@
         (builtins.readFile ./vifmrc)
         (builtins.readFile ./favicons.vifm)
         (builtins.readFile ./vifm-colors/gruvbox.vifm)
+        "set ignorecase"
       ];
       opts = {
         viewcolumns = "-80%{name}";
@@ -36,7 +37,6 @@
         number = true;
         norunexec = true;
         scrolloff = 4;
-        smartcase = true;
         sortnumbers = true;
         statusline =
           ''"%1* %-10t %2* owner:%u:%-7g %5* size:%s %N %3* attr:%A 4* %20d "'';
@@ -48,9 +48,9 @@
         vicmd = "vim";
         vimhelp = true;
         wildmenu = true;
-        wildstyle = "popup";
+        # wildstyle = "popup";
       };
     };
-    home.packages = with pkgs; [ visualpreview libheif ];
+    home.packages = with pkgs; [ visualpreview libheif nix-derivation ];
   };
 }

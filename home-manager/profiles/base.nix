@@ -18,7 +18,7 @@
   ];
 
   config = {
-    colorScheme = inputs.nix-colors.colorSchemes.gruvbox-dark-medium;
+    colorScheme = inputs.nix-colors.colorSchemes.gruvbox-light-medium;
 
     home = {
       username = "hippoid";

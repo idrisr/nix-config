@@ -10,7 +10,6 @@ with pkgs; [
   lynis
   monaspace
   ncdu
-  nix-derivation
   ntfs3g
   pipe-rename
   pstree

@@ -20,6 +20,7 @@ in {
     ./align.nix
     ./alpha.nix
     ./autocommand.nix
+    ./autosession.nix
     ./cmp.nix
     ./comment.nix
     ./conform.nix

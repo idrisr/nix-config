@@ -10,12 +10,6 @@
           options = { desc = "resize up"; };
         }
         {
-          key = "<leader>ot";
-          action = "<cmd>Outline<CR>";
-          mode = "n";
-          options = { desc = "Toggle Outline"; };
-        }
-        {
           key = "<C-Down>";
           action = ":resize -2<CR>";
           mode = "n";
@@ -63,12 +57,6 @@
           action = '':lua= require("lsp_lines").toggle()<CR>'';
           mode = "n";
           options = { desc = "toggle lsp lines"; };
-        }
-        {
-          key = "<leader>b";
-          action = ":Telescope buffers<cr>";
-          mode = "n";
-          options = { desc = "buffer search"; };
         }
         {
           action = ":set hlsearch!<cr>";

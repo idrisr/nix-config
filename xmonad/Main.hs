@@ -97,6 +97,7 @@ myKeys conf@(XConfig{XMonad.modMask = modm}) =
         , ((modm, xK_a), quteSearch nixos)
         , ((modm, xK_b), quteSearch flora)
         , ((modm, xK_c), braveSearch youtube)
+        , ((modm, xK_d), braveSearch maps)
         , ((modm, xK_g), spawn "rofi -show window")
         , ((modm, xK_h), sendMessage Shrink)
         , ((modm, xK_j), windows W.focusDown)

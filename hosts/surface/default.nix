@@ -7,7 +7,7 @@
     borg-backup-client.enable = true;
     display.enable = true;
     local.printer.enable = true;
-    docker.enable = false; # for open-webui
+    docker.enable = true; # for open-webui
     profile = {
       dailydrive.enable = true;
       rofi-book-search.enable = true;

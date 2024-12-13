@@ -32,6 +32,7 @@ fileviewer {*.pdf}
 fileviewer {*.vtt} vttclean --file %c
 
 filextype *.docx libreoffice %c
+fileviewer {*.drv} pretty-derivation < %c
 
 fileviewer {*.zip} unzip -l
 

@@ -1,8 +1,4 @@
-{ config, pkgs, lib, inputs, ... }:
-let
-  customFonts =
-    pkgs.nerdfonts.override { fonts = [ "JetBrainsMono" "Iosevka" ]; };
-in {
+{ config, pkgs, lib, inputs, ... }: {
   imports = [
     ../../nixos-modules/power
     inputs.nixos-hardware.nixosModules.microsoft-surface-pro-intel
@@ -10,6 +6,10 @@ in {
   ];
   config = {
     boot = {
+      kernelPatches = [{
+        name = "intel-ipu6";
+        patch = ./0016-intel-ipu6.patch;
+      }];
       loader = {
         grub = {
           enable = true;
@@ -41,20 +41,35 @@ in {
         "i915.enable_psr=0"
       ];
     };
+    services.pipewire = {
+      enable = true;
+      alsa.enable = true;
+      pulse.enable = true;
+    };
+
+    systemd.services = {
+      bluetooth.serviceConfig.ExecStart = [
+        ""
+        "${pkgs.bluez}/libexec/bluetooth/bluetoothd --noplugin=sap,avrcp"
+      ];
+      NetworkManager-wait-online.enable = lib.mkForce false;
+      systemd-networkd-wait-online.enable = lib.mkForce false;
+    };
 
     networking = {
       hostName = "surface";
       wireless.iwd.enable = false;
-      networkmanager.enable = true;
+      networkmanager = { enable = true; };
       interfaces.wlp0s20f3.useDHCP = true;
-      firewall.allowedTCPPorts = [ 631 6969 2234 1143 1025 ];
+      firewall.allowedTCPPorts = [ 631 6969 2234 1143 1025 5000 ];
     };
-
-    fonts.packages = with pkgs; [ customFonts font-awesome ];
 
     hardware = {
       pulseaudio.enable = false;
-      bluetooth.enable = true;
+      bluetooth = {
+        settings = { General = { ControllerMode = "bredr"; }; };
+        enable = true;
+      };
       cpu.intel.updateMicrocode =
         lib.mkDefault config.hardware.enableRedistributableFirmware;
     };
@@ -76,7 +91,7 @@ in {
     hardware.alsa.enablePersistence = true;
 
     services = {
-      iptsd.config.Touch.DisableOnPalm = true;
+      iptsd.config.Touchscreen.DisableOnPalm = true;
       autorandr.enable = true;
       fwupd.enable = true;
       xserver.upscaleDefaultCursor = true;
@@ -87,3 +102,5 @@ in {
     system.stateVersion = "24.05";
   };
 }
+
+# 58:0A:D4:EB:A7:4B Idris’s Airpods - Find My
