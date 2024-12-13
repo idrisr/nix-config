@@ -1,3 +1,3 @@
 # My Config
 
-![flake check status](https://github.com/idrisr/zettel/actions/workflows/flake-check.yml/badge.svg)
+![flake check status](https://github.com/idrisr/nix-config/actions/workflows/flake-check.yml/badge.svg)
