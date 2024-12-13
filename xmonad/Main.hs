@@ -122,14 +122,17 @@ actionA windowID = do
         else float windowID
 
 myLayout =
-    avoidStruts
-        . smartBorders
-        . mySpacing
-        . mkToggle (NOBORDERS ?? FULL ?? EOT)
-        $ tiled
-            ||| Mirror tiled
+    avoidStruts $
+        smartBorders $
+            mySpacing $
+                mkToggle (NOBORDERS ?? FULL ?? EOT) $
+                    tiled
+                        ||| Mirror tiled
   where
-    tiled = Tall 1 (1 / 2) (3 / 100)
+    tiled = Tall nmaster delta ratio
+    nmaster = 1
+    ratio = 1 / 2
+    delta = 3 / 100
 
 main :: IO ()
 main =
