@@ -9,6 +9,7 @@
         modi = "drun,emoji,ssh";
         kb-row-up = "Up,Alt+k";
         kb-row-down = "Down,Alt+j";
+        dpi = 267;
       };
     };
   };
