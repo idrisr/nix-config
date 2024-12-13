@@ -2376,11 +2376,11 @@
         "nixpkgs": "nixpkgs_12"
       },
       "locked": {
-        "lastModified": 1734104142,
-        "narHash": "sha256-nlvgtEVBJhHkoL/gHYE3/X57V06DRIkGa3KfNDtIhSI=",
+        "lastModified": 1734107759,
+        "narHash": "sha256-u+IH5QNZcVh6R6AeQjN39agH3HsoqJW05yu7vlC7v8Q=",
         "owner": "idrisr",
         "repo": "zettel",
-        "rev": "a6dbd588eeefe61d84a0384b2cb401951a8412a1",
+        "rev": "24980f7ede5909ff308ddfd428511067c07685d7",
         "type": "github"
       },
       "original": {

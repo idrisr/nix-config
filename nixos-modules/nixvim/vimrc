@@ -5,3 +5,14 @@ nnoremap <leader>T ggI<cr><cr><esc>ggI---<esc>otitle: <c-r>%<esc>xxxo---<esc>jj
 let g:vimtex_compiler_latexmk_engines = { '_': '-lualatex' }
 
 nnoremap <leader>gt :set operatorfunc=GrepOperator<cr>g@i[
+
+command! -bang -nargs=* ContentsOfLinks call
+    \ fzf#vim#grep('rg --replace ' . "'$1' " . '--ignore-case --only-matching --no-filename "\[\[(.+?)\]\]" '
+    \ . shellescape(expand('%:p'))
+    \ . '| sort -ur'
+    \ . '| awk ' . "'" . '{print $0".md"}' . "'"
+    \ . '| tr "\n" "\0" '
+    \ . '| xargs -0 rg --column --ignore-case --line-number --no-heading ' . shellescape(<q-args>) . ' {}',
+    \ 1,
+    \ fzf#vim#with_preview( {'options': '--exact'} ),
+    \ <bang>0)

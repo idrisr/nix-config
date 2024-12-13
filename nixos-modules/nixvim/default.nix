@@ -60,6 +60,7 @@ in {
       outline-nvim
       nvim-lilypond-suite
       kmonad-vim
+      pkgs.zettel
     ];
 
     extraConfigVim = concatFiles [ ./vimrc ];
