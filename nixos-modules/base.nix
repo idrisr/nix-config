@@ -53,6 +53,8 @@ in {
       };
     };
 
+    systemd.services.NetworkManager-wait-online.enable = false;
+
     # Configure keymap in X11
     console.useXkbConfig = true;
     time.timeZone = "America/Chicago";

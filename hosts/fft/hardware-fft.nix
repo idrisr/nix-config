@@ -22,14 +22,6 @@
     fileSystems."/boot" = { options = [ "umask=0077" ]; };
     monitoring.enable = true;
 
-    sound = {
-      enable = true;
-      extraConfig = ''
-        defaults.pcm.card 1
-        defaults.ctl.card 1
-      '';
-    };
-
     services = {
       openssh = {
         settings.X11Forwarding = true;

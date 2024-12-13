@@ -1,8 +1,4 @@
-{ config, pkgs, lib, inputs, ... }:
-let
-  customFonts =
-    pkgs.nerdfonts.override { fonts = [ "JetBrainsMono" "Iosevka" ]; };
-in {
+{ config, pkgs, lib, inputs, ... }: {
   imports = [
     ../../nixos-modules/power
     inputs.nixos-hardware.nixosModules.microsoft-surface-pro-intel
@@ -50,7 +46,7 @@ in {
       firewall.allowedTCPPorts = [ 631 6969 2234 1143 1025 ];
     };
 
-    fonts.packages = with pkgs; [ customFonts font-awesome ];
+    # fonts.packages = with pkgs; [ customFonts font-awesome ];
 
     hardware = {
       pulseaudio.enable = false;
@@ -76,7 +72,7 @@ in {
     hardware.alsa.enablePersistence = true;
 
     services = {
-      iptsd.config.Touch.DisableOnPalm = true;
+      iptsd.config.Touchscreen.DisableOnPalm = true;
       autorandr.enable = true;
       fwupd.enable = true;
       xserver.upscaleDefaultCursor = true;

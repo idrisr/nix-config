@@ -5,8 +5,8 @@
     nixos-hardware.url = "github:nixos/nixos-hardware";
     flake-utils.url = "github:numtide/flake-utils";
     stylix = {
-      inputs.nixpkgs.follows = "nixpkgs";
       url = "github:danth/stylix";
+      inputs.nixpkgs.follows = "nixpkgs";
     };
     pre-commit-hooks.url = "github:cachix/pre-commit-hooks.nix";
     devenv = {

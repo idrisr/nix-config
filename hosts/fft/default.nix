@@ -10,11 +10,12 @@
 
   config = {
     base.enable = true;
-    display.enable = false;
+    display.enable = true;
+    profile.dailydrive.enable = true;
     home-assistant.enable = true;
     monitoring.enable = true;
     nvidia-gpu.enable = true;
     ollama.enable = false;
-    unifi.enable = true;
+    unifi.enable = false;
   };
 }
