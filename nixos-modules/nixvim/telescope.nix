@@ -96,6 +96,15 @@
           mode = "n";
         };
 
+        "<leader>tk" = {
+          action = "file_browser";
+          options = {
+            desc = "🎸 file browser";
+            silent = true;
+          };
+          mode = "n";
+        };
+
         "<leader>tr" = {
           action = "lsp_references";
           options = {
