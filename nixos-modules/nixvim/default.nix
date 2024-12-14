@@ -41,6 +41,7 @@ in {
     ./telescope.nix
     ./toggleterm.nix
     ./transparent.nix
+    ./trouble.nix
     ./ultisnips.nix # move to other snip thing
     ./vimrc.nix
     ./whichkey.nix
