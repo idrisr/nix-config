@@ -18,4 +18,4 @@ jobs:
       - name: Install Nix
         uses: DeterminateSystems/nix-installer-action@main
       - name: check flake
-        run: nix flake check
+        run: nix flake check --print-build-logs --show-trace
