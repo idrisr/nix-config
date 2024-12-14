@@ -55,6 +55,7 @@
         mdn = "https://developer.mozilla.org/en-US/search?q={}";
         np = "https://search.nixos.org/packages?query={}&channel=unstable";
         no = "https://search.nixos.org/options?query={}&channel=unstable";
+        nv = "https://nix-community.github.io/nixvim/?search={}";
         nog = "https://noogle.dev/q?term={}";
         npl =
           "https://encore.naperville-lib.org/iii/encore/search/C__S{}__Orightresult__U?lang=eng";
