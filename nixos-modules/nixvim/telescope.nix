@@ -96,7 +96,7 @@
           mode = "n";
         };
 
-        "<leader>tk" = {
+        "<leader>tl" = {
           action = "file_browser";
           options = {
             desc = "🎸 file browser";
