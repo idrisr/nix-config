@@ -1,6 +1,7 @@
 {
   config.programs.nixvim.plugins.notify = {
     enable = true;
-    timeout = 2000;
+    timeout = 200;
+    fps = 60;
   };
 }
