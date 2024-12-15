@@ -25,6 +25,7 @@
         (builtins.readFile ./vifmrc)
         (builtins.readFile ./favicons.vifm)
         "set ignorecase"
+        "set number"
       ];
       opts = {
         viewcolumns = "-80%{name}";
