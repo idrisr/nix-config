@@ -1,15 +1,5 @@
 { pkgs, ... }:
 let
-  vimkind = pkgs.vimUtils.buildVimPlugin {
-    pname = "one-small-step-for-vimkind";
-    version = "2023-06-30";
-    src = pkgs.fetchFromGitHub {
-      repo = "one-small-step-for-vimkind";
-      owner = "jbyuki";
-      rev = "0dd306e68bf79b38cc01b15c22047e6a867df7de";
-      sha256 = "sha256-G5soAD3+z7BOxMaZVLPBEHxNa2H3Jp+dqDwQDMAlx2k=";
-    };
-  };
   concatFiles = files:
     let
       j = map builtins.readFile files;
@@ -51,12 +41,10 @@ in {
     enable = true;
     viAlias = true;
     vimAlias = true;
-    colorschemes.gruvbox.enable = true;
 
     extraPlugins = with pkgs.vimPlugins; [
       fzf-vim # switch to fzf-lua?
       nvim-dap-ui
-      vimkind
       telescope_hoogle
       outline-nvim
       nvim-lilypond-suite

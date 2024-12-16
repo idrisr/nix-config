@@ -1,6 +1,7 @@
 pkgs:
 with pkgs; [
 
+  code-cursor
   dust
   eza
   btop

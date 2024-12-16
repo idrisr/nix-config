@@ -70,6 +70,7 @@
                     builtins.elem
                     (nixpkgs.legacyPackages.${system}.lib.getName pkg) [
                       "broadcom-sta"
+                      "cursor"
                       "discord"
                       "mathpix-snipping-tool"
                       "makemkv"
