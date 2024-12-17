@@ -12,7 +12,7 @@
       config = builtins.readFile ./config.kbd;
     };
 
-    keyboards."apple-numpad" = {
+    keyboards."apple-numpad" = lib.mkIf (host == "fft") {
       device = "/dev/input/by-id/usb-Apple_Inc._Apple_Keyboard-event-kbd";
       defcfg = {
         fallthrough = true;
