@@ -10,6 +10,7 @@ in {
     ./align.nix
     ./alpha.nix
     ./autocommand.nix
+    ./avante.nix
     ./autosession.nix
     ./cmp.nix
     ./comment.nix
