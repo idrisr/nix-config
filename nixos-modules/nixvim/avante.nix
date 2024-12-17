@@ -1,1 +1,1 @@
-{ config.programs.nixvim.plugins.avante = { enable = true; }; }
+{ config.programs.nixvim.plugins.avante = { enable = false; }; }
