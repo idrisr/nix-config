@@ -1,5 +1,6 @@
 { pkgs, ... }: {
   imports = [
+    ../modules/atuin
     ../modules/autorandr
     ../modules/bat
     ../modules/direnv

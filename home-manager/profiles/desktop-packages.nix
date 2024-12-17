@@ -5,7 +5,6 @@ with pkgs; [
   dust
   eza
   btop
-  atuin
   insomnia
   flameshot
   zoom-us
