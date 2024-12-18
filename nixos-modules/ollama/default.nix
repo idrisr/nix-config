@@ -26,7 +26,6 @@ in {
       environment = {
         WEBUI_AUTH = "False";
         OLLAMA_BASE_URL = "http://127.0.0.1:${builtins.toString ollama_port}";
-        GLOBAL_LOG_LEVEL = "DEBUG";
       };
 
     };
