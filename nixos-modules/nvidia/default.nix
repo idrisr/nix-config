@@ -28,7 +28,6 @@ in {
           "nvidia-persistenced"
           "nvtop-nvidia"
           "cudatoolkit-12.2.2"
-          # "cudatoolkit-12.2"
           "cudaPackages.cudatoolkit"
         ];
       config.allowUnfree = true;

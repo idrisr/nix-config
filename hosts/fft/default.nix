@@ -15,7 +15,7 @@
     home-assistant.enable = true;
     monitoring.enable = true;
     nvidia-gpu.enable = true;
-    ollama.enable = false;
+    ollama.enable = true;
     unifi.enable = false;
   };
 }

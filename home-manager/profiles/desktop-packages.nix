@@ -1,6 +1,8 @@
 pkgs:
 with pkgs; [
 
+  mods
+  glow
   code-cursor
   dust
   eza

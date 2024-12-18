@@ -20,5 +20,7 @@
       };
     };
   };
-  config = { environment.systemPackages = [ pkgs.ollama ]; };
+  config = {
+    environment.systemPackages = [ pkgs.ollama pkgs.nvtopPackages.nvidia ];
+  };
 }

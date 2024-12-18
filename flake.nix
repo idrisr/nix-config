@@ -65,19 +65,7 @@
                   (import ./nixos-modules/xournal)
                   (import ./nixos-modules/tikzit)
                 ];
-                config = {
-                  allowUnfreePredicate = pkg:
-                    builtins.elem
-                    (nixpkgs.legacyPackages.${system}.lib.getName pkg) [
-                      "broadcom-sta"
-                      "cursor"
-                      "discord"
-                      "mathpix-snipping-tool"
-                      "makemkv"
-                      "obsidian"
-                      "zoom"
-                    ];
-                };
+                config = { allowUnfree = true; };
               };
             }
           ];
