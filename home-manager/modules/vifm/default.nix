@@ -1,43 +1,33 @@
 { pkgs, lib, ... }: {
   config = {
     programs.vifm = {
-      viewer = pkgs.writeShellApplication {
-        name = "YO";
-        runtimeInputs = [ ];
-        text = "";
-      };
       enable = true;
-      marks = {
-        b = "~/books";
-        d = "~/documents";
-        h = "~/";
-        m = "~/fun/memorandum";
-        n = "~/dotfiles";
-        p = "~/documents/papers";
-        r = "~/roam-export";
-        s = "~/screenshots";
-        t = "~/documents/tech-talks";
-        v = "~/videos";
-        w = "~/downloads";
-        W = "~/wallpapers";
-      };
+
       extraConfig = lib.concatStringsSep "\n" [
         (builtins.readFile ./vifmrc)
         (builtins.readFile ./favicons.vifm)
-        "set ignorecase"
-        "set number"
+        ''
+          set ignorecase
+          set number
+          set incsearch
+          set sortnumbers
+          mark b ~/books
+          mark d ~/documents
+          mark p ~/documents/papers
+          mark s ~/screenshots
+          mark t ~/documents/tech-talks
+          mark v ~/videos
+          mark w ~/downloads''
       ];
+
       opts = {
         viewcolumns = "-80%{name}";
         history = 100;
         ignorecase = true;
-        incsearch = true;
         nofollowlinks = true;
         nohlsearch = true;
-        number = true;
         norunexec = true;
         scrolloff = 4;
-        sortnumbers = true;
         statusline =
           ''"%1* %-10t %2* owner:%u:%-7g %5* size:%s %N %3* attr:%A 4* %20d "'';
         suggestoptions = "normal,visual,view,otherpane,keys,marks,registers";
