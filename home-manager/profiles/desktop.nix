@@ -22,7 +22,6 @@ in {
     ../modules/qt
     ../modules/qutebrowser
     ../modules/rofi
-    ../modules/syncthing
     ../modules/vscode
     ../modules/xdg
     ../modules/zathura

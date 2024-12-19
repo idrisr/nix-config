@@ -21,6 +21,7 @@
     ./sdr
     ./stylix
     ./superdrive.nix
+    ./syncthing
     ./unifi
 
     inputs.nixvim.nixosModules.nixvim
