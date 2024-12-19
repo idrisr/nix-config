@@ -16,12 +16,14 @@
       devices = {
         surface.id =
           "4ACO4YT-J3BBDR7-SMZPHBN-IK7KGSI-5TOIQIC-YXYOC5U-3SQDFY7-IJ6TOQA";
+        framework.id =
+          "PNAM4JI-5E5CRM6-YVD6CT4-Z6D7XQD-JARNY3R-FLGG2YY-62IHSVV-ARVFGAY";
       };
 
       folders = {
         "syncme" = {
           path = "/home/hippoid/syncme";
-          devices = [ "surface" ];
+          devices = [ "surface" "framework" ];
           versioning = {
             type = "staggered";
             params = {
