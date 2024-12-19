@@ -22,9 +22,9 @@
 
       folders = {
         "syncme" = {
-          path = "/home/hippoid/syncme";
+          path = "/home/hippoid/roam-export";
           devices = [ "surface" "framework" ];
-          versioning = {
+          vesioning = {
             type = "staggered";
             params = {
               cleanInterval = "3600";
