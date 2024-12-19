@@ -7,6 +7,7 @@
         normal = {
           "cm" = "clear-messages";
           "cc" = "config-cycle colors.webpage.darkmode.enabled";
+          "tb" = "spawn brave {url}";
         };
       };
 
