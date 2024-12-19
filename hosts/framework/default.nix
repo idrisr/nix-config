@@ -5,7 +5,10 @@
     base.enable = true;
     borg-backup-client.enable = true;
     display.enable = true;
-    profile.dailydrive.enable = true;
     environment.systemPackages = [ pkgs.framework-tool ];
+    profile = {
+      dailydrive.enable = true;
+      rofi-book-search.enable = true;
+    };
   };
 }
