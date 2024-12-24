@@ -26,7 +26,7 @@ import XMonad.Layout.Spacing (
     Spacing,
     spacingRaw,
  )
-import XMonad.Prompt (XPConfig (height, position), XPPosition (CenteredAt), amberXPConfig, greenXPConfig)
+import XMonad.Prompt (XPConfig (height, position), XPPosition (CenteredAt), greenXPConfig)
 import XMonad.StackSet qualified as W
 import XMonad.Util.Dzen
 
@@ -121,6 +121,17 @@ actionA windowID = do
         then withFocused $ windows . W.sink
         else float windowID
 
+workspaceHook name index = className =? name --> doShift (show index) <+> doF (W.view (show index))
+
+myManageHooks =
+    composeAll
+        [ workspaceHook "kitty" 1
+        , workspaceHook "qutebrowser" 2
+        , workspaceHook "brave-browser" 3
+        , workspaceHook "Zathura" 4
+        , workspaceHook "haruna" 5
+        ]
+
 myLayout =
     avoidStruts $
         smartBorders $
@@ -150,7 +161,7 @@ main =
                 , keys = myKeys
                 , mouseBindings = myMouseBindings
                 , layoutHook = myLayout
-                , manageHook = composeAll []
+                , manageHook = myManageHooks
                 , handleEventHook = mempty
                 , logHook = pure ()
                 , startupHook = pure ()
