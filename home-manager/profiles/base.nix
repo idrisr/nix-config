@@ -14,6 +14,7 @@
     ../modules/tmux
     ../modules/vifm
     ../modules/vifm/program.nix
+    ../modules/yt-dlp
     ../modules/zsh
   ];
 
