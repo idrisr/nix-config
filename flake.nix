@@ -5,6 +5,10 @@
     nixos-hardware.url = "github:nixos/nixos-hardware";
     flake-utils.url = "github:numtide/flake-utils";
     zettel.url = "github:idrisr/zettel";
+    nur = {
+      url = "github:idrisr/nur-packages";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
     stylix = {
       url = "github:danth/stylix";
       inputs.nixpkgs.follows = "nixpkgs";

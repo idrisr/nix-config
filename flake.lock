@@ -1775,6 +1775,26 @@
         "type": "github"
       }
     },
+    "nur": {
+      "inputs": {
+        "nixpkgs": [
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1734665756,
+        "narHash": "sha256-2+ClCJZDeCesyT7uuLzlqyvXkCIIqfd2WDPP7iWPj88=",
+        "owner": "idrisr",
+        "repo": "nur-packages",
+        "rev": "547de4848b3d3fd6b7e9e178e8c1695efcb457c3",
+        "type": "github"
+      },
+      "original": {
+        "owner": "idrisr",
+        "repo": "nur-packages",
+        "type": "github"
+      }
+    },
     "nuschtosSearch": {
       "inputs": {
         "flake-utils": "flake-utils_6",
@@ -2007,6 +2027,7 @@
         "nixpkgs": "nixpkgs_6",
         "nixpkgs-lean43": "nixpkgs-lean43",
         "nixvim": "nixvim",
+        "nur": "nur",
         "pre-commit-hooks": "pre-commit-hooks_3",
         "rofi": "rofi",
         "slide2text": "slide2text",
