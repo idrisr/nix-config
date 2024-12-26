@@ -107,11 +107,10 @@ myKeys conf@(XConfig{XMonad.modMask = modm}) =
         , ((modm, xK_r), spawn "rofi -modi drun,window,emoji -show emoji")
         , ((modm, xK_space), sendMessage NextLayout)
         , ((modm, xK_t), withFocused $ windows . W.sink)
-        , ((modm, xK_t), withFocused actionA)
+        , ((modm, xK_u), withFocused actionA)
+        , ((modm, xK_v), spawn "bash /home/hippoid/videos/test.sh") -- TODO: properly put this into a nix package
         ]
-            ++ [ ((m .|. modm, k), windows $ f i)
-               | (i, k) <- zip (XMonad.workspaces conf) [xK_1 .. xK_9]
-               , (f, m) <- [(W.greedyView, 0), (W.shift, shiftMask)]
+            ++ [ ((m .|. modm, k), windows $ f i) | (i, k) <- zip (XMonad.workspaces conf) [xK_1 .. xK_9], (f, m) <- [(W.greedyView, 0), (W.shift, shiftMask)]
                ]
 
 actionA :: Window -> X ()
@@ -127,9 +126,10 @@ myManageHooks =
     composeAll
         [ workspaceHook "kitty" 1
         , workspaceHook "qutebrowser" 2
-        , workspaceHook "brave-browser" 3
+        , workspaceHook "Brave-browser" 3
         , workspaceHook "Zathura" 4
-        , workspaceHook "haruna" 5
+        , workspaceHook "KeePassXC" 4
+        , workspaceHook "mpv" 5
         ]
 
 myLayout =

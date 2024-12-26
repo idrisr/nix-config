@@ -83,7 +83,6 @@ with pkgs; [
   mdtopdf
   mediainfo
   mplayer
-  mpv
   mtr
   ncdu
   neofetch

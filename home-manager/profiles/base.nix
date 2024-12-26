@@ -7,6 +7,7 @@
     ../modules/fzf
     ../modules/git
     ../modules/lazygit
+    ../modules/mpv
     ../modules/readline
     ../modules/ripgrep
     ../modules/starship

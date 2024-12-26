@@ -18,8 +18,13 @@ let
         "https://www.pixelstalk.net/wp-content/uploads/images8/Spring-Landscape-4K-Wallpaper-Free-Spring-Landscape-4K-Background.jpg";
       sha256 = "5corV3V94nPILwp0rGdwa30g5VWOT+YqXdQDSFDJOIc=";
     };
+    nebula = {
+      url =
+        "https://www.pixelstalk.net/wp-content/uploads/images6/Hot-Aesthetically-Pleasing-Wallpaper.jpg";
+      sha256 = "5UQM6kVPRusBICuaHkFofSoWd8TGV0kDv3Nn9w69hTs=";
+    };
   };
-  selected = "spring";
+  selected = "nebula";
 in {
   stylix = {
     enable = true;

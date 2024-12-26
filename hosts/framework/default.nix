@@ -5,7 +5,7 @@
     base.enable = true;
     borg-backup-client.enable = true;
     display.enable = true;
-    environment.systemPackages = [ pkgs.framework-tool ];
+    environment.systemPackages = with pkgs; [ framework-tool intel-gpu-tools ];
     profile = {
       dailydrive.enable = true;
       rofi-book-search.enable = true;

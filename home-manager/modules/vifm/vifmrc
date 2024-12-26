@@ -17,7 +17,7 @@ fileviewer <video/*>
     \ visualpreview video %pw %ph %px %py %c %N
     \ %pc
     \ visualpreview clear
-filextype *mp3,*mkv,*webm,*mp4,*mov,*avi,*m4v haruna %f 2>/dev/null &
+filextype *mp3,*mkv,*webm,*mp4,*mov,*avi,*m4v mpv %f 2>/dev/null &
 
 fileviewer <font/*>
     \ visualpreview font %pw %ph %px %py %c %N
