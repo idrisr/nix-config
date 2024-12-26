@@ -1,6 +1,7 @@
 { config, ... }:
 let
-  browser = "org.qutebrowser.qutebrowser.desktop";
+  qute = "org.qutebrave.qutebrave.desktop";
+  brave = "brave-brave.desktop";
   # spreadsheet = "libreoffice-calc.desktop";
   pdf = "org.pwmt.zathura.desktop";
 in {
@@ -24,11 +25,11 @@ in {
         enable = true;
         defaultApplications = {
           "application/pdf" = pdf;
-          "text/html" = browser;
-          "x-scheme-handler/about" = browser;
-          "x-scheme-handler/http" = browser;
-          "x-scheme-handler/https" = browser;
-          "x-scheme-handler/unknown" = browser;
+          "text/html" = brave;
+          "x-scheme-handler/about" = brave;
+          "x-scheme-handler/http" = brave;
+          "x-scheme-handler/https" = brave;
+          "x-scheme-handler/unknown" = brave;
         };
       };
     };
