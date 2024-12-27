@@ -1,0 +1,22 @@
+(defsrc
+ caps s    d    f      j k l
+
+;; lalt lctl lsft ralt rctl rsft
+lsft
+ )
+
+(defalias
+    alt_s (tap-hold-next-release 250 s lalt)
+    ctl_d (tap-hold-next-release 250 d lctl)
+    sft_f (tap-hold-next-release 250 f lsft)
+
+    sft_j (tap-hold-next-release 250 j lsft)
+    ctl_k (tap-hold-next-release 250 k lctl)
+    alt_l (tap-hold-next-release 250 l lalt)
+)
+
+(deflayer base
+ esc @alt_s   @ctl_d   @sft_f    @sft_j @ctl_k   @alt_l
+ ;;XX XX XX XX XX XX
+ XX
+)

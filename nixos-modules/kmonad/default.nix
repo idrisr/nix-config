@@ -12,7 +12,7 @@
         enable = true;
         allowCommands = false;
       };
-      config = builtins.readFile ./config.kbd;
+      config = builtins.readFile ./homerowmod.kbd;
     };
 
     keyboards."apple-numpad" = lib.mkIf (host == "fft") {

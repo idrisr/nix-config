@@ -81,7 +81,6 @@ myKeys :: XConfig Layout -> M.Map (KeyMask, KeySym) (X ())
 myKeys conf@(XConfig{XMonad.modMask = modm}) =
     M.fromList $
         [ ((modm .|. shiftMask, xK_b), spawn qute)
-        , ((modm .|. shiftMask, xK_f), sendMessage . Toggle $ FULL)
         , ((modm .|. shiftMask, xK_j), windows W.swapDown)
         , ((modm .|. shiftMask, xK_k), windows W.swapUp)
         , ((modm .|. shiftMask, xK_n), withFocused toggleBorder)
@@ -91,6 +90,8 @@ myKeys conf@(XConfig{XMonad.modMask = modm}) =
         , ((modm .|. shiftMask, xK_space), setLayout . XMonad.layoutHook $ conf)
         , ((modm .|. shiftMask, xK_t), sendMessage ToggleStruts)
         , ((modm .|. shiftMask, xK_v), spawn brave)
+        , ((modm .|. shiftMask, xK_7), spawn "brightnessctl set 5%-") -- Brightness Down
+        , ((modm .|. shiftMask, xK_8), spawn "brightnessctl set +5%") -- Brightness Up
         , ((modm, xK_6), lowerVolume 4 >>= alert)
         , ((modm, xK_7), raiseVolume 4 >>= alert)
         , ((modm, xK_8), toggleMute >> getMute >>= alertMute)
@@ -98,6 +99,7 @@ myKeys conf@(XConfig{XMonad.modMask = modm}) =
         , ((modm, xK_b), quteSearch flora)
         , ((modm, xK_c), braveSearch youtube)
         , ((modm, xK_d), braveSearch maps)
+        , ((modm, xK_e), sendMessage . Toggle $ FULL)
         , ((modm, xK_g), spawn "rofi -show window")
         , ((modm, xK_h), sendMessage Shrink)
         , ((modm, xK_j), windows W.focusDown)
@@ -105,7 +107,7 @@ myKeys conf@(XConfig{XMonad.modMask = modm}) =
         , ((modm, xK_l), sendMessage Expand)
         , ((modm, xK_p), spawn "rofi -show drun -show-icons")
         , ((modm, xK_r), spawn "rofi -modi drun,window,emoji -show emoji")
-        , ((modm, xK_space), sendMessage NextLayout)
+        , ((modm, xK_s), sendMessage NextLayout)
         , ((modm, xK_t), withFocused $ windows . W.sink)
         , ((modm, xK_u), withFocused actionA)
         , ((modm, xK_v), spawn "bash /home/hippoid/videos/test.sh") -- TODO: properly put this into a nix package

@@ -2,57 +2,46 @@
  esc  f1   f2   f3   f4   f5   f6   f7   f8   f9   f10  f11  f12  del
  grv  1    2    3    4    5    6    7    8    9    0    -    =    bspc
  tab  q    w    e    r    t    y    u    i    o    p    [    ]    bksl
- caps a    s    d    f    g    h    j    k    l    ;    '    ret
- lsft z    x    c    v    b    n    m    ,    .    /    rsft
- lctl Fn   lmet lalt spc  ralt rctl left up   down rght
+ caps a    s    d    f    g    h    j    k    l    ;    '         ret
+ lsft      z    x    c    v    b    n    m    ,    .    /         rsft
+ lctl Fn   lmet lalt                spc  ralt rctl left up   down rght
  )
 
 (deflayer base
  esc  f1   f2   f3   f4   f5   f6   f7   f8   f9   f10  f11  f12  del
  grv  XX   XX   XX   XX   XX   XX   XX   XX   XX   XX   -    =    bspc
- @num q    w    e    r    t    y    u    i    o    p    [    ]    bksl
- esc  a    s    d    f    g    h    j    k    l    ;    '    ret
- lsft z    x    c    v    b    n    m    ,    .    /    rsft
- @slc Fn   @sym @sla spc  ralt rctl left up   down rght
+ tab  q    w    e    r    t    y    u    i    o    p    [    ]    bksl
+ esc  a    s    d    f    g    h    j    k    l    ;    '         ret
+ lsft      z    x    c    v    b    n    m    ,    .    /         @num
+ lctl Fn   XX   lalt                spc  @tmx rctl left up   down rght
+)
+
+(deflayer num
+ XX   XX   XX   XX   XX   XX   XX   XX   XX   XX   XX   XX   XX   XX
+ XX   XX   XX   XX   XX   XX   XX   XX   XX   XX   XX   XX   XX   XX
+ XX   XX   XX   XX   XX   XX   XX   XX   XX   XX   XX   XX   XX   XX
+ bspc 1    2    3    4    5    6    7    8    9    0    XX        XX
+ lsft      XX   XX   XX   XX   XX   XX   XX   XX   XX   XX        XX
+ XX   XX   XX   lalt                spc  lalt XX   XX   XX   XX   XX
 )
 
 (defalias
-    num (layer-toggle numbers)
+	num (tap-next-release spc (layer-toggle num))
 )
 
-(defalias
-    sym (layer-toggle symbols)
-)
-
-(defalias
-    slc (sticky-key 500 lctl)
-)
-
-(defalias
-    sla (sticky-key 500 lalt)
-)
+(defalias gui_a (tap-hold-next-release 200 a lgui))
 
 
+;; the tmux leader thing is very common. it should be
+;; have its own thing
+
+;; (defalias tmx (tap-macro (around lctl b)))
+(defalias tmx  (around-next (tap-macro (around lctl b))))
+
+
+;; (around met (layer-toggle my-layer))
 ;; tap-hold
 ;; tap-hold-next
 ;; tap-hold-next-release
 ;; tap-next
 ;; tap-next-press
-
-(deflayer numbers
- _    _    _    _    _    _    _    _    _    _    _    _    _    _
- _    _    _    _    _    _    _    _    _    _    _    _    _    _
- _    _    _    _    _    _    7    8    9    _    _    _    _    _
- _    _    _    _    _    _    4    5    6    _    _    _    _
- _    _    _    _    _    0    1    2    3    _    _    _
- _    _    _    _    _    _    _    _    _    _    _
-)
-
-(deflayer symbols
- _    _    _    _    _    _    _    _    _    _    _    _    _    _
- _    _    _    _    _    _    _    _    _    _    _    _    _    _
- _    _    _    _    _    _    &    *    !    _    _    _    _    _
- _    _    _    _    _    _    $    %    ^    _    _    _    _
- _    _    _    _    _    \(   \)   @    #    _    _    _
- _    _    _    _    _    _    _    _    _    _    _
-)
