@@ -9,6 +9,6 @@ in {
       screenshot-template = "~/screenshots/%F-%wH.%wM.%wS.png";
       save-position-on-quit = true;
     };
-    scripts = with pkgs.mpvScripts; [ evafast thumbnail uosc mpv-speed-script ];
+    scripts = with pkgs.mpvScripts; [ mpv-speed-script ];
   };
 }
