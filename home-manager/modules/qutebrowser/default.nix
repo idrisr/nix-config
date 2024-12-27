@@ -45,6 +45,7 @@
         aa = "https://annas-archive.org/search?q={}";
         am = "https://www.amazon.com/s?k={}";
         amz = "https://www.amazon.com/s?k={}&i=stripbooks";
+        ar = "https://wiki.archlinux.org/index.php?search={}";
         cpl = "https://chipublib.bibliocommons.com/v2/search?query={}";
         ho = "https://hoogle.haskell.org/?hoogle={}";
         lo = "http://localhost:8080/?hoogle={}";
