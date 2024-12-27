@@ -2,7 +2,7 @@
  caps s    d    f      j k l
 
 ;; lalt lctl lsft ralt rctl rsft
-lsft
+lsft lctl lalt
  )
 
 (defalias
@@ -18,5 +18,5 @@ lsft
 (deflayer base
  esc @alt_s   @ctl_d   @sft_f    @sft_j @ctl_k   @alt_l
  ;;XX XX XX XX XX XX
- XX
+ XX XX XX
 )
