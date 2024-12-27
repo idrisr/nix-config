@@ -7,6 +7,7 @@
     ./borg/borg.nix
     ./desktop.nix
     ./docker
+    ./fprintd
     ./home-assistant
     ../home-manager
     ./hoogle

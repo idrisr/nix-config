@@ -33,7 +33,7 @@ in {
     };
 
     security = {
-      sudo.wheelNeedsPassword = false;
+      sudo.wheelNeedsPassword = true;
       rtkit.enable = true;
       polkit.enable = true;
     };
