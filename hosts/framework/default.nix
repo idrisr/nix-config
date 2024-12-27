@@ -9,6 +9,7 @@
       framework-tool
       intel-gpu-tools
       brightnessctl
+      fprintd
     ];
     profile = {
       dailydrive.enable = true;

@@ -44,9 +44,17 @@
     networkmanager.enable = true;
   };
 
+  security.pam.services = { };
+
   system.stateVersion = "23.05"; # Did you read the comment? no.
   nixpkgs.hostPlatform = lib.mkDefault "x86_64-linux";
-  powerManagement.cpuFreqGovernor = lib.mkDefault "powersave";
+  services.thermald.enable = true;
+
+  powerManagement = {
+    enable = true;
+    powertop.enable = true;
+    cpuFreqGovernor = lib.mkDefault "ondemand";
+  };
   hardware.cpu.intel.updateMicrocode =
     lib.mkDefault config.hardware.enableRedistributableFirmware;
 }
