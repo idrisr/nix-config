@@ -2,21 +2,35 @@
  caps s    d    f      j k l
 
 ;; lalt lctl lsft ralt rctl rsft
-lsft lctl lalt
+lsft lctl lalt ralt
  )
 
-(defalias
-    alt_s (tap-hold-next-release 250 s lalt)
-    ctl_d (tap-hold-next-release 250 d lctl)
-    sft_f (tap-hold-next-release 250 f lsft)
 
-    sft_j (tap-hold-next-release 250 j lsft)
-    ctl_k (tap-hold-next-release 250 k lctl)
-    alt_l (tap-hold-next-release 250 l lalt)
+(defalias
+    alt_s (tap-hold 250 s lalt)
+    ctl_d (tap-hold 250 d lctl)
+    sft_f (tap-hold 250 f lsft)
+
+    sft_j (tap-hold 250 j lsft)
+    ctl_k (tap-hold 250 k lctl)
+    alt_l (tap-hold 250 l lalt)
+    fb1 (tap-macro K M o n a d)
+    fb2 (tap-macro K M o n a d :delay 300)
+    fb3 (tap-macro-release K M o n a d)
+    fb4 (multi-tap 300 q 300 w 300 e 300 r t)
+    ;; multi-tap makes no sense to me
 )
 
 (deflayer base
  esc @alt_s   @ctl_d   @sft_f    @sft_j @ctl_k   @alt_l
- ;;XX XX XX XX XX XX
- XX XX XX
+ _ XX XX @fboi
+)
+
+(defalias
+	fboi (tap-next-release spc (layer-toggle fboi))
+)
+
+(deflayer fboi
+ esc @fb1   @fb2   @fb3    @fb4 @ctl_k   @alt_l
+ _ XX XX _
 )

@@ -11,6 +11,7 @@
         hakyll
         hedgehog
         JuicyPixels
+        kmonad
         lens
         lens-aeson
         monadIO

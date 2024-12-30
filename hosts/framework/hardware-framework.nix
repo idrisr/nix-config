@@ -35,7 +35,11 @@
     options = [ "fmask=0077" "dmask=0077" ];
   };
 
-  services.fwupd.enable = true;
+  services = {
+    fwupd.enable = true;
+    autorandr.enable = true;
+  };
+
   swapDevices = [ ];
 
   networking = {
