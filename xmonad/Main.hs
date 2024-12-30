@@ -95,10 +95,10 @@ myKeys conf@(XConfig{XMonad.modMask = modm}) =
         , ((modm, xK_6), lowerVolume 4 >>= alert)
         , ((modm, xK_7), raiseVolume 4 >>= alert)
         , ((modm, xK_8), toggleMute >> getMute >>= alertMute)
-        , ((modm, xK_a), quteSearch nixos)
-        , ((modm, xK_b), quteSearch flora)
-        , ((modm, xK_c), braveSearch youtube)
-        , ((modm, xK_d), braveSearch maps)
+        -- , ((modm, xK_a), quteSearch nixos)
+        -- , ((modm, xK_b), quteSearch flora)
+        -- , ((modm, xK_c), braveSearch youtube)
+        -- , ((modm, xK_d), braveSearch maps)
         , ((modm, xK_e), sendMessage . Toggle $ FULL)
         , ((modm, xK_g), spawn "rofi -show window")
         , ((modm, xK_h), sendMessage Shrink)
@@ -110,7 +110,7 @@ myKeys conf@(XConfig{XMonad.modMask = modm}) =
         , ((modm, xK_s), sendMessage NextLayout)
         , ((modm, xK_t), withFocused $ windows . W.sink)
         , ((modm, xK_u), withFocused actionA)
-        , ((modm, xK_v), spawn "bash /home/hippoid/videos/test.sh") -- TODO: properly put this into a nix package
+        -- , ((modm, xK_v), spawn "bash /home/hippoid/videos/test.sh") -- TODO: properly put this into a nix package
         ]
             ++ [ ((m .|. modm, k), windows $ f i) | (i, k) <- zip (XMonad.workspaces conf) [xK_1 .. xK_9], (f, m) <- [(W.greedyView, 0), (W.shift, shiftMask)]
                ]

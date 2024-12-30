@@ -7,7 +7,7 @@
     enable = true;
     escapeTime = 0;
     keyMode = "vi";
-    prefix = "C-b";
+    prefix = "C-a";
     terminal = "screen-256color";
     tmuxp.enable = true;
     extraConfig = builtins.readFile ./tmux.conf;
