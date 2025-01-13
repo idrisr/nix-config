@@ -17,7 +17,7 @@ let
     repo = "${repo}";
     encryption = {
       mode = "repokey-blake2";
-      passCommand = "cat /root/borgbackup/passphrase02";
+      passCommand = "cat /home/hippoid/.ssh/borg/passphrase";
     };
     environment = { BORG_RSH = "ssh -i ${key}"; };
     compression = "auto,lzma";
@@ -45,11 +45,12 @@ in {
   config = lib.mkIf cfg.enable {
     # this setup only works for backup from one machine
     # need to think further how to modularize this for n machines
-    services.borgbackup.jobs = {
-      borgbase = backup "/root/borgbackup/borg02-ed25519"
-        "irhb5ap5@irhb5ap5.repo.borgbase.com:repo";
-      air = backup "/root/borgbackup/borg02-ed25519" "borg@air:.";
-      fft = backup "/root/borgbackup/borg02-ed25519" "borg@fft:.";
-    };
+    services.borgbackup.jobs =
+      let sshkey = "/home/hippoid/.ssh/borg/borg-ed25519";
+      in {
+        borgbase = backup sshkey "irhb5ap5@irhb5ap5.repo.borgbase.com:repo";
+        air = backup sshkey "borg@air:.";
+        fft = backup sshkey "borg@fft:.";
+      };
   };
 }
