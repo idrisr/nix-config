@@ -52,7 +52,7 @@
 
   system.stateVersion = "23.05"; # Did you read the comment? no.
   nixpkgs.hostPlatform = lib.mkDefault "x86_64-linux";
-  services.thermald.enable = false;
+  services.thermald.enable = true;
 
   powerManagement = {
     enable = true;
