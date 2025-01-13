@@ -15,6 +15,7 @@ in {
 
   config = lib.mkIf cfg.enable {
     programs.i3lock.enable = true;
+    programs.droidcam.enable = true;
     services = {
       displayManager = {
         defaultSession = "none+xmonad";

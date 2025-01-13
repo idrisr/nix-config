@@ -19,6 +19,7 @@
         laststatus = 2;
         list = false;
         hlsearch = false;
+        mouse = "nv";
         number = true;
         numberwidth = 2;
         relativenumber = false;

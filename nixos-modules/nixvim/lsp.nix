@@ -18,7 +18,7 @@
         lua_ls.enable = true;
         marksman.enable = true;
         nil_ls.enable = true;
-        # ocamllsp.enable = true;
+        # ocamlls.enable = true;
         prolog_ls.enable = false;
         # purescriptls.enable = true;
         pyright.enable = true;

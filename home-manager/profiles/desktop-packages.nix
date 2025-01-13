@@ -1,7 +1,6 @@
 pkgs:
 with pkgs; [
 
-  mods
   glow
   code-cursor
   dust
@@ -19,8 +18,8 @@ with pkgs; [
   zulip-term
   slide2text
   losslesscut-bin
-  mods
   # obsidian
+  krop
   git-crypt
   abcde
   stylua

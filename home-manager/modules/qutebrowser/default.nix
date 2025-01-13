@@ -13,7 +13,7 @@
 
       settings = {
         downloads.location.directory = "$HOME/downloads";
-        zoom.default = "75%";
+        zoom.default = "100%";
         statusbar.position = "top";
         fonts.default_size = "12pt";
 

@@ -1,14 +1,9 @@
 {
   inputs = {
     nixpkgs.url = "nixpkgs/nixos-unstable";
-    nixpkgs-lean43.url = "nixpkgs/cbcf0e94ac74";
+    # nixpkgs-lean43.url = "nixpkgs/cbcf0e94ac74";
     nixos-hardware.url = "github:nixos/nixos-hardware";
-    flake-utils.url = "github:numtide/flake-utils";
     zettel.url = "github:idrisr/zettel";
-    nur = {
-      url = "github:idrisr/nur-packages";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
     stylix = {
       url = "github:danth/stylix";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -45,9 +40,9 @@
     };
   };
 
-  outputs = inputs@{ nixpkgs, flake-utils, stylix, ... }:
+  outputs = inputs@{ nixpkgs, stylix, ... }:
     let
-      system = flake-utils.lib.system.x86_64-linux;
+      system = "x86_64-linux";
       pkgs = nixpkgs.legacyPackages.${system};
       makeMachine = host:
         nixpkgs.lib.nixosSystem {

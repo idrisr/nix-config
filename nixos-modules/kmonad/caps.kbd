@@ -1,8 +1,5 @@
 (defsrc
- caps s    d    f      j k l
-
-;; lalt lctl lsft ralt rctl rsft
-lctl lalt
+ caps
  )
 
 
@@ -18,12 +15,4 @@ lctl lalt
 
 (deflayer base
  esc
- @sftl
- @ctll
- @altl
-
- @altr
- @ctlr
- @sftr
- XX XX
 )

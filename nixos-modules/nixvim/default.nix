@@ -8,6 +8,7 @@ let
 in {
   imports = [
     ./align.nix
+    ./neoscroll.nix
     ./alpha.nix
     ./autocommand.nix
     ./avante.nix

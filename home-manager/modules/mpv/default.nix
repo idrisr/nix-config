@@ -8,6 +8,7 @@ in {
       vo = "gpu";
       screenshot-template = "~/screenshots/%F-%wH.%wM.%wS.png";
       save-position-on-quit = true;
+      keep-open = true;
     };
     scripts = with pkgs.mpvScripts; [ mpv-speed-script ];
   };

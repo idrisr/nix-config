@@ -1,3 +1,4 @@
+# TODO: make this a home manager module
 port: _: prev: {
   qrcp = prev.stdenvNoCC.mkDerivation {
     pname = "qrcp";

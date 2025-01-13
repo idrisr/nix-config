@@ -3,6 +3,7 @@
   options = { };
   imports = [
     ./ad-blocker.nix
+    ./audiobookshelf
     ./base.nix
     ./borg/borg.nix
     ./desktop.nix
