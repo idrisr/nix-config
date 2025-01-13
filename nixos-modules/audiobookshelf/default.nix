@@ -1,6 +1,6 @@
 {
   services.audiobookshelf = {
-    enable = true;
+    enable = false;
     openFirewall = true;
     user = "hippoid";
     host = "0.0.0.0";
