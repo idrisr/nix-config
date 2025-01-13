@@ -17,11 +17,11 @@
         extraConfig = "set -g @resurrect-strategy-nvim 'session'";
       }
       pkgs.tmuxPlugins.resurrect
-      {
-        plugin = pkgs.tmuxPlugins.catppuccin;
-        # extraConfig =
-        # ''set -ag status-right "#{E:@catppuccin_status_session}"'';
-      }
+      # {
+      # # plugin = pkgs.tmuxPlugins.catppuccin;
+      # # extraConfig =
+      # # ''set -ag status-right "#{E:@catppuccin_status_session}"'';
+      # }
       pkgs.tmuxPlugins.continuum
       pkgs.tmuxPlugins.tmux-fzf
     ];
