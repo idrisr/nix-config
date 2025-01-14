@@ -79,7 +79,7 @@ in {
         };
         config = {
           eDP-1 = framework // { enable = false; };
-          DP-4 = desk-monitor // { enable = true; };
+          DP-3 = desk-monitor // { enable = true; };
         };
       };
 
