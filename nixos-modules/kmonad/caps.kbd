@@ -1,6 +1,6 @@
 (defsrc
  caps
- f8
+ tab
  )
 
 
@@ -12,7 +12,7 @@
     altr (tap-hold 250 j lalt)
     ctlr (tap-hold 250 k lctl)
     sftr (tap-hold 250 l lsft)
-    ta1 (tap-macro 1 0 0 w o r d s space o r space l e s s)
+    ta1 (tap-macro 1 0 0 w o r d s o r l e s s)
 )
 
 (deflayer base
