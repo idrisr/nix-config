@@ -62,4 +62,5 @@
   hardware.cpu.intel.updateMicrocode =
     lib.mkDefault config.hardware.enableRedistributableFirmware;
   hardware.opentabletdriver.enable = true;
+  hardware.bluetooth.enable = true;
 }
