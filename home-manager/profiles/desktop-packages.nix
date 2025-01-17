@@ -2,6 +2,7 @@ pkgs:
 with pkgs; [
 
   rnote
+  blueman
   glow
   code-cursor
   dust
