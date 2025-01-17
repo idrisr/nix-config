@@ -1,6 +1,7 @@
 pkgs:
 with pkgs; [
 
+  rnote
   glow
   code-cursor
   dust
