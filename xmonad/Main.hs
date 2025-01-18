@@ -130,6 +130,7 @@ myManageHooks =
         , workspaceHook "Brave-browser" 3
         , workspaceHook "Zathura" 4
         , workspaceHook "KeePassXC" 4
+        , workspaceHook "rnote" 4
         , workspaceHook "mpv" 5
         ]
 
