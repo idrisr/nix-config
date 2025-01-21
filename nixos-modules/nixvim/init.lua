@@ -31,6 +31,9 @@ require("lspconfig").texlab.setup({
 			default_config = {
 				settings = {
 					texlab = {
+						symbols = {
+							customEnvironments = { "definition" },
+						},
 						auxDirectory = ".",
 						bibtexFormatter = "texlab",
 						build = {
