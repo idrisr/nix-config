@@ -1,5 +1,5 @@
 { lib, stdenv, rustPlatform, fetchFromGitHub, help2man, installShellFiles
-, libiconv, Security, CoreServices, nix-update-script, }:
+, nix-update-script, }:
 
 let isCross = stdenv.hostPlatform != stdenv.buildPlatform;
 in rustPlatform.buildRustPackage rec {
@@ -10,20 +10,16 @@ in rustPlatform.buildRustPackage rec {
     owner = "latex-lsp";
     repo = "texlab";
     rev = "cdca6d60a501fceb6c4f17c13c93f67bdeea2041";
-    hash = "";
+    hash = "sha256-LE0TpXis/ga2Em73iavBrCulI7bJGslqghN4EZ3MCvA=";
   };
 
-  cargoHash = "";
+  cargoHash = "sha256-xu6tzBpiF8+yJSxSPR00yZLccLBz+nGl/PtEJdwfHtA=";
 
   outputs = [ "out" ] ++ lib.optional (!isCross) "man";
 
   nativeBuildInputs = [ installShellFiles ] ++ lib.optional (!isCross) help2man;
 
-  buildInputs = lib.optionals stdenv.hostPlatform.isDarwin [
-    libiconv
-    Security
-    CoreServices
-  ];
+  buildInputs = lib.optionals stdenv.hostPlatform.isDarwin [ ];
 
   # When we cross compile we cannot run the output executable to
   # generate the man page

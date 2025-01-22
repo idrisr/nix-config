@@ -48,6 +48,7 @@
                 onEdit = false;
                 onOpenAndSave = false;
               };
+              symbols.customEnvironments = [{ name = "definition"; }];
               forwardSearch = {
                 executable = "zathura";
                 args = [ "--synctex-forward" "%l:1:%f" "%p" ];
