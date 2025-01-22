@@ -41,6 +41,7 @@
                 forwardSearchAfter = true;
                 onSave = true;
               };
+              forwardSearch = { executable = "zathura"; };
             };
           };
         };
