@@ -13,7 +13,6 @@ vim.api.nvim_create_autocmd("User", {
 })
 
 require("outline").setup({})
-
 require("lspconfig").hls.setup({})
 require("lspconfig").lua_ls.setup({
 	settings = {
@@ -24,5 +23,3 @@ require("lspconfig").lua_ls.setup({
 		},
 	},
 })
-
-require("lspconfig").texlab.setup({})

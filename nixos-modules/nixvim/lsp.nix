@@ -22,7 +22,10 @@
         prolog_ls.enable = false;
         # purescriptls.enable = true;
         pyright.enable = true;
-        texlab = { enable = true; };
+        texlab = {
+          enable = true;
+          settings = { };
+        };
         # https://github.com/latex-lsp/texlab/pull/1311
         # tsserver.enable = true;
       };
