@@ -41,7 +41,7 @@
                 ];
                 executable = "latexmk";
                 forwardSearchAfter = true;
-                onSave = true;
+                onSave = false;
                 pdfDirectory = "build";
               };
               chktex = {
