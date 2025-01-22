@@ -3,7 +3,7 @@
     lspsaga.enable = false;
     lsp-lines.enable = true;
     lsp = {
-      enable = true;
+      enable = false;
       servers = {
         bashls.enable = true;
         ccls.enable = true;
