@@ -39,7 +39,7 @@
                 ];
                 executable = "latexmk";
                 forwardSearchAfter = true;
-                onSave = true;
+                onSave = false;
               };
               forwardSearch = {
                 executable = "zathura";
