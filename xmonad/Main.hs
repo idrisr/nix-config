@@ -125,7 +125,7 @@ workspaceHook name index = className =? name --> doShift (show index) <+> doF (W
 
 myManageHooks =
     composeAll
-        [ workspaceHook "kitty" 1
+        [ workspaceHook "ghostty" 1
         , workspaceHook "qutebrowser" 2
         , workspaceHook "Brave-browser" 3
         , workspaceHook "Zathura" 4

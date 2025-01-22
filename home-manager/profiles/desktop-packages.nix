@@ -1,6 +1,7 @@
 pkgs:
 with pkgs; [
 
+  ghostty
   rnote
   blueman
   glow
