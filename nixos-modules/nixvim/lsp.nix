@@ -45,7 +45,7 @@
               };
               forwardSearch = {
                 executable = "zathura";
-                args = [ "%f" "%p" "%l" ];
+                args = [ "%f" "build/%p" "%l" ];
               };
             };
           };
