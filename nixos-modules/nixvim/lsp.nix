@@ -23,7 +23,7 @@
         # purescriptls.enable = true;
         pyright.enable = true;
         texlab = {
-          enable = true;
+          enable = false;
           settings = { "what" = "dafuck"; };
         };
         # https://github.com/latex-lsp/texlab/pull/1311
