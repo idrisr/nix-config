@@ -45,8 +45,8 @@
                 pdfDirectory = "build";
               };
               chktex = {
-                onEdit = true;
-                onOpenAndSave = true;
+                onEdit = false;
+                onOpenAndSave = false;
               };
               forwardSearch = {
                 executable = "zathura";

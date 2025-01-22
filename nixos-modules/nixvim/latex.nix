@@ -1,6 +1,6 @@
 {
   config.programs.nixvim.plugins.vimtex = {
-    enable = false;
+    enable = true;
     texlivePackage = null;
     settings = {
       quickfix_autoclose_after_keystrokes = 3;
