@@ -24,7 +24,7 @@
         pyright.enable = true;
         texlab = {
           enable = true;
-          settings = { };
+          # settings = { };
         };
         # https://github.com/latex-lsp/texlab/pull/1311
         # tsserver.enable = true;
