@@ -38,17 +38,9 @@
                   "%f"
                 ];
                 executable = "latexmk";
-                forwardSearchAfter = false;
+                forwardSearchAfter = true;
                 onSave = true;
               };
-
-              # options = [
-              # "-synctex=1"
-              # "-interaction=nonstopmode"
-              # "-file-line-error"
-              # "-verbose"
-              # "-shell-escape"
-              # ];
             };
           };
         };
