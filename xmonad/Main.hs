@@ -152,7 +152,7 @@ main =
     spawn "polybar"
         >> (xmonad . docks . ewmh)
             def
-                { terminal = "kitty"
+                { terminal = "ghostty"
                 , focusFollowsMouse = True
                 , clickJustFocuses = False
                 , borderWidth = 8
