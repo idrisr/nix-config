@@ -23,7 +23,7 @@
         # purescriptls.enable = true;
         pyright.enable = true;
         texlab = { enable = true; };
-        # https://github.com/latex-lsp/texlab/pull/1311
+        # https://github.com/latex-lsp/texlab/pull/1311
         # tsserver.enable = true;
       };
 
