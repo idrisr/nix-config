@@ -41,7 +41,10 @@
                 forwardSearchAfter = true;
                 onSave = true;
               };
-              forwardSearch = { executable = "zathura"; };
+              forwardSearch = {
+                executable = "zathura";
+                args = [ "%f" "%p" "%l" ];
+              };
             };
           };
         };
