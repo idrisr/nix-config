@@ -1,6 +1,7 @@
 pkgs:
 with pkgs; [
 
+  postman
   texlab
   ghostty
   rnote
