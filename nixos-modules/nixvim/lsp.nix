@@ -45,7 +45,7 @@
               };
               forwardSearch = {
                 executable = "zathura";
-                args = [ "%f" "build/%p" "%l" ];
+                args = [ "--synctex-forward" "%l:1:%f" "%p" ];
               };
             };
           };
