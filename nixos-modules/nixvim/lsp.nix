@@ -33,6 +33,8 @@
                   "-verbose"
                   "-shell-escape"
                   "-pdf"
+                  "-output-directory=build"
+                  "-aux-directory=build"
                   "-interaction=nonstopmode"
                   "-synctex=1"
                   "%f"
