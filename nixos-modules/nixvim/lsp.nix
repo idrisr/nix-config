@@ -24,10 +24,34 @@
         pyright.enable = true;
         texlab = {
           enable = true;
-          settings = { };
+          settings = {
+            texlab = {
+              bibtexFormatter = "texlab";
+              build = {
+                args = [
+                  "-file-line-error"
+                  "-verbose"
+                  "-shell-escape"
+                  "-pdf"
+                  "-interaction=nonstopmode"
+                  "-synctex=1"
+                  "%f"
+                ];
+                executable = "latexmk";
+                forwardSearchAfter = false;
+                onSave = true;
+              };
+
+              # options = [
+              # "-synctex=1"
+              # "-interaction=nonstopmode"
+              # "-file-line-error"
+              # "-verbose"
+              # "-shell-escape"
+              # ];
+            };
+          };
         };
-        # https://github.com/latex-lsp/texlab/pull/1311
-        # tsserver.enable = true;
       };
 
       keymaps = {
