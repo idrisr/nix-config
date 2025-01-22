@@ -42,6 +42,7 @@
                 executable = "latexmk";
                 forwardSearchAfter = true;
                 onSave = false;
+                pdfDirectory = "build";
               };
               forwardSearch = {
                 executable = "zathura";
