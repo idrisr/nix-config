@@ -63,7 +63,9 @@
                   (import ./nixos-modules/qrcp "6969")
                   (import ./nixos-modules/xournal)
                   (import ./nixos-modules/tikzit)
-                  (self: super: { texlab = self.callPackage ./texlab-overlay; })
+                  (self: super: {
+                    texlab = super.callPackage ./texlab-overlay;
+                  })
                 ];
                 config = { allowUnfree = true; };
               };
