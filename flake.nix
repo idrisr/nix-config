@@ -2,6 +2,7 @@
   inputs = {
     nixpkgs.url = "nixpkgs/nixos-unstable";
     # nixpkgs-lean43.url = "nixpkgs/cbcf0e94ac74";
+    nixcord = { url = "github:kaylorben/nixcord"; };
     nixos-hardware.url = "github:nixos/nixos-hardware";
     zettel.url = "github:idrisr/zettel";
     stylix = {

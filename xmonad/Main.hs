@@ -132,6 +132,7 @@ myManageHooks =
         , workspaceHook "KeePassXC" 4
         , workspaceHook "rnote" 4
         , workspaceHook "mpv" 5
+        , workspaceHook "Zotero" 5
         ]
 
 myLayout =
