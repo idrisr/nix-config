@@ -1,7 +1,7 @@
 {
   config = {
     programs.emacs = {
-      enable = true;
+      enable = false;
       extraConfig = builtins.readFile ./init.el;
       extraPackages = e:
         with e; [
