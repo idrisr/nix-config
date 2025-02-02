@@ -2,6 +2,7 @@ pkgs:
 with pkgs; [
 
   agda
+  agdaPackages.standard-library
   source-code-pro
   postman
   texlab
