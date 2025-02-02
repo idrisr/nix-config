@@ -1,6 +1,7 @@
 pkgs:
 with pkgs; [
 
+  source-code-pro
   postman
   texlab
   ghostty
