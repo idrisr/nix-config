@@ -1,8 +1,7 @@
 pkgs:
 with pkgs; [
 
-  agda
-  agdaPackages.standard-library
+  (agda.withPackages (p: [ p.standard-library ]))
   source-code-pro
   postman
   texlab
