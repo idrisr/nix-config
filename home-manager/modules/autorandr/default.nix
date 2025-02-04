@@ -15,8 +15,8 @@ let
     mode = "2256x1504";
     rate = "60.00";
     rotate = "normal";
-    scale.x = 2.0;
-    scale.y = 2.0;
+    scale.x = 1.0;
+    scale.y = 1.0;
   };
   surface = {
     crtc = 0;
