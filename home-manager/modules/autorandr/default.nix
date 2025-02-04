@@ -27,7 +27,7 @@ let
     rotate = "normal";
   };
   desk-monitor = {
-    crtc = 1;
+    crtc = 0;
     primary = true;
     position = "0x0";
     mode = "3840x2160";
@@ -36,7 +36,7 @@ let
   };
 in {
   programs.autorandr = {
-    enable = false;
+    enable = true;
     hooks = {
       predetect = { };
       preswitch = { };
