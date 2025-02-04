@@ -12,8 +12,7 @@ let
     crtc = 0;
     primary = true;
     position = "0x0";
-    # mode = "2256x1504";
-    mode = "3159x2106";
+    mode = "2256x1504";
     rate = "60.00";
     rotate = "normal";
     scale.x = 2.0;
