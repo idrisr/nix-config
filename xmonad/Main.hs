@@ -126,7 +126,7 @@ workspaceHook name index = className =? name --> doShift (show index) <+> doF (W
 
 myManageHooks =
     composeAll
-        [ workspaceHook "ghostty" 1
+        [ workspaceHook "kitty" 1
         , workspaceHook "qutebrowser" 2
         , workspaceHook "Brave-browser" 3
         , workspaceHook "Zathura" 4
@@ -154,7 +154,7 @@ main =
     spawn "polybar"
         >> (xmonad . docks . ewmh)
             def
-                { terminal = "ghostty"
+                { terminal = "kitty"
                 , focusFollowsMouse = True
                 , clickJustFocuses = False
                 , borderWidth = 8
