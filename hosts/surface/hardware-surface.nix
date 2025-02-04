@@ -92,7 +92,7 @@
     services = {
       iptsd.config.Touchscreen.DisableOnPalm = true;
       autorandr.enable = true;
-      fwupd.enable = true;
+      fwupd.enable = false;
       xserver.upscaleDefaultCursor = true;
       usbmuxd = { enable = true; };
     };

@@ -8,14 +8,14 @@ let
 in {
   imports = [
     ./align.nix
-    ./neoscroll.nix
     ./alpha.nix
     ./autocommand.nix
-    ./avante.nix
     ./autosession.nix
+    ./avante.nix
     ./cmp.nix
     ./comment.nix
     ./conform.nix
+    ./cornelis.nix
     ./dap.nix
     ./fugitive.nix
     ./fzf.nix
@@ -23,6 +23,7 @@ in {
     ./latex.nix
     ./lean
     ./lsp.nix
+    ./neoscroll.nix
     ./neo-tree.nix
     ./notify.nix
     ./obsidian.nix

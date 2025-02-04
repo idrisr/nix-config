@@ -57,6 +57,18 @@
                   name = "example";
                   displayName = "example";
                 }
+                {
+                  name = "intuition";
+                  displayName = "intuition";
+                }
+                {
+                  name = "exercise";
+                  displayName = "exercise";
+                }
+                {
+                  name = "haskell";
+                  displayName = "haskell";
+                }
               ];
               forwardSearch = {
                 executable = "zathura";
