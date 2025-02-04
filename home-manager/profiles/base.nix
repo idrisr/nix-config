@@ -4,6 +4,7 @@
     ../modules/autorandr
     ../modules/bat
     ../modules/direnv
+    ../modules/flameshot
     ../modules/fzf
     ../modules/git
     ../modules/lazygit
