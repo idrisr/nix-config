@@ -36,7 +36,7 @@ let
   };
 in {
   programs.autorandr = {
-    enable = true;
+    enable = false;
     hooks = {
       predetect = { };
       preswitch = { };
