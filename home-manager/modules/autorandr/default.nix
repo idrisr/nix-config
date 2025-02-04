@@ -75,7 +75,7 @@ in {
       desk-framework = {
         fingerprint = {
           eDP-1 = frameID;
-          DP-4 = monitorID;
+          DP-2 = monitorID;
         };
         config = {
           eDP-1 = framework // { enable = false; };
