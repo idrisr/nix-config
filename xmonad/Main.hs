@@ -101,6 +101,7 @@ myKeys conf@(XConfig{XMonad.modMask = modm}) =
           ((modm, xK_e), sendMessage . Toggle $ FULL)
         , ((modm, xK_g), spawn "rofi -show window")
         , ((modm, xK_h), sendMessage Shrink)
+        , ((modm, xK_n), spawn "flameshot gui")
         , ((modm, xK_j), windows W.focusDown)
         , ((modm, xK_k), windows W.focusUp)
         , ((modm, xK_l), sendMessage Expand)

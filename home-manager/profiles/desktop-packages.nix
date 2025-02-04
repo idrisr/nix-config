@@ -14,7 +14,6 @@ with pkgs; [
   eza
   btop
   insomnia
-  flameshot
   zoom-us
   bluez
   frescobaldi
