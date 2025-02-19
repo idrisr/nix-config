@@ -10,6 +10,32 @@ snippet enum "begin enumerate" bA
 \end{enumerate}
 endsnippet
 
+snippet assu "begin assumption" bA
+\begin{alist}
+	\item $0
+\end{alist}
+endsnippet
+
+snippet bssu "begin assumption" bA
+\begin{blist}
+	\item $0
+\end{blist}
+endsnippet
+
+snippet tabu "begin tabular" bA
+\begin{center}
+	\begin{tabular}{ll}
+		\toprule
+		$1 & $2 \\
+		\midrule
+		unit  & state machine \\
+		units & DAG           \\
+		\bottomrule
+	\end{tabular}
+\end{center}
+endsnippet
+
+
 snippet defi "begin definition" bA
 \begin{definition}{$1}{}
 	$0
@@ -63,6 +89,15 @@ snippet figu "figure" bA
 \begin{figure}[H]
 \begin{center}
 \input{figures/$1}$0
+\end{center}
+\caption{$2}
+\end{figure}
+endsnippet
+
+snippet grap "graphics" bA
+\begin{figure}[H]
+\begin{center}
+\includegraphics{img/$1}$0
 \end{center}
 \caption{$2}
 \end{figure}

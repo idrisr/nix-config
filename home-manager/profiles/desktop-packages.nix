@@ -1,6 +1,8 @@
 pkgs:
 with pkgs; [
 
+  srtcpy
+  pciutils
   (agda.withPackages (p: [ p.standard-library ]))
   source-code-pro
   postman

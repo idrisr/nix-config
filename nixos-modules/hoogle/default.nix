@@ -1,6 +1,6 @@
 {
   config.services.hoogle = {
-    enable = true;
+    enable = false;
     packages = hp:
       with hp; [
         brick

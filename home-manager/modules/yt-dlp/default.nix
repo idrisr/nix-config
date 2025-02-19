@@ -7,6 +7,7 @@
         extraConfig = ''
           --paths=home:~/videos/
           --paths=temp:/tmp/
+          --convert-subs srt
         '';
 
         settings = {

@@ -86,6 +86,7 @@ myKeys conf@(XConfig{XMonad.modMask = modm}) =
         , ((modm .|. shiftMask, xK_n), withFocused toggleBorder)
         , ((modm .|. shiftMask, xK_o), kill)
         , ((modm .|. shiftMask, xK_q), spawn "xmonad --recompile; xmonad --restart")
+        , ((modm .|. shiftMask, xK_s), spawn "cat /home/hippoid/fun/salsa/dance-dojo/inject.js | xclip -selection clipboard")
         , ((modm .|. shiftMask, xK_Return), spawn . XMonad.terminal $ conf)
         , ((modm .|. shiftMask, xK_space), setLayout . XMonad.layoutHook $ conf)
         , ((modm .|. shiftMask, xK_t), sendMessage ToggleStruts)

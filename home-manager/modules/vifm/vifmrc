@@ -47,6 +47,7 @@ fileviewer */ lsd --tree --depth 2 --almost-all --ignore-glob .git %c
 
 " Toggle visibility of preview window
 nnoremap w :view<cr>
+nnoremap L :!srtcpy %f<cr>
 nnoremap sv :source $MYVIFMRC<cr>
 vnoremap w :view<cr>gv
 nnoremap ;q :q <CR>

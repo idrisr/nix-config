@@ -1,7 +1,7 @@
 {
   inputs = {
     nixpkgs.url = "nixpkgs/nixos-unstable";
-    # nixpkgs-lean43.url = "nixpkgs/cbcf0e94ac74";
+    hyprland.url = "github:hyprwm/Hyprland";
     nixcord = { url = "github:kaylorben/nixcord"; };
     nixos-hardware.url = "github:nixos/nixos-hardware";
     zettel.url = "github:idrisr/zettel";
@@ -64,9 +64,6 @@
                   (import ./nixos-modules/qrcp "6969")
                   (import ./nixos-modules/xournal)
                   (import ./nixos-modules/tikzit)
-                  # (self: super: {
-                  # texlab = self.callPackage ./texlab-overlay { };
-                  # })
                 ];
                 config = { allowUnfree = true; };
               };
@@ -78,11 +75,18 @@
           };
         };
     in {
-      nixosConfigurations = { # todo use a fmap
-        # air = makeMachine "air";
+      nixosConfigurations = {
         framework = makeMachine "framework";
         fft = makeMachine "fft";
         surface = makeMachine "surface";
+        hypr = nixpkgs.lib.nixosSystem {
+          pkgs = nixpkgs.legacyPackages.${system};
+          modules = [
+            (import ./hosts/framework/hardware-framework.nix)
+            (import ./hosts/hypr/module.nix)
+          ];
+          specialArgs = { inherit inputs; };
+        };
       };
     };
 }

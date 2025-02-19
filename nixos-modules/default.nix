@@ -25,6 +25,7 @@
     ./superdrive.nix
     ./syncthing
     ./unifi
+    ./virtualization
 
     inputs.nixvim.nixosModules.nixvim
     inputs.disko.nixosModules.default
@@ -32,7 +33,6 @@
     {
       home-manager.sharedModules =
         [ inputs.nixcord.homeManagerModules.nixcord ];
-
     }
   ];
 }
