@@ -109,7 +109,6 @@ with pkgs; [
   nuclear
   nvme-cli
   nwipe
-  okular
   openscad
   parted
   pass
@@ -129,7 +128,7 @@ with pkgs; [
   rofi-power-menu
   seder
   shellharden
-  spectacle # screenshots
+  kdePackages.spectacle
   sqlitebrowser
   (sqlite.override { interactive = true; })
   sshfs

@@ -13,7 +13,6 @@
           installGhc = false;
         };
         html.enable = true;
-        # leanls.enable = true;
         jsonls.enable = true;
         lua_ls.enable = true;
         marksman.enable = true;
