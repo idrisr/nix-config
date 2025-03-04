@@ -15,8 +15,9 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
     knotools = {
-      url = "github:idrisr/knotools";
       inputs.nixpkgs.follows = "nixpkgs";
+      url = "github:idrisr/knotools";
+      # url = "path:/home/hippoid/fun/knotools";
     };
     disko = {
       url = "github:nix-community/disko";
