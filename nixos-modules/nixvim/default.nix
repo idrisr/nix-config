@@ -17,6 +17,7 @@ in {
     ./conform.nix
     ./cornelis.nix
     ./dap.nix
+    ./emmet.nix
     ./fugitive.nix
     ./fzf.nix
     ./keymap.nix

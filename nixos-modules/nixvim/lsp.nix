@@ -76,6 +76,7 @@
             };
           };
         };
+        ts_ls.enable = true;
       };
 
       keymaps = {
