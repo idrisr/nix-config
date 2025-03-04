@@ -1,7 +1,10 @@
 pkgs:
 with pkgs; [
 
+  audioPreview
+  vencord
   srtcpy
+  rubyPackages.htmlbeautifier
   pciutils
   (agda.withPackages (p: [ p.standard-library ]))
   source-code-pro
@@ -50,7 +53,6 @@ with pkgs; [
   desktop-file-utils
   dfc # better df
   dig
-  discord
   disko
   djvu2pdf
   dmenu
