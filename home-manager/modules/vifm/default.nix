@@ -35,6 +35,7 @@ in {
           fileviewer <video/*> ${vp} video %pw %ph %px %py %c %N %pc ${vp} clear
           fileviewer {*.vtt} ${pkgs.vttclean}/bin/vttclean --file %c
           fileviewer {*.zip} ${pkgs.unzip}/bin/unzip -l
+          fileviewer {*.mp3} ${pkgs.audioPreview}/bin/audioPreview
 
           filextype *.docx ${pkgs.libreoffice}/bin/libreoffice %c
           filextype <image/*> {View in sxiv} sxiv -ia %f &

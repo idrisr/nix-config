@@ -1,6 +1,7 @@
 pkgs:
 with pkgs; [
 
+  code2prompt
   audioPreview
   vencord
   srtcpy
