@@ -15,6 +15,7 @@ in {
           set number
           set incsearch
           set sortnumbers
+          set ignorecase
 
           mark b ~/books
           mark d ~/documents
@@ -53,7 +54,6 @@ in {
 
       opts = {
         history = 100;
-        ignorecase = true;
         nofollowlinks = true;
         nohlsearch = true;
         norunexec = true;
