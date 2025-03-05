@@ -48,12 +48,13 @@ in {
 
     extraPlugins = with pkgs.vimPlugins; [
       fzf-vim # switch to fzf-lua?
-      nvim-dap-ui
-      telescope_hoogle
-      outline-nvim
-      nvim-lilypond-suite
+      img-clip-nvim
       kmonad-vim
+      nvim-dap-ui
+      nvim-lilypond-suite
+      outline-nvim
       pkgs.zettel
+      telescope_hoogle
     ];
 
     extraConfigVim = concatFiles [ ./vimrc ];
