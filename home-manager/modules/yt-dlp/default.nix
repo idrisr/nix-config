@@ -8,6 +8,7 @@
           --paths=home:~/videos/
           --paths=temp:/tmp/
           --convert-subs srt
+          --output "%(playlist_index)02d - %(title)s.%(ext)s"
         '';
 
         settings = {

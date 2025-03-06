@@ -50,6 +50,8 @@ in {
           nnoremap I cW<c-a>
           nnoremap A cW<c-u>
           nnoremap pa vifm-q_a
+          autocmd DirEnter /home/hippoid/screenshots set sort=+mtime
+          autocmd DirEnter !/home/hippoid/screenshots set sort=+name
         ''
       ];
 
