@@ -46,6 +46,7 @@
     useDHCP = lib.mkDefault true;
     hostName = "framework";
     networkmanager.enable = true;
+    firewall.allowedTCPPorts = [ 631 6969 2234 1143 1025 5000 ];
   };
 
   security.pam.services = { };

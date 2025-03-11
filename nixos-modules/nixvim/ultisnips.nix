@@ -12,5 +12,3 @@
     };
   };
 }
-
-# let g:UltiSnipsSnippetStorageDirectoryForUltiSnipsEdit='/home/hippoid/dotfiles/home/neovim/plugin'

@@ -37,14 +37,15 @@ in {
           fileviewer {*.zip} ${pkgs.unzip}/bin/unzip -l
           fileviewer {*.mp3} ${pkgs.audioPreview}/bin/audioPreview
 
-          filextype *.docx ${pkgs.libreoffice}/bin/libreoffice %c
+          filextype *.docx,*.ods ${pkgs.libreoffice}/bin/libreoffice %c
           filextype <image/*> {View in sxiv} sxiv -ia %f &
-          filextype *mp3,*mkv,*webm,*mp4,*mov,*avi,*m4v ${pkgs.mpv}/bin/mpv --force-window %f 2>/dev/null &
+          filextype *wav,*mp3,*mkv,*webm,*mp4,*mov,*avi,*m4v ${pkgs.mpv}/bin/mpv --force-window %f 2>/dev/null &
           filextype *.pdf,*.epub ${pkgs.zathura}/bin/zathura %c %i &, apvlv %c, xpdf %c
 
           nnoremap w :view<cr>
           nnoremap L :!${pkgs.srtcpy}/bin/srtcpy %f | ${pkgs.xclip}/bin/xclip -selection clipboard <cr>
           nnoremap sv :source $MYVIFMRC<cr>
+          nnoremap s :sort <cr>
           vnoremap w :view<cr>gv
           nnoremap ;q :q <CR>
           nnoremap I cW<c-a>

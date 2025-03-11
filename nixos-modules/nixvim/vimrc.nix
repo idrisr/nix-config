@@ -18,7 +18,7 @@
         incsearch = true;
         laststatus = 2;
         list = false;
-        hlsearch = false;
+        hlsearch = true;
         mouse = "nv";
         number = true;
         numberwidth = 2;
