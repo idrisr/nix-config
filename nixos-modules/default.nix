@@ -15,7 +15,7 @@
     ./kmonad
     ./monitoring
     ./nh
-    ./nixvim
+    # ./nixvim
     ./nvidia
     ./ollama
     ./printer/printer-client.nix
@@ -27,7 +27,7 @@
     ./unifi
     ./virtualization
 
-    inputs.nixvim.nixosModules.nixvim
+    # inputs.nixvim.nixosModules.nixvim
     inputs.disko.nixosModules.default
     inputs.home-manager.nixosModules.home-manager
     {

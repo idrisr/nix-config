@@ -27,26 +27,20 @@
             texlab = {
               bibtexFormatter = "texlab";
               build = {
-                args = [
-                  "-file-line-error"
-                  "-verbose"
-                  "-shell-escape"
-                  "-pdf"
-                  "-output-directory=build"
-                  "-aux-directory=build"
-                  "-interaction=nonstopmode"
-                  "-synctex=1"
-                  "%f"
-                ];
+                # assumes main config in local latexmkrc
+                args = [ "-pvc" "%f" ];
                 executable = "latexmk";
                 forwardSearchAfter = true;
                 onSave = false;
-                pdfDirectory = "build";
               };
               chktex = {
-                onEdit = false;
-                onOpenAndSave = false;
+                onEdit = true;
+                onOpenAndSave = true;
               };
+              # forwardSearch = {
+              # executable = "zathura";
+              # args = [ "--synctex-forward" "%l:1:%f" "./build/%n.pdf" ];
+              # };
               symbols.customEnvironments = [
                 {
                   name = "definition";
@@ -69,10 +63,6 @@
                   displayName = "haskell";
                 }
               ];
-              forwardSearch = {
-                executable = "zathura";
-                args = [ "--synctex-forward" "%l:1:%f" "%p" ];
-              };
             };
           };
         };

@@ -8,9 +8,9 @@
           --paths=home:~/videos/
           --paths=temp:/tmp/
           --convert-subs srt
-          --output "%(playlist_index)02d - %(title)s.%(ext)s"
         '';
 
+        # --output "%(playlist_index)02d - %(title)s.%(ext)s"
         settings = {
           write-auto-subs = true;
           embed-chapters = true;

@@ -21,7 +21,6 @@ in {
     ./fugitive.nix
     ./fzf.nix
     ./keymap.nix
-    ./latex.nix
     ./lean
     ./lsp.nix
     ./neoscroll.nix

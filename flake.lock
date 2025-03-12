@@ -1438,11 +1438,11 @@
         "pre-commit-hooks": "pre-commit-hooks_3"
       },
       "locked": {
-        "lastModified": 1741179426,
-        "narHash": "sha256-9fCtsZ+5nX+j9YO78tzoMgP0gIiIaYk2H+4ODpzT5zE=",
+        "lastModified": 1741270951,
+        "narHash": "sha256-o64AnNy7TdwPHv9in4Og1D8m2nAGoC6ZpHZ+E7JkF1Q=",
         "owner": "idrisr",
         "repo": "knotools",
-        "rev": "84e7d59e976bdbe7ea1922cbcb2dafdc2f0c2732",
+        "rev": "b74ddfbb603dc16091c82775be8a6909a3e2fa7b",
         "type": "github"
       },
       "original": {
