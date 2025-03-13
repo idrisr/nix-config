@@ -4,7 +4,7 @@
   config = {
     programs.vscode = {
 
-      extensions = with pkgs.vscode-extensions; [
+      profiles.default.extensions = with pkgs.vscode-extensions; [
         vscodevim.vim
         ms-vscode.cpptools
 
@@ -12,7 +12,7 @@
 
       enable = false;
 
-      keybindings = [
+      profiles.default.keybindings = [
         {
           key = "ctrl+h";
           command = "workbench.action.navigateLeft";

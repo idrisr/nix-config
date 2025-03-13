@@ -6,7 +6,7 @@ in {
     config = {
       hwdec = "vaapi";
       vo = "gpu";
-      screenshot-template = "~/screenshots/%F-%wH.%wM.%wS.png";
+      screenshot-template = "~/screenshots/%F-%wH.%wM.%wS";
       save-position-on-quit = true;
       keep-open = true;
     };
