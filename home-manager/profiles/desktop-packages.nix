@@ -1,6 +1,7 @@
 pkgs:
 with pkgs; [
 
+  videoChapter
   code2prompt
   audioPreview
   vencord
