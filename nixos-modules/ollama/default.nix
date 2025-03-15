@@ -29,12 +29,14 @@ in {
       };
 
     };
+    # need litellm
     services.ollama = {
       host = "0.0.0.0";
       port = 11111;
       enable = true;
       acceleration = "cuda";
       openFirewall = true;
+      loadModels = [ "deepseek-r1" ];
     };
 
     nixpkgs = {
