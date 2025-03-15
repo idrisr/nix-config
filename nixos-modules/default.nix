@@ -12,6 +12,7 @@
     ./home-assistant
     ../home-manager
     ./hoogle
+    ./immich
     ./kmonad
     ./monitoring
     ./nh
