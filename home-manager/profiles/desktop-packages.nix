@@ -1,6 +1,7 @@
 pkgs:
 with pkgs; [
 
+  fixjson
   videoChapter
   code2prompt
   audioPreview
