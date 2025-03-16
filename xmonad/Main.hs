@@ -135,6 +135,7 @@ myManageHooks =
         , workspaceHook "rnote" 4
         , workspaceHook "mpv" 5
         , workspaceHook "Zotero" 5
+        , workspaceHook "FreeTube" 5
         ]
 
 myLayout =
