@@ -4,7 +4,6 @@
     hyprland.url = "github:hyprwm/Hyprland";
     nixcord = { url = "github:kaylorben/nixcord"; };
     nixos-hardware.url = "github:nixos/nixos-hardware";
-    zettel.url = "github:idrisr/zettel";
     stylix = {
       url = "github:danth/stylix";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -57,7 +56,6 @@
                   inputs.rofi.overlays.all
                   inputs.knotools.overlays.all
                   inputs.knotools.overlays.pipe-rename
-                  inputs.zettel.overlays.zettel
                   (import ./nixos-modules/qrcp "6969")
                   (import ./nixos-modules/xournal)
                   (import ./nixos-modules/tikzit)
