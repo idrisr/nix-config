@@ -8,16 +8,17 @@ in {
   imports = [
     ./base.nix
     ../modules/alacritty
-    ../modules/kitty
     ../modules/ctags
     ../modules/emacs
     ../modules/firefox
     ../modules/github
     ../modules/haruna
     ../modules/haskeline
-    ../modules/nixcord
+    ../modules/kitty
     ../modules/lsd
     ../modules/newsboat
+    ../modules/nixcord
+    ../modules/opentablet
     ../modules/pandoc
     ../modules/polybar
     ../modules/qt

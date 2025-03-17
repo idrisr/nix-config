@@ -1,0 +1,270 @@
+{
+  "Profiles": [
+    {
+      "Tablet": "Wacom CTL-4100WL",
+      "OutputMode": {
+        "Path": "OpenTabletDriver.Desktop.Output.LinuxArtistMode",
+        "Settings": [],
+        "Enable": true
+      },
+      "Filters": [],
+      "AbsoluteModeSettings": {
+        "Display": {
+          "Width": 1128.0,
+          "Height": 752.0,
+          "X": 1692.0,
+          "Y": 849.5791,
+          "Rotation": 0.0
+        },
+        "Tablet": {
+          "Width": 152.0,
+          "Height": 95.0,
+          "X": 76.0,
+          "Y": 47.5,
+          "Rotation": 0.0
+        },
+        "EnableClipping": true,
+        "EnableAreaLimiting": false,
+        "LockAspectRatio": false
+      },
+      "RelativeModeSettings": {
+        "XSensitivity": 10.0,
+        "YSensitivity": 10.0,
+        "RelativeRotation": 0.0,
+        "RelativeResetDelay": "00:00:00.1000000"
+      },
+      "Bindings": {
+        "TipActivationThreshold": 0.0,
+        "TipButton": {
+          "Path": "OpenTabletDriver.Desktop.Binding.MouseBinding",
+          "Settings": [
+            {
+              "Property": "Button",
+              "Value": "Left"
+            }
+          ],
+          "Enable": true
+        },
+        "EraserActivationThreshold": 0.0,
+        "EraserButton": null,
+        "PenButtons": [
+          {
+            "Path": "OpenTabletDriver.Desktop.Binding.MultiKeyBinding",
+            "Settings": [
+              {
+                "Property": "Keys",
+                "Value": "Control+D1"
+              }
+            ],
+            "Enable": true
+          },
+          {
+            "Path": "OpenTabletDriver.Desktop.Binding.MultiKeyBinding",
+            "Settings": [
+              {
+                "Property": "Keys",
+                "Value": "Control+D4"
+              }
+            ],
+            "Enable": true
+          }
+        ],
+        "AuxButtons": [
+          {
+            "Path": "OpenTabletDriver.Desktop.Binding.MultiKeyBinding",
+            "Settings": [
+              {
+                "Property": "Keys",
+                "Value": "Control+D2"
+              }
+            ],
+            "Enable": true
+          },
+          {
+            "Path": "OpenTabletDriver.Desktop.Binding.MultiKeyBinding",
+            "Settings": [
+              {
+                "Property": "Keys",
+                "Value": "Control+D3"
+              }
+            ],
+            "Enable": true
+          },
+          {
+            "Path": "OpenTabletDriver.Desktop.Binding.MultiKeyBinding",
+            "Settings": [
+              {
+                "Property": "Keys",
+                "Value": "Control+D4"
+              }
+            ],
+            "Enable": true
+          },
+          {
+            "Path": "OpenTabletDriver.Desktop.Binding.MultiKeyBinding",
+            "Settings": [
+              {
+                "Property": "Keys",
+                "Value": "Control+D5"
+              }
+            ],
+            "Enable": true
+          }
+        ],
+        "MouseButtons": [],
+        "MouseScrollUp": null,
+        "MouseScrollDown": null
+      }
+    },
+    {
+      "Tablet": "XP-Pen Deco 01 V3",
+      "OutputMode": {
+        "Path": "OpenTabletDriver.Desktop.Output.LinuxArtistMode",
+        "Settings": [],
+        "Enable": true
+      },
+      "Filters": [],
+      "AbsoluteModeSettings": {
+        "Display": {
+          "Width": 2256.0,
+          "Height": 1504.0,
+          "X": 1128.0,
+          "Y": 752.0,
+          "Rotation": 0.0
+        },
+        "Tablet": {
+          "Width": 254.0,
+          "Height": 158.75,
+          "X": 127.0,
+          "Y": 79.375,
+          "Rotation": 0.0
+        },
+        "EnableClipping": true,
+        "EnableAreaLimiting": false,
+        "LockAspectRatio": false
+      },
+      "RelativeModeSettings": {
+        "XSensitivity": 10.0,
+        "YSensitivity": 10.0,
+        "RelativeRotation": 0.0,
+        "RelativeResetDelay": "00:00:00.1000000"
+      },
+      "Bindings": {
+        "TipActivationThreshold": 1.0,
+        "TipButton": {
+          "Path": "OpenTabletDriver.Desktop.Binding.MouseBinding",
+          "Settings": [
+            {
+              "Property": "Button",
+              "Value": "Left"
+            }
+          ],
+          "Enable": true
+        },
+        "EraserActivationThreshold": 1.0,
+        "EraserButton": null,
+        "PenButtons": [
+          {
+            "Path": "OpenTabletDriver.Desktop.Binding.MultiKeyBinding",
+            "Settings": [
+              {
+                "Property": "Keys",
+                "Value": "Control+D1"
+              }
+            ],
+            "Enable": true
+          },
+          {
+            "Path": "OpenTabletDriver.Desktop.Binding.MultiKeyBinding",
+            "Settings": [
+              {
+                "Property": "Keys",
+                "Value": "Control+D4"
+              }
+            ],
+            "Enable": true
+          }
+        ],
+        "AuxButtons": [
+          {
+            "Path": "OpenTabletDriver.Desktop.Binding.MultiKeyBinding",
+            "Settings": [
+              {
+                "Property": "Keys",
+                "Value": "Control+D1"
+              }
+            ],
+            "Enable": true
+          },
+          {
+            "Path": "OpenTabletDriver.Desktop.Binding.MultiKeyBinding",
+            "Settings": [
+              {
+                "Property": "Keys",
+                "Value": "Control+D2"
+              }
+            ],
+            "Enable": true
+          },
+          {
+            "Path": "OpenTabletDriver.Desktop.Binding.MultiKeyBinding",
+            "Settings": [
+              {
+                "Property": "Keys",
+                "Value": "Control+D3"
+              }
+            ],
+            "Enable": true
+          },
+          {
+            "Path": "OpenTabletDriver.Desktop.Binding.MultiKeyBinding",
+            "Settings": [
+              {
+                "Property": "Keys",
+                "Value": "Control+D4"
+              }
+            ],
+            "Enable": true
+          },
+          {
+            "Path": "OpenTabletDriver.Desktop.Binding.MultiKeyBinding",
+            "Settings": [
+              {
+                "Property": "Keys",
+                "Value": "Control+D5"
+              }
+            ],
+            "Enable": true
+          },
+          {
+            "Path": "OpenTabletDriver.Desktop.Binding.MultiKeyBinding",
+            "Settings": [
+              {
+                "Property": "Keys",
+                "Value": "Control+D6"
+              }
+            ],
+            "Enable": true
+          },
+          {
+            "Path": "OpenTabletDriver.Desktop.Binding.MultiKeyBinding",
+            "Settings": [
+              {
+                "Property": "Keys",
+                "Value": "Control+D7"
+              }
+            ],
+            "Enable": true
+          },
+          null
+        ],
+        "MouseButtons": [],
+        "MouseScrollUp": null,
+        "MouseScrollDown": null
+      }
+    }
+  ],
+  "LockUsableAreaDisplay": false,
+  "LockUsableAreaTablet": true,
+  "Tools": []
+}
