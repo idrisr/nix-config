@@ -24,6 +24,7 @@ in {
         experimental-features = [ "nix-command" "flakes" ];
         trusted-users = [ "root" "hippoid" ];
         auto-optimise-store = true;
+        allow-import-from-derivation = true;
       };
       gc = {
         automatic = true;

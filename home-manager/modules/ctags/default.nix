@@ -1,8 +1,6 @@
-{ pkgs, ... }:
-# let mkLink = x: { "ctags/${x}.ctags".text = builtins.readFile ./${x}.ctags; };
-{
+{ pkgs, ... }: {
   config = {
-    xdg.configFile."ctags/zettel.ctags".text = builtins.readFile ./zettel.ctags;
+    xdg.configFile."ctags/zettel.ctags".source = ./zettel.ctags;
     home.packages = [ pkgs.universal-ctags ];
   };
 }
