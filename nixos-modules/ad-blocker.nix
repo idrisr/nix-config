@@ -2,7 +2,7 @@
 
 with lib;
 let
-  cfg = config.hardware.superdrive;
+  cfg = config.networking.adblocker;
   adguardPort = 3000;
 in {
 

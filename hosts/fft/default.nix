@@ -13,6 +13,7 @@
     display.enable = true;
     home-assistant.enable = true;
     monitoring.enable = true;
+    networking.adblocker.enable = true;
     nvidia-gpu.enable = true;
     ollama.enable = true;
     photoserver.enable = true;
