@@ -32,11 +32,12 @@ in {
           fileviewer <font/*> ${vp} font %pw %ph %px %py %c %N %pc ${vp} clear
           fileviewer <image/*> ${vp} image %pw %ph %px %py %c %N %pc ${vp} clear
           fileviewer {*.pdf} ${vp} pdf %pw %ph %px %py %c %N %pc ${vp} clear, ${pkgs.poppler_utils}/bin/pdfinfo, ${pkgs.pdftc}/bin/pdftc
-          fileviewer {*.srt} ${pkgs.srtcpy}/bin/srtcpy
+          fileviewer {*.srt} bat %f, ${pkgs.srtcpy}/bin/srtcpy
           fileviewer <video/*> mediainfo --Output=JSON %f | ${pkgs.videoChapter}/bin/videoChapter
           fileviewer {*.vtt} ${pkgs.vttclean}/bin/vttclean --file %c
           fileviewer {*.zip} ${pkgs.unzip}/bin/unzip -l
           fileviewer {*.mp3} ${pkgs.audioPreview}/bin/audioPreview
+          fileviewer {*.iso} ${pkgs.cdrtools}/bin/isoinfo -i %f -d
 
           filextype *.docx,*.ods ${pkgs.libreoffice}/bin/libreoffice %c
           filextype <image/*> {View in sxiv} sxiv -ia %f &

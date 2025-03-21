@@ -18,5 +18,6 @@
     photoserver.enable = true;
     profile.dailydrive.enable = true;
     unifi.enable = false;
+    virtualization.enable = true;
   };
 }

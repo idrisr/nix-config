@@ -1,6 +1,8 @@
 pkgs:
 with pkgs; [
 
+  arduino
+  drawio
   fixjson
   videoChapter
   code2prompt

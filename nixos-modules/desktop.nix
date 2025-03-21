@@ -1,4 +1,4 @@
-{ config, pkgs, lib, ... }:
+{ inputs, config, pkgs, lib, ... }:
 let cfg = config.display;
 in {
   options = {
@@ -54,6 +54,32 @@ in {
         };
         exportConfiguration = true;
       };
+    };
+
+    specialisation.hyprland = {
+      inheritParentConfig = true;
+      configuration = {
+        programs.hyprland = {
+          enable = true;
+          package =
+            inputs.hyprland.packages.${pkgs.stdenv.hostPlatform.system}.hyprland;
+          # make sure to also set the portal package, so that they are in sync
+          portalPackage =
+            inputs.hyprland.packages.${pkgs.stdenv.hostPlatform.system}.xdg-desktop-portal-hyprland;
+        };
+      };
+    };
+
+    specialisation.gnome.configuration = {
+      services.xserver.windowManager.xmonad.enable = lib.mkForce false;
+      services.xserver.desktopManager.gnome.enable = true;
+      services.displayManager.defaultSession = lib.mkForce "gnome";
+    };
+
+    specialisation.plasma.configuration = {
+      services.xserver.windowManager.xmonad.enable = lib.mkForce false;
+      services.xserver.desktopManager.plasma5.enable = true;
+      services.displayManager.defaultSession = lib.mkForce "plasma";
     };
 
     environment = {
