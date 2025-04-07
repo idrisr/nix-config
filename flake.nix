@@ -30,8 +30,8 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
     nur = {
-      # url = "github:idrisr/nur-packages";
-      url = "path:/home/hippoid/fun/nur-packages";
+      url = "github:idrisr/nur-packages";
+      # url = "path:/home/hippoid/fun/nur-packages";
       inputs.nixpkgs.follows = "nixpkgs";
     };
   };
