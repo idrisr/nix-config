@@ -71,6 +71,7 @@
         framework = makeMachine "framework";
         fft = makeMachine "fft";
         surface = makeMachine "surface";
+        air = makeMachine "air";
         hypr = nixpkgs.lib.nixosSystem {
           pkgs = nixpkgs.legacyPackages.${system};
           modules = [
