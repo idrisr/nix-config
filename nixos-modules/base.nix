@@ -1,4 +1,4 @@
-{ config, lib, pkgs, ... }:
+{ config, lib, pkgs, inputs, ... }:
 
 let cfg = config.base;
 in {
@@ -33,7 +33,7 @@ in {
       gc = {
         automatic = true;
         dates = "weekly";
-        options = "--delete-older-than 1w";
+        options = "--delete-older-than 7d";
       };
     };
 

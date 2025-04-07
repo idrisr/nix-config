@@ -13,11 +13,6 @@
       url = "github:cachix/devenv";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    knotools = {
-      inputs.nixpkgs.follows = "nixpkgs";
-      url = "github:idrisr/knotools";
-      # url = "path:/home/hippoid/fun/knotools";
-    };
     disko = {
       url = "github:nix-community/disko";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -30,9 +25,13 @@
       url = "github:idrisr/visualpreview";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    slide2text.url = "github:idrisr/slide2text";
     rofi = {
       url = "github:idrisr/rofi-picker";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+    nur = {
+      # url = "github:idrisr/nur-packages";
+      url = "path:/home/hippoid/fun/nur-packages";
       inputs.nixpkgs.follows = "nixpkgs";
     };
   };
@@ -51,11 +50,9 @@
               config.nixpkgs = {
                 hostPlatform = pkgs.lib.mkDefault "x86_64-linux";
                 overlays = [
+                  inputs.nur.overlays.${system}
                   inputs.visualpreview.overlays.visualpreview
-                  inputs.slide2text.overlays.slide2text
                   inputs.rofi.overlays.all
-                  inputs.knotools.overlays.all
-                  inputs.knotools.overlays.pipe-rename
                   (import ./nixos-modules/qrcp "6969")
                   (import ./nixos-modules/xournal)
                   (import ./nixos-modules/tikzit)

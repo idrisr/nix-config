@@ -40,7 +40,6 @@
       interfaces.enp5s0.useDHCP = lib.mkDefault true;
       hostName = "fft";
       networkmanager.enable = false;
-      adblocker.enable = true;
     };
 
     nixpkgs = { hostPlatform = lib.mkDefault "x86_64-linux"; };

@@ -5,7 +5,7 @@ in {
     programs.vifm = {
       enable = true;
 
-      # , ${vp} video %pw %ph %px %py %c %N %pc ${vp} clear
+      # fileviewer <video/*> ${vp} video %pw %ph %px %py %c %N %pc ${vp} clear
       extraConfig = lib.concatStringsSep "\n" [
         (builtins.readFile ./favicons.vifm)
         ''
@@ -32,7 +32,7 @@ in {
           fileviewer <font/*> ${vp} font %pw %ph %px %py %c %N %pc ${vp} clear
           fileviewer <image/*> ${vp} image %pw %ph %px %py %c %N %pc ${vp} clear
           fileviewer {*.pdf} ${vp} pdf %pw %ph %px %py %c %N %pc ${vp} clear, ${pkgs.poppler_utils}/bin/pdfinfo, ${pkgs.pdftc}/bin/pdftc
-          fileviewer {*.srt} bat %f, ${pkgs.srtcpy}/bin/srtcpy
+          fileviewer {*.srt} ${pkgs.srtcpy}/bin/srtcpy %f, bat %f
           fileviewer <video/*> mediainfo --Output=JSON %f | ${pkgs.videoChapter}/bin/videoChapter
           fileviewer {*.vtt} ${pkgs.vttclean}/bin/vttclean --file %c
           fileviewer {*.zip} ${pkgs.unzip}/bin/unzip -l

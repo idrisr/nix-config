@@ -1,5 +1,10 @@
 pkgs:
 with pkgs; [
+  mksession
+  pvm
+  topdf
+  slide2text
+  vttclean
 
   arduino
   drawio
