@@ -14,6 +14,7 @@
     ./hoogle
     ./immich
     ./kmonad
+    ./locate
     ./monitoring
     ./nh
     ./nvidia
