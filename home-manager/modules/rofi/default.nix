@@ -2,9 +2,11 @@
   config = {
     programs.rofi = {
       enable = true;
-      terminal = "${pkgs.alacritty}/bin/alacritty";
+      terminal = "${pkgs.kitty}/bin/kitty";
       location = "center";
       plugins = with pkgs; [ rofi-calc rofi-emoji rofi-power-menu ];
+      theme = { "*" = { width = 1512; }; };
+
       extraConfig = {
         modi = "drun,emoji,ssh";
         kb-row-up = "Up,Alt+k";

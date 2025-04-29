@@ -23,10 +23,11 @@
     };
     visualpreview = {
       url = "github:idrisr/visualpreview";
+      # url = "path:/home/hippoid/fun/visualpreview";
       inputs.nixpkgs.follows = "nixpkgs";
     };
     rofi = {
-      url = "github:idrisr/rofi-picker";
+      url = "github:idrisr/rofi-picker/haskell";
       inputs.nixpkgs.follows = "nixpkgs";
     };
     nur = {

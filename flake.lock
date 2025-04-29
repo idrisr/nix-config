@@ -1468,14 +1468,17 @@
         ]
       },
       "locked": {
-        "lastModified": 1743257688,
-        "narHash": "sha256-ohVeS4radqaFWgH6hY+G3jXHvy2DB3aVHl0rV2D0ik0=",
-        "path": "/home/hippoid/fun/nur-packages",
-        "type": "path"
+        "lastModified": 1743990040,
+        "narHash": "sha256-8fj0toC36XUH33LlTlum7dE3VRHpGmTYsrCr6AzTrLA=",
+        "owner": "idrisr",
+        "repo": "nur-packages",
+        "rev": "c78b060839f592e2e3d2b8a0f6026fa82609a1b3",
+        "type": "github"
       },
       "original": {
-        "path": "/home/hippoid/fun/nur-packages",
-        "type": "path"
+        "owner": "idrisr",
+        "repo": "nur-packages",
+        "type": "github"
       }
     },
     "nur_2": {
@@ -1630,15 +1633,16 @@
         ]
       },
       "locked": {
-        "lastModified": 1731469202,
-        "narHash": "sha256-DI91gb/HDA7hoWvhIn2a6JUf+n2S5itrGAKOj4/7Stw=",
+        "lastModified": 1745924760,
+        "narHash": "sha256-ttBs8xgpHN84rTFybou6XVQggM0VnLG9kGQv3EejtLU=",
         "owner": "idrisr",
         "repo": "rofi-picker",
-        "rev": "2af376bb7e6b44cc6fa291b983a0a904953a0ef4",
+        "rev": "3180d6d71e6a113578643646736f485dae1d11d2",
         "type": "github"
       },
       "original": {
         "owner": "idrisr",
+        "ref": "haskell",
         "repo": "rofi-picker",
         "type": "github"
       }
