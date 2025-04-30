@@ -8,10 +8,11 @@
       theme = { "*" = { width = 1512; }; };
 
       extraConfig = {
-        modi = "drun,emoji,ssh";
+        modi = "drun,run,ssh";
         kb-row-up = "Up,Alt+k";
         kb-row-down = "Down,Alt+j";
         dpi = 267;
+        disable-history = true;
       };
     };
   };

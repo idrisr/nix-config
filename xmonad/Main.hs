@@ -107,7 +107,7 @@ myKeys conf@(XConfig{XMonad.modMask = modm}) =
         , ((modm, xK_k), windows W.focusUp)
         , ((modm, xK_l), sendMessage Expand)
         , ((modm, xK_p), spawn "rofi -show drun -show-icons")
-        , ((modm, xK_r), spawn "rofi -modi drun,window,emoji -show emoji")
+        , ((modm, xK_r), spawn "rofi -show run")
         , ((modm, xK_s), sendMessage NextLayout)
         , ((modm, xK_t), withFocused $ windows . W.sink)
         , ((modm, xK_u), withFocused actionA)
