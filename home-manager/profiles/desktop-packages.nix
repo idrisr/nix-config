@@ -1,11 +1,13 @@
 pkgs:
 with pkgs; [
+  html2text
   mksession
   pvm
   topdf
   slide2text
   vttclean
-
+  mitmproxy
+  linuxHeaders
   arduino
   drawio
   fixjson
