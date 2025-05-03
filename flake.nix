@@ -73,6 +73,7 @@
         fft = makeMachine "fft";
         surface = makeMachine "surface";
         air = makeMachine "air";
+        proxmox = makeMachine "proxmoxvm";
         hypr = nixpkgs.lib.nixosSystem {
           pkgs = nixpkgs.legacyPackages.${system};
           modules = [
