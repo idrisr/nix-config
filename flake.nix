@@ -1,14 +1,12 @@
 {
   inputs = {
     nixpkgs.url = "nixpkgs/nixos-unstable";
-    hyprland.url = "github:hyprwm/Hyprland";
     nixcord = { url = "github:kaylorben/nixcord"; };
     nixos-hardware.url = "github:nixos/nixos-hardware";
     stylix = {
       url = "github:danth/stylix";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    pre-commit-hooks.url = "github:cachix/pre-commit-hooks.nix";
     devenv = {
       url = "github:cachix/devenv";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -23,7 +21,6 @@
     };
     visualpreview = {
       url = "github:idrisr/visualpreview";
-      # url = "path:/home/hippoid/fun/visualpreview";
       inputs.nixpkgs.follows = "nixpkgs";
     };
     rofi = {
@@ -32,7 +29,6 @@
     };
     nur = {
       url = "github:idrisr/nur-packages";
-      # url = "path:/home/hippoid/fun/nur-packages";
       inputs.nixpkgs.follows = "nixpkgs";
     };
   };

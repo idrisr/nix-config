@@ -1,5 +1,10 @@
 pkgs:
 with pkgs; [
+  certbot
+  openssl
+  obs-studio
+  minicom
+  psmisc
   html2text
   mksession
   pvm

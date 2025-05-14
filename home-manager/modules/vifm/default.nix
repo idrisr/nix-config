@@ -43,6 +43,7 @@ in {
           filextype <image/*> {View in sxiv} sxiv -ia %f &
           filextype *wav,*mp3,*mkv,*webm,*mp4,*mov,*avi,*m4v ${pkgs.mpv}/bin/mpv --force-window %f 2>/dev/null &
           filextype *.pdf,*.epub ${pkgs.zathura}/bin/zathura %c %i &, apvlv %c, xpdf %c
+          filextype *.vv ${pkgs.virt-viewer}/bin/remote-viewer %c & 
 
           nnoremap w :view<cr>
           nnoremap L :!${pkgs.srtcpy}/bin/srtcpy %f | ${pkgs.xclip}/bin/xclip -selection clipboard <cr>

@@ -1,8 +1,7 @@
 { config, lib, modulesPath, ... }:
 
 {
-  imports =
-    [ (modulesPath + "/installer/scan/not-detected.nix") ./disko-fft.nix ];
+  imports = [ (modulesPath + "/installer/scan/not-detected.nix") ];
 
   config = {
     boot = {

@@ -12,7 +12,6 @@ with pkgs; [
   ncdu
   ntfs3g
   pipe-rename
-  pstree
   smem
   smemstat
   sysz
