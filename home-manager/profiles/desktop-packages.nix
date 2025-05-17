@@ -1,5 +1,10 @@
 pkgs:
 with pkgs; [
+  brave
+  ssh-to-age
+  age
+  sops
+  ocrmypdf
   certbot
   openssl
   obs-studio
@@ -61,13 +66,12 @@ with pkgs; [
   binutils
   booknote
   bpftrace
-  brave
   copyq
   cryptsetup
   dconf
   ddgr
   desktop-file-utils
-  dfc # better df
+  dysk # better dfc
   dig
   disko
   djvu2pdf
@@ -162,7 +166,6 @@ with pkgs; [
   unetbootin
   unoconv
   unzip
-  ventoy-full
   vorta
   weechat
   wget

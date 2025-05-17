@@ -1,6 +1,6 @@
 { pkgs, ... }: {
   config.environment = {
-    sessionVariables = { FLAKE = "/home/hippoid/dotfiles"; };
+    sessionVariables = { NH_FLAKE = "/home/hippoid/dotfiles"; };
     systemPackages = with pkgs; [ nh nvd nix-output-monitor ];
   };
 }

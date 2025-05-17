@@ -30,9 +30,6 @@
 
     inputs.disko.nixosModules.default
     inputs.home-manager.nixosModules.home-manager
-    {
-      home-manager.sharedModules =
-        [ inputs.nixcord.homeManagerModules.nixcord ];
-    }
+    { home-manager.sharedModules = [ inputs.nixcord.homeModules.nixcord ]; }
   ];
 }

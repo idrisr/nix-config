@@ -3,6 +3,7 @@
     nixpkgs.url = "nixpkgs/nixos-unstable";
     nixcord = { url = "github:kaylorben/nixcord"; };
     nixos-hardware.url = "github:nixos/nixos-hardware";
+    sops-nix.url = "github:mic92/sops-nix";
     stylix = {
       url = "github:danth/stylix";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -33,7 +34,7 @@
     };
   };
 
-  outputs = inputs@{ nixpkgs, stylix, ... }:
+  outputs = inputs@{ nixpkgs, stylix, sops-nix, ... }:
     let
       system = "x86_64-linux";
       pkgs = nixpkgs.legacyPackages.${system};
@@ -43,6 +44,7 @@
             stylix.nixosModules.stylix
             ./hosts/${host}
             ./nixos-modules
+            sops-nix.nixosModules.sops
             {
               config.nixpkgs = {
                 hostPlatform = pkgs.lib.mkDefault "x86_64-linux";
