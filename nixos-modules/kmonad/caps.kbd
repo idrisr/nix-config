@@ -1,21 +1,24 @@
 (defsrc
+ 1 2 3 4 5 6 7 8 9 0
  caps
  ralt
- )
-
+ a s d f g h j k l ;
+)
 
 (defalias
-    sftl (tap-hold 250 s lsft)
-    ctll (tap-hold 250 d lctl)
-    altl (tap-hold 250 f lalt)
-
-    altr (tap-hold 250 j lalt)
-    ctlr (tap-hold 250 k lctl)
-    sftr (tap-hold 250 l lsft)
     ta1 (tap-macro space 1 0 0 space w o r d s space o r space l e s s)
 )
 
 (deflayer base
+ @ta1 _ _ _ _ _ _ _ _ _
  esc
- @ta1
+ (layer-switch number)
+ a s d f g h j k l ;
+)
+
+(deflayer number
+ @ta1 _ _ _ _ _ _ _ _ _
+ esc
+ (layer-switch base)
+ 1 2 3 4 5 6 7 8 9 0
 )

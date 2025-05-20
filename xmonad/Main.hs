@@ -113,7 +113,7 @@ myKeys conf@(XConfig{XMonad.modMask = modm}) =
         , ((modm, xK_u), withFocused actionA)
         -- , ((modm, xK_v), spawn "bash /home/hippoid/videos/test.sh") -- TODO: properly put this into a nix package
         ]
-            ++ [ ((m .|. modm, k), windows $ f i) | (i, k) <- zip (XMonad.workspaces conf) [xK_1 .. xK_9], (f, m) <- [(W.greedyView, 0), (W.shift, shiftMask)]
+            ++ [ ((m .|. modm, k), windows $ f i) | (i, k) <- zip (XMonad.workspaces conf) [xK_a, xK_s, xK_d, xK_f, xK_g], (f, m) <- [(W.greedyView, 0), (W.shift, shiftMask)]
                ]
 
 actionA :: Window -> X ()
