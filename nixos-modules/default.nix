@@ -9,6 +9,7 @@
     ./desktop.nix
     ./docker
     ./fprintd
+    ./frigate
     ./home-assistant
     ../home-manager
     ./hoogle
@@ -19,8 +20,10 @@
     ./nh
     ./nvidia
     ./ollama
+    ./passkey
     ./printer/printer-client.nix
     ./reading
+    ./rustdesk
     ./sdr
     ./stylix
     ./superdrive.nix

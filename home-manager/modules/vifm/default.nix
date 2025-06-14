@@ -36,14 +36,15 @@ in {
           fileviewer <video/*> mediainfo --Output=JSON %f | ${pkgs.videoChapter}/bin/videoChapter
           fileviewer {*.vtt} ${pkgs.vttclean}/bin/vttclean --file %c
           fileviewer {*.zip} ${pkgs.unzip}/bin/unzip -l
-          fileviewer {*.mp3} ${pkgs.audioPreview}/bin/audioPreview
+          fileviewer {*.mp3, *.m4a} ${pkgs.audioPreview}/bin/audioPreview
           fileviewer {*.iso} ${pkgs.cdrtools}/bin/isoinfo -i %f -d
 
           filextype *.docx,*.ods ${pkgs.libreoffice}/bin/libreoffice %c
           filextype <image/*> {View in sxiv} sxiv -ia %f &
           filextype *wav,*mp3,*mkv,*webm,*mp4,*mov,*avi,*m4v ${pkgs.mpv}/bin/mpv --force-window %f 2>/dev/null &
           filextype *.pdf,*.epub ${pkgs.zathura}/bin/zathura %c %i &, apvlv %c, xpdf %c
-          filextype *.vv ${pkgs.virt-viewer}/bin/remote-viewer %c & 
+          filextype *.vv ${pkgs.virt-viewer}/bin/remote-viewer %c &
+          filextype *.rnote ${pkgs.rnote}/bin/rnote %c &
 
           nnoremap w :view<cr>
           nnoremap L :!${pkgs.srtcpy}/bin/srtcpy %f | ${pkgs.xclip}/bin/xclip -selection clipboard <cr>

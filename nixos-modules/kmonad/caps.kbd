@@ -1,8 +1,6 @@
 (defsrc
- 1 2 3 4 5 6 7 8 9 0
  caps
  ralt
- a s d f g h j k l ;
 )
 
 (defalias
@@ -10,15 +8,6 @@
 )
 
 (deflayer base
- @ta1 _ _ _ _ _ _ _ _ _
  esc
- (layer-switch number)
- a s d f g h j k l ;
-)
-
-(deflayer number
- @ta1 _ _ _ _ _ _ _ _ _
- esc
- (layer-switch base)
- 1 2 3 4 5 6 7 8 9 0
+ @ta1
 )

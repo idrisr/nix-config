@@ -7,14 +7,11 @@
   ];
 
   config = {
-    monitoring.enable = true;
-    base.enable = true;
-
     boot = {
       initrd = {
         availableKernelModules =
           [ "xhci_pci" "ahci" "usbhid" "usb_storage" "sd_mod" ];
-        kernelModules = [ ];
+        kernelModules = [ "coretemp" "applesmc" ];
       };
       loader = {
         systemd-boot.enable = true;
@@ -25,6 +22,7 @@
     };
 
     services.logind.lidSwitch = "ignore";
+    environment.systemPackages = [ pkgs.lm_sensors ];
 
     networking = {
       networkmanager.enable = true;

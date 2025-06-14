@@ -55,6 +55,8 @@
                   (import ./nixos-modules/qrcp "6969")
                   (import ./nixos-modules/xournal)
                   (import ./nixos-modules/tikzit)
+                  (import ./nixos-modules/kdenlive)
+                  (import ./nixos-modules/brave)
                 ];
                 config = { allowUnfree = true; };
               };
@@ -72,6 +74,7 @@
         surface = makeMachine "surface";
         air = makeMachine "air";
         proxmox = makeMachine "proxmoxvm";
+        bootstrap = makeMachine "bootstrap";
         hypr = nixpkgs.lib.nixosSystem {
           pkgs = nixpkgs.legacyPackages.${system};
           modules = [

@@ -9,6 +9,7 @@ in {
       screenshot-template = "~/screenshots/%F-%wH.%wM.%wS";
       save-position-on-quit = true;
       keep-open = true;
+      gpu-api = "opengl";
     };
     scripts = with pkgs.mpvScripts; [ mpv-speed-script ];
   };

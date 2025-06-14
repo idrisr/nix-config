@@ -1,91 +1,70 @@
 pkgs:
 with pkgs; [
-  brave
-  ssh-to-age
-  age
-  sops
-  ocrmypdf
-  certbot
-  openssl
-  obs-studio
-  minicom
-  psmisc
-  html2text
-  mksession
-  pvm
-  topdf
-  slide2text
-  vttclean
-  mitmproxy
-  linuxHeaders
-  arduino
-  drawio
-  fixjson
-  videoChapter
-  code2prompt
-  audioPreview
-  vencord
-  srtcpy
-  rubyPackages.htmlbeautifier
-  pciutils
-  (agda.withPackages (p: [ p.standard-library ]))
-  source-code-pro
-  postman
-  ghostty
-  rnote
-  blueman
-  glow
-  code-cursor
-  dust
-  eza
-  btop
-  insomnia
-  zoom-us
-  bluez
-  frescobaldi
-  lilypond
-  alloy
-  btop
-  zulip
-  zulip-term
-  slide2text
-  losslesscut-bin
-  # obsidian
-  krop
-  git-crypt
+  kdePackages.dolphin
+  opencode
+  libva-utils
+  vulkan-tools
+  gpu-viewer
+  rustdesk
+  tenacity
+  asciinema
+  asciinema-agg
+  asciinema-scenario
+  kdenlive
   abcde
-  stylua
+  (agda.withPackages (p: [ p.standard-library ]))
+  age
+  alloy
   alsa-utils
   ansifilter
   arandr
+  arduino
   aria
   asciidoc
   atool
+  audioPreview
   awscost
   bcc
   binutils
+  blueman
+  bluez
   booknote
   bpftrace
+  brave
+  brlaser
+  btop
+  btop
+  certbot
+  code2prompt
+  code-cursor
   copyq
   cryptsetup
   dconf
   ddgr
   desktop-file-utils
-  dysk # better dfc
   dig
   disko
   djvu2pdf
   dmenu
   dracut
+  drawio
+  dust
+  dysk # better dfc
   dzen2
   efibootmgr
   electrum
   epr
+  eza
   ffmpeg
+  fixjson
   fontpreview
   foremost
+  frescobaldi
   gallery-dl
+  ghostty
   gimp
+  git-crypt
+  glow
   gnome-disk-utility
   gnupg
   gnuradio
@@ -93,24 +72,35 @@ with pkgs; [
   gqrx
   graphviz
   haskellPackages.hasktags
+  html2text
   inkscape
+  insomnia
   inxi
   jq
+  kdePackages.spectacle
   keepassxc
   killall
+  krop
   lastpass-cli
   ldns
   libinput
   libreoffice
-  libsForQt5.kdenlive
+  # libsForQt5.kdenlive
   light
+  lilypond
+  linuxHeaders
   lmms
   lm_sensors
+  losslesscut-bin
+  lshw
   lsof
   makemkv
   mathpix-snipping-tool
   mdtopdf
   mediainfo
+  minicom
+  mitmproxy
+  mksession
   mplayer
   mtr
   ncdu
@@ -131,9 +121,14 @@ with pkgs; [
   nuclear
   nvme-cli
   nwipe
+  # obsidian
+  obs-studio
+  ocrmypdf
   openscad
+  openssl
   parted
   pass
+  pciutils
   pcmanfm
   pdftc
   pdftk
@@ -141,20 +136,34 @@ with pkgs; [
   pipe-rename
   pirate-get
   poppler_utils
+  popsicle
+  postman
   powerline
   powerline-fonts
+  procs
+  psmisc
+  pvm
   qemu
   qpdf
   qrcp
   rlwrap
+  rnote
   rofi-power-menu
+  rubyPackages.htmlbeautifier
   seder
   shellharden
-  kdePackages.spectacle
+  slide2text
+  slide2text
+  sops
+  source-code-pro
+  sqlitebrowser
   sqlitebrowser
   (sqlite.override { interactive = true; })
+  srtcpy
   sshfs
+  ssh-to-age
   strawberry
+  stylua
   sxiv
   tabbed
   tcpdump
@@ -162,11 +171,17 @@ with pkgs; [
   tikzit
   timer
   tlp
+  topdf
   transcribe
   unetbootin
   unoconv
   unzip
+  usbutils
+  vencord
+  videoChapter
+  vlc
   vorta
+  vttclean
   weechat
   wget
   wireshark
@@ -181,5 +196,8 @@ with pkgs; [
   ytfzf
   zbar
   zip
+  zoom-us
   zotero
+  zulip
+  zulip-term
 ]

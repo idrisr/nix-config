@@ -21,10 +21,10 @@ in {
     nix = {
       package = pkgs.nixVersions.stable;
       settings = {
-        substituters = [ "https://hyprland.cachix.org" ];
-        trusted-public-keys = [
-          "hyprland.cachix.org-1:a7pgxzMz7+chwVL3/pzj6jIBMioiJM7ypFP8PwtkuGc="
-        ];
+        # substituters = [ "https://hyprland.cachix.org" ];
+        # trusted-public-keys = [
+        # "hyprland.cachix.org-1:a7pgxzMz7+chwVL3/pzj6jIBMioiJM7ypFP8PwtkuGc="
+        # ];
         experimental-features = [ "nix-command" "flakes" ];
         trusted-users = [ "root" "hippoid" ];
         auto-optimise-store = true;
@@ -32,7 +32,7 @@ in {
       };
       gc = {
         automatic = true;
-        dates = "weekly";
+        dates = "daily";
         options = "--delete-older-than 7d";
       };
     };
@@ -63,7 +63,6 @@ in {
     # Configure keymap in X11
     console.useXkbConfig = true;
     time.timeZone = "America/Chicago";
-    i18n.defaultLocale = "en_US.utf-8";
 
     programs = {
       zsh.enable = true;
