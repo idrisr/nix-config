@@ -6,6 +6,7 @@
     ./audiobookshelf
     ./base.nix
     ./borg/borg.nix
+    ./borg/borgrepo.nix
     ./desktop.nix
     ./docker
     ./fprintd

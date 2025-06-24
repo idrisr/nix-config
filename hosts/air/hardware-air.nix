@@ -10,14 +10,27 @@
     boot = {
       initrd = {
         availableKernelModules =
-          [ "xhci_pci" "ahci" "usbhid" "usb_storage" "sd_mod" ];
+          [ "xhci_pci" "ahci" "usbhid" "usb_storage" "sd_mod" "wl" ];
         kernelModules = [ "coretemp" "applesmc" ];
+
+        network = {
+          enable = true;
+          ssh = {
+            enable = true;
+            authorizedKeys = [
+              (builtins.readFile
+                ../../nixos-modules/public-keys/id_ed25519-framework.pub)
+            ];
+            hostKeys = [ "/etc/secrets/initrd/ssh_host_ed25519_key" ];
+            shell = "/bin/cryptsetup-askpass";
+          };
+        };
       };
+
       loader = {
         systemd-boot.enable = true;
         efi.canTouchEfiVariables = true;
       };
-      kernelModules = [ "kvm-intel" "wl" ];
       extraModulePackages = [ config.boot.kernelPackages.broadcom_sta ];
     };
 

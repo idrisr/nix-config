@@ -18,7 +18,9 @@ in {
     services.unifi = {
       enable = true;
       openFirewall = true;
-      unifiPackage = pkgs.unifi8;
+      unifiPackage = pkgs.unifi;
+      extraJvmOptions = [ "-Djava.net.preferIPv4Stack=true" ];
     };
+    networking = { firewall.allowedTCPPorts = [ 8443 ]; };
   };
 }

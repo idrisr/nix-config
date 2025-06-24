@@ -1,5 +1,20 @@
-{
-  config = {
+{ config, lib, ... }:
+with lib;
+let cfg = config.my.borgrepo;
+in {
+  options = {
+    my.borgrepo = {
+      enable = mkOption {
+        default = false;
+        type = types.bool;
+        description = lib.mdDoc ''
+          enable borgbase repo
+        '';
+      };
+    };
+  };
+
+  config = mkIf cfg.enable {
     services.borgbackup.repos = {
       my_borg_repo02 = {
         authorizedKeys = [

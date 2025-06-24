@@ -1,21 +1,7 @@
 { pkgs, config, ... }: {
   config = {
     programs.zsh.enable = true;
-
-    sops.defaultSopsFile = ../secrets.yaml;
-
-    sops = {
-      secrets."users/hippoid/hashedPassword" = {
-        owner = "root";
-        mode = "0400";
-        neededForUsers = true;
-      };
-
-      age.keyFile = "/var/lib/sops/age/key.txt";
-    };
-
     users.mutableUsers = false;
-
     users.users.hippoid = {
       isNormalUser = true;
       description = "hippoid";
@@ -29,8 +15,9 @@
         "wheel"
       ];
       shell = pkgs.zsh;
-      hashedPasswordFile =
-        config.sops.secrets."users/hippoid/hashedPassword".path;
+
+      hashedPassword =
+        "$y$j9T$BowmS9BT0LZ5WNT1V4Day1$dae0REqJAJuNehr7b3Uj3Zy.dToJ30mwOqugbA39b02";
 
       openssh.authorizedKeys.keys = [
         (builtins.readFile ./public-keys/id_ed25519.pub)

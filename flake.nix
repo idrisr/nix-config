@@ -3,7 +3,11 @@
     nixpkgs.url = "nixpkgs/nixos-unstable";
     nixcord = { url = "github:kaylorben/nixcord"; };
     nixos-hardware.url = "github:nixos/nixos-hardware";
-    sops-nix.url = "github:mic92/sops-nix";
+    deploy-rs = {
+      url = "github:serokell/deploy-rs";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
     stylix = {
       url = "github:danth/stylix";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -34,7 +38,7 @@
     };
   };
 
-  outputs = inputs@{ nixpkgs, stylix, sops-nix, ... }:
+  outputs = inputs@{ self, nixpkgs, stylix, deploy-rs, ... }:
     let
       system = "x86_64-linux";
       pkgs = nixpkgs.legacyPackages.${system};
@@ -44,7 +48,6 @@
             stylix.nixosModules.stylix
             ./hosts/${host}
             ./nixos-modules
-            sops-nix.nixosModules.sops
             {
               config.nixpkgs = {
                 hostPlatform = pkgs.lib.mkDefault "x86_64-linux";
@@ -70,19 +73,44 @@
     in {
       nixosConfigurations = {
         framework = makeMachine "framework";
-        fft = makeMachine "fft";
-        surface = makeMachine "surface";
         air = makeMachine "air";
-        proxmox = makeMachine "proxmoxvm";
-        bootstrap = makeMachine "bootstrap";
-        hypr = nixpkgs.lib.nixosSystem {
-          pkgs = nixpkgs.legacyPackages.${system};
-          modules = [
-            (import ./hosts/framework/hardware-framework.nix)
-            (import ./hosts/hypr/module.nix)
-          ];
-          specialArgs = { inherit inputs; };
+        godel = makeMachine "godel";
+        router = makeMachine "router";
+      };
+
+      deploy.nodes = {
+        framework = {
+          hostname = "framework";
+          profiles.system = {
+            sshUser = "hippoid";
+            user = "root";
+            path = deploy-rs.lib.x86_64-linux.activate.nixos
+              self.nixosConfigurations.framework;
+          };
+        };
+
+        air = {
+          hostname = "air";
+          profiles.system = {
+            sshUser = "hippoid";
+            user = "root";
+            path = deploy-rs.lib.x86_64-linux.activate.nixos
+              self.nixosConfigurations.air;
+          };
+        };
+
+        godel = {
+          hostname = "192.168.1.4";
+          profiles.system = {
+            sshUser = "hippoid";
+            user = "root";
+            path = deploy-rs.lib.x86_64-linux.activate.nixos
+              self.nixosConfigurations.godel;
+          };
         };
       };
+
+      checks = builtins.mapAttrs
+        (system: deployLib: deployLib.deployChecks self.deploy) deploy-rs.lib;
     };
 }

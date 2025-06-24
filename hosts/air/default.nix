@@ -1,8 +1,9 @@
 {
-  imports = [ ./hardware-air.nix ../../nixos-modules/borg/borgrepo.nix ];
+  imports = [ ./hardware-air.nix ];
   config = {
-    monitoring.enable = true;
+    monitoring.enable = false;
     base.enable = true;
     display.enable = false;
+    my.borgrepo.enable = true;
   };
 }

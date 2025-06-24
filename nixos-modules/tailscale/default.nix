@@ -1,24 +1,23 @@
-{ config, lib, ... }:
+{ pkgs, config, lib, ... }:
 with lib;
-let cfg = config.rustdesk;
+let cfg = config.my.exitnode;
 in {
   options = {
-    rustdesk = {
+    my.exitnode = {
       enable = mkOption {
         default = false;
         type = types.bool;
         description = lib.mdDoc ''
-          enable rustdesk rdp
+          enable exit node
         '';
       };
     };
   };
 
   config = mkIf cfg.enable {
-    services.rustdesk-server = {
+    services.tailscale = {
       enable = true;
-      openFirewall = true;
-      relay.enable = false;
+      useRoutingFeatures = "client";
     };
   };
 }

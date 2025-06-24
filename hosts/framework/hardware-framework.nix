@@ -14,24 +14,29 @@
       luks.devices = {
         "luks-edef38c3-d8f8-444d-9e96-fedfbde573bc".device =
           "/dev/disk/by-uuid/edef38c3-d8f8-444d-9e96-fedfbde573bc";
+        # uuid block device
       };
     };
-    kernelModules = [ "kvm-intel" ];
+    kernelModules = [ "kvm-intel" "zfs" ];
     extraModulePackages = [ ];
     loader = {
       systemd-boot.enable = true;
       efi.canTouchEfiVariables = true;
     };
     binfmt.emulatedSystems = [ "aarch64-linux" ];
+    supportedFilesystems = [ "zfs" ];
+
   };
 
   fileSystems."/" = {
     device = "/dev/disk/by-uuid/65140436-aea1-4525-90a6-000dd8284bdb";
     fsType = "ext4";
+    # uuic luks
   };
 
   fileSystems."/boot" = {
     device = "/dev/disk/by-uuid/F971-583B";
+    # uuid block device
     fsType = "vfat";
     options = [ "fmask=0077" "dmask=0077" ];
   };
@@ -48,6 +53,7 @@
     hostName = "framework";
     networkmanager.enable = true;
     firewall.allowedTCPPorts = [ 631 6969 2234 1143 1025 5000 ];
+    hostId = "bb825510";
   };
 
   security.pam.services = { };
