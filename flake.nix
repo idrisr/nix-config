@@ -23,10 +23,6 @@
       url = "github:nix-community/disko";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    rofi = {
-      url = "github:idrisr/rofi-picker/haskell";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
   };
 
   outputs = inputs@{ self, nixpkgs, stylix, deploy-rs, ... }:
@@ -58,7 +54,7 @@
             {
               config.nixpkgs = {
                 hostPlatform = pkgs.lib.mkDefault "x86_64-linux";
-                overlays = [ inputs.rofi.overlays.all ];
+                overlays = [ ];
                 config = { allowUnfree = true; };
               };
             }
