@@ -31,12 +31,10 @@
   fileSystems."/" = {
     device = "/dev/disk/by-uuid/65140436-aea1-4525-90a6-000dd8284bdb";
     fsType = "ext4";
-    # uuic luks
   };
 
   fileSystems."/boot" = {
     device = "/dev/disk/by-uuid/F971-583B";
-    # uuid block device
     fsType = "vfat";
     options = [ "fmask=0077" "dmask=0077" ];
   };
@@ -45,8 +43,6 @@
     fwupd.enable = true;
     autorandr.enable = true;
   };
-
-  swapDevices = [ ];
 
   networking = {
     useDHCP = lib.mkDefault true;
@@ -67,8 +63,9 @@
     powertop.enable = true;
     cpuFreqGovernor = lib.mkDefault "ondemand";
   };
+
   hardware.cpu.intel.updateMicrocode =
     lib.mkDefault config.hardware.enableRedistributableFirmware;
   hardware.opentabletdriver.enable = true;
-  hardware.bluetooth.enable = true;
+  hardware.bluetooth.enable = false;
 }

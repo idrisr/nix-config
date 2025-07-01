@@ -1,11 +1,11 @@
-{ config, lib, pkgs, inputs, ... }:
+{ config, lib, pkgs, ... }:
 
-let cfg = config.base;
+let cfg = config.my.base;
 in {
   imports = [ ./users.nix ];
 
   options = {
-    base = {
+    my.base = {
       enable = lib.mkOption {
         default = false;
         type = lib.types.bool;
@@ -45,6 +45,7 @@ in {
         enable = true;
         packages = [ pkgs.dconf ];
       };
+
       openssh = {
         enable = true;
         settings = {

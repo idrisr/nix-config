@@ -12,12 +12,11 @@
     ./fprintd
     ./frigate
     ./home-assistant
-    ../home-manager
+    ./hyprland-support.nix
     ./hoogle
     ./immich
     ./kmonad
     ./locate
-    ./monitoring
     ./nh
     ./nvidia
     ./ollama
@@ -33,7 +32,5 @@
     ./virtualization
 
     inputs.disko.nixosModules.default
-    inputs.home-manager.nixosModules.home-manager
-    { home-manager.sharedModules = [ inputs.nixcord.homeModules.nixcord ]; }
   ];
 }

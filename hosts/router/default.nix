@@ -1,8 +1,11 @@
 let
   wanMAC = "00:e0:67:30:ae:a6";
   lanMAC = "00:e0:67:30:ae:a7";
+  backupMAC = "00:e0:67:30:ae:a8";
 in {
   imports = [ ./disko.nix ];
+  nix.settings.require-sigs = false;
+  my.base.enable = false;
 
   boot = {
     kernelParams = [ "console=ttyS0,115200" ];
@@ -47,10 +50,6 @@ in {
       subnet4 = [{
         subnet = "192.168.1.0/24";
         pools = [{ pool = "192.168.1.100 - 192.168.1.200"; }];
-        reservations = [{
-          hw-address = "aa:bb:cc:dd:ee:ff";
-          ip-address = "192.168.1.10";
-        }];
         option-data = [{
           name = "routers";
           data = "192.168.1.1";

@@ -1,39 +1,30 @@
 {
   inputs = {
     nixpkgs.url = "nixpkgs/nixos-unstable";
-    nixcord = { url = "github:kaylorben/nixcord"; };
     nixos-hardware.url = "github:nixos/nixos-hardware";
+    home-manager = {
+      url = "github:nix-community/home-manager";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+    home-config = {
+      url = "path:/home/hippoid/home-manager-config";
+      inputs.nixpkgs.follows = "nixpkgs";
+      inputs.home-manager.follows = "home-manager";
+    };
     deploy-rs = {
       url = "github:serokell/deploy-rs";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-
     stylix = {
       url = "github:danth/stylix";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-    devenv = {
-      url = "github:cachix/devenv";
       inputs.nixpkgs.follows = "nixpkgs";
     };
     disko = {
       url = "github:nix-community/disko";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    home-manager = {
-      url = "github:nix-community/home-manager";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-    visualpreview = {
-      url = "github:idrisr/visualpreview";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
     rofi = {
       url = "github:idrisr/rofi-picker/haskell";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-    nur = {
-      url = "github:idrisr/nur-packages";
       inputs.nixpkgs.follows = "nixpkgs";
     };
   };
@@ -46,21 +37,28 @@
         nixpkgs.lib.nixosSystem {
           modules = [
             stylix.nixosModules.stylix
+            inputs.home-manager.nixosModules.home-manager
             ./hosts/${host}
             ./nixos-modules
             {
+              home-manager = {
+                useGlobalPkgs = true;
+                useUserPackages = true;
+                backupFileExtension = "bak";
+                users.hippoid = {
+                  home = {
+                    homeDirectory = "/home/hippoid";
+                    stateVersion = "25.05";
+                    username = "hippoid";
+                  };
+                  imports = [ inputs.home-config.homeManagerModules.base ];
+                };
+              };
+            }
+            {
               config.nixpkgs = {
                 hostPlatform = pkgs.lib.mkDefault "x86_64-linux";
-                overlays = [
-                  inputs.nur.overlays.${system}
-                  inputs.visualpreview.overlays.visualpreview
-                  inputs.rofi.overlays.all
-                  (import ./nixos-modules/qrcp "6969")
-                  (import ./nixos-modules/xournal)
-                  (import ./nixos-modules/tikzit)
-                  (import ./nixos-modules/kdenlive)
-                  (import ./nixos-modules/brave)
-                ];
+                overlays = [ inputs.rofi.overlays.all ];
                 config = { allowUnfree = true; };
               };
             }
@@ -73,6 +71,7 @@
     in {
       nixosConfigurations = {
         framework = makeMachine "framework";
+        frameland = makeMachine "frameland";
         air = makeMachine "air";
         godel = makeMachine "godel";
         router = makeMachine "router";
@@ -106,6 +105,16 @@
             user = "root";
             path = deploy-rs.lib.x86_64-linux.activate.nixos
               self.nixosConfigurations.godel;
+          };
+        };
+
+        router = {
+          hostname = "192.168.50.23";
+          profiles.system = {
+            sshUser = "hippoid";
+            user = "root";
+            path = deploy-rs.lib.x86_64-linux.activate.nixos
+              self.nixosConfigurations.router;
           };
         };
       };

@@ -4,6 +4,7 @@
 # Devenv
 .devenv*
 devenv.local.nix
+home-manager
 
 # direnv
 .direnv
