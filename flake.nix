@@ -15,31 +15,26 @@
       url = "github:serokell/deploy-rs";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    stylix = {
-      url = "github:danth/stylix";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
     disko = {
       url = "github:nix-community/disko";
       inputs.nixpkgs.follows = "nixpkgs";
     };
   };
 
-  outputs = inputs@{ self, nixpkgs, stylix, deploy-rs, ... }:
+  outputs = inputs@{ self, nixpkgs, deploy-rs, ... }:
     let
       system = "x86_64-linux";
       pkgs = nixpkgs.legacyPackages.${system};
       makeMachine = host:
         nixpkgs.lib.nixosSystem {
           modules = [
-            stylix.nixosModules.stylix
             inputs.home-manager.nixosModules.home-manager
             ./hosts/${host}
             ./nixos-modules
             {
               home-manager = {
-                useGlobalPkgs = true;
                 useUserPackages = true;
+                useGlobalPkgs = true;
                 backupFileExtension = "bak";
                 users.hippoid = {
                   home = {
@@ -54,8 +49,8 @@
             {
               config.nixpkgs = {
                 hostPlatform = pkgs.lib.mkDefault "x86_64-linux";
-                overlays = [ ];
-                config = { allowUnfree = true; };
+                overlays = inputs.home-config.overlays.default;
+                config.allowUnfree = true;
               };
             }
           ];

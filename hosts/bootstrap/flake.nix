@@ -15,6 +15,7 @@
 
       packages.${system} = rec {
         iso = self.nixosConfigurations.installer.config.system.build.isoImage;
+        vm = self.nixosConfigurations.installer.config.system.build.vm;
         inherit (self.checks.${system}.default) driverInteractive;
         default = iso;
       };

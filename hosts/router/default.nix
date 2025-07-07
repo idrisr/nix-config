@@ -1,23 +1,23 @@
+{ pkgs, ... }:
 let
   wanMAC = "00:e0:67:30:ae:a6";
   lanMAC = "00:e0:67:30:ae:a7";
-  backupMAC = "00:e0:67:30:ae:a8";
 in {
-  imports = [ ./disko.nix ];
   nix.settings.require-sigs = false;
-  my.base.enable = false;
 
+  boot.loader.systemd-boot.enable = false;
   boot = {
-    kernelParams = [ "console=ttyS0,115200" ];
-
-    loader.grub = {
-      enable = true;
-      device = "nodev";
-      extraConfig = ''
-        serial --unit=0 --speed=115200
-        terminal_input serial
-        terminal_output serial
-      '';
+    kernelParams =
+      [ "console=ttyS0,115200" "console=tty1" "video=HDMI-A-1:1024x600@60" ];
+    initrd.kernelModules = [ "virtio_console" ];
+    loader = {
+      grub = {
+        enable = true;
+        extraConfig = ''
+          set timeout=5
+          set timeout_style=menu
+        '';
+      };
     };
   };
 
@@ -43,11 +43,28 @@ in {
     };
   };
 
+  nix = {
+    package = pkgs.nixVersions.stable;
+
+    settings = {
+      experimental-features = [ "nix-command" "flakes" ];
+      trusted-users = [ "root" ];
+      auto-optimise-store = true;
+    };
+
+    gc = {
+      automatic = true;
+      dates = "daily";
+      options = "--delete-older-than 7d";
+    };
+  };
+
   services.kea.dhcp4 = {
     enable = true;
     settings = {
       interfaces-config = { interfaces = [ "lan" ]; };
       subnet4 = [{
+        id = 1;
         subnet = "192.168.1.0/24";
         pools = [{ pool = "192.168.1.100 - 192.168.1.200"; }];
         option-data = [{
@@ -58,11 +75,13 @@ in {
     };
   };
 
+  environment.systemPackages = with pkgs; [ sysz ];
+
   services.openssh.enable = true;
 
   users.users.root.openssh.authorizedKeys.keyFiles =
     [ ../../nixos-modules/public-keys/id_ed25519-framework.pub ];
-
+  users.users.root.initialHashedPassword = "";
   system.stateVersion = "24.05";
 
   services.udev.extraRules = ''

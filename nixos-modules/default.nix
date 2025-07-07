@@ -25,7 +25,6 @@
     ./reading
     ./rustdesk
     ./sdr
-    ./stylix
     ./superdrive.nix
     ./syncthing
     ./unifi
