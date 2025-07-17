@@ -17,6 +17,7 @@
     ./immich
     ./kmonad
     ./locate
+    ./opnsense-backup
     ./nh
     ./nvidia
     ./ollama

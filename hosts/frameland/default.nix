@@ -4,6 +4,7 @@
   imports = [ ../framework/hardware-framework.nix ];
   config = {
     my.base.enable = true;
+    my.opnsenseBackup.enable = true;
     borg-backup-client.enable = true;
 
     services.blueman.enable = true; # optional GUI
@@ -18,10 +19,14 @@
       jack.enable = true;
       wireplumber.enable = true; # modern session manager
     };
+    services.upower.enable = true;
 
     xdg.portal = {
       enable = true;
-      extraPortals = [ pkgs.kdePackages.xdg-desktop-portal-kde ];
+      extraPortals = [
+        pkgs.kdePackages.xdg-desktop-portal-kde
+        pkgs.xdg-desktop-portal-gtk
+      ];
     };
 
     boot.loader = {
@@ -47,9 +52,6 @@
 
     services = {
       openssh.enable = true;
-      getty.autologinUser = "hippoid";
-      displayManager.sddm.enable = true;
-      desktopManager.plasma6.enable = true;
     };
   };
 }
