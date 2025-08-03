@@ -16,7 +16,7 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
     disko = {
-      url = "github:nix-community/disko";
+      url = "github:nix-community/disko/545aba02960caa78a31bd9a8709a0ad4b6320a5c";
       inputs.nixpkgs.follows = "nixpkgs";
     };
   };
@@ -59,7 +59,8 @@
             inherit host;
           };
         };
-    in {
+    in
+    {
       nixosConfigurations = {
         framework = makeMachine "framework";
         frameland = makeMachine "frameland";
@@ -111,6 +112,7 @@
       };
 
       checks = builtins.mapAttrs
-        (system: deployLib: deployLib.deployChecks self.deploy) deploy-rs.lib;
+        (system: deployLib: deployLib.deployChecks self.deploy)
+        deploy-rs.lib;
     };
 }
