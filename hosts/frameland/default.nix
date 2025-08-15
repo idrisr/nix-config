@@ -5,6 +5,9 @@
   config = {
     my.base.enable = true;
     my.opnsenseBackup.enable = true;
+    my.pinchflat.enable = true;
+    my.vikunja.enable = true;
+    my.printer.enable = true;
     borg-backup-client.enable = true;
 
     services.blueman.enable = true; # optional GUI

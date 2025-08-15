@@ -27,8 +27,9 @@
       ];
 
       qemuOptStr = builtins.concatStringsSep " " qemuOptions;
+    in
 
-    in {
+    {
       nixosConfigurations.installer = nixpkgs.lib.nixosSystem {
         inherit system;
         modules = [ ./default.nix inputs.disko.nixosModules.default ];

@@ -2,7 +2,8 @@
 let
   wanMAC = "00:e0:67:30:ae:a6";
   lanMAC = "00:e0:67:30:ae:a7";
-in {
+in
+{
   nix.settings.require-sigs = false;
 
   boot.loader.systemd-boot.enable = false;
@@ -13,6 +14,7 @@ in {
     loader = {
       grub = {
         enable = true;
+        device = "/dev/sda";
         extraConfig = ''
           set timeout=5
           set timeout_style=menu
@@ -76,11 +78,11 @@ in {
   };
 
   environment.systemPackages = with pkgs; [ sysz ];
-
   services.openssh.enable = true;
 
-  users.users.root.openssh.authorizedKeys.keyFiles =
-    [ ../../nixos-modules/public-keys/id_ed25519-framework.pub ];
+  users.users.root.openssh.authorizedKeys.keys =
+    [ "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAINsnWJFXUmPQeaDEAmN7Dwyulu2WAiNTd1FesWJFfyi/ hippoid@framework" ];
+
   users.users.root.initialHashedPassword = "";
   system.stateVersion = "24.05";
 

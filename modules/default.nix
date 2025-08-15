@@ -22,6 +22,7 @@
     ./nvidia
     ./ollama
     ./passkey
+    ./pinchflat
     ./printer/printer-client.nix
     ./reading
     ./rustdesk
@@ -30,6 +31,7 @@
     ./syncthing
     ./unifi
     ./virtualization
+    ./vikunja
 
     inputs.disko.nixosModules.default
   ];

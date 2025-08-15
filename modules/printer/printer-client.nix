@@ -1,8 +1,8 @@
 { config, lib, pkgs, ... }:
-let cfg = config.local.printer;
+let cfg = config.my.printer;
 in {
   options = {
-    local.printer = {
+    my.printer = {
       enable = lib.mkOption {
         default = false;
         type = lib.types.bool;

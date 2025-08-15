@@ -19,7 +19,7 @@
             enable = true;
             authorizedKeys = [
               (builtins.readFile
-                ../../nixos-modules/public-keys/id_ed25519-framework.pub)
+                ../../modules/public-keys/id_ed25519-framework.pub)
             ];
             hostKeys = [ "/etc/secrets/initrd/ssh_host_ed25519_key" ];
             shell = "/bin/cryptsetup-askpass";

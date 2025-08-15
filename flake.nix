@@ -11,6 +11,10 @@
       inputs.nixpkgs.follows = "nixpkgs";
       inputs.home-manager.follows = "home-manager";
     };
+    firefox-addons = {
+      url = "gitlab:rycee/nur-expressions?dir=pkgs/firefox-addons";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
     deploy-rs = {
       url = "github:serokell/deploy-rs";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -29,31 +33,18 @@
         nixpkgs.lib.nixosSystem {
           modules = [
             inputs.home-manager.nixosModules.home-manager
+            inputs.home-config.nixosModules.graphical
             ./hosts/${host}
-            ./nixos-modules
-            {
-              home-manager = {
-                useUserPackages = true;
-                useGlobalPkgs = true;
-                backupFileExtension = "bak";
-                users.hippoid = {
-                  home = {
-                    homeDirectory = "/home/hippoid";
-                    stateVersion = "25.05";
-                    username = "hippoid";
-                  };
-                  imports = [ inputs.home-config.homeManagerModules.base ];
-                };
-              };
-            }
+            ./modules
             {
               config.nixpkgs = {
                 hostPlatform = pkgs.lib.mkDefault "x86_64-linux";
-                overlays = inputs.home-config.overlays.default;
+                overlays = inputs.home-config.overlays;
                 config.allowUnfree = true;
               };
             }
           ];
+
           specialArgs = {
             inherit inputs;
             inherit host;
@@ -67,6 +58,7 @@
         air = makeMachine "air";
         godel = makeMachine "godel";
         router = makeMachine "router";
+        # fft = makeMachine "fft";
       };
 
       deploy.nodes = {
@@ -91,7 +83,7 @@
         };
 
         godel = {
-          hostname = "192.168.1.4";
+          hostname = "godel.lan";
           profiles.system = {
             sshUser = "hippoid";
             user = "root";

@@ -1,7 +1,10 @@
 { config, lib, modulesPath, ... }:
 
 {
-  imports = [ (modulesPath + "/installer/scan/not-detected.nix") ];
+  imports = [
+    (modulesPath + "/installer/scan/not-detected.nix")
+    ./disko-fft.nix
+  ];
 
   config = {
     boot = {
@@ -19,7 +22,6 @@
     };
 
     fileSystems."/boot" = { options = [ "umask=0077" ]; };
-    monitoring.enable = true;
 
     services = {
       openssh = {
@@ -43,7 +45,7 @@
 
     nixpkgs = { hostPlatform = lib.mkDefault "x86_64-linux"; };
     hardware = {
-      superdrive.enable = true;
+      superdrive.enable = false;
       cpu.amd.updateMicrocode =
         lib.mkDefault config.hardware.enableRedistributableFirmware;
     };

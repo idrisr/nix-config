@@ -1,6 +1,6 @@
 { config, pkgs, lib, inputs, ... }: {
   imports = [
-    ../../nixos-modules/power
+    ../../modules/power
     inputs.nixos-hardware.nixosModules.microsoft-surface-pro-intel
     (import ./disko-surface.nix { device = "/dev/nvme0n1"; })
   ];

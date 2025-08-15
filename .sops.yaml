@@ -1,7 +1,0 @@
-version: "3.0"
-creation_rules:
-  - path_regex: ^secrets\.yaml$
-    encrypted_regex: ^users\.hippoid\.hashedPassword$
-    key_groups:
-      - age:
-          - age1nk6ppzrnflfdgxh4xaugd7xq3tx00xkyw4xp7q75e7tjfpxvha9srg9jzg

@@ -2,8 +2,8 @@
 
 {
   # required services and drivers
-  services.xserver.enable = true;
-  services.xserver.displayManager.startx.enable = true;
+  services.xserver.enable = false;
+  services.xserver.displayManager.startx.enable = false;
   fonts.fontconfig.enable = true;
 
   # wayland session support
