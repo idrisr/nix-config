@@ -23,33 +23,41 @@
       url = "github:nix-community/disko/545aba02960caa78a31bd9a8709a0ad4b6320a5c";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    ytdlp = {
+      url = "github:nmouha/nixpkgs/patch-1";
+    };
+
   };
 
   outputs = inputs@{ self, nixpkgs, deploy-rs, ... }:
     let
       system = "x86_64-linux";
       pkgs = nixpkgs.legacyPackages.${system};
-      makeMachine = host:
-        nixpkgs.lib.nixosSystem {
-          modules = [
-            inputs.home-manager.nixosModules.home-manager
-            inputs.home-config.nixosModules.graphical
-            ./hosts/${host}
-            ./modules
-            {
-              config.nixpkgs = {
-                hostPlatform = pkgs.lib.mkDefault "x86_64-linux";
-                overlays = inputs.home-config.overlays;
-                config.allowUnfree = true;
-              };
-            }
-          ];
+      makeMachine = host: nixpkgs.lib.nixosSystem {
+        modules = [
+          inputs.home-manager.nixosModules.home-manager
+          inputs.home-config.nixosModules.graphical
+          ./hosts/${host}
+          ./modules
+          {
+            config.nixpkgs = {
+              hostPlatform = pkgs.lib.mkDefault "x86_64-linux";
+              overlays = inputs.home-config.overlays ++
+                [
+                  (final: prev: {
+                    yt-dlp = inputs.ytdlp.legacyPackages.${final.system}.yt-dlp;
+                  })
+                ];
+              config.allowUnfree = true;
+            };
+          }
+        ];
 
-          specialArgs = {
-            inherit inputs;
-            inherit host;
-          };
+        specialArgs = {
+          inherit inputs;
+          inherit host;
         };
+      };
     in
     {
       nixosConfigurations = {

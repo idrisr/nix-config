@@ -13,6 +13,10 @@
     services.blueman.enable = true; # optional GUI
     hardware.bluetooth.enable = true;
 
+    fonts.fonts = with pkgs; [
+      eb-garamond
+    ];
+
     services.pipewire = {
       enable = true;
       alsa.enable = true;
