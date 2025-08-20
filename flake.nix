@@ -23,10 +23,6 @@
       url = "github:nix-community/disko/545aba02960caa78a31bd9a8709a0ad4b6320a5c";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    ytdlp = {
-      url = "github:nmouha/nixpkgs/patch-1";
-    };
-
   };
 
   outputs = inputs@{ self, nixpkgs, deploy-rs, ... }:
@@ -42,12 +38,7 @@
           {
             config.nixpkgs = {
               hostPlatform = pkgs.lib.mkDefault "x86_64-linux";
-              overlays = inputs.home-config.overlays ++
-                [
-                  (final: prev: {
-                    yt-dlp = inputs.ytdlp.legacyPackages.${final.system}.yt-dlp;
-                  })
-                ];
+              overlays = inputs.home-config.overlays;
               config.allowUnfree = true;
             };
           }
