@@ -7,7 +7,7 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
     home-config = {
-      url = "path:/home/hippoid/home-manager-config";
+      url = "github:idrisr/home-manager-config";
       inputs.nixpkgs.follows = "nixpkgs";
       inputs.home-manager.follows = "home-manager";
     };
