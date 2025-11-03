@@ -3,7 +3,7 @@
 {
   imports = [
     (modulesPath + "/installer/scan/not-detected.nix")
-    # ./disko-fft.nix
+    ./disko-fft.nix
   ];
 
   config = {
