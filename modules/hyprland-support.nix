@@ -30,12 +30,14 @@
     xwayland.enable = true;
   };
 
+  environment.sessionVariables.NIXOS_OZONE_WL = "1";
+
   environment.systemPackages = with pkgs; [
     xdg-utils
     glib # for gsettings schemas
     hyprland
     kitty
-    greetd.tuigreet
+    tuigreet
   ];
 
   services.greetd = {

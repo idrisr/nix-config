@@ -13,3 +13,4 @@ home-manager
 .pre-commit-config.yaml
 *qcow2
 result
+hosts/bootstrap/result

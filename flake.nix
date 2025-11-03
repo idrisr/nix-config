@@ -57,7 +57,7 @@
         air = makeMachine "air";
         godel = makeMachine "godel";
         router = makeMachine "router";
-        # fft = makeMachine "fft";
+        fft = makeMachine "fft";
       };
 
       deploy.nodes = {

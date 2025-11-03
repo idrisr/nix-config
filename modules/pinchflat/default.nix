@@ -17,7 +17,7 @@ in
   config = lib.mkIf cfg.enable {
     systemd.services.pinchflat.serviceConfig.UMask = "0002";
     services.pinchflat = {
-      enable = true;
+      enable = false;
       selfhosted = true;
       openFirewall = true;
     };
