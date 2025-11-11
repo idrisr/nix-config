@@ -5,6 +5,7 @@
 
   config = {
     my.base.enable = true;
+    my.anki.enable = true;
     my.borgrepo.enable = true;
   };
 }
