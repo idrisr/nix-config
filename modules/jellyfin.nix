@@ -1,5 +1,21 @@
-{ pkgs, ... }: {
-  config = {
+{ config, lib, pkgs, ... }:
+
+with lib;
+let cfg = config.my.jellyfin;
+in {
+  options = {
+    my.jellyfin = {
+      enable = mkOption {
+        default = false;
+        type = types.bool;
+        description = lib.mdDoc ''
+          enable jellyfin
+        '';
+      };
+    };
+  };
+
+  config = mkIf cfg.enable {
     services.jellyfin = {
       enable = true;
       openFirewall = true;

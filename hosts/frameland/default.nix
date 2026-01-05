@@ -98,6 +98,7 @@
     security.sudo.wheelNeedsPassword = false;
     environment.systemPackages = with pkgs; [ vifm vim git curl ];
 
+    hardware.opentabletdriver.enable = true;
     services = {
       openssh.enable = true;
     };

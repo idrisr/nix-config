@@ -4,7 +4,8 @@ with lib;
 let
   cfg = config.networking.adblocker;
   adguardPort = 3000;
-in {
+in
+{
 
   options = {
     networking.adblocker = {

@@ -15,6 +15,7 @@
     ./home-assistant
     ./hyprland-support.nix
     ./hoogle
+    ./jellyfin.nix
     ./immich
     ./kmonad
     ./locate
