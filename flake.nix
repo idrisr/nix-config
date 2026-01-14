@@ -32,7 +32,7 @@
       makeMachine = host: nixpkgs.lib.nixosSystem {
         modules = [
           inputs.home-manager.nixosModules.home-manager
-          inputs.home-config.nixosModules.graphical
+          # inputs.home-config.nixosModules.graphical
           ./hosts/${host}
           ./modules
           {

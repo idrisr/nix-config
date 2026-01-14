@@ -28,6 +28,8 @@
     ./printer/printer-client.nix
     ./reading
     ./rustdesk
+    ./tailscale/client.nix
+    ./tailscale/server.nix
     ./sdr
     ./superdrive.nix
     ./syncthing

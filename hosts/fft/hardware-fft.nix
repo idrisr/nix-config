@@ -25,7 +25,7 @@
 
     services = {
       openssh = {
-        settings.X11Forwarding = true;
+        settings.X11Forwarding = false;
         allowSFTP = true;
       };
       pipewire = {

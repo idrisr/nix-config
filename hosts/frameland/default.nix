@@ -8,6 +8,8 @@
     my.pinchflat.enable = true;
     my.vikunja.enable = true;
     my.printer.enable = true;
+    my.clientnode.enable = true;
+
     borg-backup-client.enable = true;
 
     services.blueman.enable = true; # optional GUI

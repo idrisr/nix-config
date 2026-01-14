@@ -8,5 +8,6 @@
     my.anki.enable = true;
     my.jellyfin.enable = true;
     my.borgrepo.enable = true;
+    my.servernode.enable = true;
   };
 }
