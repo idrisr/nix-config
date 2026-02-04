@@ -663,11 +663,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1770173172,
-        "narHash": "sha256-8cQ8rJDesISJKxRK3IJ5eZ4X1D893ra6+1YZocATlsM=",
+        "lastModified": 1770175784,
+        "narHash": "sha256-vqi1J6g70fjJPd+PgNasL24CfF7IeOxLblorn1ZwB3I=",
         "ref": "refs/heads/main",
-        "rev": "b8b85fb8a6ee36bd2cd2de6fcfde5b102bc15e8b",
-        "revCount": 1,
+        "rev": "54701ef4ee4b88e7b37a9b062d49422c81ac593f",
+        "revCount": 2,
         "type": "git",
         "url": "file:/home/hippoid/fun/open-code-nixos-module"
       },
