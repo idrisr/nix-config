@@ -23,6 +23,11 @@
       url = "github:nix-community/disko/545aba02960caa78a31bd9a8709a0ad4b6320a5c";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    opencode = {
+      url = "git+file:/home/hippoid/fun/open-code-nixos-module";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
   };
 
   outputs = inputs@{ self, nixpkgs, deploy-rs, ... }:

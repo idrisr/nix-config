@@ -16,6 +16,7 @@
     ./hyprland-support.nix
     ./hoogle
     ./jellyfin.nix
+    ./light
     ./immich
     ./kmonad
     ./locate
@@ -23,6 +24,7 @@
     ./nh
     ./nvidia
     ./ollama
+    ./opencode
     ./passkey
     ./pinchflat
     ./printer/printer-client.nix

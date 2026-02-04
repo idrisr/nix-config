@@ -29,6 +29,28 @@
 
       wireplumber = {
         enable = true;
+        extraConfig = {
+          "50-bluetooth.conf" = {
+            "monitor.bluez.properties" = {
+              "bluez5.autoswitch-profile" = false;
+            };
+          };
+
+          "51-bluetooth-prefer-hsp.conf" = {
+            "monitor.bluez.rules" = [
+              {
+                matches = [
+                  { "device.name" = "~bluez_card.*"; }
+                ];
+                actions = {
+                  update-props = {
+                    "bluez5.profile" = "headset-head-unit";
+                  };
+                };
+              }
+            ];
+          };
+        };
 
         configPackages = [
           # (pkgs.writeTextDir "share/wireplumber/wireplumber.conf.d/10-bluez.conf" ''
@@ -70,7 +92,14 @@
       };
     };
 
-    services.upower.enable = true;
+    services.upower = {
+      enable = true;
+      usePercentageForPolicy = true;
+      percentageLow = 10;
+      percentageCritical = 5;
+      percentageAction = 2;
+    };
+
     xdg.portal = {
       enable = true;
       extraPortals = [
