@@ -6,10 +6,10 @@
 
   config = {
     services.opencode = {
-      enable = true;
-      host = "localhost";
+      enable = false;
+      host = "0.0.0.0";
       port = 4444;
-      openFirewall = false;
+      openFirewall = true;
     };
   };
 }
