@@ -10,6 +10,7 @@
     ./borg/borgrepo.nix
     ./desktop.nix
     ./docker
+    ./droidcam
     ./fprintd
     ./frigate
     ./home-assistant
@@ -27,6 +28,7 @@
     ./opencode
     ./passkey
     ./pinchflat
+    ./pipewire
     ./printer/printer-client.nix
     ./reading
     ./rustdesk

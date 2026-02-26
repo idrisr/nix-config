@@ -14,3 +14,4 @@ home-manager
 *qcow2
 result
 hosts/bootstrap/result
+/docs/src/build

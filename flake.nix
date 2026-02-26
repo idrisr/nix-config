@@ -32,8 +32,20 @@
 
   outputs = inputs@{ self, nixpkgs, deploy-rs, ... }:
     let
-      system = "x86_64-linux";
-      pkgs = nixpkgs.legacyPackages.${system};
+      primarySystem = "x86_64-linux";
+      pkgs = nixpkgs.legacyPackages.${primarySystem};
+      lib = nixpkgs.lib;
+      homeSystems = [ "x86_64-linux" "aarch64-darwin" ];
+      homeConfigurationsBySystem = inputs.home-config.homeConfigurations;
+      homeChecks = lib.genAttrs homeSystems (system: {
+        home-graphical =
+          homeConfigurationsBySystem."graphical-${system}".activationPackage;
+        home-headless =
+          homeConfigurationsBySystem."headless-${system}".activationPackage;
+      });
+      deployChecks = builtins.mapAttrs
+        (system: deployLib: deployLib.deployChecks self.deploy)
+        deploy-rs.lib;
       makeMachine = host: nixpkgs.lib.nixosSystem {
         modules = [
           inputs.home-manager.nixosModules.home-manager
@@ -42,7 +54,7 @@
           ./modules
           {
             config.nixpkgs = {
-              hostPlatform = pkgs.lib.mkDefault "x86_64-linux";
+              hostPlatform = lib.mkDefault primarySystem;
               overlays = inputs.home-config.overlays;
               config.allowUnfree = true;
             };
@@ -107,8 +119,8 @@
         };
       };
 
-      checks = builtins.mapAttrs
-        (system: deployLib: deployLib.deployChecks self.deploy)
-        deploy-rs.lib;
+      homeConfigurations = homeConfigurationsBySystem;
+
+      checks = lib.recursiveUpdate deployChecks homeChecks;
     };
 }
