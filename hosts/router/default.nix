@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ pkgs, lib, ... }:
 let
   wanMAC = "00:e0:67:30:ae:a6";
   lanMAC = "00:e0:67:30:ae:a7";
@@ -21,6 +21,11 @@ in
         '';
       };
     };
+  };
+
+  fileSystems."/" = {
+    device = lib.mkDefault "/dev/sda1";
+    fsType = lib.mkDefault "ext4";
   };
 
   networking = {

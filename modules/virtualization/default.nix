@@ -25,7 +25,7 @@ in {
       virt-manager
       virt-viewer
       win-spice
-      win-virtio
+      virtio-win
     ];
 
     programs.dconf.enable = true;
@@ -37,8 +37,6 @@ in {
         enable = true;
         qemu = {
           swtpm.enable = true;
-          ovmf.enable = true;
-          ovmf.packages = [ pkgs.OVMFFull.fd ];
         };
       };
       spiceUSBRedirection.enable = true;

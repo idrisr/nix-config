@@ -1,3 +1,4 @@
+{ lib, ... }:
 {
   config = {
     services = {
@@ -6,10 +7,10 @@
         logEvents = true;
       };
 
-      logind = {
-        powerKey = "ignore";
-        powerKeyLongPress = "ignore";
-        lidSwitch = "lock";
+      logind.settings.Login = {
+        HandlePowerKey = lib.mkDefault "ignore";
+        HandlePowerKeyLongPress = lib.mkDefault "ignore";
+        HandleLidSwitch = lib.mkDefault "lock";
       };
     };
   };

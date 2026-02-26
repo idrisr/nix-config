@@ -34,7 +34,7 @@
       extraModulePackages = [ config.boot.kernelPackages.broadcom_sta ];
     };
 
-    services.logind.lidSwitch = "ignore";
+    services.logind.settings.Login.HandleLidSwitch = "ignore";
     environment.systemPackages = [ pkgs.lm_sensors ];
 
     networking = {
@@ -48,6 +48,9 @@
       hostPlatform = lib.mkDefault "x86_64-linux";
       config.allowUnfreePredicate = p:
         builtins.elem (pkgs.lib.getName p) [ "broadcom-sta" ];
+      config.permittedInsecurePackages = [
+        "broadcom-sta-6.30.223.271-59-6.12.68"
+      ];
     };
 
     hardware.cpu.intel.updateMicrocode =

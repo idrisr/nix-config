@@ -1,6 +1,8 @@
 {
   inputs = {
     nixpkgs.url = "nixpkgs/nixos-unstable";
+    flake-parts.url = "github:hercules-ci/flake-parts";
+    import-tree.url = "github:vic/import-tree";
     nixos-hardware.url = "github:nixos/nixos-hardware";
     home-manager = {
       url = "github:nix-community/home-manager";
@@ -30,97 +32,7 @@
 
   };
 
-  outputs = inputs@{ self, nixpkgs, deploy-rs, ... }:
-    let
-      primarySystem = "x86_64-linux";
-      pkgs = nixpkgs.legacyPackages.${primarySystem};
-      lib = nixpkgs.lib;
-      homeSystems = [ "x86_64-linux" "aarch64-darwin" ];
-      homeConfigurationsBySystem = inputs.home-config.homeConfigurations;
-      homeChecks = lib.genAttrs homeSystems (system: {
-        home-graphical =
-          homeConfigurationsBySystem."graphical-${system}".activationPackage;
-        home-headless =
-          homeConfigurationsBySystem."headless-${system}".activationPackage;
-      });
-      deployChecks = builtins.mapAttrs
-        (system: deployLib: deployLib.deployChecks self.deploy)
-        deploy-rs.lib;
-      makeMachine = host: nixpkgs.lib.nixosSystem {
-        modules = [
-          inputs.home-manager.nixosModules.home-manager
-          # inputs.home-config.nixosModules.graphical
-          ./hosts/${host}
-          ./modules
-          {
-            config.nixpkgs = {
-              hostPlatform = lib.mkDefault primarySystem;
-              overlays = inputs.home-config.overlays;
-              config.allowUnfree = true;
-            };
-          }
-        ];
-
-        specialArgs = {
-          inherit inputs;
-          inherit host;
-        };
-      };
-    in
-    {
-      nixosConfigurations = {
-        framework = makeMachine "framework";
-        frameland = makeMachine "frameland";
-        air = makeMachine "air";
-        godel = makeMachine "godel";
-        router = makeMachine "router";
-        fft = makeMachine "fft";
-      };
-
-      deploy.nodes = {
-        framework = {
-          hostname = "framework";
-          profiles.system = {
-            sshUser = "hippoid";
-            user = "root";
-            path = deploy-rs.lib.x86_64-linux.activate.nixos
-              self.nixosConfigurations.framework;
-          };
-        };
-
-        air = {
-          hostname = "air";
-          profiles.system = {
-            sshUser = "hippoid";
-            user = "root";
-            path = deploy-rs.lib.x86_64-linux.activate.nixos
-              self.nixosConfigurations.air;
-          };
-        };
-
-        godel = {
-          hostname = "godel.lan";
-          profiles.system = {
-            sshUser = "hippoid";
-            user = "root";
-            path = deploy-rs.lib.x86_64-linux.activate.nixos
-              self.nixosConfigurations.godel;
-          };
-        };
-
-        router = {
-          hostname = "192.168.50.23";
-          profiles.system = {
-            sshUser = "hippoid";
-            user = "root";
-            path = deploy-rs.lib.x86_64-linux.activate.nixos
-              self.nixosConfigurations.router;
-          };
-        };
-      };
-
-      homeConfigurations = homeConfigurationsBySystem;
-
-      checks = lib.recursiveUpdate deployChecks homeChecks;
-    };
+  outputs = inputs:
+    inputs.flake-parts.lib.mkFlake { inherit inputs; }
+      (inputs.import-tree ./dendritic);
 }

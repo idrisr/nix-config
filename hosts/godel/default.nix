@@ -4,7 +4,7 @@
   imports = [ (modulesPath + "/installer/scan/not-detected.nix") ];
 
   config = {
-    base.enable = true;
+    my.base.enable = true;
     unifi.enable = true;
     users.users.root = {
       hashedPassword =
