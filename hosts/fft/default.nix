@@ -27,7 +27,7 @@
         adguard.target = "http://127.0.0.1:3000";
       };
     };
-    environment.systemPackages = lib.mkAfter (with pkgs; [ atuin binutils ]);
+    environment.systemPackages = lib.mkAfter (with pkgs; [ atuin binutils lego ]);
     networking.adblocker.enable = true;
   };
 }
