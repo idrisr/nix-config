@@ -8,8 +8,8 @@ let
   vhostToNginx = name: vcfg:
     lib.nameValuePair (fullDomain name) {
       forceSSL = true;
-      sslCertificate = "/var/lib/acme/${certName}/fullchain.pem";
-      sslCertificateKey = "/var/lib/acme/${certName}/key.pem";
+      sslCertificate = cfg.certPaths.sslCertificate;
+      sslCertificateKey = cfg.certPaths.sslCertificateKey;
       locations."/" = {
         proxyPass = vcfg.target;
         proxyWebsockets = true;
@@ -46,11 +46,11 @@ in
       description = lib.mdDoc "Virtual hosts keyed by subdomain (without subdomain/domain).";
     };
 
-      acme = {
-        email = lib.mkOption {
-          type = lib.types.str;
-          description = lib.mdDoc "ACME contact email.";
-        };
+    acme = {
+      email = lib.mkOption {
+        type = lib.types.str;
+        description = lib.mdDoc "ACME contact email.";
+      };
 
         dnsProvider = lib.mkOption {
           default = "namecheap";
@@ -58,14 +58,37 @@ in
           description = lib.mdDoc "lego DNS provider name.";
         };
 
-        credentialFiles = lib.mkOption {
-          type = lib.types.attrsOf lib.types.path;
-          description = lib.mdDoc "Environment files for the ACME DNS provider, keys must end with _FILE (e.g. NAMECHEAP_API_USER_FILE / NAMECHEAP_API_KEY_FILE).";
-        };
+      credentialFiles = lib.mkOption {
+        type = lib.types.attrsOf lib.types.path;
+        description = lib.mdDoc "Environment files for the ACME DNS provider, keys must end with _FILE (e.g. NAMECHEAP_API_USER_FILE / NAMECHEAP_API_KEY_FILE).";
       };
     };
 
+    certPaths = lib.mkOption {
+      type = lib.types.submodule {
+        options = {
+          sslCertificate = lib.mkOption {
+            type = lib.types.path;
+            description = lib.mdDoc "Path to fullchain certificate file.";
+          };
+          sslCertificateKey = lib.mkOption {
+            type = lib.types.path;
+            description = lib.mdDoc "Path to private key file.";
+          };
+        };
+      };
+      description = lib.mdDoc "Static cert/key paths. When set, ACME issuance is disabled and these files must be provided manually.";
+    };
+  };
+
   config = lib.mkIf cfg.enable {
+    assertions = [
+      {
+        assertion = cfg.certPaths != null || (cfg.acme.email or null) != null;
+        message = "Provide either certPaths or ACME settings.";
+      }
+    ];
+
     networking.firewall.allowedTCPPorts = [ 80 443 ];
 
     services.nginx = {
@@ -76,7 +99,7 @@ in
       virtualHosts = lib.mapAttrs' vhostToNginx cfg.hosts;
     };
 
-    security.acme = {
+    security.acme = lib.mkIf (cfg.certPaths == null) {
       acceptTerms = true;
       defaults.email = cfg.acme.email;
       certs.${certName} = {

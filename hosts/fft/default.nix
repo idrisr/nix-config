@@ -14,13 +14,10 @@
       enable = true;
       domain = "idrisraja.com";
       subdomain = "";
-      acme = {
-        email = "idris.raja@gmail.com";
-        dnsProvider = "namecheap";
-        credentialFiles = {
-          NAMECHEAP_API_USER_FILE = "/var/lib/secrets/namecheap-api-user";
-          NAMECHEAP_API_KEY_FILE = "/var/lib/secrets/namecheap-api-key";
-        };
+      # Manual cert mode: place your fullchain/key at these paths.
+      certPaths = {
+        sslCertificate = "/var/lib/reverse-proxy/manual/fullchain.pem";
+        sslCertificateKey = "/var/lib/reverse-proxy/manual/key.pem";
       };
       hosts = {
         redmine.target = "http://127.0.0.1:3001";
