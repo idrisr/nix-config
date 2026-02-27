@@ -29,10 +29,11 @@
     };
     environment.systemPackages = lib.mkAfter (with pkgs; [ atuin binutils lego ]);
     networking.adblocker.enable = true;
-    home-manager.users.hippoid = { pkgs, ... }: {
-      home.stateVersion = "24.11";
-      programs.home-manager.enable = true;
-      programs.zsh.enable = true;
+    home-manager.useGlobalPkgs = true;
+    home-manager.useUserPackages = true;
+    home-manager.users.hippoid = import (inputs."home-config" + "/home.nix") {
+      inherit pkgs inputs;
+      graphical = false;
     };
   };
 }
