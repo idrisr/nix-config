@@ -1,3 +1,4 @@
+{ pkgs, lib, config, ... }:
 {
   options = { };
 
@@ -26,6 +27,7 @@
         adguard.target = "http://127.0.0.1:3000";
       };
     };
+    environment.systemPackages = lib.mkAfter (with pkgs; [ atuin binutils ]);
     networking.adblocker.enable = true;
   };
 }
