@@ -30,6 +30,7 @@
     ./pinchflat
     ./pipewire
     ./printer/printer-client.nix
+    ./reverse-proxy.nix
     ./reading
     ./redmine.nix
     ./rustdesk

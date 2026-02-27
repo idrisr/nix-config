@@ -35,6 +35,14 @@ in
         settings = {
           # bind_port = adguardPort;
           schema_version = 20;
+          dns = {
+            rewrites = [
+              { domain = "redmine.idrisraja.com"; answer = "192.168.8.231"; }
+              { domain = "jellyfin.idrisraja.com"; answer = "192.168.8.231"; }
+              { domain = "immich.idrisraja.com"; answer = "192.168.8.231"; }
+              { domain = "adguard.idrisraja.com"; answer = "192.168.8.231"; }
+            ];
+          };
         };
       };
     };

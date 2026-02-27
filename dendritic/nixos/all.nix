@@ -48,6 +48,7 @@ in
       ../../modules/printer/printer-client.nix
       ../../modules/printer/printing.nix
       ../../modules/reading
+      ../../modules/reverse-proxy.nix
       ../../modules/redmine.nix
       ../../modules/rustdesk
       ../../modules/sdr
