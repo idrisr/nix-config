@@ -1,0 +1,8 @@
+$aux_dir = "build";         # auxiliary directory
+$out_dir = "build";         # output directory
+$pdflatex = 'pdflatex -interaction=nonstopmode -shell-escape';
+$pdf_mode = 1;              # compile to pdf
+
+unless (-d $out_dir) {      # create build directory if missing
+    mkdir $out_dir or die "cannot create $out_dir: $!";
+}

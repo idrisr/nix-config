@@ -1,0 +1,151 @@
+\makeindex
+
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{booktabs}
+\usepackage{csvsimple-l3}
+\usepackage{bussproofs}
+\usepackage{dirtytalk}
+\usepackage[dvipsnames]{xcolor}
+\usepackage{enumitem}
+\usepackage{epigraph}
+\usepackage{forest}
+\usepackage{formal-grammar}
+\usepackage{graphicx}
+\usepackage[citecolor=blue,colorlinks=true, linkcolor=blue, urlcolor=blue]{hyperref}
+\usepackage{kantlipsum}
+\usepackage{makeidx}
+\usepackage[margin=0.8in]{geometry}
+\usepackage{mathrsfs}
+\usepackage[outputdir=build]{minted}
+\usepackage{multicol}
+\usepackage{standalone}
+\usepackage[style=authortitle]{biblatex}
+\usepackage[T1]{fontenc}
+\usepackage[tableaux]{prooftrees}
+\usepackage{tcolorbox}
+\usepackage{tikz}
+\usepackage{titlesec}
+\usepackage{xcolor}
+
+\usetikzlibrary{arrows}
+\usetikzlibrary{arrows.meta}
+\usetikzlibrary{automata}
+\usetikzlibrary{calc}
+\usetikzlibrary{fit}
+\usetikzlibrary{petri}
+\usetikzlibrary{positioning}
+
+\tcbuselibrary{breakable}
+\tcbuselibrary{listings}
+\tcbuselibrary{minted}
+\tcbuselibrary{skins}
+\tcbuselibrary{theorems}
+
+\newcounter{filePrg}
+
+% \addbibresource{biblio.bib}
+\setlength{\parindent}{0pt}
+
+\renewcommand{\emph}[1]{\textit{#1}}
+\setlength{\parindent}{0pt}
+
+\newcommand\setboxcounter[2]{\setcounter{tcb@cnt@#1}{#2}}
+\setlength{\parindent}{10pt}
+\newcommand{\set}[1]{\{#1\}}
+
+\definecolor{CaribbeanBlue}{RGB}{0, 206, 209} % Define Caribbean Blue
+\NewTcbTheorem[list inside=definition]{definition}
+{Definition}{
+	breakable,
+	colback=CaribbeanBlue!05,
+	colframe=CaribbeanBlue!35!black,
+	fonttitle=\bfseries}{th}
+
+\NewTcbTheorem[list inside=intuition]{intuition}{Intuition}{
+	breakable,
+	colback=blue!5,
+	colframe=blue!35!black,
+	fonttitle=\bfseries}{th}
+
+\NewTcbTheorem{example}{Example}{
+	breakable,
+	colback=white,
+	colframe=green!35!black,
+	fonttitle=\bfseries}{th}
+
+\NewTcbTheorem{verify}{Verify}{
+	breakable,
+	float,
+	colback=red!5,
+	colframe=red!35!black,
+	fonttitle=\bfseries}{th}
+
+\NewTcbTheorem[list inside=theorem]{theorem}{Theorem}{
+	breakable,
+	colback=gray!10,
+	colframe=gray!35!black,
+	fonttitle=\bfseries}{th}
+
+\NewTcbTheorem[
+	list inside=exercise,
+	number within=section
+]
+{exercise}{Exercise}{
+	breakable,
+	colback=white,
+	colframe=black,
+	fonttitle=\bfseries}{th}
+
+\newcommand{\hask}[1]{\mintinline{haskell}{#1}}
+
+\newenvironment{alist}
+{\begin{enumerate}[label={*}, leftmargin=*, itemsep=0pt, parsep=0pt]}
+		{\end{enumerate}}
+
+\newenvironment{blist}
+{\begin{enumerate}[label={}, leftmargin=*, itemsep=0pt, parsep=0pt]}
+		{\end{enumerate}}
+
+
+\renewcommand{\thesection}{\arabic{section}}
+\tcbset{enhanced jigsaw}
+
+\newtcbinputlisting{\codeFromFile}[2]{
+	listing file={#1},
+	listing engine=minted,
+	minted style=colorful,
+	minted language=haskell,
+	minted options={breaklines,linenos,numbersep=3mm},
+	colback=blue!5!white,colframe=blue!75!black,listing only,
+	left=5mm,enhanced,
+	title={#2},
+	overlay={\begin{tcbclipinterior}\fill[red!20!blue!20!white] (frame.south west)
+				rectangle ([xshift=5mm]frame.north west);\end{tcbclipinterior}}
+}
+
+\newtcblisting{haskell}[1]
+{
+	listing engine=minted,
+	minted style=colorful,
+	minted language=haskell,
+	minted options={breaklines,linenos,numbersep=3mm},
+	colback=blue!5!white,colframe=blue!75!black,listing only,
+	left=5mm,enhanced,
+	title={#1},
+	overlay={\begin{tcbclipinterior}\fill[red!20!blue!20!white] (frame.south west)
+				rectangle ([xshift=5mm]frame.north west);\end{tcbclipinterior}}
+}
+
+\newtcblisting{shell}[1]
+{
+	listing engine=minted,
+	minted style=colorful,
+	minted language=shell,
+	minted options={breaklines,linenos,numbersep=3mm},
+	colback=blue!5!white,colframe=blue!75!black,listing only,
+	left=5mm,enhanced,
+	title={#1},
+	overlay={\begin{tcbclipinterior}\fill[red!20!blue!20!white] (frame.south west)
+				rectangle ([xshift=5mm]frame.north west);\end{tcbclipinterior}}
+}
