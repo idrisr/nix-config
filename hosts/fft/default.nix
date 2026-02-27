@@ -9,6 +9,7 @@
     my.jellyfin.enable = true;
     my.borgrepo.enable = true;
     my.servernode.enable = true;
+    my.redmine.enable = true;
     networking.adblocker.enable = true;
   };
 }

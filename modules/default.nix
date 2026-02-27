@@ -31,6 +31,7 @@
     ./pipewire
     ./printer/printer-client.nix
     ./reading
+    ./redmine.nix
     ./rustdesk
     ./tailscale/client.nix
     ./tailscale/server.nix
