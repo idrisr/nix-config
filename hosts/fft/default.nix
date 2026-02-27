@@ -29,11 +29,11 @@
     };
     environment.systemPackages = lib.mkAfter (with pkgs; [ atuin binutils lego ]);
     networking.adblocker.enable = true;
-    home-manager.useGlobalPkgs = true;
-    home-manager.useUserPackages = true;
-    home-manager.users.hippoid = import (inputs."home-config" + "/home.nix") {
-      inherit pkgs inputs;
-      graphical = false;
+    home-manager = {
+      useGlobalPkgs = true;
+      useUserPackages = true;
+      extraSpecialArgs = { inherit inputs; graphical = false; };
+      users.hippoid = import (inputs."home-config" + "/home.nix");
     };
   };
 }
