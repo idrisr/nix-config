@@ -35,7 +35,6 @@
   environment.systemPackages = with pkgs; [
     xdg-utils
     glib # for gsettings schemas
-    hyprland
     kitty
     tuigreet
   ];
