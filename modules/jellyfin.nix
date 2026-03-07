@@ -1,7 +1,11 @@
-{ config, lib, pkgs, ... }:
-
-with lib;
-let cfg = config.my.jellyfin;
+{
+  config,
+  lib,
+  pkgs,
+  ...
+}:
+with lib; let
+  cfg = config.my.jellyfin;
 in {
   options = {
     my.jellyfin = {
@@ -23,8 +27,7 @@ in {
     users.users.jellyfin = {
       description = "jellyfin";
       shell = pkgs.zsh;
-      openssh.authorizedKeys.keys =
-        [ (builtins.readFile ./public-keys/jellyfin_ed25519.pub) ];
+      openssh.authorizedKeys.keys = [(builtins.readFile ./public-keys/jellyfin_ed25519.pub)];
     };
   };
 }

@@ -3,7 +3,7 @@ _: prev: {
     pname = "pipe-renamer";
     name = "pipe-renamer";
     dontUnpack = true;
-    nativeBuildInputs = [ prev.makeWrapper ];
+    nativeBuildInputs = [prev.makeWrapper];
 
     installPhase = ''
       mkdir -p "$out/bin"

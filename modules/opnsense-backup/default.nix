@@ -1,17 +1,19 @@
-{ config, pkgs, lib, ... }:
-
-let
+{
+  config,
+  pkgs,
+  lib,
+  ...
+}: let
   cfg = config.my.opnsenseBackup;
   backup-opnsense = pkgs.writeShellApplication {
     name = "backup-opnsense";
-    runtimeInputs = [ pkgs.openssh pkgs.coreutils ];
+    runtimeInputs = [pkgs.openssh pkgs.coreutils];
     text = ''
       mkdir -p "/home/hippoid/backups/opnsense"
       scp root@192.168.1.1:/conf/config.xml "/home/hippoid/backups/opnsense/config-$(date +%F).xml"
     '';
   };
-in
-{
+in {
   options = {
     my.opnsenseBackup = {
       enable = lib.mkOption {
@@ -23,7 +25,8 @@ in
       };
     };
   };
-  config = lib.mkIf cfg.enable
+  config =
+    lib.mkIf cfg.enable
     {
       systemd.services.backup-opnsense = {
         description = "Backup OPNsense config.xml via SCP";

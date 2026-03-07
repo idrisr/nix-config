@@ -1,5 +1,4 @@
-{ lib, ... }:
-{
+{lib, ...}: {
   config = {
     services = {
       acpid = {

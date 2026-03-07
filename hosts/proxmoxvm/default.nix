@@ -1,5 +1,5 @@
 {
-  imports = [ ];
+  imports = [];
   config = {
     monitoring.enable = false;
     base.enable = true;

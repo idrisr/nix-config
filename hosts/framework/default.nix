@@ -1,5 +1,5 @@
-{ pkgs, ... }: {
-  imports = [ ./hardware-framework.nix ];
+{pkgs, ...}: {
+  imports = [./hardware-framework.nix];
   config = {
     my.base.enable = true;
     my.opnsenseBackup.enable = true;
@@ -14,7 +14,7 @@
     virtualization.enable = true;
     services.blueman.enable = true;
     hardware.bluetooth.enable = true;
-    fonts.packages = with pkgs; [ eb-garamond ];
+    fonts.packages = with pkgs; [eb-garamond];
     services.upower = {
       enable = true;
       usePercentageForPolicy = true;

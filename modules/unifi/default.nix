@@ -1,6 +1,11 @@
-{ pkgs, config, lib, ... }:
-with lib;
-let cfg = config.unifi;
+{
+  pkgs,
+  config,
+  lib,
+  ...
+}:
+with lib; let
+  cfg = config.unifi;
 in {
   options = {
     unifi = {
@@ -19,8 +24,8 @@ in {
       enable = true;
       openFirewall = true;
       unifiPackage = pkgs.unifi;
-      extraJvmOptions = [ "-Djava.net.preferIPv4Stack=true" ];
+      extraJvmOptions = ["-Djava.net.preferIPv4Stack=true"];
     };
-    networking = { firewall.allowedTCPPorts = [ 8443 ]; };
+    networking = {firewall.allowedTCPPorts = [8443];};
   };
 }

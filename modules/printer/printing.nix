@@ -1,4 +1,4 @@
-{ pkgs, ... }: {
+{pkgs, ...}: {
   config = {
     services = {
       ipp-usb.enable = true;
@@ -15,12 +15,12 @@
 
       printing = {
         enable = true;
-        drivers = [ pkgs.brlaser ];
-        listenAddresses = [ "*:631" ];
+        drivers = [pkgs.brlaser];
+        listenAddresses = ["*:631"];
         openFirewall = true;
         defaultShared = true;
         browsing = true;
-        allowFrom = [ "all" ];
+        allowFrom = ["all"];
         stateless = false;
         logLevel = "debug";
         extraConf = ''
@@ -28,6 +28,6 @@
         '';
       };
     };
-    users.users.hippoid = { extraGroups = [ "lp" "lpadmin" ]; };
+    users.users.hippoid = {extraGroups = ["lp" "lpadmin"];};
   };
 }

@@ -1,6 +1,11 @@
-{ config, pkgs, lib, ... }:
-with lib;
-let cfg = config.sdr;
+{
+  config,
+  pkgs,
+  lib,
+  ...
+}:
+with lib; let
+  cfg = config.sdr;
 in {
   options = {
     sdr = {
@@ -16,16 +21,16 @@ in {
 
   config = mkIf cfg.enable {
     hardware.rtl-sdr.enable = true;
-    users.users.hippoid.extraGroups = [ "plugdev" ];
+    users.users.hippoid.extraGroups = ["plugdev"];
     services.sdrplayApi.enable = true;
 
     nixpkgs = {
       config.allowUnfreePredicate = pkg:
-        builtins.elem (lib.getName pkg) [ "sdrplay" ];
+        builtins.elem (lib.getName pkg) ["sdrplay"];
       overlays = [
         (_: prev: {
           soapysdr-with-plugins = prev.soapysdr.override {
-            extraPackages = with prev; [ soapyrtlsdr sdrplay ];
+            extraPackages = with prev; [soapyrtlsdr sdrplay];
           };
         })
       ];

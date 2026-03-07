@@ -1,6 +1,10 @@
-{ config, lib, modulesPath, inputs, ... }:
-
 {
+  config,
+  lib,
+  modulesPath,
+  inputs,
+  ...
+}: {
   imports = [
     (modulesPath + "/installer/scan/not-detected.nix")
     inputs.nixos-hardware.nixosModules.framework-11th-gen-intel
@@ -8,24 +12,21 @@
 
   boot = {
     initrd = {
-      availableKernelModules =
-        [ "xhci_pci" "thunderbolt" "nvme" "usb_storage" "sd_mod" ];
-      kernelModules = [ ];
+      availableKernelModules = ["xhci_pci" "thunderbolt" "nvme" "usb_storage" "sd_mod"];
+      kernelModules = [];
       luks.devices = {
-        "luks-edef38c3-d8f8-444d-9e96-fedfbde573bc".device =
-          "/dev/disk/by-uuid/edef38c3-d8f8-444d-9e96-fedfbde573bc";
+        "luks-edef38c3-d8f8-444d-9e96-fedfbde573bc".device = "/dev/disk/by-uuid/edef38c3-d8f8-444d-9e96-fedfbde573bc";
         # uuid block device
       };
     };
-    kernelModules = [ "kvm-intel" "zfs" ];
-    extraModulePackages = [ ];
+    kernelModules = ["kvm-intel" "zfs"];
+    extraModulePackages = [];
     loader = {
       systemd-boot.enable = true;
       efi.canTouchEfiVariables = true;
     };
-    binfmt.emulatedSystems = [ "aarch64-linux" ];
-    supportedFilesystems = [ "zfs" ];
-
+    binfmt.emulatedSystems = ["aarch64-linux"];
+    supportedFilesystems = ["zfs"];
   };
 
   fileSystems."/" = {
@@ -36,7 +37,7 @@
   fileSystems."/boot" = {
     device = "/dev/disk/by-uuid/F971-583B";
     fsType = "vfat";
-    options = [ "fmask=0077" "dmask=0077" ];
+    options = ["fmask=0077" "dmask=0077"];
   };
 
   services = {
@@ -48,11 +49,11 @@
     useDHCP = lib.mkDefault true;
     hostName = "framework";
     networkmanager.enable = true;
-    firewall.allowedTCPPorts = [ 631 6969 2234 1143 1025 5000 ];
+    firewall.allowedTCPPorts = [631 6969 2234 1143 1025 5000];
     hostId = "bb825510";
   };
 
-  security.pam.services = { };
+  security.pam.services = {};
 
   system.stateVersion = "23.05"; # Did you read the comment? no.
   nixpkgs.hostPlatform = lib.mkDefault "x86_64-linux";

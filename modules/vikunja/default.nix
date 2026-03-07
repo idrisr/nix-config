@@ -1,8 +1,10 @@
-{ config, lib, ... }:
-let
-  cfg = config.my.vikunja;
-in
 {
+  config,
+  lib,
+  ...
+}: let
+  cfg = config.my.vikunja;
+in {
   options = {
     my.vikunja = {
       enable = lib.mkOption {

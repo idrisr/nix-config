@@ -1,8 +1,12 @@
-{ pkgs, lib, config, ... }:
-with lib;
-let cfg = config.mitm;
+{
+  pkgs,
+  lib,
+  config,
+  ...
+}:
+with lib; let
+  cfg = config.mitm;
 in {
-
   options = {
     mitm = {
       enable = mkOption {
@@ -16,7 +20,7 @@ in {
   };
 
   config = mkIf cfg.enable {
-    security.pki.certificateFiles = [ ];
-    environment.systemPackages = with pkgs; [ mitmproxy ];
+    security.pki.certificateFiles = [];
+    environment.systemPackages = with pkgs; [mitmproxy];
   };
 }

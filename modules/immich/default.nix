@@ -1,6 +1,10 @@
-{ config, lib, ... }:
-with lib;
-let cfg = config.photoserver;
+{
+  config,
+  lib,
+  ...
+}:
+with lib; let
+  cfg = config.photoserver;
 in {
   options = {
     photoserver = {

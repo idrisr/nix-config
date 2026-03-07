@@ -1,12 +1,12 @@
-{ config, lib, ... }:
-
-with lib;
-let
+{
+  config,
+  lib,
+  ...
+}:
+with lib; let
   cfg = config.networking.adblocker;
   adguardPort = 3000;
-in
-{
-
+in {
   options = {
     networking.adblocker = {
       enable = mkOption {
@@ -22,8 +22,8 @@ in
   config = mkIf cfg.enable {
     networking = {
       firewall = {
-        allowedTCPPorts = [ adguardPort ];
-        allowedUDPPorts = [ 53 ];
+        allowedTCPPorts = [adguardPort];
+        allowedUDPPorts = [53];
       };
     };
 
@@ -37,10 +37,22 @@ in
           schema_version = 20;
           dns = {
             rewrites = [
-              { domain = "redmine.idrisraja.com"; answer = "192.168.8.231"; }
-              { domain = "jellyfin.idrisraja.com"; answer = "192.168.8.231"; }
-              { domain = "immich.idrisraja.com"; answer = "192.168.8.231"; }
-              { domain = "adguard.idrisraja.com"; answer = "192.168.8.231"; }
+              {
+                domain = "redmine.idrisraja.com";
+                answer = "192.168.8.231";
+              }
+              {
+                domain = "jellyfin.idrisraja.com";
+                answer = "192.168.8.231";
+              }
+              {
+                domain = "immich.idrisraja.com";
+                answer = "192.168.8.231";
+              }
+              {
+                domain = "adguard.idrisraja.com";
+                answer = "192.168.8.231";
+              }
             ];
           };
         };

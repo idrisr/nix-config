@@ -1,6 +1,4 @@
-{ pkgs, ... }:
-
-{
+{pkgs, ...}: {
   # required services and drivers
   services.xserver.enable = false;
   services.xserver.displayManager.startx.enable = false;

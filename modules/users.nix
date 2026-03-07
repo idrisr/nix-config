@@ -1,4 +1,8 @@
-{ pkgs, config, ... }: {
+{
+  pkgs,
+  config,
+  ...
+}: {
   config = {
     programs.zsh.enable = true;
     users.mutableUsers = false;
@@ -16,8 +20,7 @@
       ];
       shell = pkgs.zsh;
 
-      hashedPassword =
-        "$y$j9T$BowmS9BT0LZ5WNT1V4Day1$dae0REqJAJuNehr7b3Uj3Zy.dToJ30mwOqugbA39b02";
+      hashedPassword = "$y$j9T$BowmS9BT0LZ5WNT1V4Day1$dae0REqJAJuNehr7b3Uj3Zy.dToJ30mwOqugbA39b02";
 
       openssh.authorizedKeys.keys = [
         (builtins.readFile ./public-keys/id_ed25519.pub)

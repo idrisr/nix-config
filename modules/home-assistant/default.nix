@@ -1,6 +1,10 @@
-{ config, lib, ... }:
-with lib;
-let cfg = config.home-assistant;
+{
+  config,
+  lib,
+  ...
+}:
+with lib; let
+  cfg = config.home-assistant;
 in {
   options = {
     home-assistant = {
@@ -28,7 +32,7 @@ in {
       config = {
         # Includes dependencies for a basic setup
         # https://www.home-assistant.io/integrations/default_config/
-        default_config = { };
+        default_config = {};
       };
     };
   };

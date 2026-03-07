@@ -1,6 +1,10 @@
-{ config, lib, ... }:
-with lib;
-let cfg = config.rustdesk;
+{
+  config,
+  lib,
+  ...
+}:
+with lib; let
+  cfg = config.rustdesk;
 in {
   options = {
     rustdesk = {

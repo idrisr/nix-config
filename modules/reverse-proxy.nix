@@ -1,9 +1,14 @@
-{ config, lib, ... }:
-let
+{
+  config,
+  lib,
+  ...
+}: let
   cfg = config.my.reverseProxy;
   certName = "reverse-proxy";
   baseHost =
-    if cfg.subdomain == "" then cfg.domain else "${cfg.subdomain}.${cfg.domain}";
+    if cfg.subdomain == ""
+    then cfg.domain
+    else "${cfg.subdomain}.${cfg.domain}";
   fullDomain = name: "${name}.${baseHost}";
   vhostToNginx = name: vcfg:
     lib.nameValuePair (fullDomain name) {
@@ -15,8 +20,7 @@ let
         proxyWebsockets = true;
       };
     };
-in
-{
+in {
   options.my.reverseProxy = {
     enable = lib.mkOption {
       default = false;
@@ -36,8 +40,8 @@ in
     };
 
     hosts = lib.mkOption {
-      default = { };
-      type = lib.types.attrsOf (lib.types.submodule ({ ... }: {
+      default = {};
+      type = lib.types.attrsOf (lib.types.submodule ({...}: {
         options.target = lib.mkOption {
           type = lib.types.str;
           description = lib.mdDoc "Upstream URL, e.g. http://127.0.0.1:3001";
@@ -52,11 +56,11 @@ in
         description = lib.mdDoc "ACME contact email.";
       };
 
-        dnsProvider = lib.mkOption {
-          default = "namecheap";
-          type = lib.types.str;
-          description = lib.mdDoc "lego DNS provider name.";
-        };
+      dnsProvider = lib.mkOption {
+        default = "namecheap";
+        type = lib.types.str;
+        description = lib.mdDoc "lego DNS provider name.";
+      };
 
       credentialFiles = lib.mkOption {
         type = lib.types.attrsOf lib.types.path;
@@ -89,7 +93,7 @@ in
       }
     ];
 
-    networking.firewall.allowedTCPPorts = [ 80 443 ];
+    networking.firewall.allowedTCPPorts = [80 443];
 
     services.nginx = {
       enable = true;
@@ -104,11 +108,11 @@ in
       defaults.email = cfg.acme.email;
       certs.${certName} = {
         domain = "*.${baseHost}";
-        extraDomainNames = [ baseHost ];
+        extraDomainNames = [baseHost];
         dnsProvider = cfg.acme.dnsProvider;
         credentialFiles = cfg.acme.credentialFiles;
         group = "nginx";
-        reloadServices = [ "nginx.service" ];
+        reloadServices = ["nginx.service"];
       };
     };
   };

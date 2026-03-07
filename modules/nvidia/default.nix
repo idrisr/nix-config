@@ -1,6 +1,11 @@
-{ config, lib, pkgs, ... }:
-with lib;
-let cfg = config.nvidia-gpu;
+{
+  config,
+  lib,
+  pkgs,
+  ...
+}:
+with lib; let
+  cfg = config.nvidia-gpu;
 in {
   options = {
     nvidia-gpu = {
@@ -31,9 +36,8 @@ in {
           "cudaPackages.cudatoolkit"
         ];
       config.allowUnfree = true;
-
     };
-    environment.systemPackages = with pkgs; [ nvtopPackages.nvidia ];
+    environment.systemPackages = with pkgs; [nvtopPackages.nvidia];
 
     # Enable OpenGL
     hardware.graphics = {
@@ -42,7 +46,7 @@ in {
     };
 
     # Load nvidia driver for Xorg and Wayland
-    services.xserver.videoDrivers = [ "nvidia" ];
+    services.xserver.videoDrivers = ["nvidia"];
 
     hardware.nvidia = {
       modesetting.enable = true;

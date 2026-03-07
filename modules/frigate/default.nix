@@ -1,6 +1,11 @@
-{ lib, config, pkgs, ... }:
-with lib;
-let cfg = config.nvr;
+{
+  lib,
+  config,
+  pkgs,
+  ...
+}:
+with lib; let
+  cfg = config.nvr;
 in {
   options = {
     nvr = {
@@ -17,7 +22,7 @@ in {
   config = mkIf cfg.enable {
     hardware.opengl = {
       enable = true;
-      extraPackages = [ pkgs.intel-media-driver ]; # For Gen11+ Intel
+      extraPackages = [pkgs.intel-media-driver]; # For Gen11+ Intel
     };
 
     services.frigate = {
@@ -32,27 +37,33 @@ in {
         };
         cameras = {
           cam01 = {
-            ffmpeg.inputs = [{
-              path = "rtsp://idrisr:123456789@cam01.idrisr.com/stream1";
-              roles = [ "detect" "record" ];
-              hwaccel_args = "preset-vaapi";
-            }];
+            ffmpeg.inputs = [
+              {
+                path = "rtsp://idrisr:123456789@cam01.idrisr.com/stream1";
+                roles = ["detect" "record"];
+                hwaccel_args = "preset-vaapi";
+              }
+            ];
           };
 
           cam02 = {
-            ffmpeg.inputs = [{
-              path = "rtsp://idrisr:123456789@cam02.idrisr.com/stream1";
-              roles = [ "detect" "record" ];
-              hwaccel_args = "preset-vaapi";
-            }];
+            ffmpeg.inputs = [
+              {
+                path = "rtsp://idrisr:123456789@cam02.idrisr.com/stream1";
+                roles = ["detect" "record"];
+                hwaccel_args = "preset-vaapi";
+              }
+            ];
           };
 
           cam03 = {
-            ffmpeg.inputs = [{
-              path = "rtsp://idrisr:123456789@cam03.idrisr.com:554/stream1";
-              roles = [ "detect" "record" ];
-              hwaccel_args = "preset-vaapi";
-            }];
+            ffmpeg.inputs = [
+              {
+                path = "rtsp://idrisr:123456789@cam03.idrisr.com:554/stream1";
+                roles = ["detect" "record"];
+                hwaccel_args = "preset-vaapi";
+              }
+            ];
           };
         };
       };

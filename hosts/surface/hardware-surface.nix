@@ -1,20 +1,28 @@
-{ config, pkgs, lib, inputs, ... }: {
+{
+  config,
+  pkgs,
+  lib,
+  inputs,
+  ...
+}: {
   imports = [
     ../../modules/power
     inputs.nixos-hardware.nixosModules.microsoft-surface-pro-intel
-    (import ./disko-surface.nix { device = "/dev/nvme0n1"; })
+    (import ./disko-surface.nix {device = "/dev/nvme0n1";})
   ];
   config = {
     boot = {
-      kernelPatches = [{
-        name = "intel-ipu6";
-        patch = ./0016-intel-ipu6.patch;
-      }];
+      kernelPatches = [
+        {
+          name = "intel-ipu6";
+          patch = ./0016-intel-ipu6.patch;
+        }
+      ];
       loader = {
         grub = {
           enable = true;
           efiSupport = true;
-          devices = [ "nodev" ];
+          devices = ["nodev"];
           extraConfig = ''
             GRUB_GFXMODE=2880x1920
             GRUB_GFXPAYLOAD_LINUX=keep
@@ -31,10 +39,10 @@
           "intel_lpss"
           "intel_lpss_pci"
         ];
-        kernelModules = [ ];
+        kernelModules = [];
       };
-      kernelModules = [ "kvm-intel" ];
-      extraModulePackages = [ ];
+      kernelModules = ["kvm-intel"];
+      extraModulePackages = [];
       kernelParams = [
         # "intel_iommu=on"
         "i915.enable_rc6=1"
@@ -59,14 +67,14 @@
     networking = {
       hostName = "surface";
       wireless.iwd.enable = false;
-      networkmanager = { enable = true; };
+      networkmanager = {enable = true;};
       interfaces.wlp0s20f3.useDHCP = true;
-      firewall.allowedTCPPorts = [ 631 6969 2234 1143 1025 5000 ];
+      firewall.allowedTCPPorts = [631 6969 2234 1143 1025 5000];
     };
     hardware = {
       pulseaudio.enable = false;
       bluetooth = {
-        settings = { General = { ControllerMode = "bredr"; }; };
+        settings = {General = {ControllerMode = "bredr";};};
         enable = true;
       };
       cpu.intel.updateMicrocode =
@@ -94,12 +102,12 @@
       autorandr.enable = true;
       fwupd.enable = false;
       xserver.upscaleDefaultCursor = true;
-      usbmuxd = { enable = true; };
+      usbmuxd = {enable = true;};
     };
 
     powerManagement.enable = true;
     system.stateVersion = "24.05";
   };
 }
-
 # 58:0A:D4:EB:A7:4B Idris’s Airpods - Find My
+

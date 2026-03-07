@@ -1,8 +1,10 @@
-{ config, lib, ... }:
-let
-  cfg = config.my.pinchflat;
-in
 {
+  config,
+  lib,
+  ...
+}: let
+  cfg = config.my.pinchflat;
+in {
   options = {
     my.pinchflat = {
       enable = lib.mkOption {
@@ -24,7 +26,7 @@ in
 
     users = {
       users.hippoid = {
-        extraGroups = [ "pinchflat" ];
+        extraGroups = ["pinchflat"];
       };
     };
   };

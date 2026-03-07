@@ -1,6 +1,9 @@
-{ config, lib, ... }:
-with lib;
-let
+{
+  config,
+  lib,
+  ...
+}:
+with lib; let
   cfg = config.ollama;
   ollama_port = 11111;
 in {
@@ -27,7 +30,6 @@ in {
         WEBUI_AUTH = "False";
         OLLAMA_BASE_URL = "http://127.0.0.1:${builtins.toString ollama_port}";
       };
-
     };
     # need litellm
     services.ollama = {
@@ -36,7 +38,7 @@ in {
       enable = true;
       acceleration = "cuda";
       openFirewall = true;
-      loadModels = [ "deepseek-r1" ];
+      loadModels = ["deepseek-r1"];
     };
 
     nixpkgs = {

@@ -1,6 +1,9 @@
-{ config, lib, pkgs, modulesPath, ... }:
-
-{
+{ config
+, lib
+, pkgs
+, modulesPath
+, ...
+}: {
   imports = [
     (modulesPath + "/installer/scan/not-detected.nix")
     (import ./disko-air.nix { device = "/dev/sda"; })
@@ -9,9 +12,16 @@
   config = {
     boot = {
       initrd = {
-        availableKernelModules =
-          [ "xhci_pci" "ahci" "usbhid" "usb_storage" "sd_mod" "wl" ];
+        availableKernelModules = [ "xhci_pci" "ahci" "usbhid" "usb_storage" "sd_mod" "wl" ];
         kernelModules = [ "coretemp" "applesmc" ];
+
+        # MacBook Air 6,2 (Model A1466, 2013, Intel i5-4250U)
+        # Boot from USB: hold Option at chime.
+        # Kernel tested: 6.12.31.
+        # Internal Wi-Fi chipset: Broadcom BCM4360 (PCI ID 14e4:43a0).
+        # In-kernel driver: brcmfmac supports BCM4360 (see LKDDb: https://cateee.net/lkddb/).
+        # Community reports: https://linux-hardware.org/?view=search&vendor=Apple&model=MacBookAir6%2C2
+        # External USB Wi-Fi: AR9271 (Atheros) uses in-kernel ath9k_htc.
 
         network = {
           enable = true;

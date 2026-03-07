@@ -1,6 +1,10 @@
-{ config, lib, ... }:
-with lib;
-let cfg = config.my.borgrepo;
+{
+  config,
+  lib,
+  ...
+}:
+with lib; let
+  cfg = config.my.borgrepo;
 in {
   options = {
     my.borgrepo = {

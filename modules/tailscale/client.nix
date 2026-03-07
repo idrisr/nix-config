@@ -1,6 +1,10 @@
-{ config, lib, ... }:
-with lib;
-let cfg = config.my.clientnode;
+{
+  config,
+  lib,
+  ...
+}:
+with lib; let
+  cfg = config.my.clientnode;
 in {
   options = {
     my.clientnode = {
@@ -18,7 +22,7 @@ in {
     services.tailscale = {
       enable = true;
       useRoutingFeatures = "client";
-      extraSetFlags = [ "--accept-routes" ];
+      extraSetFlags = ["--accept-routes"];
     };
   };
 }

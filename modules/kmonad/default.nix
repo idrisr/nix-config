@@ -1,4 +1,8 @@
-{ lib, host, ... }: {
+{
+  lib,
+  host,
+  ...
+}: {
   # things to redo
   # <shift>"=y, copy to system clipboard
   # <ctrl>bw tmux session switcher

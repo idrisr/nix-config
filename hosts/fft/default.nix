@@ -1,5 +1,9 @@
-{ pkgs, lib, config, inputs, ... }:
-{
+{ pkgs
+, lib
+, config
+, inputs
+, ...
+}: {
   options = { };
 
   imports = [ ./hardware-fft.nix ];
@@ -27,12 +31,22 @@
         adguard.target = "http://127.0.0.1:3000";
       };
     };
+    services.nix-serve = {
+      enable = true;
+      secretKeyFile = "/var/lib/nix-serve/cache-priv-key.pem";
+      openFirewall = true;
+    };
+
     environment.systemPackages = lib.mkAfter (with pkgs; [ atuin binutils lego ]);
     networking.adblocker.enable = true;
     home-manager = {
       useGlobalPkgs = true;
       useUserPackages = true;
-      extraSpecialArgs = { inherit inputs; graphical = false; };
+      extraSpecialArgs = {
+        inherit inputs;
+        graphical = false;
+        pkgs = pkgs;
+      };
       users.hippoid = import (inputs."home-config" + "/home.nix");
     };
   };

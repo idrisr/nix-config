@@ -3,7 +3,7 @@ let
   nixpkgsConfig = { lib, ... }: {
     nixpkgs = {
       hostPlatform = lib.mkDefault "x86_64-linux";
-      overlays = inputs."home-config".overlays;
+      overlays = [ inputs."home-config".overlays.default ];
       config.allowUnfree = true;
     };
   };
@@ -38,7 +38,6 @@ in
       ../../modules/nh
       ../../modules/nvidia
       ../../modules/ollama
-      ../../modules/opencode
       ../../modules/opnsense-backup
       ../../modules/passkey
       ../../modules/pinchflat

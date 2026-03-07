@@ -1,6 +1,11 @@
-{ pkgs, config, lib, ... }:
-with lib;
-let cfg = config.passkey;
+{
+  pkgs,
+  config,
+  lib,
+  ...
+}:
+with lib; let
+  cfg = config.passkey;
 in {
   options = {
     passkey = {

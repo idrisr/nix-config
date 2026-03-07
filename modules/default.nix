@@ -1,6 +1,6 @@
-{ inputs, ... }: {
-  config = { };
-  options = { };
+{inputs, ...}: {
+  config = {};
+  options = {};
   imports = [
     ./ad-blocker.nix
     ./anki

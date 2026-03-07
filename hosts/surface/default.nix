@@ -1,5 +1,5 @@
 {
-  imports = [ ./hardware-surface.nix ];
+  imports = [./hardware-surface.nix];
   config = {
     monitoring.enable = true;
     services.avahi.enable = false;

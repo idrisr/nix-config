@@ -1,8 +1,12 @@
-{ pkgs, lib, config, ... }:
-with lib;
-let cfg = config.virtualization;
+{
+  pkgs,
+  lib,
+  config,
+  ...
+}:
+with lib; let
+  cfg = config.virtualization;
 in {
-
   options = {
     virtualization = {
       enable = mkOption {
@@ -29,7 +33,7 @@ in {
     ];
 
     programs.dconf.enable = true;
-    users.groups.libvirtd.members = [ "hippoid" ];
+    users.groups.libvirtd.members = ["hippoid"];
 
     # Manage the virtualisation services
     virtualisation = {

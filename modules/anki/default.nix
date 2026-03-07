@@ -1,6 +1,11 @@
-{ lib, config, pkgs, ... }:
-with lib;
-let cfg = config.my.anki;
+{
+  lib,
+  config,
+  pkgs,
+  ...
+}:
+with lib; let
+  cfg = config.my.anki;
 in {
   options = {
     my.anki = {
@@ -20,10 +25,12 @@ in {
       openFirewall = true;
       port = 27701;
       address = "0.0.0.0";
-      users = [{
-        username = "hippoid";
-        password = "hippoid";
-      }];
+      users = [
+        {
+          username = "hippoid";
+          password = "hippoid";
+        }
+      ];
     };
   };
 }

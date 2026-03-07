@@ -1,5 +1,9 @@
 # disko --mode disko ./disko-external.nix --argstr "device" '/dev/<disk>' --argstr "name" '<name>'
-{ device ? throw "pass in your device", name ? throw "pass in name", ... }: {
+{
+  device ? throw "pass in your device",
+  name ? throw "pass in name",
+  ...
+}: {
   disko.devices = {
     disk = {
       vdb = {
@@ -18,7 +22,7 @@
                   type = "filesystem";
                   format = "ext4";
                   mountpoint = "/${name}";
-                  mountOptions = [ "defaults" ];
+                  mountOptions = ["defaults"];
                 };
               };
             };

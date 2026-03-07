@@ -1,5 +1,4 @@
-{ inputs, ... }:
-let
+{inputs, ...}: let
   primarySystem = "x86_64-linux";
   mkHost = host:
     inputs.nixpkgs.lib.nixosSystem {
@@ -12,8 +11,7 @@ let
         inherit inputs host;
       };
     };
-in
-{
+in {
   flake.nixosConfigurations = {
     framework = mkHost "framework";
     air = mkHost "air";
@@ -28,7 +26,8 @@ in
       profiles.system = {
         sshUser = "hippoid";
         user = "root";
-        path = inputs.deploy-rs.lib.x86_64-linux.activate.nixos
+        path =
+          inputs.deploy-rs.lib.x86_64-linux.activate.nixos
           inputs.self.nixosConfigurations.framework;
       };
     };
@@ -38,7 +37,8 @@ in
       profiles.system = {
         sshUser = "hippoid";
         user = "root";
-        path = inputs.deploy-rs.lib.x86_64-linux.activate.nixos
+        path =
+          inputs.deploy-rs.lib.x86_64-linux.activate.nixos
           inputs.self.nixosConfigurations.air;
       };
     };
@@ -48,7 +48,8 @@ in
       profiles.system = {
         sshUser = "hippoid";
         user = "root";
-        path = inputs.deploy-rs.lib.x86_64-linux.activate.nixos
+        path =
+          inputs.deploy-rs.lib.x86_64-linux.activate.nixos
           inputs.self.nixosConfigurations.godel;
       };
     };
@@ -58,7 +59,8 @@ in
       profiles.system = {
         sshUser = "hippoid";
         user = "root";
-        path = inputs.deploy-rs.lib.x86_64-linux.activate.nixos
+        path =
+          inputs.deploy-rs.lib.x86_64-linux.activate.nixos
           inputs.self.nixosConfigurations.router;
       };
     };

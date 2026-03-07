@@ -1,4 +1,4 @@
-{ device ? throw "pass in your device", ... }: {
+{device ? throw "pass in your device", ...}: {
   disko.devices = {
     disk = {
       vdb = {
@@ -14,7 +14,7 @@
                 type = "filesystem";
                 format = "vfat";
                 mountpoint = "/boot";
-                mountOptions = [ "defaults" ];
+                mountOptions = ["defaults"];
               };
             };
             luks = {
@@ -43,7 +43,7 @@
               type = "filesystem";
               format = "ext4";
               mountpoint = "/";
-              mountOptions = [ "defaults" ];
+              mountOptions = ["defaults"];
             };
           };
         };

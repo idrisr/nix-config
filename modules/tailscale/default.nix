@@ -1,6 +1,11 @@
-{ pkgs, config, lib, ... }:
-with lib;
-let cfg = config.my.exitnode;
+{
+  pkgs,
+  config,
+  lib,
+  ...
+}:
+with lib; let
+  cfg = config.my.exitnode;
 in {
   options = {
     my.exitnode = {

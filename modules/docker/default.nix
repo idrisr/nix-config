@@ -1,6 +1,10 @@
-{ config, lib, ... }:
-with lib;
-let cfg = config.docker;
+{
+  config,
+  lib,
+  ...
+}:
+with lib; let
+  cfg = config.docker;
 in {
   options = {
     docker = {

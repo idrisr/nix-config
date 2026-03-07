@@ -1,7 +1,12 @@
-{ pkgs, lib, config, ... }:
-let cfg = config.profile.rofi-book-search;
+{
+  pkgs,
+  lib,
+  config,
+  ...
+}: let
+  cfg = config.profile.rofi-book-search;
 in {
-  imports = [ ];
+  imports = [];
   options = {
     profile.rofi-book-search.enable = lib.mkOption {
       default = false;
