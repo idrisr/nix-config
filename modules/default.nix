@@ -1,6 +1,6 @@
-{inputs, ...}: {
-  config = {};
-  options = {};
+{ inputs, ... }: {
+  config = { };
+  options = { };
   imports = [
     ./ad-blocker.nix
     ./anki
@@ -17,7 +17,6 @@
     ./hyprland-support.nix
     ./hoogle
     ./jellyfin.nix
-    ./light
     ./immich
     ./kmonad
     ./locate
@@ -30,7 +29,6 @@
     ./pinchflat
     ./pipewire
     ./printer/printer-client.nix
-    ./reverse-proxy.nix
     ./reading
     ./redmine.nix
     ./rustdesk

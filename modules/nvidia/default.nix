@@ -1,12 +1,12 @@
-{
-  config,
-  lib,
-  pkgs,
-  ...
+{ config
+, lib
+, pkgs
+, ...
 }:
 with lib; let
   cfg = config.nvidia-gpu;
-in {
+in
+{
   options = {
     nvidia-gpu = {
       enable = mkOption {
@@ -23,30 +23,15 @@ in {
     hardware.nvidia.package =
       config.boot.kernelPackages.nvidiaPackages.production; # (installs 550)
 
-    nixpkgs = {
-      config.allowUnfreePredicate = pkg:
-        builtins.elem (lib.getName pkg) [
-          "cuda-merged-12.2"
-          "cuda-merged"
-          "nvidia-x11"
-          "nvidia-settings"
-          "nvidia-persistenced"
-          "nvtop-nvidia"
-          "cudatoolkit-12.2.2"
-          "cudaPackages.cudatoolkit"
-        ];
-      config.allowUnfree = true;
-    };
-    environment.systemPackages = with pkgs; [nvtopPackages.nvidia];
+    environment.systemPackages = with pkgs; [ nvtopPackages.nvidia ];
 
     # Enable OpenGL
     hardware.graphics = {
       enable = true;
-      enable32Bit = true;
     };
 
     # Load nvidia driver for Xorg and Wayland
-    services.xserver.videoDrivers = ["nvidia"];
+    services.xserver.videoDrivers = [ "nvidia" ];
 
     hardware.nvidia = {
       modesetting.enable = true;

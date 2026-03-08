@@ -1,8 +1,7 @@
-{
-  config,
-  lib,
-  modulesPath,
-  ...
+{ config
+, lib
+, modulesPath
+, ...
 }: {
   imports = [
     (modulesPath + "/installer/scan/not-detected.nix")
@@ -16,14 +15,14 @@
         efi.canTouchEfiVariables = true;
       };
       initrd = {
-        availableKernelModules = ["nvme" "xhci_pci" "ahci" "usbhid" "usb_storage" "sd_mod"];
-        kernelModules = ["dm-snapshot"];
+        availableKernelModules = [ "nvme" "xhci_pci" "ahci" "usbhid" "usb_storage" "sd_mod" ];
+        kernelModules = [ "dm-snapshot" ];
       };
-      kernelModules = ["kvm-amd"];
-      extraModulePackages = [];
+      kernelModules = [ "kvm-amd" ];
+      extraModulePackages = [ ];
     };
 
-    fileSystems."/boot" = {options = ["umask=0077"];};
+    fileSystems."/boot" = { options = [ "umask=0077" ]; };
 
     services = {
       openssh = {
@@ -45,7 +44,7 @@
       networkmanager.enable = false;
     };
 
-    nixpkgs = {hostPlatform = lib.mkDefault "x86_64-linux";};
+    nixpkgs = { hostPlatform = lib.mkDefault "x86_64-linux"; };
     hardware = {
       superdrive.enable = false;
       cpu.amd.updateMicrocode =

@@ -1,13 +1,13 @@
-{
-  config,
-  lib,
-  ...
+{ config
+, lib
+, ...
 }:
 with lib; let
   cfg = config.my.redmine;
   # Avoid clash with AdGuardHome (also on 3000)
   redminePort = 3001;
-in {
+in
+{
   options = {
     my.redmine.enable = mkOption {
       default = false;
@@ -23,6 +23,6 @@ in {
       port = redminePort;
     };
 
-    networking.firewall.allowedTCPPorts = [redminePort];
+    networking.firewall.allowedTCPPorts = [ redminePort ];
   };
 }

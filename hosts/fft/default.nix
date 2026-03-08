@@ -9,35 +9,73 @@
   imports = [ ./hardware-fft.nix ];
 
   config = {
+    nvidia-gpu.enable = true;
+    ollama.enable = true;
     my.base.enable = true;
     my.anki.enable = true;
     my.jellyfin.enable = true;
+    my.immich.enable = true;
     my.borgrepo.enable = true;
     my.servernode.enable = true;
-    my.redmine.enable = true;
-    my.reverseProxy = {
+    networking.firewall.allowedTCPPorts = [ 80 443 ];
+
+    services.nginx = {
       enable = true;
-      domain = "idrisraja.com";
-      subdomain = "";
-      # Manual cert mode: place your fullchain/key at these paths.
-      certPaths = {
-        sslCertificate = "/var/lib/reverse-proxy/manual/fullchain.pem";
-        sslCertificateKey = "/var/lib/reverse-proxy/manual/key.pem";
-      };
-      hosts = {
-        redmine.target = "http://127.0.0.1:3001";
-        jellyfin.target = "http://127.0.0.1:8096";
-        immich.target = "http://127.0.0.1:2283";
-        adguard.target = "http://127.0.0.1:3000";
+      recommendedGzipSettings = true;
+      recommendedProxySettings = true;
+      recommendedTlsSettings = true;
+      virtualHosts = {
+        "ai.idrisraja.com" = {
+          forceSSL = true;
+          sslCertificate = "/etc/letsencrypt/live/idrisraja.com/fullchain.pem";
+          sslCertificateKey = "/etc/letsencrypt/live/idrisraja.com/privkey.pem";
+          locations."/" = {
+            proxyPass = "http://127.0.0.1:13221";
+            proxyWebsockets = true;
+          };
+        };
+        "jellyfin.idrisraja.com" = {
+          forceSSL = true;
+          sslCertificate = "/etc/letsencrypt/live/idrisraja.com/fullchain.pem";
+          sslCertificateKey = "/etc/letsencrypt/live/idrisraja.com/privkey.pem";
+          locations."/" = {
+            proxyPass = "http://127.0.0.1:8096";
+            proxyWebsockets = true;
+          };
+        };
+        "immich.idrisraja.com" = {
+          forceSSL = true;
+          sslCertificate = "/etc/letsencrypt/live/idrisraja.com/fullchain.pem";
+          sslCertificateKey = "/etc/letsencrypt/live/idrisraja.com/privkey.pem";
+          locations."/" = {
+            proxyPass = "http://127.0.0.1:2283";
+            proxyWebsockets = true;
+          };
+        };
+        "adguard.idrisraja.com" = {
+          forceSSL = true;
+          sslCertificate = "/etc/letsencrypt/live/idrisraja.com/fullchain.pem";
+          sslCertificateKey = "/etc/letsencrypt/live/idrisraja.com/privkey.pem";
+          locations."/" = {
+            proxyPass = "http://127.0.0.1:3000";
+            proxyWebsockets = true;
+          };
+        };
       };
     };
+
     services.nix-serve = {
       enable = true;
       secretKeyFile = "/var/lib/nix-serve/cache-priv-key.pem";
       openFirewall = true;
     };
 
-    environment.systemPackages = lib.mkAfter (with pkgs; [ atuin binutils lego ]);
+    environment.systemPackages = with pkgs; [
+      atuin
+      binutils
+      lego
+      certbot
+    ];
     networking.adblocker.enable = true;
     home-manager = {
       useGlobalPkgs = true;

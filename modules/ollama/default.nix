@@ -1,12 +1,13 @@
-{
-  config,
-  lib,
-  ...
+{ config
+, lib
+, pkgs
+, ...
 }:
 with lib; let
   cfg = config.ollama;
   ollama_port = 11111;
-in {
+in
+{
   options = {
     ollama = {
       enable = mkOption {
@@ -36,17 +37,12 @@ in {
       host = "0.0.0.0";
       port = 11111;
       enable = true;
-      acceleration = "cuda";
+      package = pkgs.ollama-cuda;
       openFirewall = true;
-      loadModels = ["deepseek-r1"];
+      loadModels = [ "deepseek-r1" ];
     };
 
     nixpkgs = {
-      config.allowUnfreePredicate = pkg:
-        builtins.elem (lib.getName pkg) [
-          "cudatoolkit-12.2.2"
-          "cudaPackages.cudatoolkit"
-        ];
       config.allowUnfree = true;
     };
   };

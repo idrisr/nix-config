@@ -1,13 +1,13 @@
-{
-  config,
-  lib,
-  ...
+{ config
+, lib
+, ...
 }:
 with lib; let
-  cfg = config.photoserver;
-in {
+  cfg = config.my.immich;
+in
+{
   options = {
-    photoserver = {
+    my.immich = {
       enable = mkOption {
         default = false;
         type = types.bool;

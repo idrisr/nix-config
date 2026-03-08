@@ -5,6 +5,6 @@
     ...
   }: {
     apps.deploy = inputs.deploy-rs.apps.${system}.default;
-    formatter = pkgs.alejandra;
+    formatter = pkgs.nixfmt-tree;
   };
 }
