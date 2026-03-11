@@ -65,6 +65,17 @@
             proxyWebsockets = true;
           };
         };
+
+        "grafana.idrisraja.com" = {
+          forceSSL = true;
+          sslCertificate = "/etc/letsencrypt/live/idrisraja.com/fullchain.pem";
+          sslCertificateKey = "/etc/letsencrypt/live/idrisraja.com/privkey.pem";
+          locations."/" = {
+            proxyPass = "http://127.0.0.1:3010";
+            proxyWebsockets = true;
+          };
+        };
+
         "unifi.idrisraja.com" = {
           forceSSL = true;
           sslCertificate = "/etc/letsencrypt/live/idrisraja.com/fullchain.pem";
@@ -72,6 +83,15 @@
           locations."/" = {
             proxyPass = "https://127.0.0.1:8443";
             proxyWebsockets = true;
+          };
+        };
+
+        "prometheus.idrisraja.com" = {
+          forceSSL = true;
+          sslCertificate = "/etc/letsencrypt/live/idrisraja.com/fullchain.pem";
+          sslCertificateKey = "/etc/letsencrypt/live/idrisraja.com/privkey.pem";
+          locations."/" = {
+            proxyPass = "http://127.0.0.1:9090";
           };
         };
       };

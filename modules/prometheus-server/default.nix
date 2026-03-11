@@ -16,7 +16,17 @@ in
   };
 
   config = mkIf cfg.enable {
-    services.grafana.enable = false;
+    services.grafana = {
+      enable = true;
+      settings = {
+        security.secret_key = "/etc/letsencrypt/live/idrisraja.com/privkey.pem";
+
+        server = {
+          http_port = 3010;
+        };
+        analytics.reporting_enabled = false;
+      };
+    };
     services.prometheus = {
       enable = true;
       configText = builtins.readFile ./prometheus.yml;

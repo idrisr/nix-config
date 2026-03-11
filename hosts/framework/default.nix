@@ -8,6 +8,8 @@
         "immich.idrisraja.com"
         "adguard.idrisraja.com"
         "unifi.idrisraja.com"
+        "grafana.idrisraja.com"
+        "prometheus.idrisraja.com"
       ];
     };
     my = {
