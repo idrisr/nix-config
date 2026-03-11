@@ -12,8 +12,6 @@
   config = {
     nvidia-gpu.enable = true;
     ollama.enable = true;
-    unifi.enable = true;
-    my.prometheus-server.enable = true;
     my.base.enable = true;
     my.anki.enable = true;
     my.jellyfin.enable = true;
@@ -22,7 +20,6 @@
     my.servernode.enable = true;
     networking.firewall.allowedTCPPorts = [ 80 443 ];
 
-    # services.dcgm-exporter.enable = true;
     services.nginx = {
       enable = true;
       recommendedGzipSettings = true;
@@ -56,15 +53,6 @@
             proxyWebsockets = true;
           };
         };
-        "adguard.idrisraja.com" = {
-          forceSSL = true;
-          sslCertificate = "/etc/letsencrypt/live/idrisraja.com/fullchain.pem";
-          sslCertificateKey = "/etc/letsencrypt/live/idrisraja.com/privkey.pem";
-          locations."/" = {
-            proxyPass = "http://127.0.0.1:3000";
-            proxyWebsockets = true;
-          };
-        };
 
         "grafana.idrisraja.com" = {
           forceSSL = true;
@@ -94,6 +82,15 @@
             proxyPass = "http://127.0.0.1:9090";
           };
         };
+
+        "router.idrisraja.com" = {
+          forceSSL = true;
+          sslCertificate = "/etc/letsencrypt/live/idrisraja.com/fullchain.pem";
+          sslCertificateKey = "/etc/letsencrypt/live/idrisraja.com/privkey.pem";
+          locations."/" = {
+            proxyPass = "http://192.168.8.1";
+          };
+        };
       };
     };
 
@@ -109,7 +106,6 @@
       lego
       certbot
     ];
-    networking.adblocker.enable = true;
     home-manager = {
       useGlobalPkgs = true;
       useUserPackages = true;

@@ -1,17 +1,6 @@
 { pkgs, ... }: {
   imports = [ ./hardware-framework.nix ];
   config = {
-    networking.hosts = {
-      "192.168.8.231" = [
-        "ai.idrisraja.com"
-        "jellyfin.idrisraja.com"
-        "immich.idrisraja.com"
-        "adguard.idrisraja.com"
-        "unifi.idrisraja.com"
-        "grafana.idrisraja.com"
-        "prometheus.idrisraja.com"
-      ];
-    };
     my = {
       base.enable = true;
       opnsenseBackup.enable = true;

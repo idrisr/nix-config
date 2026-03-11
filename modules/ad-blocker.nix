@@ -25,15 +25,6 @@ in
         allowedTCPPorts = [ adguardPort ];
         allowedUDPPorts = [ 53 ];
       };
-      hosts = {
-        "192.168.8.231" = [
-          "ai.idrisraja.com"
-          "jellyfin.idrisraja.com"
-          "immich.idrisraja.com"
-          "adguard.idrisraja.com"
-          "unifi.idrisraja.com"
-        ];
-      };
     };
 
     services = {
@@ -60,6 +51,22 @@ in
               }
               {
                 domain = "adguard.idrisraja.com";
+                answer = "192.168.8.231";
+              }
+              {
+                domain = "unifi.idrisraja.com";
+                answer = "192.168.8.231";
+              }
+              {
+                domain = "router.idrisraja.com";
+                answer = "192.168.8.231";
+              }
+              {
+                domain = "prometheus.idrisraja.com";
+                answer = "192.168.8.231";
+              }
+              {
+                domain = "grafana.idrisraja.com";
                 answer = "192.168.8.231";
               }
             ];

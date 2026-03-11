@@ -1,22 +1,39 @@
-{
-  config,
-  lib,
-  pkgs,
-  modulesPath,
-  ...
+{ config
+, lib
+, pkgs
+, modulesPath
+, ...
 }: {
-  imports = [(modulesPath + "/installer/scan/not-detected.nix")];
+  imports = [ (modulesPath + "/installer/scan/not-detected.nix") ];
 
   config = {
     my.base.enable = true;
-    unifi.enable = true;
+    networking.adblocker.enable = true;
     users.users.root = {
       hashedPassword = "$y$j9T$BowmS9BT0LZ5WNT1V4Day1$dae0REqJAJuNehr7b3Uj3Zy.dToJ30mwOqugbA39b02";
     };
 
+    services.nginx = {
+      enable = true;
+      recommendedGzipSettings = true;
+      recommendedProxySettings = true;
+      recommendedTlsSettings = true;
+      virtualHosts = {
+        "adguard.idrisraja.com" = {
+          forceSSL = true;
+          sslCertificate = "/etc/letsencrypt/live/idrisraja.com/fullchain.pem";
+          sslCertificateKey = "/etc/letsencrypt/live/idrisraja.com/privkey.pem";
+          locations."/" = {
+            proxyPass = "http://127.0.0.1:3000";
+            proxyWebsockets = true;
+          };
+        };
+      };
+    };
+
     boot = {
       initrd = {
-        availableKernelModules = ["xhci_pci" "thunderbolt" "nvme" "usb_storage" "sd_mod" "igc"];
+        availableKernelModules = [ "xhci_pci" "thunderbolt" "nvme" "usb_storage" "sd_mod" "igc" ];
         network = {
           enable = true;
           flushBeforeStage2 = true;
@@ -27,7 +44,7 @@
               (builtins.readFile
                 ../../modules/public-keys/id_ed25519-framework.pub)
             ];
-            hostKeys = ["/etc/secrets/initrd/ssh_host_ed25519_key"];
+            hostKeys = [ "/etc/secrets/initrd/ssh_host_ed25519_key" ];
           };
 
           postCommands = "";
@@ -41,7 +58,7 @@
           };
 
           services."unlock-agent" = {
-            wantedBy = ["initrd.target"];
+            wantedBy = [ "initrd.target" ];
             serviceConfig = {
               StandardOutput = "journal";
 
@@ -71,7 +88,7 @@
       "/boot" = {
         device = "/dev/disk/by-uuid/2010-27F2";
         fsType = "vfat";
-        options = ["fmask=0077" "dmask=0077"];
+        options = [ "fmask=0077" "dmask=0077" ];
       };
     };
 
