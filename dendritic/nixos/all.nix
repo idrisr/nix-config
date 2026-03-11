@@ -42,6 +42,8 @@ in
       ../../modules/pinchflat
       ../../modules/pipewire
       ../../modules/podgrab
+      ../../modules/prometheus-exporter
+      ../../modules/prometheus-server
       ../../modules/power
       ../../modules/printer/printer-client.nix
       ../../modules/printer/printing.nix

@@ -1,20 +1,31 @@
-{pkgs, ...}: {
-  imports = [./hardware-framework.nix];
+{ pkgs, ... }: {
+  imports = [ ./hardware-framework.nix ];
   config = {
-    my.base.enable = true;
-    my.opnsenseBackup.enable = true;
-    my.pinchflat.enable = true;
-    my.pipewire.enable = true;
-    my.pipewire.airpods.enable = true;
-    my.pipewire.airpods.deviceName = "bluez_card.58_0A_D4_EB_A7_4B";
-    my.vikunja.enable = true;
-    my.printer.enable = true;
-    my.clientnode.enable = true;
+    networking.hosts = {
+      "192.168.8.231" = [
+        "ai.idrisraja.com"
+        "jellyfin.idrisraja.com"
+        "immich.idrisraja.com"
+        "adguard.idrisraja.com"
+        "unifi.idrisraja.com"
+      ];
+    };
+    my = {
+      base.enable = true;
+      opnsenseBackup.enable = true;
+      pinchflat.enable = true;
+      pipewire.enable = true;
+      pipewire.airpods.enable = true;
+      pipewire.airpods.deviceName = "bluez_card.58_0A_D4_EB_A7_4B";
+      vikunja.enable = true;
+      printer.enable = true;
+      clientnode.enable = true;
+    };
     borg-backup-client.enable = true;
     virtualization.enable = true;
     services.blueman.enable = true;
     hardware.bluetooth.enable = true;
-    fonts.packages = with pkgs; [eb-garamond];
+    fonts.packages = with pkgs; [ eb-garamond ];
     services.upower = {
       enable = true;
       usePercentageForPolicy = true;
@@ -47,11 +58,6 @@
         git
         curl
       ];
-      # variables = { QT_SCALE_FACTOR = "0.75"; };
     };
-    # profile = {
-    # dailydrive.enable = true;
-    # rofi-book-search.enable = true;
-    # };
   };
 }

@@ -23,7 +23,11 @@ in
     hardware.nvidia.package =
       config.boot.kernelPackages.nvidiaPackages.production; # (installs 550)
 
-    environment.systemPackages = with pkgs; [ nvtopPackages.nvidia ];
+    environment.systemPackages = with pkgs; [
+      nvtopPackages.nvidia
+      # prometheus-dcgm-exporter
+      dcgm
+    ];
 
     # Enable OpenGL
     hardware.graphics = {

@@ -1,16 +1,19 @@
 { pkgs
-, lib
-, config
 , inputs
 , ...
 }: {
   options = { };
 
-  imports = [ ./hardware-fft.nix ];
+  imports = [
+    ./hardware-fft.nix
+    # inputs.dcgm.nixosModules.dcgm-exporter
+  ];
 
   config = {
     nvidia-gpu.enable = true;
     ollama.enable = true;
+    unifi.enable = true;
+    my.prometheus-server.enable = true;
     my.base.enable = true;
     my.anki.enable = true;
     my.jellyfin.enable = true;
@@ -19,6 +22,7 @@
     my.servernode.enable = true;
     networking.firewall.allowedTCPPorts = [ 80 443 ];
 
+    # services.dcgm-exporter.enable = true;
     services.nginx = {
       enable = true;
       recommendedGzipSettings = true;
@@ -58,6 +62,15 @@
           sslCertificateKey = "/etc/letsencrypt/live/idrisraja.com/privkey.pem";
           locations."/" = {
             proxyPass = "http://127.0.0.1:3000";
+            proxyWebsockets = true;
+          };
+        };
+        "unifi.idrisraja.com" = {
+          forceSSL = true;
+          sslCertificate = "/etc/letsencrypt/live/idrisraja.com/fullchain.pem";
+          sslCertificateKey = "/etc/letsencrypt/live/idrisraja.com/privkey.pem";
+          locations."/" = {
+            proxyPass = "https://127.0.0.1:8443";
             proxyWebsockets = true;
           };
         };

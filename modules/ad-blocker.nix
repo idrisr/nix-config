@@ -25,6 +25,15 @@ in
         allowedTCPPorts = [ adguardPort ];
         allowedUDPPorts = [ 53 ];
       };
+      hosts = {
+        "192.168.8.231" = [
+          "ai.idrisraja.com"
+          "jellyfin.idrisraja.com"
+          "immich.idrisraja.com"
+          "adguard.idrisraja.com"
+          "unifi.idrisraja.com"
+        ];
+      };
     };
 
     services = {

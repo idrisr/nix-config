@@ -1,12 +1,12 @@
-{
-  pkgs,
-  config,
-  lib,
-  ...
+{ pkgs
+, config
+, lib
+, ...
 }:
 with lib; let
   cfg = config.unifi;
-in {
+in
+{
   options = {
     unifi = {
       enable = mkOption {
@@ -24,8 +24,8 @@ in {
       enable = true;
       openFirewall = true;
       unifiPackage = pkgs.unifi;
-      extraJvmOptions = ["-Djava.net.preferIPv4Stack=true"];
+      mongodbPackage = pkgs.mongodb-7_0;
+      extraJvmOptions = [ "-Djava.net.preferIPv4Stack=true" ];
     };
-    networking = {firewall.allowedTCPPorts = [8443];};
   };
 }
