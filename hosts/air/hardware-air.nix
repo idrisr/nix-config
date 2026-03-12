@@ -12,16 +12,19 @@
   config = {
     boot = {
       initrd = {
-        availableKernelModules = [ "xhci_pci" "ahci" "usbhid" "usb_storage" "sd_mod" "wl" ];
+        availableKernelModules = [
+          "xhci_pci"
+          "ahci"
+          "usbhid"
+          "usb_storage"
+          "sd_mod"
+          "thunderbolt"
+          "r8152"
+          "ax88179_178a"
+          "asix"
+          "cdc_ether"
+        ];
         kernelModules = [ "coretemp" "applesmc" ];
-
-        # MacBook Air 6,2 (Model A1466, 2013, Intel i5-4250U)
-        # Boot from USB: hold Option at chime.
-        # Kernel tested: 6.12.31.
-        # Internal Wi-Fi chipset: Broadcom BCM4360 (PCI ID 14e4:43a0).
-        # In-kernel driver: brcmfmac supports BCM4360 (see LKDDb: https://cateee.net/lkddb/).
-        # Community reports: https://linux-hardware.org/?view=search&vendor=Apple&model=MacBookAir6%2C2
-        # External USB Wi-Fi: AR9271 (Atheros) uses in-kernel ath9k_htc.
 
         network = {
           enable = true;
@@ -41,7 +44,6 @@
         systemd-boot.enable = true;
         efi.canTouchEfiVariables = true;
       };
-      extraModulePackages = [ config.boot.kernelPackages.broadcom_sta ];
     };
 
     services.logind.settings.Login.HandleLidSwitch = "ignore";
@@ -54,14 +56,7 @@
       adblocker.enable = true;
     };
 
-    nixpkgs = {
-      hostPlatform = lib.mkDefault "x86_64-linux";
-      config.allowUnfreePredicate = p:
-        builtins.elem (pkgs.lib.getName p) [ "broadcom-sta" ];
-      config.permittedInsecurePackages = [
-        "broadcom-sta-6.30.223.271-59-6.12.68"
-      ];
-    };
+    nixpkgs.hostPlatform = lib.mkDefault "x86_64-linux";
 
     hardware.cpu.intel.updateMicrocode =
       lib.mkDefault config.hardware.enableRedistributableFirmware;

@@ -13,6 +13,10 @@
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    nix-darwin = {
+      url = "github:LnL7/nix-darwin";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
     home-config = {
       url = "github:idrisr/home-manager-config";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -28,7 +32,45 @@
     };
   };
 
-  outputs = inputs:
-    inputs.flake-parts.lib.mkFlake { inherit inputs; }
-      (inputs.import-tree ./dendritic);
+  outputs = inputs@{ self, nixpkgs, nix-darwin, home-manager, ... }:
+    let
+      host = "mini";
+      user = "hippoid";
+      system = "aarch64-darwin";
+      base = inputs.flake-parts.lib.mkFlake { inherit inputs; }
+        (inputs.import-tree ./dendritic);
+    in
+    base // {
+      darwinConfigurations.${host} = nix-darwin.lib.darwinSystem {
+        inherit system;
+        specialArgs = {
+          inherit inputs host user;
+        };
+        modules = [
+          ({ pkgs, ... }: {
+            nix.settings.experimental-features = [ "nix-command" "flakes" ];
+            nixpkgs.hostPlatform = system;
+            networking.hostName = host;
+            users.users.${user}.home = "/Users/${user}";
+            services.nix-daemon.enable = true;
+
+            environment.systemPackages = with pkgs; [
+              git
+              curl
+              prometheus-node-exporter
+            ];
+
+            system.stateVersion = 4;
+          })
+          ./hosts/macbook/default.nix
+
+          home-manager.darwinModules.home-manager
+          {
+            home-manager.useGlobalPkgs = true;
+            home-manager.useUserPackages = true;
+            home-manager.users.${user} = import ./hosts/macbook/home.nix;
+          }
+        ];
+      };
+    };
 }
