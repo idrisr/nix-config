@@ -52,7 +52,6 @@
             nixpkgs.hostPlatform = system;
             networking.hostName = host;
             users.users.${user}.home = "/Users/${user}";
-            services.nix-daemon.enable = true;
 
             environment.systemPackages = with pkgs; [
               git
