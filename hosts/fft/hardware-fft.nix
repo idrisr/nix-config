@@ -24,6 +24,10 @@
 
     fileSystems."/boot" = { options = [ "umask=0077" ]; };
 
+    swapDevices = [
+      { device = "/swapfile"; size = 32 * 1024; } # 32GB
+    ];
+
     services = {
       openssh = {
         settings.X11Forwarding = false;
