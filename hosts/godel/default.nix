@@ -8,28 +8,88 @@
 
   config = {
     my.base.enable = true;
+    unifi.enable = true;
     networking.adblocker.enable = true;
     users.users.root = {
       hashedPassword = "$y$j9T$BowmS9BT0LZ5WNT1V4Day1$dae0REqJAJuNehr7b3Uj3Zy.dToJ30mwOqugbA39b02";
     };
+    my.prometheus-server.enable = true;
 
+    networking.firewall.allowedTCPPorts = [ 80 443 ];
     services.nginx = {
       enable = true;
       recommendedGzipSettings = true;
       recommendedProxySettings = true;
       recommendedTlsSettings = true;
       virtualHosts = {
-        "adguard.idrisraja.com" = {
+        "ai.idrisraja.com" = {
           forceSSL = true;
           sslCertificate = "/etc/letsencrypt/live/idrisraja.com/fullchain.pem";
           sslCertificateKey = "/etc/letsencrypt/live/idrisraja.com/privkey.pem";
           locations."/" = {
-            proxyPass = "http://127.0.0.1:3000";
+            proxyPass = "http://192.168.8.231:13221";
             proxyWebsockets = true;
+          };
+        };
+        "jellyfin.idrisraja.com" = {
+          forceSSL = true;
+          sslCertificate = "/etc/letsencrypt/live/idrisraja.com/fullchain.pem";
+          sslCertificateKey = "/etc/letsencrypt/live/idrisraja.com/privkey.pem";
+          locations."/" = {
+            proxyPass = "http://192.168.8.231:8096";
+            proxyWebsockets = true;
+          };
+        };
+        "immich.idrisraja.com" = {
+          forceSSL = true;
+          sslCertificate = "/etc/letsencrypt/live/idrisraja.com/fullchain.pem";
+          sslCertificateKey = "/etc/letsencrypt/live/idrisraja.com/privkey.pem";
+          locations."/" = {
+            proxyPass = "http://192.168.8.231:2283";
+            proxyWebsockets = true;
+          };
+        };
+
+        "grafana.idrisraja.com" = {
+          forceSSL = true;
+          sslCertificate = "/etc/letsencrypt/live/idrisraja.com/fullchain.pem";
+          sslCertificateKey = "/etc/letsencrypt/live/idrisraja.com/privkey.pem";
+          locations."/" = {
+            proxyPass = "http://127.0.0.1:3010";
+            proxyWebsockets = true;
+          };
+        };
+
+        "unifi.idrisraja.com" = {
+          forceSSL = true;
+          sslCertificate = "/etc/letsencrypt/live/idrisraja.com/fullchain.pem";
+          sslCertificateKey = "/etc/letsencrypt/live/idrisraja.com/privkey.pem";
+          locations."/" = {
+            proxyPass = "https://127.0.0.1:8443";
+            proxyWebsockets = true;
+          };
+        };
+
+        "prometheus.idrisraja.com" = {
+          forceSSL = true;
+          sslCertificate = "/etc/letsencrypt/live/idrisraja.com/fullchain.pem";
+          sslCertificateKey = "/etc/letsencrypt/live/idrisraja.com/privkey.pem";
+          locations."/" = {
+            proxyPass = "http://127.0.0.1:9090";
+          };
+        };
+
+        "router.idrisraja.com" = {
+          forceSSL = true;
+          sslCertificate = "/etc/letsencrypt/live/idrisraja.com/fullchain.pem";
+          sslCertificateKey = "/etc/letsencrypt/live/idrisraja.com/privkey.pem";
+          locations."/" = {
+            proxyPass = "http://192.168.8.1";
           };
         };
       };
     };
+
 
     boot = {
       initrd = {

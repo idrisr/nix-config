@@ -16,8 +16,38 @@ in
   };
 
   config = mkIf cfg.enable {
+    environment.etc = {
+      "grafana-dashboards/node-fleet-overview.json".source = ./dashboards/node-fleet-overview.json;
+      "grafana-dashboards/node-host-basic.json".source = ./dashboards/node-host-basic.json;
+    };
+
     services.grafana = {
       enable = true;
+      provision = {
+        enable = true;
+        datasources.settings = {
+          apiVersion = 1;
+          datasources = [
+            {
+              name = "Prometheus";
+              type = "prometheus";
+              access = "proxy";
+              url = "http://127.0.0.1:9090";
+              isDefault = true;
+              uid = "effpfi5egefwgf";
+            }
+          ];
+        };
+        dashboards.settings = {
+          apiVersion = 1;
+          providers = [
+            {
+              name = "default";
+              options.path = "/etc/grafana-dashboards";
+            }
+          ];
+        };
+      };
       settings = {
         security.secret_key = "/etc/letsencrypt/live/idrisraja.com/privkey.pem";
 

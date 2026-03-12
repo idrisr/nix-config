@@ -39,35 +39,35 @@ in
             rewrites = [
               {
                 domain = "ai.idrisraja.com";
-                answer = "192.168.8.231";
+                answer = "192.168.8.224";
               }
               {
                 domain = "jellyfin.idrisraja.com";
-                answer = "192.168.8.231";
+                answer = "192.168.8.224";
               }
               {
                 domain = "immich.idrisraja.com";
-                answer = "192.168.8.231";
+                answer = "192.168.8.224";
               }
               {
                 domain = "adguard.idrisraja.com";
-                answer = "192.168.8.231";
+                answer = "192.168.8.224";
               }
               {
                 domain = "unifi.idrisraja.com";
-                answer = "192.168.8.231";
+                answer = "192.168.8.224";
               }
               {
                 domain = "router.idrisraja.com";
-                answer = "192.168.8.231";
+                answer = "192.168.8.224";
               }
               {
                 domain = "prometheus.idrisraja.com";
-                answer = "192.168.8.231";
+                answer = "192.168.8.224";
               }
               {
                 domain = "grafana.idrisraja.com";
-                answer = "192.168.8.231";
+                answer = "192.168.8.224";
               }
             ];
           };
