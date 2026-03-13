@@ -1,0 +1,408 @@
+{
+  "id": null,
+  "uid": "gpu-fft-node",
+  "title": "GPU - FFT Node",
+  "tags": [
+    "gpu",
+    "nvidia",
+    "prometheus"
+  ],
+  "timezone": "browser",
+  "schemaVersion": 41,
+  "version": 0,
+  "refresh": "5s",
+  "time": {
+    "from": "now-6h",
+    "to": "now"
+  },
+  "templating": {
+    "list": [
+      {
+        "name": "uuid",
+        "type": "query",
+        "datasource": {
+          "type": "prometheus",
+          "uid": "effpfi5egefwgf"
+        },
+        "definition": "label_values(nvidia_smi_utilization_gpu_ratio{instance=\"fft:9835\"}, uuid)",
+        "query": {
+          "query": "label_values(nvidia_smi_utilization_gpu_ratio{instance=\"fft:9835\"}, uuid)",
+          "refId": "VarUuid"
+        },
+        "refresh": 1,
+        "includeAll": true,
+        "multi": true,
+        "current": {
+          "selected": true,
+          "text": "All",
+          "value": [
+            "$__all"
+          ]
+        }
+      }
+    ]
+  },
+  "panels": [
+    {
+      "id": 1,
+      "type": "stat",
+      "title": "GPU Util %",
+      "gridPos": {
+        "h": 4,
+        "w": 6,
+        "x": 0,
+        "y": 0
+      },
+      "datasource": {
+        "type": "prometheus",
+        "uid": "effpfi5egefwgf"
+      },
+      "targets": [
+        {
+          "refId": "A",
+          "expr": "100 * avg(nvidia_smi_utilization_gpu_ratio{instance=\"fft:9835\",uuid=~\"$uuid\"})"
+        }
+      ],
+      "fieldConfig": {
+        "defaults": {
+          "unit": "percent",
+          "decimals": 1,
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "orange",
+                "value": 75
+              },
+              {
+                "color": "red",
+                "value": 95
+              }
+            ]
+          }
+        },
+        "overrides": []
+      }
+    },
+    {
+      "id": 2,
+      "type": "stat",
+      "title": "VRAM Used %",
+      "gridPos": {
+        "h": 4,
+        "w": 6,
+        "x": 6,
+        "y": 0
+      },
+      "datasource": {
+        "type": "prometheus",
+        "uid": "effpfi5egefwgf"
+      },
+      "targets": [
+        {
+          "refId": "A",
+          "expr": "100 * avg(nvidia_smi_memory_used_bytes{instance=\"fft:9835\",uuid=~\"$uuid\"}) / avg(nvidia_smi_memory_total_bytes{instance=\"fft:9835\",uuid=~\"$uuid\"})"
+        }
+      ],
+      "fieldConfig": {
+        "defaults": {
+          "unit": "percent",
+          "decimals": 1,
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "orange",
+                "value": 80
+              },
+              {
+                "color": "red",
+                "value": 95
+              }
+            ]
+          }
+        },
+        "overrides": []
+      }
+    },
+    {
+      "id": 3,
+      "type": "stat",
+      "title": "GPU Temp C",
+      "gridPos": {
+        "h": 4,
+        "w": 6,
+        "x": 12,
+        "y": 0
+      },
+      "datasource": {
+        "type": "prometheus",
+        "uid": "effpfi5egefwgf"
+      },
+      "targets": [
+        {
+          "refId": "A",
+          "expr": "max(nvidia_smi_temperature_gpu{instance=\"fft:9835\",uuid=~\"$uuid\"})"
+        }
+      ],
+      "fieldConfig": {
+        "defaults": {
+          "unit": "celsius",
+          "decimals": 0,
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "orange",
+                "value": 75
+              },
+              {
+                "color": "red",
+                "value": 83
+              }
+            ]
+          }
+        },
+        "overrides": []
+      }
+    },
+    {
+      "id": 4,
+      "type": "stat",
+      "title": "Power Draw W",
+      "gridPos": {
+        "h": 4,
+        "w": 6,
+        "x": 18,
+        "y": 0
+      },
+      "datasource": {
+        "type": "prometheus",
+        "uid": "effpfi5egefwgf"
+      },
+      "targets": [
+        {
+          "refId": "A",
+          "expr": "sum(nvidia_smi_power_draw_watts{instance=\"fft:9835\",uuid=~\"$uuid\"})"
+        }
+      ],
+      "fieldConfig": {
+        "defaults": {
+          "unit": "watt",
+          "decimals": 1
+        },
+        "overrides": []
+      }
+    },
+    {
+      "id": 5,
+      "type": "timeseries",
+      "title": "GPU Utilization",
+      "gridPos": {
+        "h": 8,
+        "w": 12,
+        "x": 0,
+        "y": 4
+      },
+      "datasource": {
+        "type": "prometheus",
+        "uid": "effpfi5egefwgf"
+      },
+      "targets": [
+        {
+          "refId": "A",
+          "expr": "100 * nvidia_smi_utilization_gpu_ratio{instance=\"fft:9835\",uuid=~\"$uuid\"}",
+          "legendFormat": "{{uuid}}"
+        }
+      ],
+      "fieldConfig": {
+        "defaults": {
+          "unit": "percent",
+          "custom": {
+            "drawStyle": "line",
+            "lineWidth": 2,
+            "fillOpacity": 20
+          }
+        },
+        "overrides": []
+      }
+    },
+    {
+      "id": 6,
+      "type": "timeseries",
+      "title": "VRAM Used %",
+      "gridPos": {
+        "h": 8,
+        "w": 12,
+        "x": 12,
+        "y": 4
+      },
+      "datasource": {
+        "type": "prometheus",
+        "uid": "effpfi5egefwgf"
+      },
+      "targets": [
+        {
+          "refId": "A",
+          "expr": "100 * nvidia_smi_memory_used_bytes{instance=\"fft:9835\",uuid=~\"$uuid\"} / nvidia_smi_memory_total_bytes{instance=\"fft:9835\",uuid=~\"$uuid\"}",
+          "legendFormat": "{{uuid}}"
+        }
+      ],
+      "fieldConfig": {
+        "defaults": {
+          "unit": "percent",
+          "custom": {
+            "drawStyle": "line",
+            "lineWidth": 2,
+            "fillOpacity": 16
+          }
+        },
+        "overrides": []
+      }
+    },
+    {
+      "id": 7,
+      "type": "timeseries",
+      "title": "Temperature",
+      "gridPos": {
+        "h": 8,
+        "w": 12,
+        "x": 0,
+        "y": 12
+      },
+      "datasource": {
+        "type": "prometheus",
+        "uid": "effpfi5egefwgf"
+      },
+      "targets": [
+        {
+          "refId": "A",
+          "expr": "nvidia_smi_temperature_gpu{instance=\"fft:9835\",uuid=~\"$uuid\"}",
+          "legendFormat": "{{uuid}}"
+        }
+      ],
+      "fieldConfig": {
+        "defaults": {
+          "unit": "celsius",
+          "custom": {
+            "drawStyle": "line",
+            "lineWidth": 2,
+            "fillOpacity": 10
+          }
+        },
+        "overrides": []
+      }
+    },
+    {
+      "id": 8,
+      "type": "timeseries",
+      "title": "Power Draw",
+      "gridPos": {
+        "h": 8,
+        "w": 12,
+        "x": 12,
+        "y": 12
+      },
+      "datasource": {
+        "type": "prometheus",
+        "uid": "effpfi5egefwgf"
+      },
+      "targets": [
+        {
+          "refId": "A",
+          "expr": "nvidia_smi_power_draw_watts{instance=\"fft:9835\",uuid=~\"$uuid\"}",
+          "legendFormat": "{{uuid}}"
+        }
+      ],
+      "fieldConfig": {
+        "defaults": {
+          "unit": "watt",
+          "custom": {
+            "drawStyle": "line",
+            "lineWidth": 2,
+            "fillOpacity": 10
+          }
+        },
+        "overrides": []
+      }
+    },
+    {
+      "id": 9,
+      "type": "timeseries",
+      "title": "SM Clock",
+      "gridPos": {
+        "h": 8,
+        "w": 12,
+        "x": 0,
+        "y": 20
+      },
+      "datasource": {
+        "type": "prometheus",
+        "uid": "effpfi5egefwgf"
+      },
+      "targets": [
+        {
+          "refId": "A",
+          "expr": "nvidia_smi_clocks_current_sm_clock_hz{instance=\"fft:9835\",uuid=~\"$uuid\"}",
+          "legendFormat": "{{uuid}}"
+        }
+      ],
+      "fieldConfig": {
+        "defaults": {
+          "unit": "hertz",
+          "custom": {
+            "drawStyle": "line",
+            "lineWidth": 2,
+            "fillOpacity": 6
+          }
+        },
+        "overrides": []
+      }
+    },
+    {
+      "id": 10,
+      "type": "timeseries",
+      "title": "Memory Clock",
+      "gridPos": {
+        "h": 8,
+        "w": 12,
+        "x": 12,
+        "y": 20
+      },
+      "datasource": {
+        "type": "prometheus",
+        "uid": "effpfi5egefwgf"
+      },
+      "targets": [
+        {
+          "refId": "A",
+          "expr": "nvidia_smi_clocks_current_memory_clock_hz{instance=\"fft:9835\",uuid=~\"$uuid\"}",
+          "legendFormat": "{{uuid}}"
+        }
+      ],
+      "fieldConfig": {
+        "defaults": {
+          "unit": "hertz",
+          "custom": {
+            "drawStyle": "line",
+            "lineWidth": 2,
+            "fillOpacity": 6
+          }
+        },
+        "overrides": []
+      }
+    }
+  ]
+}

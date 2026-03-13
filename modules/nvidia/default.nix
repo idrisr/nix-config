@@ -23,6 +23,11 @@ in
     hardware.nvidia.package =
       config.boot.kernelPackages.nvidiaPackages.production; # (installs 550)
 
+    services.prometheus.exporters.nvidia-gpu = {
+      enable = true;
+      openFirewall = true;
+    };
+
     environment.systemPackages = with pkgs; [
       nvtopPackages.nvidia
       # prometheus-dcgm-exporter

@@ -1,11 +1,11 @@
-{
-  config,
-  lib,
-  ...
+{ config
+, lib
+, ...
 }:
 with lib; let
   cfg = config.my.pipewire;
-in {
+in
+{
   options = {
     my.pipewire = {
       enable = mkOption {
@@ -63,13 +63,13 @@ in {
             "monitor.bluez.rules" = [
               {
                 matches = [
-                  {"device.name" = cfg.airpods.deviceName;}
+                  { "device.name" = cfg.airpods.deviceName; }
                 ];
                 actions = {
                   update-props = {
                     "bluez5.auto-switch-profile" = false;
                     "bluez5.profile" = "headset-head-unit";
-                    "bluez5.roles" = ["hsp_hs" "hfp_hf"];
+                    "bluez5.roles" = [ "hsp_hs" "hfp_hf" ];
                     "device.profile" = "headset-head-unit";
                   };
                 };

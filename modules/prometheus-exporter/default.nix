@@ -2,6 +2,7 @@
   config = {
     services.prometheus.exporters = {
       systemd.enable = true;
+      tailscale.enable = false;
 
       node = {
         enable = true;
