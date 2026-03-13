@@ -18,6 +18,7 @@
     ./hoogle
     ./jellyfin.nix
     ./immich
+    ./initrd-remote-unlock.nix
     ./kmonad
     ./locate
     ./opnsense-backup

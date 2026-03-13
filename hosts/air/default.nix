@@ -6,6 +6,7 @@
   config = {
     my.base.enable = true;
     my.borgrepo.enable = true;
+    my."initrd-remote-unlock".enable = true;
 
     home-manager = {
       useGlobalPkgs = true;

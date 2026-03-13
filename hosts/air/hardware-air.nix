@@ -11,6 +11,8 @@
 
   config = {
     boot = {
+      kernelParams = [ "rd.systemd.device-timeout=0" ];
+
       initrd = {
         availableKernelModules = [
           "xhci_pci"
@@ -18,24 +20,33 @@
           "usbhid"
           "usb_storage"
           "sd_mod"
-          "thunderbolt"
           "r8152"
           "ax88179_178a"
           "asix"
           "cdc_ether"
+          "cdc_ncm"
         ];
-        kernelModules = [ "coretemp" "applesmc" ];
+        kernelModules = [
+          "coretemp"
+          "applesmc"
+          "usbnet"
+          "cdc_ether"
+          "cdc_ncm"
+          "r8152"
+          "ax88179_178a"
+          "asix"
+        ];
 
-        network = {
-          enable = true;
-          ssh = {
+        systemd = {
+          network = {
             enable = true;
-            authorizedKeys = [
-              (builtins.readFile
-                ../../modules/public-keys/id_ed25519-framework.pub)
-            ];
-            hostKeys = [ "/etc/secrets/initrd/ssh_host_ed25519_key" ];
-            shell = "/bin/cryptsetup-askpass";
+            networks."10-initrd-dhcp" = {
+              matchConfig.Name = "en*";
+              networkConfig.DHCP = "yes";
+              dhcpV4Config = {
+                RouteMetric = 5;
+              };
+            };
           };
         };
       };
@@ -54,7 +65,6 @@
       networkmanager.enable = true;
       hostName = "air";
       useDHCP = lib.mkDefault true;
-      adblocker.enable = true;
     };
 
     nixpkgs.hostPlatform = lib.mkDefault "x86_64-linux";

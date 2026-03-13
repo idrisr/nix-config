@@ -30,6 +30,7 @@ in
       ../../modules/hoogle
       ../../modules/hyprland-support.nix
       ../../modules/immich
+      ../../modules/initrd-remote-unlock.nix
       ../../modules/jellyfin.nix
       ../../modules/kmonad
       ../../modules/locate
