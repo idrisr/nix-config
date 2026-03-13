@@ -27,5 +27,7 @@ in
       mongodbPackage = pkgs.mongodb-7_0;
       extraJvmOptions = [ "-Djava.net.preferIPv4Stack=true" ];
     };
+
+    systemd.services.unifi.serviceConfig.TimeoutStopSec = "10s";
   };
 }

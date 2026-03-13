@@ -8,6 +8,7 @@
 
   config = {
     my.base.enable = true;
+    my."initrd-remote-unlock".enable = true;
     unifi.enable = true;
     networking.adblocker.enable = true;
     users.users.root = {
@@ -100,42 +101,9 @@
 
 
     boot = {
+      kernelParams = [ "reboot=pci" ];
       initrd = {
         availableKernelModules = [ "xhci_pci" "thunderbolt" "nvme" "usb_storage" "sd_mod" "igc" ];
-        network = {
-          enable = true;
-          flushBeforeStage2 = true;
-
-          ssh = {
-            enable = true;
-            authorizedKeys = [
-              (builtins.readFile
-                ../../modules/public-keys/id_ed25519-framework.pub)
-            ];
-            hostKeys = [ "/etc/secrets/initrd/ssh_host_ed25519_key" ];
-          };
-
-          postCommands = "";
-        };
-
-        systemd = {
-          enable = true;
-          extraBin = {
-            systemd-tty-ask-password-agent = "${pkgs.systemd}/bin/systemd-tty-ask-password-agent";
-            ip = "${pkgs.iproute2}/bin/ip";
-          };
-
-          services."unlock-agent" = {
-            wantedBy = [ "initrd.target" ];
-            serviceConfig = {
-              StandardOutput = "journal";
-
-              ExecStart = "${pkgs.systemd}/bin/systemd-tty-ask-password-agent --watch --no-tty";
-
-              StandardError = "journal";
-            };
-          };
-        };
         luks.devices."myvol" = {
           device = "/dev/disk/by-uuid/1004a810-9d15-4e13-b82e-e6cb48f4fd8b";
         };
