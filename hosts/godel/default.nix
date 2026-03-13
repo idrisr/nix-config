@@ -22,6 +22,14 @@
       recommendedProxySettings = true;
       recommendedTlsSettings = true;
       virtualHosts = {
+        "adguard.idrisraja.com" = {
+          forceSSL = true;
+          sslCertificate = "/etc/letsencrypt/live/idrisraja.com/fullchain.pem";
+          sslCertificateKey = "/etc/letsencrypt/live/idrisraja.com/privkey.pem";
+          locations."/" = {
+            proxyPass = "http://127.0.0.1:3000";
+          };
+        };
         "ai.idrisraja.com" = {
           forceSSL = true;
           sslCertificate = "/etc/letsencrypt/live/idrisraja.com/fullchain.pem";
