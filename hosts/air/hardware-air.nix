@@ -46,6 +46,7 @@
       };
     };
 
+    services.hardware.bolt.enable = true;
     services.logind.settings.Login.HandleLidSwitch = "ignore";
     environment.systemPackages = [ pkgs.lm_sensors ];
 

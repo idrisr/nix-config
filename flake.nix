@@ -32,7 +32,7 @@
     };
   };
 
-  outputs = inputs@{ self, nixpkgs, nix-darwin, home-manager, ... }:
+  outputs = inputs@{ self, nixpkgs, ... }:
     let
       host = "mini";
       user = "hippoid";
@@ -40,36 +40,7 @@
       base = inputs.flake-parts.lib.mkFlake { inherit inputs; }
         (inputs.import-tree ./dendritic);
     in
-    base // {
-      darwinConfigurations.${host} = nix-darwin.lib.darwinSystem {
-        inherit system;
-        specialArgs = {
-          inherit inputs host user;
-        };
-        modules = [
-          ({ pkgs, ... }: {
-            nix.settings.experimental-features = [ "nix-command" "flakes" ];
-            nixpkgs.hostPlatform = system;
-            networking.hostName = host;
-            users.users.${user}.home = "/Users/${user}";
-
-            environment.systemPackages = with pkgs; [
-              git
-              curl
-              prometheus-node-exporter
-            ];
-
-            system.stateVersion = 4;
-          })
-          ./hosts/macbook/default.nix
-
-          home-manager.darwinModules.home-manager
-          {
-            home-manager.useGlobalPkgs = true;
-            home-manager.useUserPackages = true;
-            home-manager.users.${user} = import ./hosts/macbook/home.nix;
-          }
-        ];
-      };
-    };
+    base // (import ./darwin-configuration.nix {
+      inherit inputs host user system;
+    });
 }
