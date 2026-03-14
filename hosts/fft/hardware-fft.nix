@@ -10,13 +10,29 @@
 
   config = {
     boot = {
+      kernelParams = [ "console=ttyS0,115200" "console=tty1" ];
       loader = {
         systemd-boot.enable = true;
         efi.canTouchEfiVariables = true;
       };
       initrd = {
-        availableKernelModules = [ "nvme" "xhci_pci" "ahci" "usbhid" "usb_storage" "sd_mod" ];
-        kernelModules = [ "dm-snapshot" ];
+        availableKernelModules = [
+          "nvme"
+          "xhci_pci"
+          "ahci"
+          "usbhid"
+          "usb_storage"
+          "sd_mod"
+        ];
+        kernelModules = [ "dm-snapshot" "igc" "e1000e" "r8169" ];
+        systemd.network = {
+          enable = true;
+          networks."10-initrd-dhcp" = {
+            matchConfig.Name = "en*";
+            networkConfig.DHCP = "yes";
+            dhcpV4Config.RouteMetric = 5;
+          };
+        };
       };
       kernelModules = [ "kvm-amd" ];
       extraModulePackages = [ ];

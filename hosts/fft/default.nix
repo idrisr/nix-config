@@ -13,6 +13,7 @@
     nvidia-gpu.enable = true;
     ollama.enable = true;
     my.base.enable = true;
+    my."initrd-remote-unlock".enable = true;
     my.anki.enable = true;
     my.jellyfin.enable = true;
     my.immich.enable = true;
