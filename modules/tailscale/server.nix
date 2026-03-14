@@ -1,11 +1,11 @@
-{
-  config,
-  lib,
-  ...
+{ config
+, lib
+, ...
 }:
 with lib; let
   cfg = config.my.servernode;
-in {
+in
+{
   options = {
     my.servernode = {
       enable = mkOption {
@@ -22,7 +22,7 @@ in {
     services.tailscale = {
       enable = true;
       useRoutingFeatures = "server";
-      extraUpFlags = ["--advertise-routes=192.168.8.0/24"];
+      extraUpFlags = [ "--advertise-routes=192.168.8.0/24" ];
     };
   };
 }

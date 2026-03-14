@@ -18,7 +18,7 @@
     my.jellyfin.enable = true;
     my.immich.enable = true;
     my.borgrepo.enable = true;
-    my.servernode.enable = true;
+    my.servernode.enable = false;
     networking.firewall.allowedTCPPorts = [ 80 443 ];
 
     services.nix-serve = {
