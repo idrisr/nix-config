@@ -657,9 +657,9 @@
       {
         "allValue": ".*",
         "current": {
-          "selected": false,
-          "text": "fft:9100",
-          "value": "fft:9100"
+          "selected": true,
+          "text": "All",
+          "value": "$__all"
         },
         "datasource": {
           "type": "prometheus",
