@@ -17,6 +17,7 @@
     my.anki.enable = true;
     my.jellyfin.enable = true;
     my.immich.enable = true;
+    nvr.enable = true;
     my.borgrepo.enable = true;
     my.servernode.enable = false;
     networking.firewall.allowedTCPPorts = [ 80 443 ];
