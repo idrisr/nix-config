@@ -21,6 +21,7 @@ in
       "grafana-dashboards/node-host-basic.json".source = ./dashboards/node-host-basic.json;
       "grafana-dashboards/gpu-fft-node.json".source = ./dashboards/gpu-fft-node.json;
       "grafana-dashboards/laptop-batteries.json".source = ./dashboards/laptop-batteries.json;
+      "grafana-dashboards/mac-mini-overview.json".source = ./dashboards/mac-mini-overview.json;
     };
 
     services.grafana = {
@@ -56,6 +57,7 @@ in
         server = {
           http_port = 3010;
         };
+        dashboards.default_home_dashboard_path = "/etc/grafana-dashboards/node-host-basic.json";
         analytics.reporting_enabled = false;
       };
     };

@@ -85,7 +85,7 @@
       },
       "targets": [
         {
-          "expr": "(1 - (node_memory_MemAvailable_bytes{instance=~\"$instance\"} / node_memory_MemTotal_bytes{instance=~\"$instance\"})) * 100",
+          "expr": "(1 - (sum by (instance) (node_memory_MemAvailable_bytes{instance=~\"$instance\",instance!=\"mini:9100\"} or node_memory_free_bytes{instance=~\"$instance\",instance!=\"mini:9100\"}) / sum by (instance) (node_memory_MemTotal_bytes{instance=~\"$instance\",instance!=\"mini:9100\"} or node_memory_total_bytes{instance=~\"$instance\",instance!=\"mini:9100\"}))) * 100",
           "legendFormat": "{{instance}}",
           "refId": "A"
         }

@@ -7,7 +7,6 @@
     nixos-hardware.url = "github:nixos/nixos-hardware";
     nixvim = {
       url = "github:nix-community/nixvim";
-      inputs.nixpkgs.follows = "nixpkgs";
     };
     home-manager = {
       url = "github:nix-community/home-manager";
