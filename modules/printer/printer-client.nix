@@ -1,11 +1,13 @@
-{
-  config,
-  lib,
-  pkgs,
-  ...
-}: let
+{ config
+, lib
+, pkgs
+, ...
+}:
+let
   cfg = config.my.printer;
-in {
+  # lp -d bro2300 my.pdf
+in
+{
   options = {
     my.printer = {
       enable = lib.mkOption {
@@ -21,7 +23,7 @@ in {
   config = lib.mkIf cfg.enable {
     services.printing = {
       enable = true;
-      drivers = [pkgs.brlaser];
+      drivers = [ pkgs.brlaser ];
     };
 
     hardware.printers = {
@@ -35,7 +37,8 @@ in {
       ensureDefaultPrinter = "bro2300";
     };
 
-    users.users.hippoid.extraGroups = ["lpadmin"];
-    environment.systemPackages = [pkgs.brlaser];
+    users.users.hippoid.extraGroups = [ "lpadmin" ];
+    environment.sessionVariables.LPDEST = "bro2300";
+    environment.systemPackages = [ pkgs.brlaser ];
   };
 }

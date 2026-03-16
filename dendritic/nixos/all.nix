@@ -36,6 +36,7 @@ in
       ../../modules/locate
       ../../modules/mitmproxy
       ../../modules/nh
+      ../../modules/nix-index
       ../../modules/nvidia
       ../../modules/ollama
       ../../modules/opnsense-backup
@@ -43,11 +44,11 @@ in
       ../../modules/pinchflat
       ../../modules/pipewire
       ../../modules/podgrab
-      ../../modules/prometheus-exporter
-      ../../modules/prometheus-server
       ../../modules/power
       ../../modules/printer/printer-client.nix
       ../../modules/printer/printing.nix
+      ../../modules/prometheus-exporter
+      ../../modules/prometheus-server
       ../../modules/reading
       ../../modules/redmine.nix
       ../../modules/rustdesk
@@ -58,8 +59,8 @@ in
       ../../modules/tailscale/client.nix
       ../../modules/tailscale/server.nix
       ../../modules/unifi
-      ../../modules/virtualization
       ../../modules/vikunja
+      ../../modules/virtualization
     ];
   };
 }
