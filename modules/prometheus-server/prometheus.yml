@@ -25,3 +25,9 @@ scrape_configs:
   - job_name: node-6
     static_configs:
       - targets: ['fft:9835']
+  - job_name: node-router
+    static_configs:
+      - targets: ['192.168.8.1:9100']
+        labels:
+          node: router
+          role: router

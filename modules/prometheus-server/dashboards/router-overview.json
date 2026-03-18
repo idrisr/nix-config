@@ -1,0 +1,617 @@
+{
+  "id": null,
+  "uid": "router-overview",
+  "title": "Router Overview",
+  "tags": ["router", "node-exporter"],
+  "timezone": "",
+  "schemaVersion": 38,
+  "version": 1,
+  "refresh": "10s",
+  "time": {
+    "from": "now-6h",
+    "to": "now"
+  },
+  "templating": {
+    "list": []
+  },
+  "panels": [
+    {
+      "type": "stat",
+      "title": "Target Up",
+      "datasource": {
+        "type": "prometheus",
+        "uid": "effpfi5egefwgf"
+      },
+      "gridPos": {
+        "h": 6,
+        "w": 6,
+        "x": 0,
+        "y": 38
+      },
+      "targets": [
+        {
+          "refId": "A",
+          "expr": "max(up{node=\"router\"})"
+        }
+      ],
+      "fieldConfig": {
+        "defaults": {
+          "min": 0,
+          "max": 1,
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "red",
+                "value": null
+              },
+              {
+                "color": "green",
+                "value": 1
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "options": {
+        "colorMode": "value",
+        "graphMode": "none",
+        "justifyMode": "auto",
+        "orientation": "auto",
+        "reduceOptions": {
+          "calcs": ["lastNotNull"],
+          "fields": "",
+          "values": false
+        }
+      }
+    },
+    {
+      "type": "stat",
+      "title": "Uptime",
+      "datasource": {
+        "type": "prometheus",
+        "uid": "effpfi5egefwgf"
+      },
+      "gridPos": {
+        "h": 6,
+        "w": 6,
+        "x": 6,
+        "y": 38
+      },
+      "targets": [
+        {
+          "refId": "A",
+          "expr": "max(node_time_seconds{node=\"router\"} - node_boot_time_seconds{node=\"router\"})"
+        }
+      ],
+      "fieldConfig": {
+        "defaults": {
+          "unit": "s"
+        },
+        "overrides": []
+      },
+      "options": {
+        "colorMode": "value",
+        "graphMode": "none",
+        "justifyMode": "auto",
+        "orientation": "auto",
+        "reduceOptions": {
+          "calcs": ["lastNotNull"],
+          "fields": "",
+          "values": false
+        }
+      }
+    },
+    {
+      "type": "stat",
+      "title": "CPU Usage",
+      "datasource": {
+        "type": "prometheus",
+        "uid": "effpfi5egefwgf"
+      },
+      "gridPos": {
+        "h": 6,
+        "w": 6,
+        "x": 12,
+        "y": 38
+      },
+      "targets": [
+        {
+          "refId": "A",
+          "expr": "100 - (avg(rate(node_cpu_seconds_total{mode=\"idle\",node=\"router\"}[5m])) * 100)"
+        }
+      ],
+      "fieldConfig": {
+        "defaults": {
+          "unit": "percent",
+          "min": 0,
+          "max": 100,
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "yellow",
+                "value": 80
+              },
+              {
+                "color": "red",
+                "value": 90
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "options": {
+        "colorMode": "value",
+        "graphMode": "none",
+        "justifyMode": "auto",
+        "orientation": "auto",
+        "reduceOptions": {
+          "calcs": ["lastNotNull"],
+          "fields": "",
+          "values": false
+        }
+      }
+    },
+    {
+      "type": "stat",
+      "title": "Memory Usage",
+      "datasource": {
+        "type": "prometheus",
+        "uid": "effpfi5egefwgf"
+      },
+      "gridPos": {
+        "h": 6,
+        "w": 6,
+        "x": 18,
+        "y": 38
+      },
+      "targets": [
+        {
+          "refId": "A",
+          "expr": "(1 - ((max(node_memory_MemAvailable_bytes{node=\"router\"}) or (max(node_memory_MemFree_bytes{node=\"router\"}) + max(node_memory_Buffers_bytes{node=\"router\"}) + max(node_memory_Cached_bytes{node=\"router\"}) + max(node_memory_SReclaimable_bytes{node=\"router\"}) - max(node_memory_Shmem_bytes{node=\"router\"})) or max(node_memory_free_bytes{node=\"router\"})) / (max(node_memory_MemTotal_bytes{node=\"router\"}) or max(node_memory_total_bytes{node=\"router\"})))) * 100"
+        }
+      ],
+      "fieldConfig": {
+        "defaults": {
+          "unit": "percent",
+          "min": 0,
+          "max": 100,
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "yellow",
+                "value": 80
+              },
+              {
+                "color": "red",
+                "value": 90
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "options": {
+        "colorMode": "value",
+        "graphMode": "none",
+        "justifyMode": "auto",
+        "orientation": "auto",
+        "reduceOptions": {
+          "calcs": ["lastNotNull"],
+          "fields": "",
+          "values": false
+        }
+      }
+    },
+    {
+      "type": "timeseries",
+      "title": "CPU Usage %",
+      "datasource": {
+        "type": "prometheus",
+        "uid": "effpfi5egefwgf"
+      },
+      "gridPos": {
+        "h": 8,
+        "w": 12,
+        "x": 0,
+        "y": 6
+      },
+      "targets": [
+        {
+          "refId": "A",
+          "expr": "100 - (avg(rate(node_cpu_seconds_total{mode=\"idle\",node=\"router\"}[$__rate_interval])) * 100)",
+          "legendFormat": "CPU"
+        }
+      ],
+      "fieldConfig": {
+        "defaults": {
+          "unit": "percent",
+          "min": 0,
+          "max": 100
+        },
+        "overrides": []
+      },
+      "options": {
+        "legend": {
+          "displayMode": "list",
+          "placement": "bottom"
+        }
+      }
+    },
+    {
+      "type": "timeseries",
+      "title": "Load Average",
+      "datasource": {
+        "type": "prometheus",
+        "uid": "effpfi5egefwgf"
+      },
+      "gridPos": {
+        "h": 8,
+        "w": 12,
+        "x": 12,
+        "y": 6
+      },
+      "targets": [
+        {
+          "refId": "A",
+          "expr": "max(node_load1{node=\"router\"})",
+          "legendFormat": "1m"
+        },
+        {
+          "refId": "B",
+          "expr": "max(node_load5{node=\"router\"})",
+          "legendFormat": "5m"
+        },
+        {
+          "refId": "C",
+          "expr": "max(node_load15{node=\"router\"})",
+          "legendFormat": "15m"
+        }
+      ],
+      "fieldConfig": {
+        "defaults": {},
+        "overrides": []
+      },
+      "options": {
+        "legend": {
+          "displayMode": "list",
+          "placement": "bottom"
+        }
+      }
+    },
+    {
+      "type": "timeseries",
+      "title": "Network Receive",
+      "datasource": {
+        "type": "prometheus",
+        "uid": "effpfi5egefwgf"
+      },
+      "gridPos": {
+        "h": 8,
+        "w": 12,
+        "x": 0,
+        "y": 14
+      },
+      "targets": [
+        {
+          "refId": "A",
+          "expr": "sum by (device) (rate(node_network_receive_bytes_total{node=\"router\",device!~\"lo|ifb.*\"}[$__rate_interval]))",
+          "legendFormat": "{{device}}"
+        }
+      ],
+      "fieldConfig": {
+        "defaults": {
+          "unit": "binBps"
+        },
+        "overrides": []
+      },
+      "options": {
+        "legend": {
+          "displayMode": "list",
+          "placement": "bottom"
+        }
+      }
+    },
+    {
+      "type": "timeseries",
+      "title": "Network Transmit",
+      "datasource": {
+        "type": "prometheus",
+        "uid": "effpfi5egefwgf"
+      },
+      "gridPos": {
+        "h": 8,
+        "w": 12,
+        "x": 12,
+        "y": 14
+      },
+      "targets": [
+        {
+          "refId": "A",
+          "expr": "sum by (device) (rate(node_network_transmit_bytes_total{node=\"router\",device!~\"lo|ifb.*\"}[$__rate_interval]))",
+          "legendFormat": "{{device}}"
+        }
+      ],
+      "fieldConfig": {
+        "defaults": {
+          "unit": "binBps"
+        },
+        "overrides": []
+      },
+      "options": {
+        "legend": {
+          "displayMode": "list",
+          "placement": "bottom"
+        }
+      }
+    },
+    {
+      "type": "timeseries",
+      "title": "Filesystem Usage %",
+      "datasource": {
+        "type": "prometheus",
+        "uid": "effpfi5egefwgf"
+      },
+      "gridPos": {
+        "h": 8,
+        "w": 24,
+        "x": 0,
+        "y": 22
+      },
+      "targets": [
+        {
+          "refId": "A",
+          "expr": "100 * (1 - (node_filesystem_avail_bytes{node=\"router\",fstype!~\"tmpfs|overlay\"} / node_filesystem_size_bytes{node=\"router\",fstype!~\"tmpfs|overlay\"}))",
+          "legendFormat": "{{mountpoint}}"
+        }
+      ],
+      "fieldConfig": {
+        "defaults": {
+          "unit": "percent",
+          "min": 0,
+          "max": 100
+        },
+        "overrides": []
+      },
+      "options": {
+        "legend": {
+          "displayMode": "list",
+          "placement": "bottom"
+        }
+      }
+    },
+    {
+      "type": "timeseries",
+      "title": "ZFS Pool Usage %",
+      "datasource": {
+        "type": "prometheus",
+        "uid": "effpfi5egefwgf"
+      },
+      "gridPos": {
+        "h": 8,
+        "w": 8,
+        "x": 0,
+        "y": 30
+      },
+      "targets": [
+        {
+          "refId": "A",
+          "expr": "100 * (1 - (node_zfs_zpool_free_bytes{node=\"router\"} / node_zfs_zpool_size_bytes{node=\"router\"}))",
+          "legendFormat": "{{zpool}}"
+        }
+      ],
+      "fieldConfig": {
+        "defaults": {
+          "unit": "percent",
+          "min": 0,
+          "max": 100
+        },
+        "overrides": []
+      },
+      "options": {
+        "legend": {
+          "displayMode": "list",
+          "placement": "bottom"
+        }
+      }
+    },
+    {
+      "type": "timeseries",
+      "title": "ZFS Pool Free",
+      "datasource": {
+        "type": "prometheus",
+        "uid": "effpfi5egefwgf"
+      },
+      "gridPos": {
+        "h": 8,
+        "w": 8,
+        "x": 8,
+        "y": 30
+      },
+      "targets": [
+        {
+          "refId": "A",
+          "expr": "node_zfs_zpool_free_bytes{node=\"router\"}",
+          "legendFormat": "{{zpool}}"
+        }
+      ],
+      "fieldConfig": {
+        "defaults": {
+          "unit": "decbytes"
+        },
+        "overrides": []
+      },
+      "options": {
+        "legend": {
+          "displayMode": "list",
+          "placement": "bottom"
+        }
+      }
+    },
+    {
+      "type": "timeseries",
+      "title": "ZFS ARC Size",
+      "datasource": {
+        "type": "prometheus",
+        "uid": "effpfi5egefwgf"
+      },
+      "gridPos": {
+        "h": 8,
+        "w": 8,
+        "x": 16,
+        "y": 30
+      },
+      "targets": [
+        {
+          "refId": "A",
+          "expr": "node_zfs_arc_size_bytes{node=\"router\"}",
+          "legendFormat": "ARC"
+        }
+      ],
+      "fieldConfig": {
+        "defaults": {
+          "unit": "decbytes"
+        },
+        "overrides": []
+      },
+      "options": {
+        "legend": {
+          "displayMode": "list",
+          "placement": "bottom"
+        }
+      }
+    },
+    {
+      "type": "timeseries",
+      "title": "CPU iowait / softirq %",
+      "datasource": {
+        "type": "prometheus",
+        "uid": "effpfi5egefwgf"
+      },
+      "gridPos": {
+        "h": 8,
+        "w": 8,
+        "x": 0,
+        "y": 44
+      },
+      "targets": [
+        {
+          "refId": "A",
+          "expr": "avg(rate(node_cpu_seconds_total{node=\"router\",mode=\"iowait\"}[$__rate_interval])) * 100",
+          "legendFormat": "iowait"
+        },
+        {
+          "refId": "B",
+          "expr": "avg(rate(node_cpu_seconds_total{node=\"router\",mode=\"softirq\"}[$__rate_interval])) * 100",
+          "legendFormat": "softirq"
+        }
+      ],
+      "fieldConfig": {
+        "defaults": {
+          "unit": "percent",
+          "min": 0
+        },
+        "overrides": []
+      },
+      "options": {
+        "legend": {
+          "displayMode": "list",
+          "placement": "bottom"
+        }
+      }
+    },
+    {
+      "type": "timeseries",
+      "title": "Network Errors / Drops",
+      "datasource": {
+        "type": "prometheus",
+        "uid": "effpfi5egefwgf"
+      },
+      "gridPos": {
+        "h": 8,
+        "w": 8,
+        "x": 8,
+        "y": 44
+      },
+      "targets": [
+        {
+          "refId": "A",
+          "expr": "sum by (device) (rate(node_network_receive_errs_total{node=\"router\",device!~\"lo|ifb.*\"}[$__rate_interval]) + rate(node_network_transmit_errs_total{node=\"router\",device!~\"lo|ifb.*\"}[$__rate_interval]))",
+          "legendFormat": "{{device}} errors/s"
+        },
+        {
+          "refId": "B",
+          "expr": "sum by (device) (rate(node_network_receive_drop_total{node=\"router\",device!~\"lo|ifb.*\"}[$__rate_interval]) + rate(node_network_transmit_drop_total{node=\"router\",device!~\"lo|ifb.*\"}[$__rate_interval]))",
+          "legendFormat": "{{device}} drops/s"
+        }
+      ],
+      "fieldConfig": {
+        "defaults": {
+          "unit": "ops"
+        },
+        "overrides": []
+      },
+      "options": {
+        "legend": {
+          "displayMode": "list",
+          "placement": "bottom"
+        }
+      }
+    },
+    {
+      "type": "timeseries",
+      "title": "DNS Response Latency (p95)",
+      "datasource": {
+        "type": "prometheus",
+        "uid": "effpfi5egefwgf"
+      },
+      "gridPos": {
+        "h": 8,
+        "w": 8,
+        "x": 16,
+        "y": 44
+      },
+      "targets": [
+        {
+          "refId": "A",
+          "expr": "histogram_quantile(0.95, sum by (le) (rate(coredns_dns_request_duration_seconds_bucket{instance=~\"192\\.168\\.8\\.1.*|router.*\"}[$__rate_interval])))",
+          "legendFormat": "coredns p95"
+        },
+        {
+          "refId": "B",
+          "expr": "histogram_quantile(0.95, sum by (le) (rate(adguard_dns_query_duration_seconds_bucket{instance=~\"192\\.168\\.8\\.1.*|router.*\"}[$__rate_interval])))",
+          "legendFormat": "adguard p95"
+        },
+        {
+          "refId": "C",
+          "expr": "avg_over_time(probe_duration_seconds{job=~\".*dns.*\",instance=~\"192\\.168\\.8\\.1.*|router.*\"}[5m])",
+          "legendFormat": "probe avg"
+        }
+      ],
+      "fieldConfig": {
+        "defaults": {
+          "unit": "s"
+        },
+        "overrides": []
+      },
+      "options": {
+        "legend": {
+          "displayMode": "list",
+          "placement": "bottom"
+        }
+      }
+    }
+  ]
+}

@@ -1,8 +1,7 @@
-{
-  lib,
-  config,
-  pkgs,
-  ...
+{ lib
+, config
+, pkgs
+, ...
 }:
 with lib;
 let
@@ -52,44 +51,44 @@ in
           };
         };
         cameras = {
-          cam01 = {
-            ffmpeg.inputs = [
-              {
-                path = "rtsp://idrisr:123456789@cam01.idrisr.com/stream1";
-                roles = [
-                  "detect"
-                  "record"
-                ];
-                hwaccel_args = "preset-vaapi";
-              }
-            ];
-          };
+          # cam01 = {
+          # ffmpeg.inputs = [
+          # {
+          # path = "rtsp://idrisr:123456789@cam01.idrisr.com/stream1";
+          # roles = [
+          # "detect"
+          # "record"
+          # ];
+          # hwaccel_args = "preset-vaapi";
+          # }
+          # ];
+          # };
 
-          cam02 = {
-            ffmpeg.inputs = [
-              {
-                path = "rtsp://idrisr:123456789@cam02.idrisr.com/stream1";
-                roles = [
-                  "detect"
-                  "record"
-                ];
-                hwaccel_args = "preset-vaapi";
-              }
-            ];
-          };
+          # cam02 = {
+          # ffmpeg.inputs = [
+          # {
+          # path = "rtsp://idrisr:123456789@cam02.idrisr.com/stream1";
+          # roles = [
+          # "detect"
+          # "record"
+          # ];
+          # hwaccel_args = "preset-vaapi";
+          # }
+          # ];
+          # };
 
-          cam03 = {
-            ffmpeg.inputs = [
-              {
-                path = "rtsp://idrisr:123456789@cam03.idrisr.com:554/stream1";
-                roles = [
-                  "detect"
-                  "record"
-                ];
-                hwaccel_args = "preset-vaapi";
-              }
-            ];
-          };
+          # cam03 = {
+          # ffmpeg.inputs = [
+          # {
+          # path = "rtsp://idrisr:123456789@cam03.idrisr.com:554/stream1";
+          # roles = [
+          # "detect"
+          # "record"
+          # ];
+          # hwaccel_args = "preset-vaapi";
+          # }
+          # ];
+          # };
         };
       };
     };

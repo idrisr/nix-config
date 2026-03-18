@@ -23,7 +23,7 @@ in
   config = mkIf cfg.enable {
     nvidia-gpu.enable = true;
     services.open-webui = {
-      enable = true;
+      enable = false;
       host = "0.0.0.0";
       port = 13221;
       openFirewall = true;

@@ -9,7 +9,6 @@
       pipewire.airpods.enable = true;
       pipewire.airpods.deviceName = "bluez_card.58_0A_D4_EB_A7_4B";
       vikunja.enable = false;
-      printer.enable = true;
       clientnode.enable = true;
     };
     borg-backup-client.enable = true;

@@ -31,7 +31,7 @@ in
     environment.systemPackages = with pkgs; [
       nvtopPackages.nvidia
       # prometheus-dcgm-exporter
-      dcgm
+      # dcgm
     ];
 
     # Enable OpenGL

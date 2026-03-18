@@ -19,6 +19,7 @@ in
     environment.etc = {
       "grafana-dashboards/node-fleet-overview.json".source = ./dashboards/node-fleet-overview.json;
       "grafana-dashboards/node-host-basic.json".source = ./dashboards/node-host-basic.json;
+      "grafana-dashboards/router-overview.json".source = ./dashboards/router-overview.json;
       "grafana-dashboards/gpu-fft-node.json".source = ./dashboards/gpu-fft-node.json;
       "grafana-dashboards/laptop-batteries.json".source = ./dashboards/laptop-batteries.json;
       "grafana-dashboards/mac-mini-overview.json".source = ./dashboards/mac-mini-overview.json;
