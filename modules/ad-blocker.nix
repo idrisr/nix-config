@@ -58,7 +58,7 @@ in
                 answer = "192.168.8.224";
               }
               {
-                domain = "router.idrisraja.com";
+                domain = "mealie.idrisraja.com";
                 answer = "192.168.8.224";
               }
               {

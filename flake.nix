@@ -5,6 +5,11 @@
     flake-parts.url = "github:hercules-ci/flake-parts";
     import-tree.url = "github:vic/import-tree";
     nixos-hardware.url = "github:nixos/nixos-hardware";
+    idris-pkgs = {
+      url = "github:idrisr/idris-pkgs";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
     nixvim = {
       url = "github:nix-community/nixvim";
     };

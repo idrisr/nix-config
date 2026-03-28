@@ -34,6 +34,7 @@ in
       ../../modules/jellyfin.nix
       ../../modules/kmonad
       ../../modules/locate
+      ../../modules/mealie
       ../../modules/mitmproxy
       ../../modules/nh
       ../../modules/nix-index

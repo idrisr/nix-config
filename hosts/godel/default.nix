@@ -9,6 +9,8 @@
   config = {
     my.base.enable = true;
     my.printer.enable = true;
+    my.mealie.enable = true;
+
     my."initrd-remote-unlock".enable = true;
     unifi.enable = true;
     networking.adblocker.enable = true;
@@ -89,21 +91,12 @@
           };
         };
 
-        "router1.idrisraja.com" = {
+        "mealie.idrisraja.com" = {
           forceSSL = true;
           sslCertificate = "/etc/letsencrypt/live/idrisraja.com/fullchain.pem";
           sslCertificateKey = "/etc/letsencrypt/live/idrisraja.com/privkey.pem";
           locations."/" = {
-            proxyPass = "http://192.168.8.1";
-          };
-        };
-
-        "router2.idrisraja.com" = {
-          forceSSL = true;
-          sslCertificate = "/etc/letsencrypt/live/idrisraja.com/fullchain.pem";
-          sslCertificateKey = "/etc/letsencrypt/live/idrisraja.com/privkey.pem";
-          locations."/" = {
-            proxyPass = "http://192.168.8.2";
+            proxyPass = "http://127.0.0.1:9000";
           };
         };
       };
