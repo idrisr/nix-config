@@ -36,6 +36,7 @@ in
       ../../modules/locate
       ../../modules/mealie
       ../../modules/mitmproxy
+      ../../modules/navidrome.nix
       ../../modules/nh
       ../../modules/nix-index
       ../../modules/nvidia

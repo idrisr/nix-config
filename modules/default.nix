@@ -21,6 +21,7 @@
     ./initrd-remote-unlock.nix
     ./kmonad
     ./locate
+    ./navidrome.nix
     ./opnsense-backup
     ./nh
     ./nvidia

@@ -1,6 +1,5 @@
 { config
 , lib
-, pkgs
 , modulesPath
 , ...
 }: {
@@ -10,6 +9,7 @@
     my.base.enable = true;
     my.printer.enable = true;
     my.mealie.enable = true;
+    my.navidrome.enable = true;
 
     my."initrd-remote-unlock".enable = true;
     unifi.enable = true;
@@ -18,6 +18,11 @@
       hashedPassword = "$y$j9T$BowmS9BT0LZ5WNT1V4Day1$dae0REqJAJuNehr7b3Uj3Zy.dToJ30mwOqugbA39b02";
     };
     my.prometheus-server.enable = true;
+
+    services.zfs.autoScrub = {
+      enable = true;
+      interval = "weekly";
+    };
 
     networking.firewall.allowedTCPPorts = [ 80 443 ];
     services.nginx = {
@@ -99,11 +104,22 @@
             proxyPass = "http://127.0.0.1:9000";
           };
         };
+
+        "navidrome.idrisraja.com" = {
+          forceSSL = true;
+          sslCertificate = "/etc/letsencrypt/live/idrisraja.com/fullchain.pem";
+          sslCertificateKey = "/etc/letsencrypt/live/idrisraja.com/privkey.pem";
+          locations."/" = {
+            proxyPass = "http://127.0.0.1:4533";
+            proxyWebsockets = true;
+          };
+        };
       };
     };
 
 
     boot = {
+      supportedFilesystems = [ "zfs" ];
       kernelParams = [ "reboot=pci" ];
       initrd = {
         availableKernelModules = [ "xhci_pci" "thunderbolt" "nvme" "usb_storage" "sd_mod" "igc" ];
@@ -134,6 +150,7 @@
     networking = {
       useDHCP = true;
       hostName = "godel";
+      hostId = "2af3cd91";
     };
 
     nixpkgs.hostPlatform = lib.mkDefault "x86_64-linux";

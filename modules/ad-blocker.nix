@@ -62,6 +62,10 @@ in
                 answer = "192.168.8.224";
               }
               {
+                domain = "navidrome.idrisraja.com";
+                answer = "192.168.8.224";
+              }
+              {
                 domain = "prometheus.idrisraja.com";
                 answer = "192.168.8.224";
               }
