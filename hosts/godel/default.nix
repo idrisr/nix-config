@@ -1,6 +1,8 @@
 { config
 , lib
 , modulesPath
+, pkgs
+, inputs
 , ...
 }: {
   imports = [ (modulesPath + "/installer/scan/not-detected.nix") ];
@@ -10,6 +12,7 @@
     my.printer.enable = true;
     my.mealie.enable = true;
     my.navidrome.enable = true;
+    my.slskd.enable = true;
 
     my."initrd-remote-unlock".enable = true;
     unifi.enable = true;
@@ -18,6 +21,17 @@
       hashedPassword = "$y$j9T$BowmS9BT0LZ5WNT1V4Day1$dae0REqJAJuNehr7b3Uj3Zy.dToJ30mwOqugbA39b02";
     };
     my.prometheus-server.enable = true;
+
+    home-manager = {
+      useGlobalPkgs = true;
+      useUserPackages = true;
+      extraSpecialArgs = {
+        inherit inputs;
+        graphical = false;
+        pkgs = pkgs;
+      };
+      users.hippoid = import (inputs."home-config" + "/home.nix");
+    };
 
     services.zfs.autoScrub = {
       enable = true;
@@ -112,6 +126,15 @@
           locations."/" = {
             proxyPass = "http://127.0.0.1:4533";
             proxyWebsockets = true;
+          };
+        };
+
+        "slskd.idrisraja.com" = {
+          forceSSL = true;
+          sslCertificate = "/etc/letsencrypt/live/idrisraja.com/fullchain.pem";
+          sslCertificateKey = "/etc/letsencrypt/live/idrisraja.com/privkey.pem";
+          locations."/" = {
+            proxyPass = "http://127.0.0.1:5030";
           };
         };
       };

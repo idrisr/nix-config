@@ -55,6 +55,7 @@ in
       ../../modules/redmine.nix
       ../../modules/rustdesk
       ../../modules/sdr
+      ../../modules/slskd.nix
       ../../modules/superdrive.nix
       ../../modules/syncthing
       ../../modules/tailscale

@@ -37,6 +37,7 @@
     ./tailscale/client.nix
     ./tailscale/server.nix
     ./sdr
+    ./slskd.nix
     ./superdrive.nix
     ./syncthing
     ./unifi
