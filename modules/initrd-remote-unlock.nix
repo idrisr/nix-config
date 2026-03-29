@@ -2,7 +2,6 @@
 let
   cfg = config.my."initrd-remote-unlock";
   # systemd-tty-ask-password-agent --watch
-  # systemctl status systemd-cryptsetup@crypted.service --no-pager
   # ls /dev/pool/root
   # systemctl start initrd-switch-root.target
 in
