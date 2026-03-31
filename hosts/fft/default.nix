@@ -1,4 +1,5 @@
-{ pkgs
+{ lib
+, pkgs
 , inputs
 , ...
 }: {
@@ -11,6 +12,7 @@
 
   config = {
     nvidia-gpu.enable = true;
+    my.printer.enable = true;
     ollama.enable = true;
     my.base.enable = true;
     my."initrd-remote-unlock".enable = true;
@@ -20,6 +22,8 @@
     nvr.enable = true;
     my.borgrepo.enable = true;
     my.servernode.enable = false;
+    programs.hyprland.enable = lib.mkForce false;
+    services.greetd.enable = lib.mkForce false;
     networking.firewall.allowedTCPPorts = [ 80 443 ];
 
     services.nix-serve = {

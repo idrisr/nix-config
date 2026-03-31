@@ -9,9 +9,9 @@
 
   config = {
     my.base.enable = true;
-    my.printer.enable = true;
     my.mealie.enable = true;
     my.navidrome.enable = true;
+    my.audiobookshelf.enable = true;
     my.slskd.enable = true;
 
     my."initrd-remote-unlock".enable = true;
@@ -135,6 +135,16 @@
           sslCertificateKey = "/etc/letsencrypt/live/idrisraja.com/privkey.pem";
           locations."/" = {
             proxyPass = "http://127.0.0.1:5030";
+          };
+        };
+
+        "audiobookshelf.idrisraja.com" = {
+          forceSSL = true;
+          sslCertificate = "/etc/letsencrypt/live/idrisraja.com/fullchain.pem";
+          sslCertificateKey = "/etc/letsencrypt/live/idrisraja.com/privkey.pem";
+          locations."/" = {
+            proxyPass = "http://127.0.0.1:8000";
+            proxyWebsockets = true;
           };
         };
       };

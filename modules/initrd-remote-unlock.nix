@@ -2,7 +2,6 @@
 let
   cfg = config.my."initrd-remote-unlock";
   # systemd-tty-ask-password-agent --watch
-  # ls /dev/pool/root
   # systemctl start initrd-switch-root.target
 in
 {
@@ -25,6 +24,11 @@ in
   };
 
   config = lib.mkIf cfg.enable {
+    boot.kernelParams = [
+      "rd.luks.options=tries=0,timeout=0"
+      "rd.systemd.device-timeout=0"
+    ];
+
     boot.initrd = {
       network = {
         enable = true;
