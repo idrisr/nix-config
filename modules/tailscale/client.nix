@@ -1,11 +1,11 @@
-{
-  config,
-  lib,
-  ...
+{ config
+, lib
+, ...
 }:
 with lib; let
   cfg = config.my.clientnode;
-in {
+in
+{
   options = {
     my.clientnode = {
       enable = mkOption {
@@ -22,7 +22,7 @@ in {
     services.tailscale = {
       enable = true;
       useRoutingFeatures = "client";
-      extraSetFlags = ["--accept-routes"];
+      extraSetFlags = [ "--accept-routes" ];
     };
   };
 }

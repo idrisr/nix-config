@@ -13,6 +13,8 @@
   config = {
     nvidia-gpu.enable = true;
     my.printer.enable = true;
+    my.printer.local.enable = true;
+    my.printServer.enable = true;
     ollama.enable = true;
     my.base.enable = true;
     my."initrd-remote-unlock".enable = true;

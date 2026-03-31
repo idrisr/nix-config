@@ -3,6 +3,8 @@
   config = {
     my = {
       base.enable = true;
+      printer.enable = true;
+      printer.serverHost = "192.168.8.231";
       opnsenseBackup.enable = true;
       pinchflat.enable = false;
       pipewire.enable = true;
