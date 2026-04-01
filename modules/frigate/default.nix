@@ -169,29 +169,11 @@ in
               position = "tr";
               format = "RTSP Cam 01 %m/%d/%Y %H:%M:%S";
             };
-            detect = {
-              width = 720;
-              height = 1280;
-            };
             ffmpeg = {
-              hwaccel_args = [ ];
-              output_args = {
-                record = "preset-record-generic";
-                detect = [
-                  "-threads"
-                  "2"
-                  "-f"
-                  "rawvideo"
-                  "-pix_fmt"
-                  "yuv420p"
-                  "-vf"
-                  "transpose=2,fps=5,scale=720:1280"
-                ];
-              };
+              output_args.record = "preset-record-generic";
               inputs = [
                 {
                   path = "rtsp://idrisr:12345678@192.168.30.201:554/stream1";
-                  input_args = "preset-rtsp-udp";
                   roles = [ "detect" "record" ];
                 }
               ];
