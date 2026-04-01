@@ -89,6 +89,10 @@ in
                 domain = "homeassistant.idrisraja.com";
                 answer = "192.168.8.224";
               }
+              {
+                domain = "sdr.idrisraja.com";
+                answer = "192.168.8.224";
+              }
             ];
           };
         };

@@ -65,6 +65,15 @@
             proxyWebsockets = true;
           };
         };
+        "sdr.idrisraja.com" = {
+          forceSSL = true;
+          sslCertificate = "/etc/letsencrypt/live/idrisraja.com/fullchain.pem";
+          sslCertificateKey = "/etc/letsencrypt/live/idrisraja.com/privkey.pem";
+          locations."/" = {
+            proxyPass = "http://192.168.8.231:8073";
+            proxyWebsockets = true;
+          };
+        };
         "jellyfin.idrisraja.com" = {
           forceSSL = true;
           sslCertificate = "/etc/letsencrypt/live/idrisraja.com/fullchain.pem";
