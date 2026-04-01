@@ -15,6 +15,7 @@
     my.navidrome.enable = true;
     my.audiobookshelf.enable = true;
     my.slskd.enable = true;
+    home-assistant.enable = true;
 
     my."initrd-remote-unlock".enable = true;
     unifi.enable = true;
@@ -156,6 +157,16 @@
           sslCertificateKey = "/etc/letsencrypt/live/idrisraja.com/privkey.pem";
           locations."/" = {
             proxyPass = "http://192.168.8.231:80";
+            proxyWebsockets = true;
+          };
+        };
+
+        "homeassistant.idrisraja.com" = {
+          forceSSL = true;
+          sslCertificate = "/etc/letsencrypt/live/idrisraja.com/fullchain.pem";
+          sslCertificateKey = "/etc/letsencrypt/live/idrisraja.com/privkey.pem";
+          locations."/" = {
+            proxyPass = "http://127.0.0.1:8123";
             proxyWebsockets = true;
           };
         };

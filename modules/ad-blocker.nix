@@ -85,6 +85,10 @@ in
                 domain = "frigate.idrisraja.com";
                 answer = "192.168.8.224";
               }
+              {
+                domain = "homeassistant.idrisraja.com";
+                answer = "192.168.8.224";
+              }
             ];
           };
         };
