@@ -31,3 +31,13 @@ scrape_configs:
         labels:
           node: router
           role: router
+
+  - job_name: frigate-fft
+    metrics_path: /metrics
+    scrape_interval: 15s
+    static_configs:
+      - targets: ['192.168.8.231:9187']
+        labels:
+          node: fft
+          role: nvr
+          service: frigate

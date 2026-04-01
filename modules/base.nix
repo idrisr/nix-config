@@ -33,7 +33,7 @@ in
             auto-optimise-store = true;
             allow-import-from-derivation = true;
             substituters = [
-              "http://fft:5000"
+              "http://fft:5949"
               "https://cache.nixos.org"
             ];
             trusted-public-keys = [

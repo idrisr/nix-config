@@ -81,6 +81,10 @@ in
                 domain = "grafana.idrisraja.com";
                 answer = "192.168.8.224";
               }
+              {
+                domain = "frigate.idrisraja.com";
+                answer = "192.168.8.224";
+              }
             ];
           };
         };

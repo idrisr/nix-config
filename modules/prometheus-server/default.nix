@@ -23,6 +23,7 @@ in
       "grafana-dashboards/gpu-fft-node.json".source = ./dashboards/gpu-fft-node.json;
       "grafana-dashboards/laptop-batteries.json".source = ./dashboards/laptop-batteries.json;
       "grafana-dashboards/mac-mini-overview.json".source = ./dashboards/mac-mini-overview.json;
+      "grafana-dashboards/frigate-overview.json".source = ./dashboards/frigate-overview.json;
     };
 
     services.grafana = {

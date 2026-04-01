@@ -1,0 +1,310 @@
+{
+  "id": null,
+  "uid": "frigate-overview",
+  "title": "Frigate - Overview",
+  "tags": [
+    "frigate",
+    "nvr",
+    "prometheus"
+  ],
+  "timezone": "browser",
+  "schemaVersion": 41,
+  "version": 0,
+  "refresh": "15s",
+  "time": {
+    "from": "now-6h",
+    "to": "now"
+  },
+  "templating": {
+    "list": [
+      {
+        "name": "camera",
+        "type": "query",
+        "datasource": {
+          "type": "prometheus",
+          "uid": "effpfi5egefwgf"
+        },
+        "definition": "label_values(frigate_camera_fps{job=\"frigate-fft\"}, camera_name)",
+        "query": {
+          "query": "label_values(frigate_camera_fps{job=\"frigate-fft\"}, camera_name)",
+          "refId": "VarCamera"
+        },
+        "refresh": 2,
+        "includeAll": true,
+        "multi": true,
+        "current": {
+          "selected": true,
+          "text": "All",
+          "value": [
+            "$__all"
+          ]
+        }
+      },
+      {
+        "name": "detector",
+        "type": "query",
+        "datasource": {
+          "type": "prometheus",
+          "uid": "effpfi5egefwgf"
+        },
+        "definition": "label_values(frigate_detector_inference_speed_seconds{job=\"frigate-fft\"}, name)",
+        "query": {
+          "query": "label_values(frigate_detector_inference_speed_seconds{job=\"frigate-fft\"}, name)",
+          "refId": "VarDetector"
+        },
+        "refresh": 2,
+        "includeAll": true,
+        "multi": true,
+        "current": {
+          "selected": true,
+          "text": "All",
+          "value": [
+            "$__all"
+          ]
+        }
+      },
+      {
+        "name": "label",
+        "type": "query",
+        "datasource": {
+          "type": "prometheus",
+          "uid": "effpfi5egefwgf"
+        },
+        "definition": "label_values(frigate_camera_events{job=\"frigate-fft\"}, label)",
+        "query": {
+          "query": "label_values(frigate_camera_events{job=\"frigate-fft\"}, label)",
+          "refId": "VarLabel"
+        },
+        "refresh": 2,
+        "includeAll": true,
+        "multi": true,
+        "current": {
+          "selected": true,
+          "text": "All",
+          "value": [
+            "$__all"
+          ]
+        }
+      }
+    ]
+  },
+  "panels": [
+    {
+      "id": 1,
+      "type": "stat",
+      "title": "Frigate Up",
+      "gridPos": { "h": 4, "w": 6, "x": 0, "y": 0 },
+      "datasource": { "type": "prometheus", "uid": "effpfi5egefwgf" },
+      "targets": [
+        {
+          "refId": "A",
+          "expr": "max(up{job=\"frigate-fft\"})"
+        }
+      ],
+      "fieldConfig": {
+        "defaults": {
+          "min": 0,
+          "max": 1,
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              { "color": "red", "value": null },
+              { "color": "green", "value": 1 }
+            ]
+          }
+        },
+        "overrides": []
+      }
+    },
+    {
+      "id": 2,
+      "type": "stat",
+      "title": "Service Uptime",
+      "gridPos": { "h": 4, "w": 6, "x": 6, "y": 0 },
+      "datasource": { "type": "prometheus", "uid": "effpfi5egefwgf" },
+      "targets": [
+        {
+          "refId": "A",
+          "expr": "max(frigate_service_uptime_seconds{job=\"frigate-fft\"})"
+        }
+      ],
+      "fieldConfig": {
+        "defaults": {
+          "unit": "s"
+        },
+        "overrides": []
+      }
+    },
+    {
+      "id": 3,
+      "type": "stat",
+      "title": "Total Camera FPS",
+      "gridPos": { "h": 4, "w": 6, "x": 12, "y": 0 },
+      "datasource": { "type": "prometheus", "uid": "effpfi5egefwgf" },
+      "targets": [
+        {
+          "refId": "A",
+          "expr": "sum(frigate_camera_fps{job=\"frigate-fft\",camera_name=~\"$camera\"})"
+        }
+      ],
+      "fieldConfig": {
+        "defaults": {
+          "unit": "fps"
+        },
+        "overrides": []
+      }
+    },
+    {
+      "id": 4,
+      "type": "stat",
+      "title": "Total Detection FPS",
+      "gridPos": { "h": 4, "w": 6, "x": 18, "y": 0 },
+      "datasource": { "type": "prometheus", "uid": "effpfi5egefwgf" },
+      "targets": [
+        {
+          "refId": "A",
+          "expr": "sum(frigate_detection_fps{job=\"frigate-fft\",camera_name=~\"$camera\"})"
+        }
+      ],
+      "fieldConfig": {
+        "defaults": {
+          "unit": "fps"
+        },
+        "overrides": []
+      }
+    },
+    {
+      "id": 5,
+      "type": "timeseries",
+      "title": "Camera FPS by Camera",
+      "gridPos": { "h": 8, "w": 12, "x": 0, "y": 4 },
+      "datasource": { "type": "prometheus", "uid": "effpfi5egefwgf" },
+      "targets": [
+        {
+          "refId": "A",
+          "expr": "frigate_camera_fps{job=\"frigate-fft\",camera_name=~\"$camera\"}",
+          "legendFormat": "{{camera_name}}"
+        }
+      ]
+    },
+    {
+      "id": 6,
+      "type": "timeseries",
+      "title": "Detection FPS by Camera",
+      "gridPos": { "h": 8, "w": 12, "x": 12, "y": 4 },
+      "datasource": { "type": "prometheus", "uid": "effpfi5egefwgf" },
+      "targets": [
+        {
+          "refId": "A",
+          "expr": "frigate_detection_fps{job=\"frigate-fft\",camera_name=~\"$camera\"}",
+          "legendFormat": "{{camera_name}}"
+        }
+      ]
+    },
+    {
+      "id": 7,
+      "type": "timeseries",
+      "title": "Skipped FPS by Camera",
+      "gridPos": { "h": 8, "w": 12, "x": 0, "y": 12 },
+      "datasource": { "type": "prometheus", "uid": "effpfi5egefwgf" },
+      "targets": [
+        {
+          "refId": "A",
+          "expr": "frigate_skipped_fps{job=\"frigate-fft\",camera_name=~\"$camera\"}",
+          "legendFormat": "{{camera_name}}"
+        }
+      ]
+    },
+    {
+      "id": 8,
+      "type": "timeseries",
+      "title": "Detector Inference (ms)",
+      "gridPos": { "h": 8, "w": 12, "x": 12, "y": 12 },
+      "datasource": { "type": "prometheus", "uid": "effpfi5egefwgf" },
+      "targets": [
+        {
+          "refId": "A",
+          "expr": "1000 * frigate_detector_inference_speed_seconds{job=\"frigate-fft\",name=~\"$detector\"}",
+          "legendFormat": "{{name}}"
+        }
+      ],
+      "fieldConfig": {
+        "defaults": {
+          "unit": "ms"
+        },
+        "overrides": []
+      }
+    },
+    {
+      "id": 9,
+      "type": "timeseries",
+      "title": "Event Rate (events/sec)",
+      "gridPos": { "h": 8, "w": 12, "x": 0, "y": 20 },
+      "datasource": { "type": "prometheus", "uid": "effpfi5egefwgf" },
+      "targets": [
+        {
+          "refId": "A",
+          "expr": "sum by (camera, label) (rate(frigate_camera_events{job=\"frigate-fft\",camera=~\"$camera\",label=~\"$label\"}[$__rate_interval]))",
+          "legendFormat": "{{camera}} {{label}}"
+        }
+      ]
+    },
+    {
+      "id": 10,
+      "type": "stat",
+      "title": "Storage Used %",
+      "gridPos": { "h": 8, "w": 6, "x": 12, "y": 20 },
+      "datasource": { "type": "prometheus", "uid": "effpfi5egefwgf" },
+      "targets": [
+        {
+          "refId": "A",
+          "expr": "100 * sum(frigate_storage_used_bytes{job=\"frigate-fft\"}) / sum(frigate_storage_total_bytes{job=\"frigate-fft\"})"
+        }
+      ],
+      "fieldConfig": {
+        "defaults": {
+          "unit": "percent",
+          "min": 0,
+          "max": 100,
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              { "color": "green", "value": null },
+              { "color": "orange", "value": 80 },
+              { "color": "red", "value": 90 }
+            ]
+          }
+        },
+        "overrides": []
+      }
+    },
+    {
+      "id": 11,
+      "type": "timeseries",
+      "title": "Frigate CPU % by Process",
+      "gridPos": { "h": 8, "w": 24, "x": 0, "y": 28 },
+      "datasource": { "type": "prometheus", "uid": "effpfi5egefwgf" },
+      "targets": [
+        {
+          "refId": "A",
+          "expr": "sum by (process) (frigate_cpu_usage_percent{job=\"frigate-fft\"})",
+          "legendFormat": "{{process}}"
+        }
+      ]
+    },
+    {
+      "id": 12,
+      "type": "timeseries",
+      "title": "Frigate Memory % by Process",
+      "gridPos": { "h": 8, "w": 24, "x": 0, "y": 36 },
+      "datasource": { "type": "prometheus", "uid": "effpfi5egefwgf" },
+      "targets": [
+        {
+          "refId": "A",
+          "expr": "sum by (process) (frigate_mem_usage_percent{job=\"frigate-fft\"})",
+          "legendFormat": "{{process}}"
+        }
+      ]
+    }
+  ]
+}

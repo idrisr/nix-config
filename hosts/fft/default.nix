@@ -11,27 +11,58 @@
   ];
 
   config = {
+    my = {
+      printer.enable = true;
+      printer.local.enable = true;
+      printServer.enable = true;
+      base.enable = true;
+      "initrd-remote-unlock".enable = true;
+      anki.enable = true;
+      jellyfin.enable = true;
+      immich.enable = true;
+      borgrepo.enable = true;
+      servernode.enable = false;
+    };
+
     nvidia-gpu.enable = true;
-    my.printer.enable = true;
-    my.printer.local.enable = true;
-    my.printServer.enable = true;
     ollama.enable = true;
-    my.base.enable = true;
-    my."initrd-remote-unlock".enable = true;
-    my.anki.enable = true;
-    my.jellyfin.enable = true;
-    my.immich.enable = true;
     nvr.enable = true;
-    my.borgrepo.enable = true;
-    my.servernode.enable = false;
     programs.hyprland.enable = lib.mkForce false;
     services.greetd.enable = lib.mkForce false;
-    networking.firewall.allowedTCPPorts = [ 80 443 ];
+    networking.firewall.allowedTCPPorts = [ 80 443 9187 ];
+
+    services.nginx = {
+      enable = true;
+      virtualHosts."frigate-metrics" = {
+        listen = [
+          {
+            addr = "0.0.0.0";
+            port = 9187;
+          }
+          {
+            addr = "[::]";
+            port = 9187;
+          }
+        ];
+
+        locations."/metrics" = {
+          proxyPass = "http://127.0.0.1:5000/api/metrics";
+          extraConfig = ''
+            allow 192.168.8.0/24;
+            allow 127.0.0.1;
+            deny all;
+          '';
+        };
+
+        locations."/".return = "404";
+      };
+    };
 
     services.nix-serve = {
       enable = true;
       secretKeyFile = "/var/lib/nix-serve/cache-priv-key.pem";
       openFirewall = true;
+      port = 5949;
     };
 
     environment.systemPackages = with pkgs; [
