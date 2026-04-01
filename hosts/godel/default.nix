@@ -9,6 +9,8 @@
 
   config = {
     my.base.enable = true;
+    my.mediamtxWebcam.enable = true;
+    my.mediamtxWebcam.videoDevice = "/dev/video1";
     my.mealie.enable = true;
     my.navidrome.enable = true;
     my.audiobookshelf.enable = true;

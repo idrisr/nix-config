@@ -22,7 +22,7 @@ in
 
   config = mkIf cfg.enable {
     hardware.coral.pcie.enable = true;
-    users.users.frigate.extraGroups = [ "coral" ];
+    users.users.frigate.extraGroups = [ "coral" "video" ];
 
     systemd.services.frigate.serviceConfig.TimeoutStopSec = "20s";
 
@@ -39,6 +39,9 @@ in
           enabled = true;
           host = "mqtt.local";
         };
+
+        ffmpeg.hwaccel_args = "preset-nvidia";
+
         auth = {
           enabled = true;
           session_length = 604800;
@@ -80,7 +83,75 @@ in
         };
 
         cameras = {
+          fft_usb_cam = {
+            friendly_name = "FFT USB Cam";
+            timestamp_style = {
+              position = "tr";
+              format = "FFT USB Cam %m/%d/%Y %H:%M:%S";
+            };
+            detect = {
+              width = 720;
+              height = 1280;
+            };
+            ffmpeg = {
+              hwaccel_args = [ ];
+              output_args = {
+                record = "preset-record-generic";
+                detect = [
+                  "-threads"
+                  "2"
+                  "-f"
+                  "rawvideo"
+                  "-pix_fmt"
+                  "yuv420p"
+                  "-vf"
+                  "transpose=1,fps=5,scale=720:1280"
+                ];
+              };
+              inputs = [
+                {
+                  path = "/dev/v4l/by-id/usb-USB_Webcam_USB_Webcam_SN0001-video-index0";
+                  input_args = [
+                    "-f"
+                    "v4l2"
+                    "-thread_queue_size"
+                    "512"
+                    "-input_format"
+                    "mjpeg"
+                    "-framerate"
+                    "10"
+                    "-video_size"
+                    "1280x720"
+                  ];
+                  roles = [ "detect" "record" ];
+                }
+              ];
+            };
+          };
+
+          godel_cam = {
+            friendly_name = "Godel Cam";
+            timestamp_style = {
+              position = "tr";
+              format = "Godel Cam %m/%d/%Y %H:%M:%S";
+            };
+            ffmpeg = {
+              output_args.record = "preset-record-generic";
+              inputs = [
+                {
+                  path = "rtsp://192.168.8.224:8554/cam";
+                  roles = [ "detect" "record" ];
+                }
+              ];
+            };
+          };
+
           cam02 = {
+            friendly_name = "RTSP Cam 02";
+            timestamp_style = {
+              position = "tr";
+              format = "RTSP Cam 02 %m/%d/%Y %H:%M:%S";
+            };
             ffmpeg = {
               output_args.record = "preset-record-generic";
               inputs = [
@@ -93,11 +164,34 @@ in
           };
 
           cam01 = {
+            friendly_name = "RTSP Cam 01";
+            timestamp_style = {
+              position = "tr";
+              format = "RTSP Cam 01 %m/%d/%Y %H:%M:%S";
+            };
+            detect = {
+              width = 720;
+              height = 1280;
+            };
             ffmpeg = {
-              output_args.record = "preset-record-generic";
+              hwaccel_args = [ ];
+              output_args = {
+                record = "preset-record-generic";
+                detect = [
+                  "-threads"
+                  "2"
+                  "-f"
+                  "rawvideo"
+                  "-pix_fmt"
+                  "yuv420p"
+                  "-vf"
+                  "transpose=2,fps=5,scale=720:1280"
+                ];
+              };
               inputs = [
                 {
                   path = "rtsp://idrisr:12345678@192.168.30.201:554/stream1";
+                  input_args = "preset-rtsp-udp";
                   roles = [ "detect" "record" ];
                 }
               ];

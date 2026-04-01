@@ -9,7 +9,7 @@
   ],
   "timezone": "browser",
   "schemaVersion": 41,
-  "version": 0,
+  "version": 1,
   "refresh": "15s",
   "time": {
     "from": "now-6h",
@@ -303,6 +303,34 @@
           "refId": "A",
           "expr": "sum by (process) (frigate_mem_usage_percent{job=\"frigate-fft\"})",
           "legendFormat": "{{process}}"
+        }
+      ]
+    },
+    {
+      "id": 13,
+      "type": "timeseries",
+      "title": "Godel Cam FPS",
+      "gridPos": { "h": 7, "w": 12, "x": 0, "y": 44 },
+      "datasource": { "type": "prometheus", "uid": "effpfi5egefwgf" },
+      "targets": [
+        {
+          "refId": "A",
+          "expr": "frigate_camera_fps{job=\"frigate-fft\",camera_name=\"godel_cam\"}",
+          "legendFormat": "godel_cam"
+        }
+      ]
+    },
+    {
+      "id": 14,
+      "type": "timeseries",
+      "title": "Godel Cam Detection FPS",
+      "gridPos": { "h": 7, "w": 12, "x": 12, "y": 44 },
+      "datasource": { "type": "prometheus", "uid": "effpfi5egefwgf" },
+      "targets": [
+        {
+          "refId": "A",
+          "expr": "frigate_detection_fps{job=\"frigate-fft\",camera_name=\"godel_cam\"}",
+          "legendFormat": "godel_cam"
         }
       ]
     }

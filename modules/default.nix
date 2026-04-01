@@ -21,6 +21,7 @@
     ./initrd-remote-unlock.nix
     ./kmonad
     ./locate
+    ./mediamtx-webcam
     ./navidrome.nix
     ./opnsense-backup
     ./nh

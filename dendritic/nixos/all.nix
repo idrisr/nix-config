@@ -34,6 +34,7 @@ in
       ../../modules/jellyfin.nix
       ../../modules/kmonad
       ../../modules/locate
+      ../../modules/mediamtx-webcam
       ../../modules/mealie
       ../../modules/mitmproxy
       ../../modules/navidrome.nix
