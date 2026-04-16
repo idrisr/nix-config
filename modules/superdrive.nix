@@ -1,11 +1,12 @@
-{
-  config,
-  lib,
-  pkgs,
-  ...
-}: let
+{ config
+, lib
+, pkgs
+, ...
+}:
+let
   cfg = config.hardware.superdrive;
-in {
+in
+{
   options = {
     hardware.superdrive = {
       enable = lib.mkOption {
@@ -22,9 +23,9 @@ in {
   };
 
   config = lib.mkIf cfg.enable {
-    environment.systemPackages = with pkgs; [sg3_utils];
+    environment.systemPackages = with pkgs; [ sg3_utils ];
     services.udev.extraRules = ''
-      ACTION=="add", ATTRS{idProduct}=="1500", ATTRS{idVendor}=="05ac",
-      DRIVERS=="usb", RUN+="${pkgs.sg3_utils}/bin/sg_raw /dev/$kernel EA 00 00 00 00 00 01"'';
+      ACTION=="add", ATTRS{idProduct}=="1500", ATTRS{idVendor}=="05ac", DRIVERS=="usb", RUN+="${pkgs.sg3_utils}/bin/sg_raw /dev/%k EA 00 00 00 00 00 01"
+    '';
   };
 }

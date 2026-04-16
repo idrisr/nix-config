@@ -33,6 +33,7 @@ in
       ../../modules/initrd-remote-unlock.nix
       ../../modules/jellyfin.nix
       ../../modules/kmonad
+      ../../modules/platform-io
       ../../modules/locate
       ../../modules/mediamtx-webcam
       ../../modules/mealie

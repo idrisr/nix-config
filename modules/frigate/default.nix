@@ -22,7 +22,10 @@ in
 
   config = mkIf cfg.enable {
     hardware.coral.pcie.enable = true;
-    users.users.frigate.extraGroups = [ "coral" "video" ];
+    users.users.frigate.extraGroups = [
+      "coral"
+      "video"
+    ];
 
     systemd.services.frigate.serviceConfig.TimeoutStopSec = "20s";
 
@@ -64,7 +67,9 @@ in
           fps = 5;
         };
 
-        objects.track = [ "person" "car" "dog" "cat" ];
+        objects.track = [
+          "person"
+        ];
 
         snapshots = {
           enabled = true;
@@ -96,7 +101,27 @@ in
             ffmpeg = {
               hwaccel_args = [ ];
               output_args = {
-                record = "preset-record-generic";
+                record = [
+                  "-f"
+                  "segment"
+                  "-segment_time"
+                  "10"
+                  "-segment_format"
+                  "mp4"
+                  "-reset_timestamps"
+                  "1"
+                  "-strftime"
+                  "1"
+                  "-c:v"
+                  "libx264"
+                  "-preset"
+                  "veryfast"
+                  "-profile:v"
+                  "main"
+                  "-pix_fmt"
+                  "yuv420p"
+                  "-an"
+                ];
                 detect = [
                   "-threads"
                   "2"
@@ -123,7 +148,10 @@ in
                     "-video_size"
                     "1280x720"
                   ];
-                  roles = [ "detect" "record" ];
+                  roles = [
+                    "detect"
+                    "record"
+                  ];
                 }
               ];
             };
@@ -140,7 +168,10 @@ in
               inputs = [
                 {
                   path = "rtsp://192.168.8.224:8554/cam";
-                  roles = [ "detect" "record" ];
+                  roles = [
+                    "detect"
+                    "record"
+                  ];
                 }
               ];
             };
@@ -157,7 +188,10 @@ in
               inputs = [
                 {
                   path = "rtsp://idrisr:12345678@192.168.30.202:554/stream1";
-                  roles = [ "detect" "record" ];
+                  roles = [
+                    "detect"
+                    "record"
+                  ];
                 }
               ];
             };
@@ -174,7 +208,10 @@ in
               inputs = [
                 {
                   path = "rtsp://idrisr:12345678@192.168.30.201:554/stream1";
-                  roles = [ "detect" "record" ];
+                  roles = [
+                    "detect"
+                    "record"
+                  ];
                 }
               ];
             };

@@ -5,6 +5,7 @@
 }:
 with lib; let
   cfg = config.sdr;
+  mhz = x: x * 1000 * 1000;
 in
 {
   options = {
@@ -137,54 +138,84 @@ in
         port = ${toString cfg.web.port}
       '';
     };
-    environment.etc."openwebrx/settings.bootstrap.json" = mkIf cfg.web.enable {
-      text = builtins.toJSON {
-        sdrs = {
-          rtlsdr = {
-            name = "RTL-SDR USB Stick";
-            type = "rtl_sdr";
-            profiles = {
-              am_broadcast = {
-                name = "AM Broadcast";
-                center_freq = 1200000;
-                samp_rate = 2048000;
-                start_freq = 720000;
-                start_mod = "am";
-                rf_gain = 20;
-                direct_sampling = 2;
-              };
-              ord_tower = {
-                name = "ORD Tower";
-                center_freq = 121000000;
-                samp_rate = 2400000;
-                start_freq = 120750000;
-                start_mod = "am";
-                rf_gain = 29;
-                direct_sampling = 0;
-              };
-              ord_approach = {
-                name = "ORD Approach";
-                center_freq = 133500000;
-                samp_rate = 2400000;
-                start_freq = 133625000;
-                start_mod = "am";
-                rf_gain = 29;
-                direct_sampling = 0;
-              };
-              fm_broadcast = {
-                name = "FM Broadcast";
-                center_freq = 93100000;
-                samp_rate = 2400000;
-                start_freq = 93100000;
-                start_mod = "wfm";
-                rf_gain = 20;
-                direct_sampling = 0;
+    environment.etc."openwebrx/settings.bootstrap.json" =
+      mkIf cfg.web.enable {
+        text = builtins.toJSON {
+          sdrs = {
+            rtlsdr = {
+              name = "RTL-SDR USB Stick";
+              type = "rtl_sdr";
+
+              profiles = {
+                am_broadcast = {
+                  name = "AM Broadcast";
+                  center_freq = 1200000;
+                  samp_rate = 2048000;
+                  start_freq = 720000;
+                  start_mod = "am";
+                  rf_gain = 20;
+                  direct_sampling = 2;
+                };
+                ord_tower = {
+                  name = "ORD Tower AM 133.625";
+                  samp_rate = 1024000;
+                  start_freq = mhz 133.625;
+                  center_freq = mhz 133.625;
+                  start_mod = "am";
+                  rf_gain = 37;
+                  direct_sampling = 0;
+                };
+                ord_approach =
+                  {
+                    name = "ORD Approach AM 120.750";
+                    samp_rate = 1024000;
+                    start_freq = mhz 120.75;
+                    center_freq = mhz 120.75;
+                    start_mod = "am";
+                    rf_gain = 37;
+                    direct_sampling = 0;
+                  };
+
+                fm_broadcast =
+                  let freq = mhz 93.1;
+                  in {
+                    name = "xrt";
+                    center_freq = freq;
+                    samp_rate = 2400000;
+                    start_freq = freq;
+                    start_mod = "wfm";
+                    rf_gain = 20;
+                    direct_sampling = 0;
+                  };
+
+                npr_broadcast =
+                  let freq = mhz 91.5;
+                  in {
+                    name = "npr";
+                    center_freq = freq;
+                    samp_rate = 2400000;
+                    start_freq = freq;
+                    start_mod = "wfm";
+                    rf_gain = 20;
+                    direct_sampling = 0;
+                  };
+
+                noaa_broadcast =
+                  let freq = mhz 162.55; in
+                  {
+                    name = "noaa";
+                    center_freq = freq;
+                    samp_rate = 2400000;
+                    start_freq = freq;
+                    start_mod = "wfm";
+                    rf_gain = 20;
+                    direct_sampling = 0;
+                  };
               };
             };
           };
         };
       };
-    };
 
     systemd.services.openwebrx = mkIf cfg.web.enable {
       preStart = ''
@@ -223,6 +254,18 @@ in
             if profile_name not in settings_profiles:
                 settings_profiles[profile_name] = profile
                 changed = True
+                continue
+
+            current_profile = settings_profiles.get(profile_name)
+            if not isinstance(current_profile, dict):
+                settings_profiles[profile_name] = profile
+                changed = True
+                continue
+
+            for key, value in profile.items():
+                if current_profile.get(key) != value:
+                    current_profile[key] = value
+                    changed = True
 
         if changed:
             with open(settings_path, "w", encoding="utf-8") as f:
