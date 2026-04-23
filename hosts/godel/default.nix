@@ -1,10 +1,12 @@
-{ config
-, lib
-, modulesPath
-, pkgs
-, inputs
-, ...
-}: {
+{
+  config,
+  lib,
+  modulesPath,
+  pkgs,
+  inputs,
+  ...
+}:
+{
   imports = [ (modulesPath + "/installer/scan/not-detected.nix") ];
 
   config = {
@@ -12,6 +14,13 @@
     my.mediamtxWebcam.enable = true;
     my.mediamtxWebcam.videoDevice = "/dev/video1";
     my.mealie.enable = true;
+    my.music-assistant.enable = true;
+    services.music-assistant.providers = [
+      "opensubsonic"
+      "dlna"
+      "airplay"
+      "sendspin"
+    ];
     my.navidrome.enable = true;
     my.audiobookshelf.enable = true;
     my.slskd.enable = true;
@@ -41,7 +50,10 @@
       interval = "weekly";
     };
 
-    networking.firewall.allowedTCPPorts = [ 80 443 ];
+    networking.firewall.allowedTCPPorts = [
+      80
+      443
+    ];
     services.nginx = {
       enable = true;
       recommendedGzipSettings = true;
@@ -141,6 +153,16 @@
           };
         };
 
+        "musicassistant.idrisraja.com" = {
+          forceSSL = true;
+          sslCertificate = "/etc/letsencrypt/live/idrisraja.com/fullchain.pem";
+          sslCertificateKey = "/etc/letsencrypt/live/idrisraja.com/privkey.pem";
+          locations."/" = {
+            proxyPass = "http://127.0.0.1:8095";
+            proxyWebsockets = true;
+          };
+        };
+
         "slskd.idrisraja.com" = {
           forceSSL = true;
           sslCertificate = "/etc/letsencrypt/live/idrisraja.com/fullchain.pem";
@@ -182,12 +204,18 @@
       };
     };
 
-
     boot = {
       supportedFilesystems = [ "zfs" ];
       kernelParams = [ "reboot=pci" ];
       initrd = {
-        availableKernelModules = [ "xhci_pci" "thunderbolt" "nvme" "usb_storage" "sd_mod" "igc" ];
+        availableKernelModules = [
+          "xhci_pci"
+          "thunderbolt"
+          "nvme"
+          "usb_storage"
+          "sd_mod"
+          "igc"
+        ];
         luks.devices."myvol" = {
           device = "/dev/disk/by-uuid/1004a810-9d15-4e13-b82e-e6cb48f4fd8b";
         };
@@ -208,7 +236,10 @@
       "/boot" = {
         device = "/dev/disk/by-uuid/2010-27F2";
         fsType = "vfat";
-        options = [ "fmask=0077" "dmask=0077" ];
+        options = [
+          "fmask=0077"
+          "dmask=0077"
+        ];
       };
     };
 
@@ -219,8 +250,7 @@
     };
 
     nixpkgs.hostPlatform = lib.mkDefault "x86_64-linux";
-    hardware.cpu.intel.updateMicrocode =
-      lib.mkDefault config.hardware.enableRedistributableFirmware;
+    hardware.cpu.intel.updateMicrocode = lib.mkDefault config.hardware.enableRedistributableFirmware;
     system.stateVersion = "25.11"; # Did you read the comment?
   };
 }

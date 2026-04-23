@@ -43,7 +43,7 @@ in
           host = "mqtt.local";
         };
 
-        ffmpeg.hwaccel_args = "preset-nvidia";
+        ffmpeg.hwaccel_args = [ ];
 
         auth = {
           enabled = true;
@@ -113,9 +113,9 @@ in
                   "-strftime"
                   "1"
                   "-c:v"
-                  "libx264"
+                  "h264_nvenc"
                   "-preset"
-                  "veryfast"
+                  "p5"
                   "-profile:v"
                   "main"
                   "-pix_fmt"
@@ -148,66 +148,6 @@ in
                     "-video_size"
                     "1280x720"
                   ];
-                  roles = [
-                    "detect"
-                    "record"
-                  ];
-                }
-              ];
-            };
-          };
-
-          godel_cam = {
-            friendly_name = "Godel Cam";
-            timestamp_style = {
-              position = "tr";
-              format = "Godel Cam %m/%d/%Y %H:%M:%S";
-            };
-            ffmpeg = {
-              output_args.record = "preset-record-generic";
-              inputs = [
-                {
-                  path = "rtsp://192.168.8.224:8554/cam";
-                  roles = [
-                    "detect"
-                    "record"
-                  ];
-                }
-              ];
-            };
-          };
-
-          cam02 = {
-            friendly_name = "RTSP Cam 02";
-            timestamp_style = {
-              position = "tr";
-              format = "RTSP Cam 02 %m/%d/%Y %H:%M:%S";
-            };
-            ffmpeg = {
-              output_args.record = "preset-record-generic";
-              inputs = [
-                {
-                  path = "rtsp://idrisr:12345678@192.168.30.202:554/stream1";
-                  roles = [
-                    "detect"
-                    "record"
-                  ];
-                }
-              ];
-            };
-          };
-
-          cam01 = {
-            friendly_name = "RTSP Cam 01";
-            timestamp_style = {
-              position = "tr";
-              format = "RTSP Cam 01 %m/%d/%Y %H:%M:%S";
-            };
-            ffmpeg = {
-              output_args.record = "preset-record-generic";
-              inputs = [
-                {
-                  path = "rtsp://idrisr:12345678@192.168.30.201:554/stream1";
                   roles = [
                     "detect"
                     "record"

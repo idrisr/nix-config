@@ -1,4 +1,5 @@
-{ inputs, ... }: {
+{ inputs, ... }:
+{
   config = { };
   options = { };
   imports = [
@@ -22,6 +23,7 @@
     ./kmonad
     ./locate
     ./mediamtx-webcam
+    ./music-assistant.nix
     ./navidrome.nix
     ./opnsense-backup
     ./nh

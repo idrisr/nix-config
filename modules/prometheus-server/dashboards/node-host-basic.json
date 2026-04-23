@@ -39,8 +39,8 @@
       },
       "targets": [
         {
-          "expr": "100 - (avg by (instance) (rate(node_cpu_seconds_total{mode=\"idle\",instance=~\"$instance\"}[$__rate_interval])) * 100)",
-          "legendFormat": "{{instance}}",
+          "expr": "label_replace(100 - (avg by (instance) (rate(node_cpu_seconds_total{mode=\"idle\",instance=~\"$instance\"}[$__rate_interval])) * 100), \"host\", \"$1\", \"instance\", \"([^:]+):.*\")",
+          "legendFormat": "{{host}}",
           "refId": "A"
         }
       ],
@@ -85,8 +85,8 @@
       },
       "targets": [
         {
-          "expr": "(1 - (sum by (instance) (node_memory_MemAvailable_bytes{instance=~\"$instance\",instance!=\"mini:9100\"} or node_memory_free_bytes{instance=~\"$instance\",instance!=\"mini:9100\"}) / sum by (instance) (node_memory_MemTotal_bytes{instance=~\"$instance\",instance!=\"mini:9100\"} or node_memory_total_bytes{instance=~\"$instance\",instance!=\"mini:9100\"}))) * 100",
-          "legendFormat": "{{instance}}",
+          "expr": "label_replace((1 - (sum by (instance) (node_memory_MemAvailable_bytes{instance=~\"$instance\",instance!=\"mini:9100\"} or node_memory_free_bytes{instance=~\"$instance\",instance!=\"mini:9100\"}) / sum by (instance) (node_memory_MemTotal_bytes{instance=~\"$instance\",instance!=\"mini:9100\"} or node_memory_total_bytes{instance=~\"$instance\",instance!=\"mini:9100\"}))) * 100, \"host\", \"$1\", \"instance\", \"([^:]+):.*\")",
+          "legendFormat": "{{host}}",
           "refId": "A"
         }
       ],
@@ -131,8 +131,8 @@
       },
       "targets": [
         {
-          "expr": "(1 - (node_filesystem_avail_bytes{mountpoint=\"/\",fstype!~\"tmpfs|overlay\",instance=~\"$instance\"} / node_filesystem_size_bytes{mountpoint=\"/\",fstype!~\"tmpfs|overlay\",instance=~\"$instance\"})) * 100",
-          "legendFormat": "{{instance}}",
+          "expr": "label_replace((1 - (node_filesystem_avail_bytes{mountpoint=\"/\",fstype!~\"tmpfs|overlay\",instance=~\"$instance\"} / node_filesystem_size_bytes{mountpoint=\"/\",fstype!~\"tmpfs|overlay\",instance=~\"$instance\"})) * 100, \"host\", \"$1\", \"instance\", \"([^:]+):.*\")",
+          "legendFormat": "{{host}}",
           "refId": "A"
         }
       ],
@@ -158,8 +158,8 @@
       },
       "targets": [
         {
-          "expr": "sum by (instance) (rate(node_network_receive_bytes_total{device!=\"lo\",instance=~\"$instance\"}[$__rate_interval]))",
-          "legendFormat": "{{instance}}",
+          "expr": "label_replace(sum by (instance) (rate(node_network_receive_bytes_total{device!=\"lo\",instance=~\"$instance\"}[$__rate_interval])), \"host\", \"$1\", \"instance\", \"([^:]+):.*\")",
+          "legendFormat": "{{host}}",
           "refId": "A"
         }
       ],
@@ -185,8 +185,8 @@
       },
       "targets": [
         {
-          "expr": "sum by (instance) (rate(node_network_transmit_bytes_total{device!=\"lo\",instance=~\"$instance\"}[$__rate_interval]))",
-          "legendFormat": "{{instance}}",
+          "expr": "label_replace(sum by (instance) (rate(node_network_transmit_bytes_total{device!=\"lo\",instance=~\"$instance\"}[$__rate_interval])), \"host\", \"$1\", \"instance\", \"([^:]+):.*\")",
+          "legendFormat": "{{host}}",
           "refId": "A"
         }
       ],
@@ -222,7 +222,7 @@
         "h": 8,
         "w": 8,
         "x": 16,
-        "y": 8
+        "y": 30
       },
       "options": {
         "colorMode": "value",
@@ -239,8 +239,8 @@
       },
       "targets": [
         {
-          "expr": "up{job=~\"node($|-.*)\",instance=~\"$instance\"}",
-          "legendFormat": "{{instance}}",
+          "expr": "label_replace(up{job=~\"node($|-.*)\",instance=~\"$instance\"}, \"host\", \"$1\", \"instance\", \"([^:]+):.*\")",
+          "legendFormat": "{{host}}",
           "refId": "A"
         }
       ],
@@ -296,8 +296,8 @@
       },
       "targets": [
         {
-          "expr": "100 * (1 - (node_filesystem_avail_bytes{fstype!~\"tmpfs|overlay|squashfs\",mountpoint!~\"/run(/.*)?\",instance=~\"$instance\"} / node_filesystem_size_bytes{fstype!~\"tmpfs|overlay|squashfs\",mountpoint!~\"/run(/.*)?\",instance=~\"$instance\"}))",
-          "legendFormat": "{{instance}} {{mountpoint}}",
+          "expr": "label_replace(100 * (1 - (node_filesystem_avail_bytes{fstype!~\"tmpfs|overlay|squashfs\",mountpoint!~\"/run(/.*)?\",instance=~\"$instance\"} / node_filesystem_size_bytes{fstype!~\"tmpfs|overlay|squashfs\",mountpoint!~\"/run(/.*)?\",instance=~\"$instance\"})), \"host\", \"$1\", \"instance\", \"([^:]+):.*\")",
+          "legendFormat": "{{host}} {{mountpoint}}",
           "refId": "A"
         }
       ],
@@ -321,12 +321,12 @@
             },
             "indexByName": {
               "Value": 3,
-              "instance": 1,
+              "host": 1,
               "mountpoint": 2
             },
             "renameByName": {
               "Value": "Used %",
-              "instance": "Instance",
+              "host": "Instance",
               "mountpoint": "Mountpoint"
             }
           }
@@ -379,8 +379,8 @@
       },
       "targets": [
         {
-          "expr": "node_time_seconds{instance=~\"$instance\"} - node_boot_time_seconds{instance=~\"$instance\"}",
-          "legendFormat": "{{instance}}",
+          "expr": "label_replace(node_time_seconds{instance=~\"$instance\"} - node_boot_time_seconds{instance=~\"$instance\"}, \"host\", \"$1\", \"instance\", \"([^:]+):.*\")",
+          "legendFormat": "{{host}}",
           "refId": "A"
         }
       ],
@@ -420,8 +420,8 @@
       },
       "targets": [
         {
-          "expr": "node_load1{instance=~\"$instance\"}",
-          "legendFormat": "{{instance}}",
+          "expr": "label_replace(node_load1{instance=~\"$instance\"}, \"host\", \"$1\", \"instance\", \"([^:]+):.*\")",
+          "legendFormat": "{{host}}",
           "refId": "A"
         }
       ],
@@ -461,8 +461,8 @@
       },
       "targets": [
         {
-          "expr": "node_load5{instance=~\"$instance\"}",
-          "legendFormat": "{{instance}}",
+          "expr": "label_replace(node_load5{instance=~\"$instance\"}, \"host\", \"$1\", \"instance\", \"([^:]+):.*\")",
+          "legendFormat": "{{host}}",
           "refId": "A"
         }
       ],
@@ -508,8 +508,8 @@
       "id": 1005,
       "targets": [
         {
-          "expr": "nvidia_smi_utilization_gpu_ratio{instance=~\"$instance\"} * 100",
-          "legendFormat": "{{instance}} {{uuid}}",
+          "expr": "(label_replace(nvidia_smi_utilization_gpu_ratio, \"host\", \"$1\", \"instance\", \"([^:]+):.*\") and on(host) label_replace(up{job=~\"node($|-.*)\",instance=~\"$instance\"}, \"host\", \"$1\", \"instance\", \"([^:]+):.*\")) * 100",
+          "legendFormat": "{{host}} {{uuid}}",
           "refId": "A"
         }
       ],
@@ -536,8 +536,8 @@
       "id": 1006,
       "targets": [
         {
-          "expr": "nvidia_smi_memory_used_bytes{instance=~\"$instance\"}",
-          "legendFormat": "{{instance}} {{uuid}}",
+          "expr": "label_replace(nvidia_smi_memory_used_bytes, \"host\", \"$1\", \"instance\", \"([^:]+):.*\") and on(host) label_replace(up{job=~\"node($|-.*)\",instance=~\"$instance\"}, \"host\", \"$1\", \"instance\", \"([^:]+):.*\")",
+          "legendFormat": "{{host}} {{uuid}}",
           "refId": "A"
         }
       ],
@@ -560,15 +560,15 @@
               },
               {
                 "color": "yellow",
-                "value": 75
+                "value": 167
               },
               {
                 "color": "red",
-                "value": 85
+                "value": 185
               }
             ]
           },
-          "unit": "celsius"
+          "unit": "fahrenheit"
         },
         "overrides": []
       },
@@ -576,17 +576,22 @@
         "h": 8,
         "w": 8,
         "x": 16,
-        "y": 30
+        "y": 8
       },
       "id": 1007,
       "targets": [
         {
-          "expr": "nvidia_smi_temperature_gpu{instance=~\"$instance\"}",
-          "legendFormat": "{{instance}} {{uuid}}",
+          "expr": "(label_replace(nvidia_smi_temperature_gpu, \"host\", \"$1\", \"instance\", \"([^:]+):.*\") and on(host) label_replace(up{job=~\"node($|-.*)\",instance=~\"$instance\"}, \"host\", \"$1\", \"instance\", \"([^:]+):.*\")) * 9 / 5 + 32",
+          "legendFormat": "{{host}} gpu",
           "refId": "A"
+        },
+        {
+          "expr": "label_replace(max by (instance) (node_hwmon_temp_celsius{instance=~\"$instance\"} or (node_thermal_zone_temp{instance=~\"$instance\"} / 1000)), \"host\", \"$1\", \"instance\", \"([^:]+):.*\") * 9 / 5 + 32",
+          "legendFormat": "{{host}} host max",
+          "refId": "B"
         }
       ],
-      "title": "GPU Temperature",
+      "title": "Temperature (GPU + Host Max)",
       "type": "timeseries"
     },
     {
@@ -636,8 +641,8 @@
       },
       "targets": [
         {
-          "expr": "nvidia_smi_command_exit_code{instance=~\"$instance\"} == bool 0",
-          "legendFormat": "{{instance}}",
+          "expr": "(label_replace(nvidia_smi_command_exit_code, \"host\", \"$1\", \"instance\", \"([^:]+):.*\") == bool 0) and on(host) label_replace(up{job=~\"node($|-.*)\",instance=~\"$instance\"}, \"host\", \"$1\", \"instance\", \"([^:]+):.*\")",
+          "legendFormat": "{{host}}",
           "refId": "A"
         }
       ],

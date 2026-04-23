@@ -32,6 +32,7 @@
     programs.hyprland.enable = lib.mkForce false;
     services.greetd.enable = lib.mkForce false;
     networking.firewall.allowedTCPPorts = [ 80 443 9187 ];
+    nix.gc.options = lib.mkForce "--delete-older-than 45d";
 
     services.nginx = {
       enable = true;

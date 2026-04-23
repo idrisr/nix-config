@@ -1,12 +1,14 @@
 { inputs, ... }:
 let
-  nixpkgsConfig = { lib, ... }: {
-    nixpkgs = {
-      hostPlatform = lib.mkDefault "x86_64-linux";
-      overlays = [ inputs."home-config".overlays.default ];
-      config.allowUnfree = true;
+  nixpkgsConfig =
+    { lib, ... }:
+    {
+      nixpkgs = {
+        hostPlatform = lib.mkDefault "x86_64-linux";
+        overlays = [ inputs."home-config".overlays.default ];
+        config.allowUnfree = true;
+      };
     };
-  };
 in
 {
   flake.modules.nixos.all = {
@@ -38,6 +40,7 @@ in
       ../../modules/mediamtx-webcam
       ../../modules/mealie
       ../../modules/mitmproxy
+      ../../modules/music-assistant.nix
       ../../modules/navidrome.nix
       ../../modules/nh
       ../../modules/nix-index

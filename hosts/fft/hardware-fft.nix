@@ -34,7 +34,7 @@
           };
         };
       };
-      kernelModules = [ "kvm-amd" ];
+      kernelModules = [ "kvm-amd" "nct6775" ];
       extraModulePackages = [ ];
     };
 
