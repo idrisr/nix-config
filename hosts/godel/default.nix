@@ -201,6 +201,17 @@
             proxyWebsockets = true;
           };
         };
+
+        "esphome.idrisraja.com" = {
+          forceSSL = true;
+          sslCertificate = "/etc/letsencrypt/live/idrisraja.com/fullchain.pem";
+          sslCertificateKey = "/etc/letsencrypt/live/idrisraja.com/privkey.pem";
+          locations."/" = {
+            proxyPass = "http://192.168.8.231:6052";
+            proxyWebsockets = true;
+          };
+        };
+
       };
     };
 

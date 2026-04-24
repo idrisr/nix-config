@@ -12,6 +12,7 @@
     ./desktop.nix
     ./docker
     ./droidcam
+    ./esphome
     ./fprintd
     ./frigate
     ./home-assistant

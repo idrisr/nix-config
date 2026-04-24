@@ -20,6 +20,11 @@
       anki.enable = true;
       jellyfin.enable = true;
       immich.enable = true;
+      esphome = {
+        enable = true;
+        address = "0.0.0.0";
+        openFirewall = true;
+      };
       borgrepo.enable = true;
       servernode.enable = false;
     };

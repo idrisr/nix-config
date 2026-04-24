@@ -26,6 +26,7 @@ in
       ../../modules/desktop.nix
       ../../modules/docker
       ../../modules/droidcam
+      ../../modules/esphome
       ../../modules/fprintd
       ../../modules/frigate
       ../../modules/home-assistant
