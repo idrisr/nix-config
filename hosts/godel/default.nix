@@ -32,6 +32,8 @@
     users.users.root = {
       hashedPassword = "$y$j9T$BowmS9BT0LZ5WNT1V4Day1$dae0REqJAJuNehr7b3Uj3Zy.dToJ30mwOqugbA39b02";
     };
+    users.groups.hippoid = { };
+    users.users.hippoid.extraGroups = [ "hippoid" ];
     my.prometheus-server.enable = true;
 
     home-manager = {
