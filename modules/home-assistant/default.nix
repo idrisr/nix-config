@@ -100,6 +100,7 @@ in
         "bluetooth_adapters"
         # Components required to complete the onboarding
         "esphome"
+        "hue"
         "met"
         "radio_browser"
         "reolink"
