@@ -47,6 +47,7 @@
     ./unifi
     ./virtualization
     ./vikunja
+    ./wifi-iperf-monitor
 
     inputs.disko.nixosModules.default
   ];

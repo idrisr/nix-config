@@ -35,6 +35,10 @@
     users.groups.hippoid = { };
     users.users.hippoid.extraGroups = [ "hippoid" ];
     my.prometheus-server.enable = true;
+    services.iperf3 = {
+      enable = true;
+      openFirewall = true;
+    };
 
     home-manager = {
       useGlobalPkgs = true;

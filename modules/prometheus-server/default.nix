@@ -12,22 +12,22 @@ let
       - name: wan-speedtest
         rules:
           - alert: WanSpeedtestNoRecentRun
-            expr: time() - timestamp(wan_speedtest_success{job="wan_speedtest"}) > 1800
+            expr: time() - timestamp(wan_speedtest_success{job="wan_speedtest"}) > 5400
             for: 10m
             labels:
               severity: critical
             annotations:
               summary: "WAN speedtest has not reported recently"
-              description: "No WAN speedtest metric update has been seen for more than 30 minutes on {{ $labels.instance }}."
+              description: "No WAN speedtest metric update has been seen for more than 90 minutes on {{ $labels.instance }}."
 
           - alert: WanSpeedtestFailures
-            expr: max_over_time(wan_speedtest_success{job="wan_speedtest"}[30m]) < 1
+            expr: max_over_time(wan_speedtest_success{job="wan_speedtest"}[2h]) < 1
             for: 15m
             labels:
               severity: warning
             annotations:
               summary: "WAN speedtest runner is failing"
-              description: "WAN speedtest has not succeeded in the last 30 minutes on {{ $labels.instance }}."
+              description: "WAN speedtest has not succeeded in the last 2 hours on {{ $labels.instance }}."
 
           - alert: WanDownloadLow
             expr: avg_over_time(wan_down_mbps{job="wan_speedtest"}[1h]) < 80
@@ -39,22 +39,22 @@ let
               description: "Average WAN download speed over the last hour is below 80 Mbps on {{ $labels.instance }}."
 
           - alert: WanLatencyHigh
-            expr: avg_over_time(wan_ping_ms{job="wan_speedtest"}[30m]) > 60
+            expr: avg_over_time(wan_ping_ms{job="wan_speedtest"}[2h]) > 60
             for: 15m
             labels:
               severity: warning
             annotations:
               summary: "WAN latency is elevated"
-              description: "Average WAN latency over the last 30 minutes is above 60 ms on {{ $labels.instance }}."
+              description: "Average WAN latency over the last 2 hours is above 60 ms on {{ $labels.instance }}."
 
           - alert: WanPacketLossHigh
-            expr: avg_over_time(packet_loss{job="wan_speedtest"}[30m]) > 1
+            expr: avg_over_time(packet_loss{job="wan_speedtest"}[2h]) > 1
             for: 15m
             labels:
               severity: warning
             annotations:
               summary: "WAN packet loss is elevated"
-              description: "Average WAN packet loss over the last 30 minutes is above 1% on {{ $labels.instance }}."
+              description: "Average WAN packet loss over the last 2 hours is above 1% on {{ $labels.instance }}."
   '';
   runWanSpeedtest = pkgs.writeShellApplication {
     name = "wan-speedtest-runner";
@@ -182,7 +182,10 @@ in
       "grafana-dashboards/mac-mini-overview.json".source = ./dashboards/mac-mini-overview.json;
       "grafana-dashboards/frigate-overview.json".source = ./dashboards/frigate-overview.json;
       "grafana-dashboards/wan-speedtest.json".source = ./dashboards/wan-speedtest.json;
+      "grafana-dashboards/wifi-throughput.json".source = ./dashboards/wifi-throughput.json;
     };
+
+    networking.firewall.allowedTCPPorts = [ 9091 ];
 
     systemd.services.wan-speedtest = {
       description = "Run WAN speed test and export metrics";
@@ -201,10 +204,10 @@ in
     };
 
     systemd.timers.wan-speedtest = {
-      description = "Run WAN speed test every 10 minutes";
+      description = "Run WAN speed test every hour";
       wantedBy = [ "timers.target" ];
       timerConfig = {
-        OnCalendar = "*:0/10";
+        OnCalendar = "hourly";
         Persistent = true;
         RandomizedDelaySec = "45s";
         Unit = "wan-speedtest.service";
@@ -273,7 +276,7 @@ in
     services.prometheus.pushgateway = {
       enable = true;
       persistMetrics = true;
-      web.listen-address = "127.0.0.1:9091";
+      web.listen-address = "0.0.0.0:9091";
     };
   };
 }

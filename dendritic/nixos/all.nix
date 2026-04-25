@@ -70,6 +70,7 @@ in
       ../../modules/unifi
       ../../modules/vikunja
       ../../modules/virtualization
+      ../../modules/wifi-iperf-monitor
     ];
   };
 }

@@ -1,4 +1,5 @@
-{ pkgs, ... }: {
+{ pkgs, ... }:
+{
   imports = [ ./hardware-framework.nix ];
   config = {
     my = {
@@ -13,6 +14,13 @@
       pipewire.airpods.deviceName = "bluez_card.58_0A_D4_EB_A7_4B";
       vikunja.enable = false;
       clientnode.enable = true;
+      wifi-iperf-monitor = {
+        enable = true;
+        serverHost = "192.168.8.224";
+        pushgatewayUrl = "http://192.168.8.224:9091";
+        pingHost = "192.168.8.224";
+        interval = "30m";
+      };
     };
     borg-backup-client.enable = true;
     virtualization.enable = true;
