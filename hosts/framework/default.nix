@@ -9,6 +9,7 @@
       printer.serverHost = "192.168.8.231";
       opnsenseBackup.enable = true;
       pinchflat.enable = false;
+      kavita.enable = false;
       pipewire.enable = true;
       pipewire.airpods.enable = true;
       pipewire.airpods.deviceName = "bluez_card.58_0A_D4_EB_A7_4B";
@@ -45,6 +46,7 @@
       systemd-boot.enable = true;
       efi.canTouchEfiVariables = true;
     };
+    nix.settings.max-jobs = 0;
     networking.firewall.enable = false;
     programs.noisetorch.enable = true;
     environment = {

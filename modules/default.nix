@@ -21,6 +21,7 @@
     ./jellyfin.nix
     ./immich
     ./initrd-remote-unlock.nix
+    ./kavita
     ./kmonad
     ./locate
     ./mediamtx-webcam

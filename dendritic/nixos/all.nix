@@ -35,6 +35,7 @@ in
       ../../modules/immich
       ../../modules/initrd-remote-unlock.nix
       ../../modules/jellyfin.nix
+      ../../modules/kavita
       ../../modules/kmonad
       ../../modules/platform-io
       ../../modules/locate
