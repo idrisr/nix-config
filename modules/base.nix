@@ -62,6 +62,16 @@ in
             ]
             ++ lib.optional (config.networking.hostName != "fft") {
               hostName = "fft";
+              system = "aarch64-linux";
+              protocol = "ssh-ng";
+              sshUser = "hippoid";
+              maxJobs = 4;
+              speedFactor = 3;
+              supportedFeatures = [ "big-parallel" ];
+              sshKey = "/home/hippoid/.ssh/id_ed25519";
+            }
+            ++ lib.optional (config.networking.hostName != "fft") {
+              hostName = "fft";
               system = "x86_64-linux";
               protocol = "ssh-ng";
               sshUser = "hippoid";

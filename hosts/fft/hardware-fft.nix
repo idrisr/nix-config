@@ -10,6 +10,7 @@
 
   config = {
     boot = {
+      binfmt.emulatedSystems = [ "aarch64-linux" ];
       kernelParams = [ "console=ttyS0,115200" "console=tty1" ];
       loader = {
         systemd-boot.enable = true;
@@ -37,6 +38,8 @@
       kernelModules = [ "kvm-amd" "nct6775" ];
       extraModulePackages = [ ];
     };
+
+    nix.settings.extra-platforms = [ "aarch64-linux" ];
 
     fileSystems."/boot" = { options = [ "umask=0077" ]; };
 
