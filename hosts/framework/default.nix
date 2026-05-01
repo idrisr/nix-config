@@ -15,6 +15,10 @@
       pipewire.airpods.deviceName = "bluez_card.58_0A_D4_EB_A7_4B";
       vikunja.enable = false;
       clientnode.enable = true;
+      localHostOverrides = {
+        enable = true;
+        allHosts = true;
+      };
       wifi-iperf-monitor = {
         enable = true;
         serverHost = "192.168.8.224";

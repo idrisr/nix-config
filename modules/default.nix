@@ -23,6 +23,7 @@
     ./initrd-remote-unlock.nix
     ./kavita
     ./kmonad
+    ./local-host-overrides.nix
     ./locate
     ./mediamtx-webcam
     ./music-assistant.nix

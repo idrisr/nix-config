@@ -36,7 +36,7 @@
     nvr.enable = true;
     programs.hyprland.enable = lib.mkForce false;
     services.greetd.enable = lib.mkForce false;
-    networking.firewall.allowedTCPPorts = [ 80 443 9187 ];
+    networking.firewall.allowedTCPPorts = [ 80 443 8080 9187 ];
     nix.gc.options = lib.mkForce "--delete-older-than 45d";
 
     services.nginx = {
@@ -73,7 +73,29 @@
       port = 5949;
     };
 
+    services.atticd = {
+      enable = true;
+      environmentFile = "/var/lib/atticd/atticd.env";
+      settings = {
+        listen = "[::]:8080";
+        api-endpoint = "http://fft:8080/";
+        allowed-hosts = [ "fft:8080" "fft" ];
+      };
+    };
+
+    system.activationScripts.atticd-env = ''
+            if [ ! -e /var/lib/atticd/atticd.env ]; then
+              install -d -m 0700 /var/lib/atticd
+              token="$(${pkgs.openssl}/bin/openssl genrsa -traditional 4096 | ${pkgs.coreutils}/bin/base64 -w0)"
+              umask 0077
+              cat > /var/lib/atticd/atticd.env <<EOF
+      ATTIC_SERVER_TOKEN_RS256_SECRET_BASE64=$token
+      EOF
+            fi
+    '';
+
     environment.systemPackages = with pkgs; [
+      attic-client
       atuin
       binutils
       lego

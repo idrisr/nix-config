@@ -33,8 +33,8 @@ in
             auto-optimise-store = true;
             allow-import-from-derivation = true;
             substituters = [
-              "http://fft:5949"
               "https://cache.nixos.org"
+              "http://fft:5949"
             ];
             trusted-public-keys = [
               "fft-1:Z4OIES99LH4yrTNl3hE5/GV1+jF0Q71GX430ztn7sNg="

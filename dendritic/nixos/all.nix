@@ -37,6 +37,7 @@ in
       ../../modules/jellyfin.nix
       ../../modules/kavita
       ../../modules/kmonad
+      ../../modules/local-host-overrides.nix
       ../../modules/platform-io
       ../../modules/locate
       ../../modules/mediamtx-webcam
