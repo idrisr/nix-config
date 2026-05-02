@@ -1,4 +1,4 @@
-{ inputs, lib, modulesPath, ... }:
+{ inputs, lib, modulesPath, pkgs, ... }:
 {
   imports = [
     inputs.nixos-hardware.nixosModules.raspberry-pi-4
@@ -12,6 +12,7 @@
         "console=serial0,115200n8"
         "console=tty1"
       ];
+      kernel.sysctl."vm.mmap_rnd_bits" = 24;
       loader.generic-extlinux-compatible.enable = lib.mkDefault true;
       loader.systemd-boot.enable = lib.mkForce false;
       supportedFilesystems.zfs = lib.mkForce false;
@@ -35,6 +36,17 @@
       hostName = "rpi4";
       networkmanager.enable = true;
       useDHCP = lib.mkDefault true;
+    };
+
+    home-manager = {
+      useGlobalPkgs = true;
+      useUserPackages = true;
+      extraSpecialArgs = {
+        inherit inputs;
+        graphical = false;
+        pkgs = pkgs;
+      };
+      users.hippoid = import (inputs."home-config" + "/home.nix");
     };
 
     services.xserver.enable = lib.mkForce false;
