@@ -21,7 +21,7 @@ let
     fft.system = "x86_64-linux";
     rpi4 = {
       system = "aarch64-linux";
-      deploy.hostname = "rpi4";
+      deploy.hostname = "192.168.8.106";
     };
   };
 
