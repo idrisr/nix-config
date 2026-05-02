@@ -403,6 +403,39 @@
         },
         "overrides": []
       }
+    },
+    {
+      "id": 11,
+      "type": "timeseries",
+      "title": "Fan RPM",
+      "gridPos": {
+        "h": 8,
+        "w": 24,
+        "x": 0,
+        "y": 28
+      },
+      "datasource": {
+        "type": "prometheus",
+        "uid": "effpfi5egefwgf"
+      },
+      "targets": [
+        {
+          "refId": "A",
+          "expr": "node_hwmon_fan_rpm{instance=\"fft:9100\",chip=\"platform_nct6775_656\"} > 0",
+          "legendFormat": "{{sensor}}"
+        }
+      ],
+      "fieldConfig": {
+        "defaults": {
+          "unit": "rpm",
+          "custom": {
+            "drawStyle": "line",
+            "lineWidth": 2,
+            "fillOpacity": 10
+          }
+        },
+        "overrides": []
+      }
     }
   ]
 }

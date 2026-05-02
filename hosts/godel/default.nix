@@ -1,10 +1,9 @@
-{
-  config,
-  lib,
-  modulesPath,
-  pkgs,
-  inputs,
-  ...
+{ config
+, lib
+, modulesPath
+, pkgs
+, inputs
+, ...
 }:
 {
   imports = [ (modulesPath + "/installer/scan/not-detected.nix") ];
@@ -118,6 +117,16 @@
           sslCertificateKey = "/etc/letsencrypt/live/idrisraja.com/privkey.pem";
           locations."/" = {
             proxyPass = "http://127.0.0.1:3010";
+            proxyWebsockets = true;
+          };
+        };
+
+        "kismet.idrisraja.com" = {
+          forceSSL = true;
+          sslCertificate = "/etc/letsencrypt/live/idrisraja.com/fullchain.pem";
+          sslCertificateKey = "/etc/letsencrypt/live/idrisraja.com/privkey.pem";
+          locations."/" = {
+            proxyPass = "http://192.168.8.231:2501";
             proxyWebsockets = true;
           };
         };

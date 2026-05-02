@@ -1,9 +1,4 @@
-{
-  config,
-  lib,
-  pkgs,
-  ...
-}:
+{ config, lib, pkgs, ... }:
 with lib;
 let
   cfg = config.my.prometheus-server;
@@ -158,8 +153,7 @@ let
             echo "pushed WAN speed test metrics to pushgateway" >&2
     '';
   };
-in
-{
+in {
   options = {
     my.prometheus-server = {
       enable = mkOption {
@@ -174,29 +168,34 @@ in
 
   config = mkIf cfg.enable {
     environment.etc = {
-      "grafana-dashboards/node-fleet-overview.json".source = ./dashboards/node-fleet-overview.json;
-      "grafana-dashboards/node-host-basic.json".source = ./dashboards/node-host-basic.json;
-      "grafana-dashboards/router-overview.json".source = ./dashboards/router-overview.json;
-      "grafana-dashboards/gpu-fft-node.json".source = ./dashboards/gpu-fft-node.json;
-      "grafana-dashboards/laptop-batteries.json".source = ./dashboards/laptop-batteries.json;
-      "grafana-dashboards/mac-mini-overview.json".source = ./dashboards/mac-mini-overview.json;
-      "grafana-dashboards/frigate-overview.json".source = ./dashboards/frigate-overview.json;
-      "grafana-dashboards/wan-speedtest.json".source = ./dashboards/wan-speedtest.json;
-      "grafana-dashboards/wifi-throughput.json".source = ./dashboards/wifi-throughput.json;
+      "grafana-dashboards/node-fleet-overview.json".source =
+        ./dashboards/node-fleet-overview.json;
+      "grafana-dashboards/node-host-basic.json".source =
+        ./dashboards/node-host-basic.json;
+      "grafana-dashboards/router-overview.json".source =
+        ./dashboards/router-overview.json;
+      "grafana-dashboards/gpu-fft-node.json".source =
+        ./dashboards/gpu-fft-node.json;
+      "grafana-dashboards/laptop-batteries.json".source =
+        ./dashboards/laptop-batteries.json;
+      "grafana-dashboards/mac-mini-overview.json".source =
+        ./dashboards/mac-mini-overview.json;
+      "grafana-dashboards/frigate-overview.json".source =
+        ./dashboards/frigate-overview.json;
+      "grafana-dashboards/wan-speedtest.json".source =
+        ./dashboards/wan-speedtest.json;
+      "grafana-dashboards/wifi-bssid-monitor.json".source =
+        ./dashboards/wifi-bssid-monitor.json;
+      "grafana-dashboards/wifi-throughput.json".source =
+        ./dashboards/wifi-throughput.json;
     };
 
     networking.firewall.allowedTCPPorts = [ 9091 ];
 
     systemd.services.wan-speedtest = {
       description = "Run WAN speed test and export metrics";
-      after = [
-        "network-online.target"
-        "prometheus-pushgateway.service"
-      ];
-      wants = [
-        "network-online.target"
-        "prometheus-pushgateway.service"
-      ];
+      after = [ "network-online.target" "prometheus-pushgateway.service" ];
+      wants = [ "network-online.target" "prometheus-pushgateway.service" ];
       serviceConfig = {
         Type = "oneshot";
         ExecStart = lib.getExe runWanSpeedtest;
@@ -220,42 +219,36 @@ in
         enable = true;
         datasources.settings = {
           apiVersion = 1;
-          datasources = [
-            {
-              name = "Prometheus";
-              type = "prometheus";
-              access = "proxy";
-              url = "http://127.0.0.1:9090";
-              isDefault = true;
-              uid = "effpfi5egefwgf";
-            }
-          ];
+          datasources = [{
+            name = "Prometheus";
+            type = "prometheus";
+            access = "proxy";
+            url = "http://127.0.0.1:9090";
+            isDefault = true;
+            uid = "effpfi5egefwgf";
+          }];
         };
         dashboards.settings = {
           apiVersion = 1;
-          providers = [
-            {
-              name = "default";
-              options.path = "/etc/grafana-dashboards";
-            }
-          ];
+          providers = [{
+            name = "default";
+            options.path = "/etc/grafana-dashboards";
+          }];
         };
       };
       settings = {
         security.secret_key = "/etc/letsencrypt/live/idrisraja.com/privkey.pem";
 
-        server = {
-          http_port = 3010;
-        };
-        dashboards.default_home_dashboard_path = "/etc/grafana-dashboards/node-host-basic.json";
+        server = { http_port = 3010; };
+        dashboards.default_home_dashboard_path =
+          "/etc/grafana-dashboards/node-host-basic.json";
         analytics.reporting_enabled = false;
       };
     };
     services.prometheus = {
       enable = true;
-      configText =
-        builtins.replaceStrings [ "__WAN_SPEEDTEST_RULES__" ] [ (toString wanSpeedtestRules) ]
-          (builtins.readFile ./prometheus.yml);
+      configText = builtins.replaceStrings [ "__WAN_SPEEDTEST_RULES__" ]
+        [ (toString wanSpeedtestRules) ] (builtins.readFile ./prometheus.yml);
       # scrapeConfigs = [
       # {
       # job_name = "systemd";

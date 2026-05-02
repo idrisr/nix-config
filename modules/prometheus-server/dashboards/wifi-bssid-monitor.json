@@ -1,0 +1,204 @@
+{
+  "id": null,
+  "uid": "wifi-bssid-monitor",
+  "title": "Wi-Fi BSSID Monitor",
+  "tags": [
+    "network",
+    "wifi",
+    "bssid"
+  ],
+  "timezone": "browser",
+  "schemaVersion": 39,
+  "version": 11,
+  "refresh": "1m",
+  "time": {
+    "from": "now-24h",
+    "to": "now"
+  },
+  "templating": {
+    "list": [
+      {
+        "name": "instance",
+        "type": "query",
+        "datasource": {
+          "type": "prometheus",
+          "uid": "effpfi5egefwgf"
+        },
+        "query": "label_values(wifi_sampler_success{job=\"wifi_bssid\"}, instance)",
+        "includeAll": true,
+        "multi": false,
+        "current": {
+          "selected": true,
+          "text": "All",
+          "value": ".*"
+        },
+        "allValue": ".*"
+      },
+      {
+        "name": "band",
+        "type": "query",
+        "datasource": {
+          "type": "prometheus",
+          "uid": "effpfi5egefwgf"
+        },
+        "query": "label_values(wifi_bssid_frame_count{job=\"wifi_bssid\",instance=~\"$instance\"}, band)",
+        "includeAll": true,
+        "multi": true,
+        "current": {
+          "selected": true,
+          "text": "All",
+          "value": ".*"
+        },
+        "allValue": ".*"
+      },
+      {
+        "name": "channel",
+        "type": "query",
+        "datasource": {
+          "type": "prometheus",
+          "uid": "effpfi5egefwgf"
+        },
+        "query": "label_values(wifi_bssid_frame_count{job=\"wifi_bssid\",instance=~\"$instance\",band=~\"$band\"}, channel)",
+        "includeAll": true,
+        "multi": true,
+        "current": {
+          "selected": true,
+          "text": "All",
+          "value": ".*"
+        },
+        "allValue": ".*"
+      },
+      {
+        "name": "bssid",
+        "type": "query",
+        "datasource": {
+          "type": "prometheus",
+          "uid": "effpfi5egefwgf"
+        },
+        "query": "label_values(wifi_bssid_frame_count{job=\"wifi_bssid\",instance=~\"$instance\",band=~\"$band\",channel=~\"$channel\"}, bssid)",
+        "includeAll": true,
+        "multi": true,
+        "current": {
+          "selected": true,
+          "text": "All",
+          "value": ".*"
+        },
+        "allValue": ".*"
+      }
+    ]
+  },
+  "panels": [
+    {
+      "type": "state-timeline",
+      "title": "BSSID Activity Matrix (Frame Count)",
+      "timeFrom": "2h",
+      "maxDataPoints": 300,
+      "datasource": {
+        "type": "prometheus",
+        "uid": "effpfi5egefwgf"
+      },
+      "gridPos": {
+        "h": 14,
+        "w": 24,
+        "x": 0,
+        "y": 0
+      },
+      "targets": [
+        {
+          "expr": "((wifi_bssid_frame_count{job=\"wifi_bssid\",instance=~\"$instance\",band=~\"$band\",channel=~\"$channel\",bssid=~\"$bssid\",name!=\"\"} or on(instance,bssid,channel,band) label_replace(wifi_bssid_frame_count{job=\"wifi_bssid\",instance=~\"$instance\",band=~\"$band\",channel=~\"$channel\",bssid=~\"$bssid\",name=\"\"}, \"name\", \"$1\", \"bssid\", \"(.*)\"))) and on(instance,bssid,channel,band,name) topk(10, max_over_time(((wifi_bssid_frame_count{job=\"wifi_bssid\",instance=~\"$instance\",band=~\"$band\",channel=~\"$channel\",bssid=~\"$bssid\",name!=\"\"} or on(instance,bssid,channel,band) label_replace(wifi_bssid_frame_count{job=\"wifi_bssid\",instance=~\"$instance\",band=~\"$band\",channel=~\"$channel\",bssid=~\"$bssid\",name=\"\"}, \"name\", \"$1\", \"bssid\", \"(.*)\")))[2h:]))",
+          "interval": "10m",
+          "legendFormat": "{{name}} ch{{channel}} {{band}}",
+          "refId": "A"
+        }
+      ],
+      "fieldConfig": {
+        "defaults": {
+          "unit": "short",
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "#24426b",
+                "value": null
+              },
+              {
+                "color": "#3b82f6",
+                "value": 2
+              },
+              {
+                "color": "#facc15",
+                "value": 8
+              },
+              {
+                "color": "#fb923c",
+                "value": 20
+              },
+              {
+                "color": "#ef4444",
+                "value": 40
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "options": {
+        "mergeValues": true,
+        "showValue": "auto",
+        "legend": {
+          "displayMode": "hidden",
+          "placement": "bottom",
+          "calcs": []
+        },
+        "tooltip": {
+          "mode": "single",
+          "sort": "none"
+        }
+      }
+    },
+    {
+      "type": "timeseries",
+      "title": "Average RSSI by BSSID",
+      "datasource": {
+        "type": "prometheus",
+        "uid": "effpfi5egefwgf"
+      },
+      "gridPos": {
+        "h": 22,
+        "w": 24,
+        "x": 0,
+        "y": 14
+      },
+      "targets": [
+        {
+          "expr": "(wifi_bssid_avg_signal_dbm{job=\"wifi_bssid\",instance=~\"$instance\",band=~\"$band\",channel=~\"$channel\",bssid=~\"$bssid\",name!=\"\"} or on(instance,bssid,channel,band) label_replace(wifi_bssid_avg_signal_dbm{job=\"wifi_bssid\",instance=~\"$instance\",band=~\"$band\",channel=~\"$channel\",bssid=~\"$bssid\",name=\"\"}, \"name\", \"$1\", \"bssid\", \"(.*)\")) and on(instance,bssid,channel,band,name) topk(10, (wifi_bssid_frame_count{job=\"wifi_bssid\",instance=~\"$instance\",band=~\"$band\",channel=~\"$channel\",bssid=~\"$bssid\",name!=\"\"} or on(instance,bssid,channel,band) label_replace(wifi_bssid_frame_count{job=\"wifi_bssid\",instance=~\"$instance\",band=~\"$band\",channel=~\"$channel\",bssid=~\"$bssid\",name=\"\"}, \"name\", \"$1\", \"bssid\", \"(.*)\")))",
+          "legendFormat": "{{name}} ({{bssid}}) ch{{channel}} {{band}}",
+          "refId": "A"
+        }
+      ],
+      "fieldConfig": {
+        "defaults": {
+          "unit": "dBm"
+        },
+        "overrides": []
+      },
+        "options": {
+          "legend": {
+            "displayMode": "table",
+            "placement": "bottom",
+            "calcs": [
+              "lastNotNull",
+              "min",
+              "max"
+            ],
+            "sortBy": "Last *",
+            "sortDesc": true
+          },
+          "tooltip": {
+            "mode": "multi",
+            "sort": "desc"
+          }
+      }
+    }
+  ]
+}

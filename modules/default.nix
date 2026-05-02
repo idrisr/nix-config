@@ -1,5 +1,4 @@
-{ inputs, ... }:
-{
+{ inputs, ... }: {
   config = { };
   options = { };
   imports = [
@@ -22,6 +21,7 @@
     ./immich
     ./initrd-remote-unlock.nix
     ./kavita
+    ./kismet
     ./kmonad
     ./local-host-overrides.nix
     ./locate
@@ -49,6 +49,7 @@
     ./unifi
     ./virtualization
     ./vikunja
+    ./wifi-bssid-monitor
     ./wifi-iperf-monitor
 
     inputs.disko.nixosModules.default

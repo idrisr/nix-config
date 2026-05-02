@@ -36,6 +36,7 @@ in
       ../../modules/initrd-remote-unlock.nix
       ../../modules/jellyfin.nix
       ../../modules/kavita
+      ../../modules/kismet
       ../../modules/kmonad
       ../../modules/local-host-overrides.nix
       ../../modules/platform-io
@@ -72,6 +73,7 @@ in
       ../../modules/unifi
       ../../modules/vikunja
       ../../modules/virtualization
+      ../../modules/wifi-bssid-monitor
       ../../modules/wifi-iperf-monitor
     ];
   };

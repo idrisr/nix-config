@@ -1,8 +1,11 @@
-{ lib
-, pkgs
-, inputs
-, ...
-}: {
+{
+  config,
+  lib,
+  pkgs,
+  inputs,
+  ...
+}:
+{
   options = { };
 
   imports = [
@@ -26,7 +29,18 @@
         openFirewall = true;
       };
       borgrepo.enable = true;
+      kismet = {
+        enable = true;
+        interface = "wlp8s0";
+      };
       servernode.enable = false;
+      wifi-bssid-monitor = {
+        enable = false;
+        interface = "wlp8s0";
+        interval = "1m";
+        minSignalDbm = -75;
+        randomizedDelaySec = "0s";
+      };
     };
 
     nvidia-gpu.enable = true;
@@ -36,7 +50,12 @@
     nvr.enable = true;
     programs.hyprland.enable = lib.mkForce false;
     services.greetd.enable = lib.mkForce false;
-    networking.firewall.allowedTCPPorts = [ 80 443 8080 9187 ];
+    networking.firewall.allowedTCPPorts = [
+      80
+      443
+      8080
+      9187
+    ];
     nix.gc.options = lib.mkForce "--delete-older-than 45d";
 
     services.nginx = {
@@ -66,20 +85,16 @@
       };
     };
 
-    services.nix-serve = {
-      enable = true;
-      secretKeyFile = "/var/lib/nix-serve/cache-priv-key.pem";
-      openFirewall = true;
-      port = 5949;
-    };
-
     services.atticd = {
       enable = true;
       environmentFile = "/var/lib/atticd/atticd.env";
       settings = {
         listen = "[::]:8080";
         api-endpoint = "http://fft:8080/";
-        allowed-hosts = [ "fft:8080" "fft" ];
+        allowed-hosts = [
+          "fft:8080"
+          "fft"
+        ];
       };
     };
 
@@ -93,6 +108,90 @@
       EOF
             fi
     '';
+
+    system.activationScripts.attic-cache-bootstrap =
+      let
+        atticAdminConfig = pkgs.writeText "attic-admin.toml" ''
+          allowed-hosts = ['fft:8080', 'fft']
+          api-endpoint = 'http://fft:8080/'
+          listen = '[::]:8080'
+
+          [chunking]
+          avg-size = 65536
+          max-size = 262144
+          min-size = 16384
+          nar-size-threshold = 65536
+
+          [database]
+          url = 'sqlite:///var/lib/atticd/server.db?mode=rwc'
+
+          [storage]
+          path = '/var/lib/atticd/storage'
+          type = 'local'
+        '';
+      in
+      ''
+        if [ -e /var/lib/atticd/atticd.env ]; then
+          tmp_config_dir="$(${pkgs.coreutils}/bin/mktemp -d)"
+          trap '${pkgs.coreutils}/bin/rm -rf "$tmp_config_dir"' EXIT
+          export XDG_CONFIG_HOME="$tmp_config_dir"
+          . /var/lib/atticd/atticd.env
+          export ATTIC_SERVER_TOKEN_RS256_SECRET_BASE64
+          token="$(${pkgs.attic-server}/bin/atticadm -f ${atticAdminConfig} make-token --sub bootstrap --validity '10 years' --pull 'main' --push 'main' --create-cache 'main' --configure-cache 'main')"
+          ${pkgs.attic-client}/bin/attic login local http://fft:8080 "$token" >/dev/null
+          if ! ${pkgs.attic-client}/bin/attic cache info local:main >/dev/null 2>&1; then
+            ${pkgs.attic-client}/bin/attic cache create local:main --public >/dev/null
+          fi
+          ${pkgs.coreutils}/bin/rm -rf "$tmp_config_dir"
+          trap - EXIT
+        fi
+      '';
+
+    systemd.services.attic-watch-store =
+      let
+        atticAdminConfig = pkgs.writeText "attic-watch-store.toml" ''
+          allowed-hosts = ['fft:8080', 'fft']
+          api-endpoint = 'http://fft:8080/'
+          listen = '[::]:8080'
+
+          [chunking]
+          avg-size = 65536
+          max-size = 262144
+          min-size = 16384
+          nar-size-threshold = 65536
+
+          [database]
+          url = 'sqlite:///var/lib/atticd/server.db?mode=rwc'
+
+          [storage]
+          path = '/var/lib/atticd/storage'
+          type = 'local'
+        '';
+      in
+      {
+        description = "Watch local store and push paths to Attic";
+        after = [ "atticd.service" ];
+        wants = [ "atticd.service" ];
+        wantedBy = [ "multi-user.target" ];
+        serviceConfig = {
+          Type = "simple";
+          Restart = "always";
+          RestartSec = 10;
+        };
+        script = ''
+          set -euo pipefail
+
+          export XDG_CONFIG_HOME="$(${pkgs.coreutils}/bin/mktemp -d)"
+          trap '${pkgs.coreutils}/bin/rm -rf "$XDG_CONFIG_HOME"' EXIT
+
+          . /var/lib/atticd/atticd.env
+          export ATTIC_SERVER_TOKEN_RS256_SECRET_BASE64
+          token="$(${pkgs.attic-server}/bin/atticadm -f ${atticAdminConfig} make-token --sub watch-store --validity '10 years' --pull 'main' --push 'main')"
+
+          ${pkgs.attic-client}/bin/attic login local http://fft:8080 "$token" >/dev/null
+          exec ${pkgs.attic-client}/bin/attic watch-store --ignore-upstream-cache-filter local:main
+        '';
+      };
 
     environment.systemPackages = with pkgs; [
       attic-client
