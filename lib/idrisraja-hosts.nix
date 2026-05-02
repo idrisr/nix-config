@@ -16,4 +16,5 @@
   "musicassistant.idrisraja.com" = "192.168.8.224";
   "sdr.idrisraja.com" = "192.168.8.224";
   "kismet.idrisraja.com" = "192.168.8.224";
+  "rpi4" = "192.168.8.106";
 }
