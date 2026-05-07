@@ -35,6 +35,10 @@
     users.groups.hippoid = { };
     users.users.hippoid.extraGroups = [ "hippoid" ];
     my.prometheus-server.enable = true;
+    my.hdhomerun-monitor = {
+      enable = true;
+      deviceIp = "192.168.8.103";
+    };
     services.iperf3 = {
       enable = true;
       openFirewall = true;
@@ -59,12 +63,19 @@
     networking.firewall.allowedTCPPorts = [
       80
       443
+      5004
     ];
     services.nginx = {
       enable = true;
       recommendedGzipSettings = true;
       recommendedProxySettings = true;
       recommendedTlsSettings = true;
+      streamConfig = ''
+        server {
+          listen 5004;
+          proxy_pass 192.168.8.103:5004;
+        }
+      '';
       virtualHosts = {
         "adguard.idrisraja.com" = {
           forceSSL = true;
@@ -80,6 +91,15 @@
           sslCertificateKey = "/etc/letsencrypt/live/idrisraja.com/privkey.pem";
           locations."/" = {
             proxyPass = "http://192.168.8.231:13221";
+            proxyWebsockets = true;
+          };
+        };
+        "airplane.idrisraja.com" = {
+          forceSSL = true;
+          sslCertificate = "/etc/letsencrypt/live/idrisraja.com/fullchain.pem";
+          sslCertificateKey = "/etc/letsencrypt/live/idrisraja.com/privkey.pem";
+          locations."/" = {
+            proxyPass = "http://192.168.8.231/tar1090/";
             proxyWebsockets = true;
           };
         };
@@ -225,6 +245,24 @@
           locations."/" = {
             proxyPass = "http://192.168.8.231:6052";
             proxyWebsockets = true;
+          };
+        };
+
+        "tv.idrisraja.com" = {
+          forceSSL = true;
+          sslCertificate = "/etc/letsencrypt/live/idrisraja.com/fullchain.pem";
+          sslCertificateKey = "/etc/letsencrypt/live/idrisraja.com/privkey.pem";
+          locations."= /" = {
+            proxyPass = "http://192.168.8.103:80";
+          };
+          locations."/live/" = {
+            extraConfig = ''
+              rewrite ^/live/(.+)$ /auto/v$1 break;
+              proxy_pass http://192.168.8.103:5004;
+            '';
+          };
+          locations."/" = {
+            proxyPass = "http://192.168.8.103:80";
           };
         };
 

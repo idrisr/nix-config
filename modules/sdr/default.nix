@@ -73,13 +73,6 @@ in
   };
 
   config = mkIf cfg.enable {
-    assertions = [
-      {
-        assertion = !(cfg.remote.enable && cfg.web.enable);
-        message = "sdr.remote.enable and sdr.web.enable are mutually exclusive on one dongle";
-      }
-    ];
-
     hardware.rtl-sdr.enable = true;
     users.users.hippoid.extraGroups = [ "plugdev" ];
     services.sdrplayApi.enable = cfg.enableSdrplay;
@@ -209,6 +202,18 @@ in
                     start_freq = freq;
                     start_mod = "wfm";
                     rf_gain = 20;
+                    direct_sampling = 0;
+                  };
+
+                adsb =
+                  let freq = mhz 1090; in
+                  {
+                    name = "ADS-B 1090";
+                    center_freq = freq;
+                    samp_rate = 2400000;
+                    start_freq = freq;
+                    start_mod = "nfm";
+                    rf_gain = 37;
                     direct_sampling = 0;
                   };
               };

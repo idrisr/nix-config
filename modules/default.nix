@@ -4,6 +4,7 @@
   imports = [
     ./ad-blocker.nix
     ./anki
+    ./adsb
     ./audiobookshelf
     ./base.nix
     ./borg/borg.nix
@@ -14,6 +15,7 @@
     ./esphome
     ./fprintd
     ./frigate
+    ./hdhomerun-monitor
     ./home-assistant
     ./hyprland-support.nix
     ./hoogle

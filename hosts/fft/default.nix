@@ -44,8 +44,9 @@
     };
 
     nvidia-gpu.enable = true;
+    my.adsb.enable = true;
     sdr.enable = true;
-    sdr.web.enable = true;
+    sdr.web.enable = false;
     ollama.enable = true;
     nvr.enable = true;
     programs.hyprland.enable = lib.mkForce false;

@@ -1,0 +1,599 @@
+{
+  "id": null,
+  "uid": "hdhomerun-antenna",
+  "title": "HDHomeRun Antenna Placement",
+  "tags": [
+    "tv",
+    "antenna",
+    "hdhomerun"
+  ],
+  "timezone": "browser",
+  "schemaVersion": 39,
+  "version": 1,
+  "refresh": "15s",
+  "time": {
+    "from": "now-30m",
+    "to": "now"
+  },
+  "templating": {
+    "list": [
+      {
+        "name": "device",
+        "type": "query",
+        "datasource": {
+          "type": "prometheus",
+          "uid": "effpfi5egefwgf"
+        },
+        "query": "label_values(hdhomerun_up, device)",
+        "includeAll": false,
+        "multi": false,
+        "current": {
+          "selected": true,
+          "text": "192.168.8.103",
+          "value": "192.168.8.103"
+        }
+      },
+      {
+        "name": "tuner",
+        "type": "query",
+        "datasource": {
+          "type": "prometheus",
+          "uid": "effpfi5egefwgf"
+        },
+        "query": "label_values(hdhomerun_tuner_locked{device=\"$device\"}, tuner)",
+        "includeAll": true,
+        "multi": true,
+        "current": {
+          "selected": true,
+          "text": "All",
+          "value": ".*"
+        },
+        "allValue": ".*"
+      }
+    ]
+  },
+  "panels": [
+    {
+      "type": "stat",
+      "title": "HDHomeRun Reachable",
+      "datasource": {
+        "type": "prometheus",
+        "uid": "effpfi5egefwgf"
+      },
+      "gridPos": {
+        "h": 4,
+        "w": 6,
+        "x": 0,
+        "y": 28
+      },
+      "targets": [
+        {
+          "expr": "max(hdhomerun_up{device=\"$device\"})",
+          "refId": "A"
+        }
+      ],
+      "fieldConfig": {
+        "defaults": {
+          "mappings": [
+            {
+              "type": "value",
+              "options": {
+                "0": {
+                  "text": "Down"
+                },
+                "1": {
+                  "text": "Up"
+                }
+              }
+            }
+          ],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "red",
+                "value": null
+              },
+              {
+                "color": "green",
+                "value": 1
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "options": {
+        "colorMode": "background",
+        "graphMode": "none",
+        "justifyMode": "center",
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "",
+          "values": false
+        }
+      }
+    },
+    {
+      "type": "stat",
+      "title": "Tuner 0 Lock",
+      "datasource": {
+        "type": "prometheus",
+        "uid": "effpfi5egefwgf"
+      },
+      "gridPos": {
+        "h": 4,
+        "w": 6,
+        "x": 6,
+        "y": 28
+      },
+      "targets": [
+        {
+          "expr": "max(hdhomerun_tuner_locked{device=\"$device\",tuner=\"tuner0\"})",
+          "refId": "A"
+        }
+      ],
+      "fieldConfig": {
+        "defaults": {
+          "mappings": [
+            {
+              "type": "value",
+              "options": {
+                "0": {
+                  "text": "Unlocked"
+                },
+                "1": {
+                  "text": "Locked"
+                }
+              }
+            }
+          ],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "orange",
+                "value": null
+              },
+              {
+                "color": "green",
+                "value": 1
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "options": {
+        "colorMode": "background",
+        "graphMode": "none",
+        "justifyMode": "center",
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "",
+          "values": false
+        }
+      }
+    },
+    {
+      "type": "stat",
+      "title": "Tuner 1 Lock",
+      "datasource": {
+        "type": "prometheus",
+        "uid": "effpfi5egefwgf"
+      },
+      "gridPos": {
+        "h": 4,
+        "w": 6,
+        "x": 12,
+        "y": 28
+      },
+      "targets": [
+        {
+          "expr": "max(hdhomerun_tuner_locked{device=\"$device\",tuner=\"tuner1\"})",
+          "refId": "A"
+        }
+      ],
+      "fieldConfig": {
+        "defaults": {
+          "mappings": [
+            {
+              "type": "value",
+              "options": {
+                "0": {
+                  "text": "Unlocked"
+                },
+                "1": {
+                  "text": "Locked"
+                }
+              }
+            }
+          ],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "orange",
+                "value": null
+              },
+              {
+                "color": "green",
+                "value": 1
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "options": {
+        "colorMode": "background",
+        "graphMode": "none",
+        "justifyMode": "center",
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "",
+          "values": false
+        }
+      }
+    },
+    {
+      "type": "stat",
+      "title": "Locked Tuners",
+      "datasource": {
+        "type": "prometheus",
+        "uid": "effpfi5egefwgf"
+      },
+      "gridPos": {
+        "h": 4,
+        "w": 6,
+        "x": 18,
+        "y": 28
+      },
+      "targets": [
+        {
+          "expr": "sum(max by (tuner) (hdhomerun_tuner_locked{device=\"$device\"}))",
+          "refId": "A"
+        }
+      ],
+      "fieldConfig": {
+        "defaults": {
+          "min": 0,
+          "max": 2,
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "yellow",
+                "value": 1
+              },
+              {
+                "color": "orange",
+                "value": 2
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "options": {
+        "colorMode": "value",
+        "graphMode": "none",
+        "justifyMode": "center",
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "",
+          "values": false
+        }
+      }
+    },
+    {
+      "type": "timeseries",
+      "title": "Signal Strength",
+      "datasource": {
+        "type": "prometheus",
+        "uid": "effpfi5egefwgf"
+      },
+      "gridPos": {
+        "h": 8,
+        "w": 12,
+        "x": 0,
+        "y": 0
+      },
+      "targets": [
+        {
+          "expr": "hdhomerun_signal_strength_pct{device=\"192.168.8.103\",tuner=~\"$tuner\"}",
+          "legendFormat": "{{tuner}} {{vchannel}} {{guide_name}}",
+          "refId": "A"
+        }
+      ],
+      "fieldConfig": {
+        "defaults": {
+          "unit": "percent",
+          "min": 0,
+          "max": 100,
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "red",
+                "value": null
+              },
+              {
+                "color": "orange",
+                "value": 50
+              },
+              {
+                "color": "yellow",
+                "value": 70
+              },
+              {
+                "color": "green",
+                "value": 85
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "options": {
+        "legend": {
+          "displayMode": "table",
+          "placement": "bottom",
+          "calcs": [
+            "lastNotNull",
+            "min",
+            "max"
+          ]
+        },
+        "tooltip": {
+          "mode": "multi",
+          "sort": "desc"
+        }
+      }
+    },
+    {
+      "type": "timeseries",
+      "title": "Signal Quality",
+      "datasource": {
+        "type": "prometheus",
+        "uid": "effpfi5egefwgf"
+      },
+      "gridPos": {
+        "h": 8,
+        "w": 12,
+        "x": 12,
+        "y": 0
+      },
+      "targets": [
+        {
+          "expr": "hdhomerun_signal_quality_pct{device=\"192.168.8.103\",tuner=~\"$tuner\"}",
+          "legendFormat": "{{tuner}} {{vchannel}} {{guide_name}}",
+          "refId": "A"
+        }
+      ],
+      "fieldConfig": {
+        "defaults": {
+          "unit": "percent",
+          "min": 0,
+          "max": 100,
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "red",
+                "value": null
+              },
+              {
+                "color": "orange",
+                "value": 50
+              },
+              {
+                "color": "yellow",
+                "value": 70
+              },
+              {
+                "color": "green",
+                "value": 85
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "options": {
+        "legend": {
+          "displayMode": "table",
+          "placement": "bottom",
+          "calcs": [
+            "lastNotNull",
+            "min",
+            "max"
+          ]
+        },
+        "tooltip": {
+          "mode": "multi",
+          "sort": "desc"
+        }
+      }
+    },
+    {
+      "type": "timeseries",
+      "title": "Symbol Quality",
+      "datasource": {
+        "type": "prometheus",
+        "uid": "effpfi5egefwgf"
+      },
+      "gridPos": {
+        "h": 8,
+        "w": 12,
+        "x": 0,
+        "y": 8
+      },
+      "targets": [
+        {
+          "expr": "hdhomerun_symbol_quality_pct{device=\"192.168.8.103\",tuner=~\"$tuner\"}",
+          "legendFormat": "{{tuner}} {{vchannel}} {{guide_name}}",
+          "refId": "A"
+        }
+      ],
+      "fieldConfig": {
+        "defaults": {
+          "unit": "percent",
+          "min": 0,
+          "max": 100,
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "red",
+                "value": null
+              },
+              {
+                "color": "orange",
+                "value": 50
+              },
+              {
+                "color": "yellow",
+                "value": 70
+              },
+              {
+                "color": "green",
+                "value": 90
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "options": {
+        "legend": {
+          "displayMode": "table",
+          "placement": "bottom",
+          "calcs": [
+            "lastNotNull",
+            "min",
+            "max"
+          ]
+        },
+        "tooltip": {
+          "mode": "multi",
+          "sort": "desc"
+        }
+      }
+    },
+    {
+      "type": "timeseries",
+      "title": "Stream Bitrate",
+      "datasource": {
+        "type": "prometheus",
+        "uid": "effpfi5egefwgf"
+      },
+      "gridPos": {
+        "h": 8,
+        "w": 12,
+        "x": 12,
+        "y": 8
+      },
+      "targets": [
+        {
+          "expr": "hdhomerun_stream_bps{device=\"192.168.8.103\",tuner=~\"$tuner\"}",
+          "legendFormat": "{{tuner}} {{vchannel}} {{guide_name}} stream",
+          "refId": "A"
+        },
+        {
+          "expr": "hdhomerun_raw_bps{device=\"192.168.8.103\",tuner=~\"$tuner\"}",
+          "legendFormat": "{{tuner}} {{vchannel}} {{guide_name}} raw",
+          "refId": "B"
+        }
+      ],
+      "fieldConfig": {
+        "defaults": {
+          "unit": "bps"
+        },
+        "overrides": []
+      },
+      "options": {
+        "legend": {
+          "displayMode": "table",
+          "placement": "bottom",
+          "calcs": [
+            "lastNotNull",
+            "max"
+          ]
+        },
+        "tooltip": {
+          "mode": "multi",
+          "sort": "desc"
+        }
+      }
+    },
+    {
+      "type": "table",
+      "title": "Current Tuned Channels",
+      "datasource": {
+        "type": "prometheus",
+        "uid": "effpfi5egefwgf"
+      },
+      "gridPos": {
+        "h": 8,
+        "w": 24,
+        "x": 0,
+        "y": 16
+      },
+      "targets": [
+        {
+          "expr": "hdhomerun_channel_virtual_info{device=\"192.168.8.103\",tuner=~\"$tuner\"}",
+          "format": "table",
+          "instant": true,
+          "refId": "A"
+        }
+      ],
+      "transformations": [
+        {
+          "id": "labelsToFields",
+          "options": {
+            "mode": "columns"
+          }
+        },
+        {
+          "id": "organize",
+          "options": {
+            "excludeByName": {
+              "Time": true,
+              "Value": true,
+              "__name__": true,
+              "device": true
+            },
+            "renameByName": {
+              "tuner": "Tuner",
+              "channel": "RF Channel",
+              "vchannel": "Virtual Channel",
+              "guide_name": "Guide Name"
+            }
+          }
+        }
+      ],
+      "options": {
+        "showHeader": true,
+        "sortBy": [
+          {
+            "displayName": "Tuner",
+            "desc": false
+          }
+        ]
+      }
+    }
+  ]
+}

@@ -6,6 +6,8 @@
 
   config = {
     my.base.enable = true;
+    my.nix-index.enable = false;
+    my.nix-index.database.enable = true;
 
     boot = {
       kernelParams = [
@@ -31,6 +33,12 @@
 
     hardware.enableRedistributableFirmware = true;
     hardware.graphics.enable32Bit = lib.mkForce false;
+
+    zramSwap = {
+      enable = true;
+      algorithm = "zstd";
+      memoryPercent = 50;
+    };
 
     networking = {
       hostName = "rpi4";

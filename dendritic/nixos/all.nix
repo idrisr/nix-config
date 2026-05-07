@@ -17,6 +17,7 @@ in
       inputs.home-manager.nixosModules.home-manager
       inputs.disko.nixosModules.default
       ../../modules/ad-blocker.nix
+      ../../modules/adsb
       ../../modules/anki
       ../../modules/audiobookshelf
       ../../modules/avahi.nix
@@ -29,6 +30,7 @@ in
       ../../modules/esphome
       ../../modules/fprintd
       ../../modules/frigate
+      ../../modules/hdhomerun-monitor
       ../../modules/home-assistant
       ../../modules/hoogle
       ../../modules/hyprland-support.nix

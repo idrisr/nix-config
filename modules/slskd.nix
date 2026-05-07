@@ -39,6 +39,8 @@ in
       };
     };
 
+    systemd.services.slskd.serviceConfig.UMask = "0002";
+
     systemd.tmpfiles.rules = [
       "d /srv/slskd 2775 slskd hippoid -"
       "d /srv/slskd/downloads 2775 slskd hippoid -"

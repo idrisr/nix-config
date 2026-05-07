@@ -34,6 +34,14 @@
       url = "github:nix-community/disko/545aba02960caa78a31bd9a8709a0ad4b6320a5c";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    nixos-pi-zero-2 = {
+      url = "github:plmercereau/nixos-pi-zero-2";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+    nix-index-database = {
+      url = "github:nix-community/nix-index-database";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   outputs = inputs@{ self, nixpkgs, ... }:

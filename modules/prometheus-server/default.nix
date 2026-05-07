@@ -188,6 +188,8 @@ in {
         ./dashboards/wifi-bssid-monitor.json;
       "grafana-dashboards/wifi-throughput.json".source =
         ./dashboards/wifi-throughput.json;
+      "grafana-dashboards/hdhomerun-antenna.json".source =
+        ./dashboards/hdhomerun-antenna.json;
     };
 
     networking.firewall.allowedTCPPorts = [ 9091 ];
