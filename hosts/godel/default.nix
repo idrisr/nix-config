@@ -26,7 +26,7 @@
     home-assistant.enable = true;
 
     my."initrd-remote-unlock".enable = true;
-    my.servernode.enable = true;
+    my.servernode.enable = false;
     unifi.enable = true;
     networking.adblocker.enable = true;
     users.users.root = {

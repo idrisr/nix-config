@@ -6,6 +6,7 @@
 
   config = {
     my.base.enable = true;
+    my.servernode.enable = true;
     my.nix-index.enable = false;
     my.nix-index.database.enable = true;
 
