@@ -1,10 +1,14 @@
-{ config
-, lib
-, modulesPath
-, pkgs
-, inputs
-, ...
+{
+  config,
+  lib,
+  modulesPath,
+  pkgs,
+  inputs,
+  ...
 }:
+let
+  acmeHost = "idrisraja.com";
+in
 {
   imports = [ (modulesPath + "/installer/scan/not-detected.nix") ];
 
@@ -65,6 +69,19 @@
       443
       5004
     ];
+
+    security.acme = {
+      acceptTerms = true;
+      defaults.email = "idris.raja@gmail.com";
+      certs.${acmeHost} = {
+        dnsProvider = "namecheap";
+        environmentFile = "/var/lib/acme/namecheap.env";
+        group = "nginx";
+        reloadServices = [ "nginx.service" ];
+        extraDomainNames = [ "*.idrisraja.com" ];
+      };
+    };
+
     services.nginx = {
       enable = true;
       recommendedGzipSettings = true;
@@ -79,16 +96,14 @@
       virtualHosts = {
         "adguard.idrisraja.com" = {
           forceSSL = true;
-          sslCertificate = "/etc/letsencrypt/live/idrisraja.com/fullchain.pem";
-          sslCertificateKey = "/etc/letsencrypt/live/idrisraja.com/privkey.pem";
+          useACMEHost = acmeHost;
           locations."/" = {
             proxyPass = "http://127.0.0.1:3000";
           };
         };
         "ai.idrisraja.com" = {
           forceSSL = true;
-          sslCertificate = "/etc/letsencrypt/live/idrisraja.com/fullchain.pem";
-          sslCertificateKey = "/etc/letsencrypt/live/idrisraja.com/privkey.pem";
+          useACMEHost = acmeHost;
           locations."/" = {
             proxyPass = "http://192.168.8.231:13221";
             proxyWebsockets = true;
@@ -96,8 +111,7 @@
         };
         "airplane.idrisraja.com" = {
           forceSSL = true;
-          sslCertificate = "/etc/letsencrypt/live/idrisraja.com/fullchain.pem";
-          sslCertificateKey = "/etc/letsencrypt/live/idrisraja.com/privkey.pem";
+          useACMEHost = acmeHost;
           locations."/" = {
             proxyPass = "http://192.168.8.231/tar1090/";
             proxyWebsockets = true;
@@ -105,8 +119,7 @@
         };
         "sdr.idrisraja.com" = {
           forceSSL = true;
-          sslCertificate = "/etc/letsencrypt/live/idrisraja.com/fullchain.pem";
-          sslCertificateKey = "/etc/letsencrypt/live/idrisraja.com/privkey.pem";
+          useACMEHost = acmeHost;
           locations."/" = {
             proxyPass = "http://192.168.8.231:8073";
             proxyWebsockets = true;
@@ -114,8 +127,7 @@
         };
         "jellyfin.idrisraja.com" = {
           forceSSL = true;
-          sslCertificate = "/etc/letsencrypt/live/idrisraja.com/fullchain.pem";
-          sslCertificateKey = "/etc/letsencrypt/live/idrisraja.com/privkey.pem";
+          useACMEHost = acmeHost;
           locations."/" = {
             proxyPass = "http://192.168.8.231:8096";
             proxyWebsockets = true;
@@ -123,8 +135,7 @@
         };
         "immich.idrisraja.com" = {
           forceSSL = true;
-          sslCertificate = "/etc/letsencrypt/live/idrisraja.com/fullchain.pem";
-          sslCertificateKey = "/etc/letsencrypt/live/idrisraja.com/privkey.pem";
+          useACMEHost = acmeHost;
           locations."/" = {
             proxyPass = "http://192.168.8.231:2283";
             proxyWebsockets = true;
@@ -133,8 +144,7 @@
 
         "grafana.idrisraja.com" = {
           forceSSL = true;
-          sslCertificate = "/etc/letsencrypt/live/idrisraja.com/fullchain.pem";
-          sslCertificateKey = "/etc/letsencrypt/live/idrisraja.com/privkey.pem";
+          useACMEHost = acmeHost;
           locations."/" = {
             proxyPass = "http://127.0.0.1:3010";
             proxyWebsockets = true;
@@ -143,8 +153,7 @@
 
         "kismet.idrisraja.com" = {
           forceSSL = true;
-          sslCertificate = "/etc/letsencrypt/live/idrisraja.com/fullchain.pem";
-          sslCertificateKey = "/etc/letsencrypt/live/idrisraja.com/privkey.pem";
+          useACMEHost = acmeHost;
           locations."/" = {
             proxyPass = "http://192.168.8.231:2501";
             proxyWebsockets = true;
@@ -153,8 +162,7 @@
 
         "unifi.idrisraja.com" = {
           forceSSL = true;
-          sslCertificate = "/etc/letsencrypt/live/idrisraja.com/fullchain.pem";
-          sslCertificateKey = "/etc/letsencrypt/live/idrisraja.com/privkey.pem";
+          useACMEHost = acmeHost;
           locations."/" = {
             proxyPass = "https://127.0.0.1:8443";
             proxyWebsockets = true;
@@ -163,8 +171,7 @@
 
         "prometheus.idrisraja.com" = {
           forceSSL = true;
-          sslCertificate = "/etc/letsencrypt/live/idrisraja.com/fullchain.pem";
-          sslCertificateKey = "/etc/letsencrypt/live/idrisraja.com/privkey.pem";
+          useACMEHost = acmeHost;
           locations."/" = {
             proxyPass = "http://127.0.0.1:9090";
           };
@@ -172,8 +179,7 @@
 
         "mealie.idrisraja.com" = {
           forceSSL = true;
-          sslCertificate = "/etc/letsencrypt/live/idrisraja.com/fullchain.pem";
-          sslCertificateKey = "/etc/letsencrypt/live/idrisraja.com/privkey.pem";
+          useACMEHost = acmeHost;
           locations."/" = {
             proxyPass = "http://127.0.0.1:9000";
           };
@@ -181,8 +187,7 @@
 
         "navidrome.idrisraja.com" = {
           forceSSL = true;
-          sslCertificate = "/etc/letsencrypt/live/idrisraja.com/fullchain.pem";
-          sslCertificateKey = "/etc/letsencrypt/live/idrisraja.com/privkey.pem";
+          useACMEHost = acmeHost;
           locations."/" = {
             proxyPass = "http://127.0.0.1:4533";
             proxyWebsockets = true;
@@ -191,8 +196,7 @@
 
         "musicassistant.idrisraja.com" = {
           forceSSL = true;
-          sslCertificate = "/etc/letsencrypt/live/idrisraja.com/fullchain.pem";
-          sslCertificateKey = "/etc/letsencrypt/live/idrisraja.com/privkey.pem";
+          useACMEHost = acmeHost;
           locations."/" = {
             proxyPass = "http://127.0.0.1:8095";
             proxyWebsockets = true;
@@ -201,8 +205,7 @@
 
         "slskd.idrisraja.com" = {
           forceSSL = true;
-          sslCertificate = "/etc/letsencrypt/live/idrisraja.com/fullchain.pem";
-          sslCertificateKey = "/etc/letsencrypt/live/idrisraja.com/privkey.pem";
+          useACMEHost = acmeHost;
           locations."/" = {
             proxyPass = "http://127.0.0.1:5030";
           };
@@ -210,8 +213,7 @@
 
         "audiobookshelf.idrisraja.com" = {
           forceSSL = true;
-          sslCertificate = "/etc/letsencrypt/live/idrisraja.com/fullchain.pem";
-          sslCertificateKey = "/etc/letsencrypt/live/idrisraja.com/privkey.pem";
+          useACMEHost = acmeHost;
           locations."/" = {
             proxyPass = "http://127.0.0.1:8000";
             proxyWebsockets = true;
@@ -220,8 +222,7 @@
 
         "frigate.idrisraja.com" = {
           forceSSL = true;
-          sslCertificate = "/etc/letsencrypt/live/idrisraja.com/fullchain.pem";
-          sslCertificateKey = "/etc/letsencrypt/live/idrisraja.com/privkey.pem";
+          useACMEHost = acmeHost;
           locations."/" = {
             proxyPass = "http://192.168.8.231:80";
             proxyWebsockets = true;
@@ -230,8 +231,7 @@
 
         "homeassistant.idrisraja.com" = {
           forceSSL = true;
-          sslCertificate = "/etc/letsencrypt/live/idrisraja.com/fullchain.pem";
-          sslCertificateKey = "/etc/letsencrypt/live/idrisraja.com/privkey.pem";
+          useACMEHost = acmeHost;
           locations."/" = {
             proxyPass = "http://127.0.0.1:8123";
             proxyWebsockets = true;
@@ -240,8 +240,7 @@
 
         "esphome.idrisraja.com" = {
           forceSSL = true;
-          sslCertificate = "/etc/letsencrypt/live/idrisraja.com/fullchain.pem";
-          sslCertificateKey = "/etc/letsencrypt/live/idrisraja.com/privkey.pem";
+          useACMEHost = acmeHost;
           locations."/" = {
             proxyPass = "http://192.168.8.231:6052";
             proxyWebsockets = true;
@@ -250,8 +249,7 @@
 
         "tv.idrisraja.com" = {
           forceSSL = true;
-          sslCertificate = "/etc/letsencrypt/live/idrisraja.com/fullchain.pem";
-          sslCertificateKey = "/etc/letsencrypt/live/idrisraja.com/privkey.pem";
+          useACMEHost = acmeHost;
           locations."= /" = {
             proxyPass = "http://192.168.8.103:80";
           };

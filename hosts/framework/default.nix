@@ -1,6 +1,9 @@
 { pkgs, ... }:
 {
-  imports = [ ./hardware-framework.nix ];
+  imports = [
+    ../../modules/labrador.nix
+    ./hardware-framework.nix
+  ];
   config = {
     my = {
       base.enable = true;
@@ -28,6 +31,7 @@
       };
     };
     borg-backup-client.enable = true;
+    hardware.labrador.enable = true;
     virtualization.enable = true;
     services.blueman.enable = true;
     hardware.bluetooth.enable = true;
