@@ -1,7 +1,8 @@
-{ config
-, lib
-, pkgs
-, ...
+{
+  config,
+  lib,
+  pkgs,
+  ...
 }:
 with lib;
 let
@@ -44,7 +45,7 @@ let
     dependencies = [ etekcityEsf551Ble ];
   };
 
-  wiimPythonPackage = haPythonPkgs.buildPythonPackage rec {
+  wiimPythonPackage = haPythonPkgs.buildPythonPackage {
     pname = "wiim";
     version = "0.1.0";
     format = "wheel";
@@ -100,10 +101,13 @@ in
         "bluetooth_adapters"
         # Components required to complete the onboarding
         "esphome"
+        "fan"
+        "generic_thermostat"
         "hue"
         "met"
         "radio_browser"
         "reolink"
+        "template"
         "tplink"
         "wiim"
         "zha"
@@ -289,9 +293,114 @@ in
                 type = "vertical-stack";
                 cards = [
                   {
+                    type = "thermostat";
+                    entity = "climate.living_room_ac";
+                    name = "Living Room AC";
+                  }
+                  {
+                    type = "thermostat";
+                    entity = "climate.bedroom_ac";
+                    name = "Bedroom AC";
+                  }
+                  {
+                    type = "entities";
+                    title = "AC controls";
+                    show_header_toggle = false;
+                    entities = [
+                      {
+                        entity = "climate.living_room_ac";
+                        name = "Living thermostat";
+                      }
+                      {
+                        entity = "climate.bedroom_ac";
+                        name = "Bedroom thermostat";
+                      }
+                      {
+                        entity = "switch.third_reality_inc_3rsp02028bz";
+                        name = "Living AC outlet";
+                      }
+                      {
+                        entity = "switch.third_reality_inc_3rsp02028bz_2";
+                        name = "Bedroom AC outlet";
+                      }
+                      {
+                        entity = "fan.living_room_air_purifier";
+                        name = "Living air purifier";
+                      }
+                      {
+                        entity = "sensor.living_room_air_purifier_speed";
+                        name = "Purifier speed";
+                      }
+                      {
+                        entity = "sensor.3_power";
+                        name = "Purifier power";
+                      }
+                      {
+                        entity = "sensor.2_weather_temperature";
+                        name = "Living temperature";
+                      }
+                      {
+                        entity = "sensor.esp32_lan_node_dallas_temperature";
+                        name = "Bedroom temperature";
+                      }
+                      {
+                        entity = "sensor.2_weather_humidity";
+                        name = "Living humidity";
+                      }
+                      {
+                        entity = "sensor.lumi_lumi_weather_humidity";
+                        name = "Bedroom humidity";
+                      }
+                    ];
+                  }
+                  {
                     type = "history-graph";
-                    title = "Living Room vs Bedroom Temperature (7 days)";
-                    hours_to_show = 168;
+                    title = "AC Operation (24 hours)";
+                    hours_to_show = 24;
+                    refresh_interval = 0;
+                    entities = [
+                      {
+                        entity = "climate.living_room_ac";
+                        name = "Living thermostat";
+                      }
+                      {
+                        entity = "climate.bedroom_ac";
+                        name = "Bedroom thermostat";
+                      }
+                      {
+                        entity = "switch.third_reality_inc_3rsp02028bz";
+                        name = "Living AC outlet";
+                      }
+                      {
+                        entity = "switch.third_reality_inc_3rsp02028bz_2";
+                        name = "Bedroom AC outlet";
+                      }
+                      {
+                        entity = "fan.living_room_air_purifier";
+                        name = "Living air purifier";
+                      }
+                      {
+                        entity = "sensor.living_room_air_purifier_speed";
+                        name = "Purifier speed";
+                      }
+                      {
+                        entity = "sensor.3_power";
+                        name = "Purifier power";
+                      }
+                      {
+                        entity = "sensor.2_weather_temperature";
+                        name = "Living Temp";
+                      }
+                      {
+                        entity = "sensor.esp32_lan_node_dallas_temperature";
+                        name = "Bedroom Temp";
+                      }
+                    ];
+                  }
+                  {
+                    type = "history-graph";
+                    title = "Living Room vs Bedroom Temperature (24 hours)";
+                    hours_to_show = 24;
                     refresh_interval = 0;
                     entities = [
                       {
@@ -299,7 +408,7 @@ in
                         name = "Living Room";
                       }
                       {
-                        entity = "sensor.lumi_lumi_weather_temperature";
+                        entity = "sensor.esp32_lan_node_dallas_temperature";
                         name = "Bedroom";
                       }
                     ];
@@ -316,7 +425,7 @@ in
                         name = "Living Temp";
                       }
                       {
-                        entity = "sensor.lumi_lumi_weather_temperature";
+                        entity = "sensor.esp32_lan_node_dallas_temperature";
                         name = "Bedroom Temp";
                       }
                       {
@@ -358,6 +467,18 @@ in
             "sensor.etekcity_smart_fitness_scale_d0_4d_00_4b_57_4a_idris_s_body_mass_index" = {
               friendly_name = "Idris BMI";
             };
+            "switch.third_reality_inc_3rsp02028bz" = {
+              friendly_name = "Living Room AC Outlet";
+              icon = "mdi:air-conditioner";
+            };
+            "switch.third_reality_inc_3rsp02028bz_2" = {
+              friendly_name = "Bedroom AC Outlet";
+              icon = "mdi:air-conditioner";
+            };
+            "switch.3" = {
+              friendly_name = "Living Room Air Purifier Outlet";
+              icon = "mdi:air-purifier";
+            };
           };
         };
 
@@ -383,6 +504,96 @@ in
               days = 7;
             };
             sampling_size = 200;
+          }
+        ];
+
+        climate = [
+          {
+            platform = "generic_thermostat";
+            name = "Living Room AC";
+            unique_id = "living_room_ac";
+            heater = "switch.third_reality_inc_3rsp02028bz";
+            target_sensor = "sensor.2_weather_temperature";
+            ac_mode = true;
+            target_temp = 76.75;
+            min_temp = 72;
+            max_temp = 82;
+            cold_tolerance = 1.25;
+            hot_tolerance = 1.25;
+            initial_hvac_mode = "cool";
+            precision = 0.5;
+            target_temp_step = 0.5;
+          }
+          {
+            platform = "generic_thermostat";
+            name = "Bedroom AC";
+            unique_id = "bedroom_ac";
+            heater = "switch.third_reality_inc_3rsp02028bz_2";
+            target_sensor = "sensor.esp32_lan_node_dallas_temperature";
+            ac_mode = true;
+            target_temp = 76.75;
+            min_temp = 72;
+            max_temp = 82;
+            cold_tolerance = 1.25;
+            hot_tolerance = 1.25;
+            initial_hvac_mode = "cool";
+            precision = 0.5;
+            target_temp_step = 0.5;
+          }
+        ];
+
+        template = [
+          {
+            sensor = [
+              {
+                name = "Living Room Air Purifier Speed";
+                unique_id = "living_room_air_purifier_speed";
+                default_entity_id = "sensor.living_room_air_purifier_speed";
+                icon = "mdi:fan-speed-2";
+                availability = "{{ has_value('sensor.3_power') }}";
+                state = ''
+                  {% set watts = states('sensor.3_power') | float(0) %}
+                  {% if is_state('switch.3', 'off') or watts < 5 %}
+                    off
+                  {% elif watts < 35 %}
+                    low
+                  {% elif watts < 60 %}
+                    medium
+                  {% else %}
+                    high
+                  {% endif %}
+                '';
+                attributes = {
+                  watts = "{{ states('sensor.3_power') }}";
+                  current = "{{ states('sensor.3_current') }}";
+                };
+              }
+            ];
+            fan = [
+              {
+                name = "Living Room Air Purifier";
+                unique_id = "living_room_air_purifier";
+                default_entity_id = "fan.living_room_air_purifier";
+                state = "{{ states('switch.3') }}";
+                icon = "mdi:air-purifier";
+                turn_on = [
+                  {
+                    service = "switch.turn_on";
+                    target = {
+                      entity_id = "switch.3";
+                    };
+                  }
+                ];
+                turn_off = [
+                  {
+                    service = "switch.turn_off";
+                    target = {
+                      entity_id = "switch.3";
+                    };
+                  }
+                ];
+              }
+            ];
           }
         ];
 
@@ -484,20 +695,21 @@ in
             ];
           }
           {
-            id = "living_room_ac_hysteresis_on";
-            alias = "Living Room AC Hysteresis On";
+            id = "living_room_air_purifier_ac_interlock";
+            alias = "Living Room Air Purifier AC Interlock";
             mode = "single";
             trigger = [
               {
-                id = "temp_above_deadband";
-                platform = "numeric_state";
-                entity_id = "sensor.2_weather_temperature";
-                above = 78;
-              }
-              {
-                id = "ha_start";
                 platform = "homeassistant";
                 event = "start";
+              }
+              {
+                platform = "state";
+                entity_id = "climate.living_room_ac";
+              }
+              {
+                platform = "state";
+                entity_id = "switch.3";
               }
             ];
             action = [
@@ -507,90 +719,19 @@ in
                     conditions = [
                       {
                         condition = "template";
-                        value_template = "{{ trigger.id == 'temp_above_deadband' }}";
+                        value_template = "{{ state_attr('climate.living_room_ac', 'hvac_action') == 'cooling' }}";
                       }
                     ];
                     sequence = [
                       {
                         condition = "state";
-                        entity_id = "switch.third_reality_inc_3rsp02028bz";
-                        state = "off";
-                      }
-                      {
-                        service = "switch.turn_on";
-                        target = {
-                          entity_id = "switch.third_reality_inc_3rsp02028bz";
-                        };
-                      }
-                    ];
-                  }
-                  {
-                    conditions = [
-                      {
-                        condition = "template";
-                        value_template = "{{ trigger.id == 'ha_start' }}";
-                      }
-                    ];
-                    sequence = [
-                      {
-                        condition = "numeric_state";
-                        entity_id = "sensor.2_weather_temperature";
-                        above = 79;
-                      }
-                      {
-                        condition = "state";
-                        entity_id = "switch.third_reality_inc_3rsp02028bz";
-                        state = "off";
-                      }
-                      {
-                        service = "switch.turn_on";
-                        target = {
-                          entity_id = "switch.third_reality_inc_3rsp02028bz";
-                        };
-                      }
-                    ];
-                  }
-                ];
-              }
-            ];
-          }
-          {
-            id = "living_room_ac_hysteresis_off";
-            alias = "Living Room AC Hysteresis Off";
-            mode = "single";
-            trigger = [
-              {
-                id = "temp_below_deadband";
-                platform = "numeric_state";
-                entity_id = "sensor.2_weather_temperature";
-                below = 75.5;
-              }
-              {
-                id = "ha_start";
-                platform = "homeassistant";
-                event = "start";
-              }
-            ];
-            action = [
-              {
-                choose = [
-                  {
-                    conditions = [
-                      {
-                        condition = "template";
-                        value_template = "{{ trigger.id == 'temp_below_deadband' }}";
-                      }
-                    ];
-                    sequence = [
-                      {
-                        condition = "state";
-                        entity_id = "switch.third_reality_inc_3rsp02028bz";
+                        entity_id = "switch.3";
                         state = "on";
                       }
                       {
                         service = "switch.turn_off";
                         target = {
-                          entity_id = "switch.third_reality_inc_3rsp02028bz";
+                          entity_id = "switch.3";
                         };
                       }
                     ];
@@ -599,24 +740,19 @@ in
                     conditions = [
                       {
                         condition = "template";
-                        value_template = "{{ trigger.id == 'ha_start' }}";
+                        value_template = "{{ state_attr('climate.living_room_ac', 'hvac_action') != 'cooling' }}";
                       }
                     ];
                     sequence = [
                       {
-                        condition = "numeric_state";
-                        entity_id = "sensor.2_weather_temperature";
-                        below = 75.5;
-                      }
-                      {
                         condition = "state";
-                        entity_id = "switch.third_reality_inc_3rsp02028bz";
-                        state = "on";
+                        entity_id = "switch.3";
+                        state = "off";
                       }
                       {
-                        service = "switch.turn_off";
+                        service = "switch.turn_on";
                         target = {
-                          entity_id = "switch.third_reality_inc_3rsp02028bz";
+                          entity_id = "switch.3";
                         };
                       }
                     ];
