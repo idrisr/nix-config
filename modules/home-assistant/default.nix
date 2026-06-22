@@ -104,6 +104,7 @@ in
         "fan"
         "generic_thermostat"
         "hue"
+        "input_number"
         "met"
         "radio_browser"
         "reolink"
@@ -163,6 +164,21 @@ in
                   {
                     entity = "sensor.idris_steps";
                     name = "Idris Steps";
+                  }
+                  {
+                    entity = "input_number.idris_waist";
+                    name = "Idris Waist";
+                  }
+                ];
+              }
+              {
+                type = "entities";
+                title = "Manual entry";
+                show_header_toggle = false;
+                entities = [
+                  {
+                    entity = "input_number.idris_waist";
+                    name = "Waist (in)";
                   }
                 ];
               }
@@ -278,6 +294,30 @@ in
                   {
                     entity = "sensor.idris_steps";
                     name = "Steps";
+                  }
+                ];
+              }
+              {
+                type = "history-graph";
+                title = "Idris Waist (30 days)";
+                hours_to_show = 720;
+                refresh_interval = 0;
+                entities = [
+                  {
+                    entity = "input_number.idris_waist";
+                    name = "Waist";
+                  }
+                ];
+              }
+              {
+                type = "history-graph";
+                title = "Idris Waist (5 days)";
+                hours_to_show = 120;
+                refresh_interval = 0;
+                entities = [
+                  {
+                    entity = "input_number.idris_waist";
+                    name = "Waist";
                   }
                 ];
               }
@@ -479,6 +519,18 @@ in
               friendly_name = "Living Room Air Purifier Outlet";
               icon = "mdi:air-purifier";
             };
+          };
+        };
+
+        input_number = {
+          idris_waist = {
+            name = "Idris Waist";
+            icon = "mdi:tape-measure";
+            min = 20;
+            max = 60;
+            step = 0.25;
+            mode = "box";
+            unit_of_measurement = "in";
           };
         };
 
