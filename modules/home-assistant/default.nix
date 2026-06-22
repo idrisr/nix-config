@@ -183,11 +183,7 @@ in
                     entities = [
                       {
                         entity = "input_text.idris_waist_entry";
-                        name = "Waist entry (in)";
-                      }
-                      {
-                        entity = "input_number.idris_waist";
-                        name = "Saved waist";
+                        name = "New waist (in)";
                       }
                     ];
                   }
@@ -557,8 +553,9 @@ in
 
         input_text = {
           idris_waist_entry = {
-            name = "Idris Waist Entry";
+            name = "New Waist";
             icon = "mdi:tape-measure";
+            initial = "";
             max = 5;
           };
         };
