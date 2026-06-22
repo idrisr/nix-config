@@ -105,9 +105,11 @@ in
         "generic_thermostat"
         "hue"
         "input_number"
+        "input_text"
         "met"
         "radio_browser"
         "reolink"
+        "script"
         "template"
         "tplink"
         "wiim"
@@ -172,13 +174,32 @@ in
                 ];
               }
               {
-                type = "entities";
-                title = "Manual entry";
-                show_header_toggle = false;
-                entities = [
+                type = "vertical-stack";
+                cards = [
                   {
-                    entity = "input_number.idris_waist";
-                    name = "Waist (in)";
+                    type = "entities";
+                    title = "Manual entry";
+                    show_header_toggle = false;
+                    entities = [
+                      {
+                        entity = "input_text.idris_waist_entry";
+                        name = "Waist entry (in)";
+                      }
+                      {
+                        entity = "input_number.idris_waist";
+                        name = "Saved waist";
+                      }
+                    ];
+                  }
+                  {
+                    type = "button";
+                    name = "Save waist";
+                    icon = "mdi:content-save";
+                    show_state = false;
+                    tap_action = {
+                      action = "call-service";
+                      service = "script.save_idris_waist";
+                    };
                   }
                 ];
               }
@@ -531,6 +552,31 @@ in
             step = 0.25;
             mode = "box";
             unit_of_measurement = "in";
+          };
+        };
+
+        input_text = {
+          idris_waist_entry = {
+            name = "Idris Waist Entry";
+            icon = "mdi:tape-measure";
+            max = 5;
+          };
+        };
+
+        script = {
+          save_idris_waist = {
+            alias = "Save Idris Waist";
+            sequence = [
+              {
+                service = "input_number.set_value";
+                target = {
+                  entity_id = "input_number.idris_waist";
+                };
+                data = {
+                  value = "{{ states('input_text.idris_waist_entry') | float(states('input_number.idris_waist')) }}";
+                };
+              }
+            ];
           };
         };
 
