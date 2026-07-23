@@ -1,13 +1,12 @@
-{
-  config,
-  lib,
-  pkgs,
-  ...
+{ config
+, lib
+, pkgs
+, ...
 }:
 with lib;
 let
   cfg = config.home-assistant;
-  haPythonPkgs = pkgs.home-assistant.python.pkgs;
+  haPythonPkgs = pkgs.home-assistant.python3Packages;
 
   etekcityEsf551Ble = haPythonPkgs.buildPythonPackage rec {
     pname = "etekcity-esf551-ble";
@@ -26,6 +25,7 @@ let
       haPythonPkgs.bleak
       haPythonPkgs."bleak-retry-connector"
     ];
+    pythonRelaxDeps = [ "bleak" ];
 
     pythonImportsCheck = [ "etekcity_esf551_ble" ];
   };
@@ -455,18 +455,40 @@ in
                     ];
                   }
                   {
-                    type = "history-graph";
-                    title = "Living Room vs Bedroom Temperature (24 hours)";
-                    hours_to_show = 24;
-                    refresh_interval = 0;
-                    entities = [
+                    type = "custom:apexcharts-card";
+                    graph_span = "24h";
+                    cache = false;
+                    update_interval = "1min";
+                    header = {
+                      show = true;
+                      title = "Living Room vs Bedroom Temperature (24 hours)";
+                      show_states = true;
+                      colorize_states = true;
+                    };
+                    all_series_config = {
+                      curve = "smooth";
+                      extend_to = false;
+                      fill_raw = "null";
+                      float_precision = 1;
+                      stroke_width = 2;
+                    };
+                    yaxis = [
+                      {
+                        decimals = 1;
+                        min = "|-1|";
+                        max = "|+1|";
+                      }
+                    ];
+                    series = [
                       {
                         entity = "sensor.2_weather_temperature";
                         name = "Living Room";
+                        color = "#4169e1";
                       }
                       {
                         entity = "sensor.esp32_lan_node_dallas_temperature";
                         name = "Bedroom";
+                        color = "#f6b73c";
                       }
                     ];
                   }
@@ -611,8 +633,8 @@ in
             target_sensor = "sensor.2_weather_temperature";
             ac_mode = true;
             target_temp = 76.75;
-            min_temp = 72;
-            max_temp = 82;
+            min_temp = 68;
+            max_temp = 84;
             cold_tolerance = 1.25;
             hot_tolerance = 1.25;
             initial_hvac_mode = "cool";
@@ -627,8 +649,8 @@ in
             target_sensor = "sensor.esp32_lan_node_dallas_temperature";
             ac_mode = true;
             target_temp = 76.75;
-            min_temp = 72;
-            max_temp = 82;
+            min_temp = 68;
+            max_temp = 84;
             cold_tolerance = 1.25;
             hot_tolerance = 1.25;
             initial_hvac_mode = "cool";
