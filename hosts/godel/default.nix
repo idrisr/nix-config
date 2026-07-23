@@ -1,10 +1,9 @@
-{
-  config,
-  lib,
-  modulesPath,
-  pkgs,
-  inputs,
-  ...
+{ config
+, lib
+, modulesPath
+, pkgs
+, inputs
+, ...
 }:
 let
   acmeHost = "idrisraja.com";
@@ -35,7 +34,6 @@ in
       enable = true;
       advertiseRoutes = [ "192.168.8.224/32" ];
     };
-    unifi.enable = true;
     networking.adblocker.enable = true;
     users.users.root = {
       hashedPassword = "$y$j9T$BowmS9BT0LZ5WNT1V4Day1$dae0REqJAJuNehr7b3Uj3Zy.dToJ30mwOqugbA39b02";
@@ -160,15 +158,6 @@ in
           useACMEHost = acmeHost;
           locations."/" = {
             proxyPass = "http://192.168.8.231:2501";
-            proxyWebsockets = true;
-          };
-        };
-
-        "unifi.idrisraja.com" = {
-          forceSSL = true;
-          useACMEHost = acmeHost;
-          locations."/" = {
-            proxyPass = "https://127.0.0.1:8443";
             proxyWebsockets = true;
           };
         };
