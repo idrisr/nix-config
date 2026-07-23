@@ -1,7 +1,8 @@
-{ config, lib, ... }:
+{ config, lib, pkgs, ... }:
 with lib;
 let
   cfg = config.my.kismet;
+  dataDir = config.services.kismet.dataDir;
 in
 {
   options.my.kismet = {
@@ -29,6 +30,12 @@ in
       default = "kismet-mon";
       description = lib.mdDoc "Friendly source name shown in Kismet.";
     };
+
+    retentionDays = mkOption {
+      type = types.ints.positive;
+      default = 14;
+      description = lib.mdDoc "Days of Kismet capture databases to retain.";
+    };
   };
 
   config = mkIf cfg.enable {
@@ -54,5 +61,30 @@ in
     };
 
     networking.firewall.allowedTCPPorts = [ cfg.proxyPort ];
+
+    systemd.services.kismet-retention = {
+      description = "Prune old Kismet capture databases";
+      serviceConfig.Type = "oneshot";
+      path = [
+        pkgs.findutils
+        pkgs.systemd
+      ];
+      script = ''
+        systemctl stop kismet.service
+        trap 'systemctl start kismet.service' EXIT
+
+        find ${escapeShellArg dataDir} -maxdepth 1 -type f \
+          \( -name '*.kismet' -o -name '*.kismet-journal' \) \
+          -mtime +${toString cfg.retentionDays} -delete
+      '';
+    };
+
+    systemd.timers.kismet-retention = {
+      wantedBy = [ "timers.target" ];
+      timerConfig = {
+        OnCalendar = "daily";
+        Persistent = true;
+      };
+    };
   };
 }
