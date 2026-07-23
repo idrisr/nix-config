@@ -7,6 +7,18 @@ let
         hostPlatform = lib.mkDefault "x86_64-linux";
         overlays = [ inputs."home-config".overlays.default ];
         config.allowUnfree = true;
+        config.packageOverrides = pkgs: {
+          pythonPackagesExtensions = pkgs.pythonPackagesExtensions ++ [
+            (python-final: python-prev: {
+              ai-edge-litert = python-prev.ai-edge-litert.overrideAttrs (old: {
+                autoPatchelfIgnoreMissingDeps = (old.autoPatchelfIgnoreMissingDeps or [ ]) ++ [
+                  "libopenvino.so.2620"
+                  "libopenvino_tensorflow_lite_frontend.so.2620"
+                ];
+              });
+            })
+          ];
+        };
       };
     };
 in
