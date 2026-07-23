@@ -40,14 +40,14 @@ in
       enable = true;
       address = "127.0.0.1";
       port = 28981;
-      dataDir = "/persist/paperless/data";
-      mediaDir = "/persist/paperless/media";
-      consumptionDir = "/persist/paperless/consume";
+      dataDir = "/srv/paperless/data";
+      mediaDir = "/srv/paperless/media";
+      consumptionDir = "/srv/paperless/consume";
       openMPThreadingWorkaround = true;
       database.createLocally = true;
       exporter = {
         enable = true;
-        directory = "/persist/paperless/export";
+        directory = "/srv/paperless/export";
         onCalendar = "daily";
       };
       settings = {
@@ -68,11 +68,11 @@ in
     };
 
     systemd.tmpfiles.rules = [
-      "d /persist/paperless 0755 paperless paperless -"
-      "d /persist/paperless/consume 0750 paperless paperless -"
-      "d /persist/paperless/data 0700 paperless paperless -"
-      "d /persist/paperless/export 0700 paperless paperless -"
-      "d /persist/paperless/media 0700 paperless paperless -"
+      "d /srv/paperless 0755 paperless paperless -"
+      "d /srv/paperless/consume 0750 paperless paperless -"
+      "d /srv/paperless/data 0700 paperless paperless -"
+      "d /srv/paperless/export 0700 paperless paperless -"
+      "d /srv/paperless/media 0700 paperless paperless -"
     ];
   };
 }
