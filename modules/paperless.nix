@@ -53,7 +53,6 @@ in
       settings = {
         PAPERLESS_URL = "https://${cfg.domain}";
         PAPERLESS_OCR_LANGUAGE = "eng";
-        PAPERLESS_OCR_MODE = "auto";
         PAPERLESS_ENABLE_NLTK = false;
       };
     };
