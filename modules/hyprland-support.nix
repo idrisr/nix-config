@@ -16,7 +16,7 @@
   # mesa / vulkan support
   hardware = {
     graphics = {
-      enable32Bit = true;
+      enable32Bit = false;
       enable = true;
     };
   };
