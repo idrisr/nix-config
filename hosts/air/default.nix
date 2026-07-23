@@ -1,4 +1,5 @@
-{ pkgs
+{ lib
+, pkgs
 , inputs
 , ...
 }: {
@@ -7,6 +8,9 @@
     my.base.enable = true;
     my.borgrepo.enable = true;
     my."initrd-remote-unlock".enable = true;
+    programs.hyprland.enable = lib.mkForce false;
+    services.greetd.enable = lib.mkForce false;
+    systemd.defaultUnit = "multi-user.target";
 
     home-manager = {
       useGlobalPkgs = true;
