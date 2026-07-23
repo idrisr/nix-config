@@ -45,7 +45,7 @@ in
     my.prometheus-server.enable = true;
     my.hdhomerun-monitor = {
       enable = true;
-      deviceIp = "192.168.8.103";
+      deviceIp = "192.168.8.199";
     };
     services.iperf3 = {
       enable = true;
@@ -94,7 +94,7 @@ in
       streamConfig = ''
         server {
           listen 5004;
-          proxy_pass 192.168.8.103:5004;
+          proxy_pass 192.168.8.199:5004;
         }
       '';
       virtualHosts = {
@@ -255,16 +255,16 @@ in
           forceSSL = true;
           useACMEHost = acmeHost;
           locations."= /" = {
-            proxyPass = "http://192.168.8.103:80";
+            proxyPass = "http://192.168.8.199:80";
           };
           locations."/live/" = {
             extraConfig = ''
               rewrite ^/live/(.+)$ /auto/v$1 break;
-              proxy_pass http://192.168.8.103:5004;
+              proxy_pass http://192.168.8.199:5004;
             '';
           };
           locations."/" = {
-            proxyPass = "http://192.168.8.103:80";
+            proxyPass = "http://192.168.8.199:80";
           };
         };
 
