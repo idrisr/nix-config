@@ -8,7 +8,7 @@ stdenvNoCC.mkDerivation rec {
     owner = "wiedehopf";
     repo = "tar1090";
     rev = "master";
-    hash = "sha256-KYXn9TsbifqapJCPYxOgMvm/KvzltcAUsm1VxySMCoU=";
+    hash = "sha256-ml6C1npxY4WlpdKc3OCWqcTLyGh5+Nl9Dm6opZmSAWw=";
   };
 
   installPhase = ''
@@ -17,11 +17,11 @@ stdenvNoCC.mkDerivation rec {
     mkdir -p "$out/share/tar1090"
     cp -r html nginx-readsb-api.conf LICENSE README.md "$out/share/tar1090/"
 
-    cat > "$out/share/tar1090/html/config.js" <<'EOF'
-routeApiUrl = "https://adsb.im/api/0/routeset";
-routeApi = true;
-routeDisplay = "icao";
-EOF
+    printf '%s\n' \
+      'routeApiUrl = "https://adsb.im/api/0/routeset";' \
+      'routeApi = true;' \
+      'routeDisplay = "icao";' \
+      > "$out/share/tar1090/html/config.js"
 
     runHook postInstall
   '';
