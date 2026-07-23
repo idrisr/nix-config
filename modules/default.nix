@@ -36,6 +36,7 @@
     ./ollama
     ./opencode
     ./passkey
+    ./paperless.nix
     ./pinchflat
     ./pipewire
     ./printer/printer-client.nix

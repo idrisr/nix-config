@@ -54,6 +54,7 @@ in
       ../../modules/ollama
       ../../modules/opnsense-backup
       ../../modules/passkey
+      ../../modules/paperless.nix
       ../../modules/pinchflat
       ../../modules/pipewire
       ../../modules/podgrab
