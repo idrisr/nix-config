@@ -12,6 +12,7 @@
       extraGroups = [
         "sudo"
         "audio"
+        "cdrom"
         "dialout"
         "docker"
         "lpadmin"
