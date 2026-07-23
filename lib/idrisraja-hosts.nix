@@ -7,6 +7,7 @@
   "unifi.idrisraja.com" = "192.168.8.224";
   "mealie.idrisraja.com" = "192.168.8.224";
   "navidrome.idrisraja.com" = "192.168.8.224";
+  "paperless.idrisraja.com" = "192.168.8.224";
   "slskd.idrisraja.com" = "192.168.8.224";
   "audiobookshelf.idrisraja.com" = "192.168.8.224";
   "prometheus.idrisraja.com" = "192.168.8.224";

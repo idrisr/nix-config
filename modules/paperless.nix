@@ -18,7 +18,6 @@ in
       };
 
       domain = mkOption {
-        default = "paperless.idrisraja.com";
         type = types.str;
         description = lib.mdDoc ''
           public domain for paperless-ngx

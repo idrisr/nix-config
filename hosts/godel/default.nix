@@ -26,7 +26,10 @@ in
     my.navidrome.enable = true;
     my.audiobookshelf.enable = true;
     my.slskd.enable = true;
-    my.paperless.enable = true;
+    my.paperless = {
+      enable = true;
+      domain = "paperless.idrisraja.com";
+    };
     home-assistant.enable = true;
 
     my."initrd-remote-unlock".enable = true;
