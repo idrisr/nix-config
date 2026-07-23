@@ -6,7 +6,10 @@
 
   config = {
     my.base.enable = true;
-    my.servernode.enable = true;
+    my.servernode = {
+      enable = true;
+      advertiseRoutes = [ "192.168.8.0/24" ];
+    };
     my.nix-index.enable = false;
     my.nix-index.database.enable = true;
 

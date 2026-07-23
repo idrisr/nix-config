@@ -15,6 +15,14 @@ in
           enable exit node
         '';
       };
+
+      advertiseRoutes = mkOption {
+        default = [ ];
+        type = types.listOf types.str;
+        description = lib.mdDoc ''
+          subnet routes to advertise through Tailscale
+        '';
+      };
     };
   };
 
@@ -22,7 +30,7 @@ in
     services.tailscale = {
       enable = true;
       useRoutingFeatures = "server";
-      extraUpFlags = [ "--advertise-routes=192.168.8.0/24" ];
+      extraSetFlags = optional (cfg.advertiseRoutes != [ ]) "--advertise-routes=${concatStringsSep "," cfg.advertiseRoutes}";
     };
   };
 }

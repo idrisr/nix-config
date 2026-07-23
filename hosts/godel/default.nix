@@ -31,7 +31,10 @@ in
     home-assistant.enable = true;
 
     my."initrd-remote-unlock".enable = true;
-    my.servernode.enable = false;
+    my.servernode = {
+      enable = true;
+      advertiseRoutes = [ "192.168.8.224/32" ];
+    };
     unifi.enable = true;
     networking.adblocker.enable = true;
     users.users.root = {
