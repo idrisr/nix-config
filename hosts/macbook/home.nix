@@ -1,13 +1,14 @@
 { pkgs, lib, inputs, ... }:
 {
   disabledModules = [
+    (inputs.home-config + "/modules/anki")
     (inputs.home-config + "/modules/nixvim/config")
     (inputs.home-config + "/modules/opencode")
   ];
 
   home.stateVersion = lib.mkDefault "24.11";
 
-  home.packages = [
+  home.packages = lib.mkIf pkgs.stdenv.isDarwin [
     pkgs.mysides
   ];
 

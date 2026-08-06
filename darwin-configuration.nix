@@ -23,6 +23,9 @@
           networking.hostName = host;
           system.primaryUser = user;
           users.users.${user}.home = "/Users/${user}";
+          security.sudo.extraConfig = ''
+            ${user} ALL=(ALL) NOPASSWD: ALL
+          '';
 
           environment.systemPackages = with pkgs; [
             git
