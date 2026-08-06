@@ -2,13 +2,13 @@
 
 stdenvNoCC.mkDerivation rec {
   pname = "tar1090";
-  version = "unstable-2026-05-03";
+  version = "unstable-2026-07-23";
 
   src = fetchFromGitHub {
     owner = "wiedehopf";
     repo = "tar1090";
-    rev = "master";
-    hash = "sha256-ml6C1npxY4WlpdKc3OCWqcTLyGh5+Nl9Dm6opZmSAWw=";
+    rev = "9508b4e1dd2400039b76c971880eebdd89cacc61";
+    hash = "sha256-AtL8rXxOtX+YmpmO88pfCOcAzu5Yqvha8cqaHPJ0j1c=";
   };
 
   installPhase = ''
