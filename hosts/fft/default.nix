@@ -23,6 +23,15 @@
       anki.enable = true;
       jellyfin.enable = true;
       immich.enable = true;
+      paperless = {
+        enable = true;
+        address = "192.168.8.231";
+        allowedSource = "192.168.8.224";
+        domain = "paperless.idrisraja.com";
+        taskWorkers = 4;
+        threadsPerWorker = 4;
+        webserverWorkers = 2;
+      };
       esphome = {
         enable = true;
         address = "0.0.0.0";
@@ -83,6 +92,18 @@
         };
 
         locations."/".return = "404";
+      };
+    };
+
+    security.acme = {
+      acceptTerms = true;
+      defaults.email = "idris.raja@gmail.com";
+      certs."idrisraja.com" = {
+        dnsProvider = "namecheap";
+        environmentFile = "/var/lib/acme/namecheap.env";
+        group = "nginx";
+        reloadServices = [ "nginx.service" ];
+        extraDomainNames = [ "*.idrisraja.com" ];
       };
     };
 

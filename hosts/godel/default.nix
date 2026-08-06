@@ -26,10 +26,6 @@ in
     my.navidrome.enable = true;
     my.audiobookshelf.enable = true;
     my.slskd.enable = true;
-    my.paperless = {
-      enable = true;
-      domain = "paperless.idrisraja.com";
-    };
     home-assistant.enable = true;
 
     my."initrd-remote-unlock".enable = true;
@@ -186,6 +182,15 @@ in
           useACMEHost = acmeHost;
           locations."/" = {
             proxyPass = "http://127.0.0.1:4533";
+            proxyWebsockets = true;
+          };
+        };
+
+        "paperless.idrisraja.com" = {
+          forceSSL = true;
+          useACMEHost = acmeHost;
+          locations."/" = {
+            proxyPass = "http://192.168.8.231:28981";
             proxyWebsockets = true;
           };
         };
