@@ -4,8 +4,8 @@
   user,
   system,
 }:
-{
-  darwinConfigurations.${host} = inputs.nix-darwin.lib.darwinSystem {
+let
+  mkDarwinConfiguration = host: inputs.nix-darwin.lib.darwinSystem {
     inherit system;
     specialArgs = {
       inherit inputs host user;
@@ -60,5 +60,11 @@
         }
       )
     ];
+  };
+in
+{
+  darwinConfigurations = {
+    ${host} = mkDarwinConfiguration host;
+    macbook = mkDarwinConfiguration "macbook";
   };
 }
