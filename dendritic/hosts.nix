@@ -18,7 +18,10 @@ let
       system = "x86_64-linux";
       deploy.hostname = "192.168.50.23";
     };
-    fft.system = "x86_64-linux";
+    fft = {
+      system = "x86_64-linux";
+      deploy.hostname = "fft";
+    };
     rpi4 = {
       system = "aarch64-linux";
       deploy.hostname = "192.168.8.106";
