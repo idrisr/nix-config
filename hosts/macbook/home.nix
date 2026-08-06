@@ -1,4 +1,4 @@
-{ pkgs, lib, inputs, ... }:
+{ lib, inputs, ... }:
 {
   disabledModules = [
     (inputs.home-config + "/modules/anki")
@@ -7,15 +7,6 @@
   ];
 
   home.stateVersion = lib.mkDefault "24.11";
-
-  home.packages = lib.mkIf pkgs.stdenv.isDarwin [
-    pkgs.mysides
-  ];
-
-  home.activation.finderHomeShortcut = lib.hm.dag.entryAfter [ "writeBoundary" ] ''
-    ${pkgs.mysides}/bin/mysides remove Home >/dev/null 2>&1 || true
-    ${pkgs.mysides}/bin/mysides add Home "file:///Users/$USER"
-  '';
 
   targets.darwin.copyApps.enable = true;
   targets.darwin.linkApps.enable = lib.mkForce false;
