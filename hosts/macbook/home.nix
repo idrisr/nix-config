@@ -2,7 +2,6 @@
 {
   disabledModules = [
     (inputs.home-config + "/modules/anki")
-    (inputs.home-config + "/modules/opencode")
   ];
 
   home.stateVersion = lib.mkDefault "24.11";
