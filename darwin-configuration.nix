@@ -20,8 +20,14 @@ let
           ];
           nixpkgs.hostPlatform = system;
           nixpkgs.config.allowUnfree = true;
+          nixpkgs.overlays = [ inputs.home-config.overlays.default ];
           networking.hostName = host;
           system.primaryUser = user;
+          system.keyboard = {
+            enableKeyMapping = true;
+            swapCapsLockAndEscape = true;
+            swapLeftCtrlAndFn = true;
+          };
           users.users.${user}.home = "/Users/${user}";
           security.sudo.extraConfig = ''
             ${user} ALL=(ALL) NOPASSWD: ALL
@@ -45,9 +51,7 @@ let
           home-manager.useGlobalPkgs = true;
           home-manager.useUserPackages = true;
           home-manager.extraSpecialArgs = {
-            inputs = inputs // {
-              "idris-pkgs" = inputs.home-config;
-            };
+            inherit inputs;
             inherit pkgs;
             graphical = true;
           };

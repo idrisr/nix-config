@@ -2,7 +2,6 @@
 {
   disabledModules = [
     (inputs.home-config + "/modules/anki")
-    (inputs.home-config + "/modules/nixvim/config")
     (inputs.home-config + "/modules/opencode")
   ];
 
