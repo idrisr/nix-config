@@ -20,7 +20,6 @@ in
     systemd.defaultUnit = "multi-user.target";
     my.mediamtxWebcam.enable = true;
     my.mediamtxWebcam.videoDevice = "/dev/video1";
-    my.mealie.enable = true;
     my.music-assistant.enable = true;
     services.music-assistant.providers = [
       "opensubsonic"
@@ -171,14 +170,6 @@ in
           useACMEHost = acmeHost;
           locations."/" = {
             proxyPass = "http://127.0.0.1:9090";
-          };
-        };
-
-        "mealie.idrisraja.com" = {
-          forceSSL = true;
-          useACMEHost = acmeHost;
-          locations."/" = {
-            proxyPass = "http://127.0.0.1:9000";
           };
         };
 
