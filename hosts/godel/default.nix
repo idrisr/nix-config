@@ -12,7 +12,12 @@ in
   imports = [ (modulesPath + "/installer/scan/not-detected.nix") ];
 
   config = {
-    my.base.enable = true;
+    my.base = {
+      enable = true;
+      peripheralGroups.enable = false;
+      sessionServices.enable = false;
+    };
+    systemd.defaultUnit = "multi-user.target";
     my.mediamtxWebcam.enable = true;
     my.mediamtxWebcam.videoDevice = "/dev/video1";
     my.mealie.enable = true;
