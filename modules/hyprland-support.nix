@@ -6,57 +6,55 @@ in
   options.my.hyprland-support.enable = lib.mkEnableOption "Hyprland support";
 
   config = lib.mkIf cfg.enable {
-  # required services and drivers
-  services.xserver.enable = false;
-  services.xserver.displayManager.startx.enable = false;
-  fonts.fontconfig.enable = true;
+    # required services and drivers
+    services.xserver.enable = false;
+    services.xserver.displayManager.startx.enable = false;
+    fonts.fontconfig.enable = true;
 
-  # wayland session support
-  environment.sessionVariables = {
-    WLR_NO_HARDWARE_CURSORS = "1";
-    XDG_SESSION_TYPE = "wayland";
-  };
+    # wayland session support
+    environment.sessionVariables = {
+      WLR_NO_HARDWARE_CURSORS = "1";
+      XDG_SESSION_TYPE = "wayland";
+    };
 
-  # input (optional)
-  services.libinput.enable = true;
+    # input (optional)
+    services.libinput.enable = true;
 
-  # mesa / vulkan support
-  hardware = {
-    graphics = {
-      enable32Bit = false;
+    # mesa / vulkan support
+    hardware = {
+      graphics = {
+        enable32Bit = false;
+        enable = true;
+      };
+    };
+
+    # wayland extras
+    programs.hyprland = {
       enable = true;
+      withUWSM = true;
+      xwayland.enable = true;
     };
-  };
 
-  # wayland extras
-  programs.hyprland = {
-    enable = true;
-    withUWSM = true;
-    xwayland.enable = true;
-  };
+    programs.niri.enable = true;
 
-  environment.sessionVariables.NIXOS_OZONE_WL = "1";
+    environment.sessionVariables.NIXOS_OZONE_WL = "1";
 
-  environment.systemPackages = with pkgs; [
-    xdg-utils
-    glib # for gsettings schemas
-    kitty
-    tuigreet
-  ];
+    environment.systemPackages = with pkgs; [
+      xdg-utils
+      glib # for gsettings schemas
+      kitty
+      tuigreet
+    ];
 
-  services.greetd = {
-    enable = true;
-    settings = {
-      default_session = {
-        command = "Hyprland";
-        user = "hippoid";
-      };
-
-      initial_session = {
-        command = "tuigreet --cmd Hyprland";
-        user = "greeter";
+    services.greetd = {
+      enable = true;
+      useTextGreeter = false;
+      settings = {
+        initial_session = {
+          command = "tuigreet --cmd Hyprland";
+          user = "greeter";
+        };
       };
     };
-  };
   };
 }

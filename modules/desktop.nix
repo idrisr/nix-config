@@ -1,11 +1,12 @@
-{
-  config,
-  pkgs,
-  lib,
-  ...
-}: let
+{ config
+, pkgs
+, lib
+, ...
+}:
+let
   cfg = config.display;
-in {
+in
+{
   options = {
     display = {
       enable = lib.mkOption {
@@ -61,7 +62,7 @@ in {
     };
 
     environment = {
-      sessionVariables = {};
+      sessionVariables = { };
       systemPackages = with pkgs; [
         libsForQt5.qt5.qtquickcontrols2
         libsForQt5.qt5.qtgraphicaleffects
