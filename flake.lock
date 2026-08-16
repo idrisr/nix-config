@@ -712,11 +712,11 @@
         "stylix": "stylix"
       },
       "locked": {
-        "lastModified": 1786064904,
-        "narHash": "sha256-byP9vLS9iFE70ztkL6lznep/b/H4c1sJfE4QBoynUOo=",
+        "lastModified": 1786068644,
+        "narHash": "sha256-bZmvrYquSxg6DxFE0HUVo2ZwGeT2RVpXcip8/Zyx1hQ=",
         "owner": "idrisr",
         "repo": "home-manager-config",
-        "rev": "a30ed63b3c4c65e6dd3240826e08beaa69e2d486",
+        "rev": "38dd565e5b19f044528596e2d6dc946e9ad36369",
         "type": "github"
       },
       "original": {
