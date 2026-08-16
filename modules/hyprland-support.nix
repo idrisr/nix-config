@@ -50,9 +50,9 @@ in
       enable = true;
       useTextGreeter = false;
       settings = {
-        initial_session = {
-          command = "tuigreet --cmd Hyprland";
-          user = "greeter";
+        default_session = {
+          command = "Hyprland";
+          user = "hippoid";
         };
       };
     };
