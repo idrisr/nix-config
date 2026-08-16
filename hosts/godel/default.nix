@@ -31,6 +31,7 @@ in
     my.audiobookshelf.enable = true;
     my.slskd.enable = true;
     home-assistant.enable = true;
+    environment.systemPackages = with pkgs; [ beets ];
 
     my."initrd-remote-unlock".enable = true;
     my.servernode = {
