@@ -1,24 +1,23 @@
+{ lib, pkgs, config, ... }:
+let
+  baseCfg = config.my.base;
+in
 {
-  pkgs,
-  config,
-  ...
-}: {
   config = {
     programs.zsh.enable = true;
     users.mutableUsers = false;
     users.users.hippoid = {
       isNormalUser = true;
       description = "hippoid";
-      extraGroups = [
-        "sudo"
-        "audio"
-        "cdrom"
-        "dialout"
-        "docker"
-        "lpadmin"
-        "networkmanager"
-        "wheel"
-      ];
+      extraGroups = [ "wheel" ]
+        ++ lib.optionals baseCfg.peripheralGroups.enable [
+          "audio"
+          "cdrom"
+          "dialout"
+          "docker"
+          "lpadmin"
+          "networkmanager"
+        ];
       shell = pkgs.zsh;
 
       hashedPassword = "$y$j9T$BowmS9BT0LZ5WNT1V4Day1$dae0REqJAJuNehr7b3Uj3Zy.dToJ30mwOqugbA39b02";

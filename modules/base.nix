@@ -19,6 +19,22 @@ in
           direct transfer of the old base module.
         '';
       };
+
+      peripheralGroups.enable = lib.mkOption {
+        default = true;
+        type = lib.types.bool;
+        description = lib.mdDoc ''
+          add local device and desktop administration groups to the primary user
+        '';
+      };
+
+      sessionServices.enable = lib.mkOption {
+        default = true;
+        type = lib.types.bool;
+        description = lib.mdDoc ''
+          enable session-oriented services used by workstation software
+        '';
+      };
     };
   };
 
@@ -94,6 +110,7 @@ in
 
     security = {
       sudo.wheelNeedsPassword = false;
+    } // lib.optionalAttrs cfg.sessionServices.enable {
       rtkit.enable = true;
       polkit.enable = true;
     };
@@ -102,7 +119,7 @@ in
       tailscale = {
         enable = true;
       };
-      dbus = {
+      dbus = lib.mkIf cfg.sessionServices.enable {
         enable = true;
         packages = [ pkgs.dconf ];
       };
@@ -132,7 +149,6 @@ in
         vim
         man-pages
         man-pages-posix
-        kitty
       ];
       variables = {
         MANPAGER = "nvim +Man!";
