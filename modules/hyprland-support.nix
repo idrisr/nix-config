@@ -1,4 +1,11 @@
-{ pkgs, ... }: {
+{ config, lib, pkgs, ... }:
+let
+  cfg = config.my.hyprland-support;
+in
+{
+  options.my.hyprland-support.enable = lib.mkEnableOption "Hyprland support";
+
+  config = lib.mkIf cfg.enable {
   # required services and drivers
   services.xserver.enable = false;
   services.xserver.displayManager.startx.enable = false;
@@ -50,5 +57,6 @@
         user = "greeter";
       };
     };
+  };
   };
 }
