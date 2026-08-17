@@ -18,7 +18,7 @@ in
       sessionServices.enable = false;
     };
     systemd.defaultUnit = "multi-user.target";
-    my.mediamtxWebcam.enable = true;
+    my.mediamtxWebcam.enable = false;
     my.mediamtxWebcam.videoDevice = "/dev/video1";
     my.music-assistant.enable = true;
     services.music-assistant.providers = [
@@ -31,7 +31,6 @@ in
     my.audiobookshelf.enable = true;
     my.slskd.enable = true;
     home-assistant.enable = true;
-    environment.systemPackages = with pkgs; [ beets ];
 
     my."initrd-remote-unlock".enable = true;
     my.servernode = {
