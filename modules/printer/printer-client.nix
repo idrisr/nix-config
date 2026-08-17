@@ -27,54 +27,19 @@ in
           configure the Brother printer queue for this host
         '';
       };
-
-      name = mkOption {
-        default = "bro2300";
-        type = types.str;
-        description = mdDoc ''
-          printer queue name to create locally
-        '';
-      };
-
-      serverHost = mkOption {
-        default = "fft";
-        type = types.str;
-        description = mdDoc ''
-          CUPS server host used by remote printer clients
-        '';
-      };
-
-      local = {
-        enable = mkOption {
-          default = false;
-          type = types.bool;
-          description = mdDoc ''
-            use directly attached USB printer instead of remote IPP queue
-          '';
-        };
-      };
     };
   };
 
-  config = mkIf cfg.enable {
-    services.printing = {
-      enable = true;
-      drivers = optionals cfg.local.enable [ pkgs.brlaser ];
-    };
+  config = mkIf cfg.enable
+    {
+      services.printing.enable = true;
 
-    hardware.printers = {
-      ensurePrinters = [
-        {
-          name = cfg.name;
-          deviceUri = printerUri;
-          model = printerModel;
-        }
-      ];
-      ensureDefaultPrinter = cfg.name;
-    };
+      services.avahi = {
+        enable = true;
+        nssmdns4 = true;
+        openFirewall = true;
+      };
 
-    users.users.hippoid.extraGroups = [ "lpadmin" ];
-    environment.sessionVariables.LPDEST = cfg.name;
-    environment.systemPackages = optionals cfg.local.enable [ pkgs.brlaser ];
-  };
+      users.users.hippoid.extraGroups = [ "lpadmin" ];
+    };
 }
