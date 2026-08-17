@@ -1,8 +1,7 @@
-{
-  config,
-  lib,
-  pkgs,
-  ...
+{ config
+, lib
+, pkgs
+, ...
 }:
 let
   cfg = config.my.base;
@@ -40,6 +39,7 @@ in
 
   config = lib.mkIf cfg.enable {
     boot.loader.systemd-boot.configurationLimit = 10;
+    boot.zfs.forceImportRoot = false;
     nix = {
       package = pkgs.nixVersions.stable;
       settings = {
