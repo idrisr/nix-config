@@ -9,6 +9,7 @@
       base.enable = true;
       hyprland-support.enable = true;
       platformio.enable = true;
+      printer.enable = true;
       printer.serverHost = "192.168.8.231";
       opnsenseBackup.enable = true;
       pinchflat.enable = false;
