@@ -1,4 +1,7 @@
 { pkgs, ... }:
+let
+  user = "hippoid";
+in
 {
   imports = [
     ../../modules/labrador.nix
@@ -11,6 +14,7 @@
       platformio.enable = true;
       printer.enable = true;
       opnsenseBackup.enable = true;
+      nfs-client.enable = true;
       pinchflat.enable = false;
       kavita.enable = false;
       pipewire.enable = true;
@@ -35,6 +39,15 @@
     virtualization.enable = true;
     services.blueman.enable = true;
     hardware.bluetooth.enable = true;
+    fileSystems."/home/${user}/downloads/slskd" = {
+      device = "godel:/srv/slskd";
+      fsType = "nfs";
+      options = [
+        "nofail"
+        "x-systemd.automount"
+        "x-systemd.idle-timeout=10m"
+      ];
+    };
     fonts.packages = with pkgs; [ eb-garamond ];
     services.upower = {
       enable = true;

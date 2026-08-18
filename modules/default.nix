@@ -32,6 +32,7 @@
     ./navidrome.nix
     ./opnsense-backup
     ./nh
+    ./nfs-client.nix
     ./nvidia
     ./ollama
     ./opencode

@@ -23,6 +23,14 @@ in
   config = mkIf cfg.enable {
     users.groups.hippoid = { };
 
+    services.nfs.server = {
+      enable = true;
+      exports = ''
+        /srv/slskd 192.168.1.0/24(rw,sync,no_subtree_check) 172.16.1.0/24(rw,sync,no_subtree_check) 100.116.126.91(rw,sync,no_subtree_check,all_squash,anonuid=988,anongid=980)
+        /srv/slskd/downloads 192.168.1.0/24(rw,sync,no_subtree_check) 172.16.1.0/24(rw,sync,no_subtree_check) 100.116.126.91(rw,sync,no_subtree_check,all_squash,anonuid=988,anongid=980)
+      '';
+    };
+
     services.slskd = {
       enable = true;
       domain = null;
