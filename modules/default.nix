@@ -50,6 +50,7 @@
     ./slskd.nix
     ./superdrive.nix
     ./syncthing
+    ./trackpad.nix
     ./unifi
     ./virtualization
     ./vikunja

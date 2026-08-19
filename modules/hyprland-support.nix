@@ -17,9 +17,6 @@ in
       XDG_SESSION_TYPE = "wayland";
     };
 
-    # input (optional)
-    services.libinput.enable = true;
-
     # mesa / vulkan support
     hardware = {
       graphics = {

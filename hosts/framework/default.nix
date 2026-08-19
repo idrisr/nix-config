@@ -20,6 +20,7 @@ in
       pipewire.enable = true;
       pipewire.airpods.enable = true;
       pipewire.airpods.deviceName = "bluez_card.58_0A_D4_EB_A7_4B";
+      trackpad.enable = true;
       vikunja.enable = false;
       clientnode.enable = true;
       localHostOverrides = {

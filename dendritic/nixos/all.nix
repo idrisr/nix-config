@@ -86,6 +86,7 @@ in
       ../../modules/tailscale
       ../../modules/tailscale/client.nix
       ../../modules/tailscale/server.nix
+      ../../modules/trackpad.nix
       ../../modules/unifi
       ../../modules/vikunja
       ../../modules/virtualization
