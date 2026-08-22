@@ -87,7 +87,6 @@ in
 
     services.home-assistant = {
       enable = true;
-      openFirewall = false;
       extraPackages = ps: [
         ps."infrared-protocols"
         ps.gtts
