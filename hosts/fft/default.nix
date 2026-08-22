@@ -1,9 +1,8 @@
-{
-  config,
-  lib,
-  pkgs,
-  inputs,
-  ...
+{ config
+, lib
+, pkgs
+, inputs
+, ...
 }:
 {
   options = { };
@@ -16,15 +15,19 @@
   config = {
     my = {
       printer.enable = true;
-      printer.local.enable = true;
       printServer.enable = true;
       base.enable = true;
       "initrd-remote-unlock".enable = true;
       anki.enable = true;
+      navidrome = {
+        enable = true;
+        address = "192.168.8.231";
+        allowedSource = "192.168.8.224";
+      };
       jellyfin.enable = true;
       immich.enable = true;
       paperless = {
-        enable = true;
+        enable = false;
         address = "192.168.8.231";
         allowedSource = "192.168.8.224";
         domain = "paperless.idrisraja.com";

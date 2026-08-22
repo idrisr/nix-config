@@ -24,7 +24,7 @@ in
       config.boot.kernelPackages.nvidiaPackages.production; # (installs 550)
 
     services.prometheus.exporters.nvidia-gpu = {
-      enable = true;
+      # enable = true;
       openFirewall = true;
     };
 

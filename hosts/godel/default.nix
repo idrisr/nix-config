@@ -27,7 +27,6 @@ in
       "airplay"
       "sendspin"
     ];
-    my.navidrome.enable = true;
     my.audiobookshelf.enable = true;
     my.slskd.enable = true;
     home-assistant.enable = true;
@@ -177,7 +176,7 @@ in
           forceSSL = true;
           useACMEHost = acmeHost;
           locations."/" = {
-            proxyPass = "http://127.0.0.1:4533";
+            proxyPass = "http://192.168.8.231:4533";
             proxyWebsockets = true;
           };
         };

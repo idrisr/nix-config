@@ -15,6 +15,20 @@ in
           enable navidrome
         '';
       };
+      address = mkOption {
+        default = "127.0.0.1";
+        type = types.str;
+        description = lib.mdDoc ''
+          address for navidrome to listen on
+        '';
+      };
+      allowedSource = mkOption {
+        default = null;
+        type = types.nullOr types.str;
+        description = lib.mdDoc ''
+          source address allowed through the firewall to reach navidrome
+        '';
+      };
     };
   };
 
@@ -25,18 +39,22 @@ in
       enable = true;
       group = "hippoid";
       settings = {
-        Address = "127.0.0.1";
+        Address = cfg.address;
         Port = 4533;
-        MusicFolder = "/srv/navidrome/music";
-        DataFolder = "/srv/navidrome/data";
+        MusicFolder = "/data/navidrome/music";
+        DataFolder = "/data/navidrome/data";
         EnableInsightsCollector = false;
       };
     };
 
+    networking.firewall.extraCommands = mkIf (cfg.allowedSource != null) ''
+      iptables -A nixos-fw -p tcp -s ${cfg.allowedSource} --dport 4533 -j nixos-fw-accept
+    '';
+
     systemd.tmpfiles.rules = [
-      "d /srv/navidrome 2775 hippoid hippoid -"
-      "d /srv/navidrome/music 2775 hippoid hippoid -"
-      "d /srv/navidrome/data 0700 navidrome hippoid -"
+      "d /data/navidrome 2775 hippoid hippoid -"
+      "d /data/navidrome/music 2775 hippoid hippoid -"
+      "d /data/navidrome/data 0700 navidrome hippoid -"
     ];
   };
 }
