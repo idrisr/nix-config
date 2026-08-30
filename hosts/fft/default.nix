@@ -42,7 +42,7 @@
       };
       borgrepo.enable = true;
       kismet = {
-        enable = true;
+        enable = false;
         interface = "wlp8s0";
       };
       servernode.enable = false;
@@ -55,6 +55,7 @@
       };
     };
 
+    virtualization.enable = true;
     nvidia-gpu.enable = true;
     my.adsb.enable = true;
     sdr.enable = true;
@@ -225,15 +226,17 @@
       lego
       certbot
     ];
-    home-manager = {
-      useGlobalPkgs = true;
-      useUserPackages = true;
-      extraSpecialArgs = {
-        inherit inputs;
-        graphical = false;
-        pkgs = pkgs;
-      };
-      users.hippoid = import (inputs."home-config" + "/home.nix");
-    };
+
+    # home-manager = {
+    # useGlobalPkgs = true;
+    # useUserPackages = true;
+    # extraSpecialArgs = {
+    # inherit inputs;
+    # graphical = false;
+    # pkgs = pkgs;
+    # };
+    # users.hippoid = import (inputs."home-config" + "/home.nix");
+    # };
+
   };
 }

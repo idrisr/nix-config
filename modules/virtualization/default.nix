@@ -1,12 +1,12 @@
-{
-  pkgs,
-  lib,
-  config,
-  ...
+{ pkgs
+, lib
+, config
+, ...
 }:
 with lib; let
   cfg = config.virtualization;
-in {
+in
+{
   options = {
     virtualization = {
       enable = mkOption {
@@ -18,6 +18,7 @@ in {
       };
     };
   };
+
   config = mkIf cfg.enable {
     environment.systemPackages = with pkgs; [
       adwaita-icon-theme
@@ -33,7 +34,7 @@ in {
     ];
 
     programs.dconf.enable = true;
-    users.groups.libvirtd.members = ["hippoid"];
+    users.groups.libvirtd.members = [ "hippoid" ];
 
     # Manage the virtualisation services
     virtualisation = {

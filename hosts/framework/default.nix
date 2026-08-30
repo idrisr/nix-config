@@ -49,6 +49,7 @@ in
         "x-systemd.idle-timeout=10m"
       ];
     };
+
     fonts.packages = with pkgs; [ eb-garamond ];
     services.upower = {
       enable = true;
