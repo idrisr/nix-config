@@ -15,6 +15,7 @@
     ./esphome
     ./fprintd
     ./frigate
+    ./fft-sanoid
     ./hdhomerun-monitor
     ./home-assistant
     ./hyprland-support.nix

@@ -41,6 +41,7 @@ in
       ../../modules/droidcam
       ../../modules/esphome
       ../../modules/fprintd
+      ../../modules/fft-sanoid
       ../../modules/frigate
       ../../modules/hdhomerun-monitor
       ../../modules/home-assistant
