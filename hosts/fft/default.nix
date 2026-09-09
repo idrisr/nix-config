@@ -57,7 +57,7 @@
 
     virtualization.enable = true;
     nvidia-gpu.enable = true;
-    my.adsb.enable = true;
+    my.adsb.enable = false;
     sdr.enable = true;
     sdr.web.enable = false;
     ollama.enable = true;
