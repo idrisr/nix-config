@@ -23,7 +23,18 @@ in
   };
 
   config = lib.mkIf cfg.enable {
-    environment.systemPackages = with pkgs; [ sg3_utils ];
+    environment.systemPackages = with pkgs; [
+      sg3_utils
+      cdparanoia
+      libcdio
+      ddrescue
+      cdrkit
+      cdrdao
+      cdrtools
+      dvdplusrwtools
+      lsdvd
+      handbrake
+    ];
     services.udev.extraRules = ''
       ACTION=="add", ATTRS{idProduct}=="1500", ATTRS{idVendor}=="05ac", DRIVERS=="usb", RUN+="${pkgs.sg3_utils}/bin/sg_raw /dev/%k EA 00 00 00 00 00 01"
     '';
