@@ -6,10 +6,21 @@
   imports = [
     (modulesPath + "/installer/scan/not-detected.nix")
     ./disko-fft.nix
+    ./disko-fft-zfs.nix
   ];
 
   config = {
+
     boot = {
+      supportedFilesystems = [ "zfs" ];
+
+      zfs = {
+        extraPools = [ "tank" "backup" ];
+        requestEncryptionCredentials = [
+          "tank/data"
+          "backup/data"
+        ];
+      };
       binfmt.emulatedSystems = [ "aarch64-linux" ];
       kernelParams = [ "console=ttyS0,115200" "console=tty1" ];
       loader = {
@@ -25,7 +36,8 @@
           "usb_storage"
           "sd_mod"
         ];
-        kernelModules = [ "dm-snapshot" "igc" "e1000e" "r8169" ];
+        kernelModules = [ "zfs" "dm-snapshot" "igc" "e1000e" "r8169" ];
+        supportedFilesystems = [ "zfs" ];
         systemd.network = {
           enable = true;
           networks."10-initrd-dhcp" = {
@@ -63,6 +75,7 @@
     networking = {
       useDHCP = lib.mkDefault true;
       hostName = "fft";
+      hostId = "f256a61e";
       networkmanager.enable = false;
     };
 

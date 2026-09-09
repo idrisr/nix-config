@@ -14,7 +14,7 @@
                 type = "filesystem";
                 format = "vfat";
                 mountpoint = "/boot";
-                mountOptions = ["defaults"];
+                mountOptions = [ "defaults" ];
               };
             };
             luks = {
@@ -22,81 +22,12 @@
               content = {
                 type = "luks";
                 name = "crypted";
-                extraOpenArgs = [];
+                extraOpenArgs = [ ];
                 passwordFile = "/tmp/secret.key";
-                settings = {allowDiscards = true;};
+                settings = { allowDiscards = true; };
                 content = {
                   type = "lvm_pv";
                   vg = "pool";
-                };
-              };
-            };
-          };
-        };
-      };
-      hd1 = {
-        type = "disk";
-        device = "/dev/sda";
-        content = {
-          type = "gpt";
-          partitions = {
-            luks = {
-              size = "100%";
-              content = {
-                type = "luks";
-                name = "encr-hd1";
-                extraOpenArgs = [];
-                passwordFile = "/tmp/secret.key";
-                settings = {allowDiscards = true;};
-                content = {
-                  type = "lvm_pv";
-                  vg = "spinny";
-                };
-              };
-            };
-          };
-        };
-      };
-      hd2 = {
-        type = "disk";
-        device = "/dev/sdb";
-        content = {
-          type = "gpt";
-          partitions = {
-            luks = {
-              size = "100%";
-              content = {
-                type = "luks";
-                name = "encr-hd2";
-                extraOpenArgs = [];
-                passwordFile = "/tmp/secret.key";
-                settings = {allowDiscards = true;};
-                content = {
-                  type = "lvm_pv";
-                  vg = "spinny";
-                };
-              };
-            };
-          };
-        };
-      };
-      hd3 = {
-        type = "disk";
-        device = "/dev/sdc";
-        content = {
-          type = "gpt";
-          partitions = {
-            luks = {
-              size = "100%";
-              content = {
-                type = "luks";
-                name = "encr-hd3";
-                extraOpenArgs = [];
-                passwordFile = "/tmp/secret.key";
-                settings = {allowDiscards = true;};
-                content = {
-                  type = "lvm_pv";
-                  vg = "spinny";
                 };
               };
             };
@@ -114,21 +45,7 @@
               type = "filesystem";
               format = "ext4";
               mountpoint = "/";
-              mountOptions = ["defaults"];
-            };
-          };
-        };
-      };
-      spinny = {
-        type = "lvm_vg";
-        lvs = {
-          root = {
-            size = "10T";
-            content = {
-              type = "filesystem";
-              format = "ext4";
-              mountpoint = "/data";
-              mountOptions = ["defaults"];
+              mountOptions = [ "defaults" ];
             };
           };
         };
