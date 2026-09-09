@@ -27,6 +27,16 @@ in
         enable = true;
         allHosts = true;
       };
+
+      paperless = {
+        enable = true;
+        allowedSource = "127.0.0.1";
+        domain = "paperless.idrisraja.com";
+        taskWorkers = 4;
+        threadsPerWorker = 4;
+        webserverWorkers = 2;
+      };
+
       wifi-iperf-monitor = {
         enable = true;
         serverHost = "192.168.8.224";
@@ -35,6 +45,7 @@ in
         interval = "30m";
       };
     };
+
     borg-backup-client.enable = true;
     hardware.labrador.enable = true;
     virtualization.enable = true;
@@ -69,7 +80,7 @@ in
       systemd-boot.enable = true;
       efi.canTouchEfiVariables = true;
     };
-    nix.settings.max-jobs = 0;
+    nix.settings.max-jobs = "auto";
     networking.firewall.enable = false;
     programs.noisetorch.enable = true;
     environment = {

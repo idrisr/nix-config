@@ -84,15 +84,15 @@ in
       enable = true;
       address = cfg.address;
       inherit port;
-      dataDir = "/srv/paperless/data";
-      mediaDir = "/srv/paperless/media";
-      consumptionDir = "/srv/paperless/consume";
+      dataDir = "/data/paperless/data";
+      mediaDir = "/data/paperless/media";
+      consumptionDir = "/data/paperless/consume";
       consumptionDirIsPublic = true;
       openMPThreadingWorkaround = true;
       database.createLocally = true;
       exporter = {
         enable = true;
-        directory = "/srv/paperless/export";
+        directory = "/data/paperless/export";
         onCalendar = "daily";
       };
       settings = {
@@ -117,12 +117,12 @@ in
     };
 
     systemd.tmpfiles.rules = [
-      "d /srv/paperless 0755 paperless hippoid -"
-      "d /srv/paperless/consume 2775 paperless hippoid -"
-      "Z /srv/paperless/consume 2775 paperless hippoid -"
-      "d /srv/paperless/data 0700 paperless paperless -"
-      "d /srv/paperless/export 0700 paperless paperless -"
-      "d /srv/paperless/media 0700 paperless paperless -"
+      "d /data/paperless 0755 paperless hippoid -"
+      "d /data/paperless/consume 2775 paperless hippoid -"
+      "Z /data/paperless/consume 2775 paperless hippoid -"
+      "d /data/paperless/data 0700 paperless paperless -"
+      "d /data/paperless/export 0700 paperless paperless -"
+      "d /data/paperless/media 0700 paperless paperless -"
     ];
 
     networking.firewall.extraCommands = ''
