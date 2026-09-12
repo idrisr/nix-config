@@ -7,16 +7,14 @@
   imports = [
     (modulesPath + "/installer/scan/not-detected.nix")
     inputs.nixos-hardware.nixosModules.framework-11th-gen-intel
+    (import ./disko-framework.nix { device = "/dev/nvme0n1"; })
   ];
 
   boot = {
     initrd = {
       availableKernelModules = [ "xhci_pci" "thunderbolt" "nvme" "usb_storage" "sd_mod" ];
-      kernelModules = [ ];
-      luks.devices = {
-        "luks-edef38c3-d8f8-444d-9e96-fedfbde573bc".device = "/dev/disk/by-uuid/edef38c3-d8f8-444d-9e96-fedfbde573bc";
-        # uuid block device
-      };
+      kernelModules = [ "zfs" ];
+      supportedFilesystems = [ "zfs" ];
     };
     kernelModules = [ "kvm-intel" "zfs" ];
     extraModulePackages = [ ];
@@ -25,18 +23,22 @@
       efi.canTouchEfiVariables = true;
     };
     binfmt.emulatedSystems = [ "aarch64-linux" ];
-    supportedFilesystems = [ "zfs" ];
+    zfs.requestEncryptionCredentials = [ "home/home" ];
   };
 
   fileSystems."/" = {
-    device = "/dev/disk/by-uuid/65140436-aea1-4525-90a6-000dd8284bdb";
-    fsType = "ext4";
+    device = "rpool/root";
+    fsType = "zfs";
   };
 
-  fileSystems."/boot" = {
-    device = "/dev/disk/by-uuid/F971-583B";
-    fsType = "vfat";
-    options = [ "fmask=0077" "dmask=0077" ];
+  fileSystems."/nix" = {
+    device = "rpool/nix";
+    fsType = "zfs";
+  };
+
+  fileSystems."/home" = {
+    device = "home/home";
+    fsType = "zfs";
   };
 
   services = {
