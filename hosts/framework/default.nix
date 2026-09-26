@@ -30,12 +30,9 @@ in
 
       paperless = {
         enable = true;
-        allowedSource = "127.0.0.1";
-        domain = "paperless.idrisraja.com";
-        taskWorkers = 4;
-        threadsPerWorker = 4;
-        webserverWorkers = 2;
       };
+
+      memos.enable = true;
 
       wifi-iperf-monitor = {
         enable = true;

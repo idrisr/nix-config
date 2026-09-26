@@ -19,7 +19,13 @@ let
   deployChecks =
     builtins.mapAttrs
       (system: deployLib: deployLib.deployChecks inputs.self.deploy)
-      inputs.deploy-rs.lib;
+      (lib.filterAttrs
+        (system: _: builtins.elem system [
+          "x86_64-linux"
+          "aarch64-linux"
+          "aarch64-darwin"
+        ])
+        inputs.deploy-rs.lib);
 in
 {
   flake = {

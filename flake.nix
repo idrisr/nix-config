@@ -1,7 +1,6 @@
 {
   inputs = {
     nixpkgs.url = "nixpkgs/nixos-unstable";
-    # dcgm.url = "git+file:/home/hippoid/fun/prometheus";
     flake-parts.url = "github:hercules-ci/flake-parts";
     import-tree.url = "github:vic/import-tree";
     nixos-hardware.url = "github:nixos/nixos-hardware";
@@ -36,10 +35,6 @@
     };
     nixos-pi-zero-2 = {
       url = "github:plmercereau/nixos-pi-zero-2";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-    nix-index-database = {
-      url = "github:nix-community/nix-index-database";
       inputs.nixpkgs.follows = "nixpkgs";
     };
   };

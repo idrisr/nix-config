@@ -1,7 +1,6 @@
 # disko --mode disko ./disko-framework.nix --argstr device '/dev/nvme0n1'
-{
-  device ? throw "pass in your device",
-  ...
+{ device ? throw "pass in your device"
+, ...
 }:
 {
   disko.devices = {
@@ -71,6 +70,17 @@
           atime = "off";
           mountpoint = "none";
         };
+
+        datasets.paperless = {
+          type = "zfs_fs";
+          mountpoint = "/var/paperless";
+          options = {
+            encryption = "aes-256-gcm";
+            keyformat = "passphrase";
+            keylocation = "prompt";
+          };
+        };
+
         datasets.home = {
           type = "zfs_fs";
           mountpoint = "/home";

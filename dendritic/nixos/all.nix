@@ -58,12 +58,12 @@ in
       ../../modules/locate
       ../../modules/mediamtx-webcam
       ../../modules/mealie
+      ../../modules/memos
       ../../modules/mitmproxy
       ../../modules/music-assistant.nix
       ../../modules/navidrome.nix
       ../../modules/nh
       ../../modules/nfs-client.nix
-      ../../modules/nix-index
       ../../modules/nvidia
       ../../modules/ollama
       ../../modules/opnsense-backup

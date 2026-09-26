@@ -7,7 +7,7 @@ in
 
   options.my.nix-index = {
     enable = lib.mkEnableOption "nix-index integration" // {
-      default = true;
+      default = false;
     };
 
     database.enable = lib.mkEnableOption "nix-index-database integration" // {
