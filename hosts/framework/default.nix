@@ -48,15 +48,15 @@ in
     virtualization.enable = true;
     services.blueman.enable = true;
     hardware.bluetooth.enable = true;
-    fileSystems."/home/${user}/downloads/slskd" = {
-      device = "godel:/srv/slskd";
-      fsType = "nfs";
-      options = [
-        "nofail"
-        "x-systemd.automount"
-        "x-systemd.idle-timeout=10m"
-      ];
-    };
+    # fileSystems."/home/${user}/downloads/slskd" = {
+    # device = "godel:/srv/slskd";
+    # fsType = "nfs";
+    # options = [
+    # "nofail"
+    # "x-systemd.automount"
+    # "x-systemd.idle-timeout=10m"
+    # ];
+    # };
 
     fonts.packages = with pkgs; [ eb-garamond ];
     services.upower = {

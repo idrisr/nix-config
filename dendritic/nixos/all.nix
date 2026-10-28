@@ -38,7 +38,6 @@ in
       ../../modules/borg/borgrepo.nix
       ../../modules/desktop.nix
       ../../modules/docker
-      ../../modules/droidcam
       ../../modules/esphome
       ../../modules/fprintd
       ../../modules/fft-sanoid
@@ -71,7 +70,6 @@ in
       ../../modules/paperless.nix
       ../../modules/pinchflat
       ../../modules/pipewire
-      ../../modules/podgrab
       ../../modules/power
       ../../modules/printer/printer-client.nix
       ../../modules/printer/printing.nix
