@@ -143,6 +143,12 @@ in
           locations."/" = {
             proxyPass = "http://192.168.8.231:2283";
             proxyWebsockets = true;
+            extraConfig = ''
+              client_max_body_size 50G;
+              proxy_request_buffering off;
+              proxy_read_timeout 1h;
+              proxy_send_timeout 1h;
+            '';
           };
         };
 

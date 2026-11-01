@@ -40,7 +40,7 @@ in
         port = adguardPort;
         settings = {
           # bind_port = adguardPort;
-          schema_version = 20;
+          schema_version = 23;
           dns = {
             rewrites = adguardRewrites;
           };

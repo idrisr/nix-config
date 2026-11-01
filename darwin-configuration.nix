@@ -69,6 +69,6 @@ in
 {
   darwinConfigurations = {
     ${host} = mkDarwinConfiguration host;
-    macbook = mkDarwinConfiguration "macbook";
+    macbookair = mkDarwinConfiguration "macbookair";
   };
 }

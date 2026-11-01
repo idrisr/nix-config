@@ -53,6 +53,10 @@ in
         PAPERLESS_ENABLE_NLTK = false;
         PAPERLESS_OCR_MODE = "off";
         PAPERLESS_EMAIL_TASK_CRON = "disable";
+        # Disable Paperless's automatic ML classifier and prevent use of any
+        # previously trained model.
+        PAPERLESS_TRAIN_TASK_CRON = "disable";
+        PAPERLESS_MODEL_FILE = "/var/paperless/data/classification_model.disabled";
       };
     };
   };
